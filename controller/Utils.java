@@ -67,7 +67,7 @@ public class Utils {
 
     /** Various checks for the registration process */
     public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String d, String pr, String pn, String r,
-                                            String ci, int cap, String t, String co, String em, Boolean mtt) {
+                                            String ci, String cap, String t, String co, String em, String mtt) {
         boolean result = true;
 
         // Check name
@@ -83,7 +83,7 @@ public class Utils {
         if(p.length() < 8)              { result = false; out.println("The password must be at lest 8 characters long"); }
         if(p.length() > 35)             { result = false; out.println("The password is too long"); }
 
-        // TODO: date check
+        if (!isValidEmailAddress(em))   { result = false; out.println("The email address is not valid"); }
 
         // Check provincia
         if(checkEmpty(pr))              { result = false; out.println("Inserisci la provincia"); }
@@ -110,14 +110,15 @@ public class Utils {
         if (co.length() > 20)           { result = false; out.println("Corso too long"); }
 
         // Check email
-        if (checkEmpty(em))             { result = false; out.println("Inserisci la mail");}
-        if (em.length() > 60)           { result = false; out.println("Email too long");}
+        if (checkEmpty(em))               { result = false; out.println("Inserisci la mail");}
+        if (em.length() > 60)             { result = false; out.println("Email too long");}
 
-        // Check hc
-        if (mtt == null)                { result = false; out.println("Handicap not set");}
+        // Check the cap string
+        if (Utils.checkEmpty(cap) )        { result = false; out.println("Invalid CAP"); }
+        if (!cap.matches("[0-9]+"))   { result = false; out.println("The CAP must contains only numbers"); }
 
-        // Check cap
-        if (cap == 0)                   {result = false; out.println("Cap not set"); }
+        // Check if the handicap string is empty
+        if (!mtt.equals("si") || !mtt.equals("no")) {result = false; out.println("Invalid handicap, must be si/no"); }
 
         return result;
 
@@ -163,6 +164,13 @@ public class Utils {
             return value.isEmpty();
 
         return true;
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 
 }

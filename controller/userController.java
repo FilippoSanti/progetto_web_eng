@@ -26,15 +26,7 @@ public class userController extends HttpServlet {
 
         try {
 
-            boolean test = Utils.userAuth(email, pass);
-
-            System.out.println("Email: " +email +" - " + "Password: " +pass);
-
-            System.out.println(test);
-
-            if (test) {
-
-                System.out.println("Email" +email +" - " + "Password: " +pass);
+            if (Utils.userAuth(email, pass)) {
 
                 // Creating a session
                 HttpSession session = request.getSession();
@@ -60,26 +52,29 @@ public class userController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        int CAP = Integer.parseInt(request.getParameter("CAP"));
-        Boolean handicap = Boolean.parseBoolean(request.getParameter("handicap"));
-        String nome = request.getParameter("nome");
-        String pass = request.getParameter("password");
-        String dateString = request.getParameter("date");
-        String provincia = request.getParameter("provincia");
-        String provincia_n = request.getParameter("provincia_nascita");
-        String residenza = request.getParameter("residenza");
-        String citta = request.getParameter("citta");
-        String telefono = request.getParameter("telefono");
-        String corso = request.getParameter("corso_laurea");
-        String email = request.getParameter("email");
-        String cognome = request.getParameter("cognome");
+        String cap_string      = request.getParameter("CAP");
+        String handicap_string = request.getParameter("handicap");
+        String nome            = request.getParameter("nome");
+        String pass            = request.getParameter("password");
+        String dateString      = request.getParameter("date");
+        String provincia       = request.getParameter("provincia");
+        String provincia_n     = request.getParameter("provincia_nascita");
+        String residenza       = request.getParameter("residenza");
+        String citta           = request.getParameter("citta");
+        String telefono        = request.getParameter("telefono");
+        String corso           = request.getParameter("corso_laurea");
+        String email           = request.getParameter("email");
+        String cognome         = request.getParameter("cognome");
 
-        boolean testReg = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
-                residenza, citta, CAP, telefono, corso, email, handicap);
+        boolean regPassed = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
+                residenza, citta, cap_string, telefono, corso, email, handicap_string);
 
-        if (testReg) {
+        if (regPassed) {
 
-            System.out.println("lol");
+            // If the registration check has been completed without errors
+            // We parse the necessary String variables to int and Boolean
+            // And insert them in the DB
+            int capInt = Integer.parseInt(request.getParameter("CAP"));
 
             try {
 
@@ -96,11 +91,11 @@ public class userController extends HttpServlet {
                 ps.setString(5, provincia_n);
                 ps.setString(6, residenza);
                 ps.setString(7, citta);
-                ps.setInt(8, CAP);
+                ps.setInt(8, capInt);
                 ps.setString(9, telefono);
                 ps.setString(10, corso);
                 ps.setString(11, email);
-                ps.setBoolean(12, handicap);
+                ps.setString(12, handicap_string);
                 ps.setString(13, cognome);
 
                 int i = ps.executeUpdate();
