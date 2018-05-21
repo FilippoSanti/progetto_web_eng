@@ -25,7 +25,6 @@ public class userController extends HttpServlet {
         String pass = request.getParameter("pass");
 
         try {
-
             if (Utils.userAuth(email, pass)) {
 
                 // Creating a session
@@ -47,7 +46,7 @@ public class userController extends HttpServlet {
 
     // Registration process
     protected void action_register(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -66,10 +65,13 @@ public class userController extends HttpServlet {
         String email           = request.getParameter("email");
         String cognome         = request.getParameter("cognome");
 
-        boolean regPassed = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
+        System.out.println("date" +dateString);
+        System.out.println(dateString);
+
+        boolean regOk = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
                 residenza, citta, cap_string, telefono, corso, email, handicap_string);
 
-        if (regPassed) {
+        if (regOk) {
 
             // If the registration check has been completed without errors
             // We parse the necessary String variables to int and Boolean
@@ -121,7 +123,7 @@ public class userController extends HttpServlet {
      * @throws javax.servlet.ServletException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+            throws ServletException, SQLException, ClassNotFoundException {
         try {
 
             if (request.getParameter("login") != null) {
@@ -148,7 +150,13 @@ public class userController extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -159,7 +167,13 @@ public class userController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
