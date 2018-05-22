@@ -1,5 +1,9 @@
-package controller;
+package controller.utilities;
 
+import controller.DataSource;
+
+import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.text.DateFormat;
@@ -10,20 +14,6 @@ public class Utils {
 
     public static  String  newLine     = System.getProperty("line.separator");
     final  static  String  DATE_FORMAT = "dd/MM/yyyy";
-
-    /** DB Connection */
-    public static Connection dbConnect() throws SQLException, ClassNotFoundException {
-
-        // DB Connection
-        // Loading drivers for mysql
-        Class.forName("com.mysql.jdbc.Driver");
-
-        //creating connection with the database
-        Connection conn = DriverManager.getConnection
-                ("jdbc:mysql://localhost/login", "root", "eden777");
-
-        return conn;
-    }
 
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
     private static int workload = 12;
@@ -41,8 +31,8 @@ public class Utils {
      * @return String - a string of length 60 that is the bcrypt hashed password in crypt(3) format.
      */
     public static String hashPassword(String password_plaintext) {
-        String salt = org.mindrot.jbcrypt.BCrypt.gensalt(workload);
-        String hashed_password = org.mindrot.jbcrypt.BCrypt.hashpw(password_plaintext, salt);
+        String salt = BCrypt.gensalt(workload);
+        String hashed_password = BCrypt.hashpw(password_plaintext, salt);
 
         return (hashed_password);
     }
@@ -62,14 +52,14 @@ public class Utils {
         if (null == stored_hash || !stored_hash.startsWith("$2a$"))
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
-        password_verified = org.mindrot.jbcrypt.BCrypt.checkpw(password_plaintext, stored_hash);
+        password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
 
         return (password_verified);
     }
 
     /** Various checks for the registration process */
     public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String d, String pr, String pn, String r,
-                                            String ci, String cap, String t, String co, String em, String mtt) throws SQLException, ClassNotFoundException {
+                                            String ci, String cap, String t, String co, String em, String mtt) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
         boolean result = true;
 
         // If every field is empty, we only tell the user to insert the requested values
@@ -147,12 +137,12 @@ public class Utils {
 
 
     /* User authentication */
-    public static boolean userAuth(String email, String password) throws SQLException, ClassNotFoundException {
+    public static boolean userAuth(String email, String password) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
-        Connection conn = dbConnect();
+        Connection dbConnection = DataSource.getInstance().getConnection();
 
         try {
-            PreparedStatement pst = conn.prepareStatement("SELECT password FROM studente WHERE email = ?");
+            PreparedStatement pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
 
@@ -208,9 +198,9 @@ public class Utils {
     }
 
     // Query to check if the email already is in the db
-    public static boolean checkEmailExists(String emailString) throws SQLException, ClassNotFoundException {
+    public static boolean checkEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
-        Connection dbConnection = dbConnect();
+        Connection dbConnection = DataSource.getInstance().getConnection();
 
         String query = "SELECT * FROM studente WHERE email = ?";
         try (PreparedStatement statement = dbConnection.prepareStatement(query)) {

@@ -1,11 +1,14 @@
 package controller;
 
+import controller.utilities.Utils;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,17 +28,21 @@ public class userController extends HttpServlet {
         String pass = request.getParameter("pass");
 
         try {
-            if (Utils.userAuth(email, pass)) {
+            try {
+                if (Utils.userAuth(email, pass)) {
 
-                // Creating a session
-                HttpSession session = request.getSession();
-                session.setAttribute("user", email);
-                response.sendRedirect("Welcome");
+                    // Creating a session
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", email);
+                    response.sendRedirect("Welcome");
 
-            } else {
-                out.println("Sorry, username or Password incorrect");
-                RequestDispatcher rs = request.getRequestDispatcher("index.html");
-                rs.include(request, response);
+                } else {
+                    out.println("Sorry, username or Password incorrect");
+                    RequestDispatcher rs = request.getRequestDispatcher("index.html");
+                    rs.include(request, response);
+                }
+            } catch (PropertyVetoException e) {
+                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,7 +53,7 @@ public class userController extends HttpServlet {
 
     // Registration process
     protected void action_register(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -80,8 +87,9 @@ public class userController extends HttpServlet {
 
             try {
 
-                Connection conn = Utils.dbConnect();
-                PreparedStatement ps = conn.prepareStatement
+                Connection dbConnection = DataSource.getInstance().getConnection();
+
+                PreparedStatement ps = dbConnection.prepareStatement
                         ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 ps.setString(1, nome);
@@ -123,7 +131,7 @@ public class userController extends HttpServlet {
      * @throws javax.servlet.ServletException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, SQLException, ClassNotFoundException {
+            throws ServletException, SQLException, ClassNotFoundException, PropertyVetoException {
         try {
 
             if (request.getParameter("login") != null) {
@@ -151,7 +159,11 @@ public class userController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (PropertyVetoException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -168,7 +180,11 @@ public class userController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (PropertyVetoException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
