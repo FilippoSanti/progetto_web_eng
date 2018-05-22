@@ -1,6 +1,7 @@
 package controller;
 
 import controller.utilities.Utils;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class userController extends HttpServlet {
 
     // Login process
     protected void action_login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -27,25 +28,29 @@ public class userController extends HttpServlet {
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
 
+        // Create a new user instance
+        User user = new User();
+
         try {
-            try {
-                if (Utils.userAuth(email, pass)) {
 
-                    // Creating a session
-                    HttpSession session = request.getSession();
-                    session.setAttribute("user", email);
-                    response.sendRedirect("Welcome");
+            //Check if the login was successful
+            if (Utils.userAuth(email, pass)) {
 
-                } else {
-                    out.println("Sorry, username or Password incorrect");
-                    RequestDispatcher rs = request.getRequestDispatcher("index.html");
-                    rs.include(request, response);
-                }
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
+                // Creating a session
+                HttpSession session = request.getSession();
+
+                // Set the user object parameters
+                user.setEmail(email);
+
+                // Set the session attribute to check if the user is logegd in
+                session.setAttribute("loggedInUser", user);
+                response.sendRedirect("Welcome");
+
+            } else {
+                out.println("Sorry, username or Password incorrect");
+                RequestDispatcher rs = request.getRequestDispatcher("index.html");
+                rs.include(request, response);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -58,22 +63,19 @@ public class userController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String cap_string      = request.getParameter("CAP");
+        String cap_string = request.getParameter("CAP");
         String handicap_string = request.getParameter("handicap");
-        String nome            = request.getParameter("nome");
-        String pass            = request.getParameter("password");
-        String dateString      = request.getParameter("date");
-        String provincia       = request.getParameter("provincia");
-        String provincia_n     = request.getParameter("provincia_nascita");
-        String residenza       = request.getParameter("residenza");
-        String citta           = request.getParameter("citta");
-        String telefono        = request.getParameter("telefono");
-        String corso           = request.getParameter("corso_laurea");
-        String email           = request.getParameter("email");
-        String cognome         = request.getParameter("cognome");
-
-        System.out.println("date" +dateString);
-        System.out.println(dateString);
+        String nome = request.getParameter("nome");
+        String pass = request.getParameter("password");
+        String dateString = request.getParameter("date");
+        String provincia = request.getParameter("provincia");
+        String provincia_n = request.getParameter("provincia_nascita");
+        String residenza = request.getParameter("residenza");
+        String citta = request.getParameter("citta");
+        String telefono = request.getParameter("telefono");
+        String corso = request.getParameter("corso_laurea");
+        String email = request.getParameter("email");
+        String cognome = request.getParameter("cognome");
 
         boolean regOk = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
                 residenza, citta, cap_string, telefono, corso, email, handicap_string);
@@ -87,6 +89,7 @@ public class userController extends HttpServlet {
 
             try {
 
+                // Conenct to the db pool
                 Connection dbConnection = DataSource.getInstance().getConnection();
 
                 PreparedStatement ps = dbConnection.prepareStatement

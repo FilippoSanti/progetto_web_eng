@@ -2,6 +2,8 @@ package controller.utilities;
 
 import controller.DataSource;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -211,6 +213,16 @@ public class Utils {
         } catch(SQLException se) {
             se.printStackTrace();
             return false;
+        }
+    }
+
+    // Check if the user is logged
+    public static boolean checkSession (HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInUser") == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

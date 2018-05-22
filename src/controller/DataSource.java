@@ -9,8 +9,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class DataSource {
 
-    private static DataSource     datasource;
-    private ComboPooledDataSource cpds;
+    private static DataSource      datasource;
+    private ComboPooledDataSource  cpds;
 
     private DataSource() throws IOException, SQLException, PropertyVetoException {
         cpds = new ComboPooledDataSource();

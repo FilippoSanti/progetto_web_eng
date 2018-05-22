@@ -1,18 +1,24 @@
 package model;
 
-import java.sql.Date;
-
 public class User {
-    String nome;
+    String email;
 
     public User() {
-        this.nome = "";
+        this.email = "";
     }
 
-    public User(String nome) {
+    public User(String email) {
 
-        this.nome = nome;
+        this.email = email;
     }
 
-    //TODO: getters and setters
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // TODO: getters and setters
 }
