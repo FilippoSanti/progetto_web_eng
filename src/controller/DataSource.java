@@ -13,13 +13,13 @@ public class DataSource {
     private ComboPooledDataSource  cpds;
 
     private DataSource() throws IOException, SQLException, PropertyVetoException {
+
         cpds = new ComboPooledDataSource();
-        cpds.setDriverClass("com.mysql.jdbc.Driver"); //loads the jdbc driver
+        cpds.setDriverClass("com.mysql.jdbc.Driver");
         cpds.setJdbcUrl("jdbc:mysql://localhost/login");
         cpds.setUser("root");
         cpds.setPassword("eden777");
 
-        // the settings below are optional -- c3p0 can work with defaults
         cpds.setMinPoolSize(5);
         cpds.setAcquireIncrement(5);
         cpds.setMaxPoolSize(20);

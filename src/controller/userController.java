@@ -1,205 +1,146 @@
 package controller;
 
 import controller.utilities.Utils;
-import model.User;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class userController extends HttpServlet {
+public class userController {
 
-    // Login process
-    protected void action_login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, PropertyVetoException {
+    public static  String  newLine = System.getProperty("line.separator");
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+    /** Various checks for the registration process */
+    public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String d, String pr, String pn, String r,
+                                            String ci, String cap, String t, String co, String em, String mtt) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+        boolean result = true;
 
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
+        // If every field is empty, we only tell the user to insert the requested values
+        if (n.isEmpty() && c.isEmpty() && p.isEmpty() && d.isEmpty() && pr.isEmpty() &&
+                r.isEmpty() && ci.isEmpty() && cap.isEmpty() && t.isEmpty() && co.isEmpty() &&
+                em.isEmpty() && mtt.isEmpty() && pr.isEmpty()) {
+            result = false;
+            out.println("You must insert some data");
+            return result;
+        }
 
-        // Create a new user instance
-        User user = new User();
+        // Then we check if the user already exists in the db
+        if (checkEmailExists(em))       { result = false; out.println("A user with this email alreday exists"); return result;};
+
+        // Check name
+        if(Utils.checkEmpty(n))               { result = false; out.println(newLine + "Please insert a name"); }
+        if (n.length() > 20)            { result = false; out.println(newLine +"The name is too long (15 characters max.)"); }
+
+        // Check surname
+        if(Utils.checkEmpty(c))               { result = false; out.println(newLine +"Please enter a surname");  }
+        if(c.length() > 20)             { result = false; out.println(newLine +"The surname is too long"); }
+
+        // Check password
+        if(Utils.checkEmpty(p))               { result = false; out.println(newLine +"Please enter a password"); }
+        if(p.length() < 8)              { result = false; out.println(newLine +"The password must be at lest 8 characters long"); }
+        if(p.length() > 35)             { result = false; out.println(newLine +"The password is too long"); }
+
+        //Check date
+        if (!Utils.isDateValid(d))            { result = false; out.println(newLine +"Invalid date"); }
+        if (d.length() != 10)           { result = false; out.println(newLine +"Enter a valid number of characters for the date"); }
+
+        // Check email
+        if (!Utils.isValidEmailAddress(em))   { result = false; out.println(newLine +"The email address is not valid"); }
+
+        // Check provincia
+        if(Utils.checkEmpty(pr))              { result = false; out.println(newLine +"Inserisci la provincia"); }
+        if (pr.length() > 20)           { result = false; out.println(newLine +"La provincia è troppo lunga"); }
+
+        // Check provincia_nascita
+        if(Utils.checkEmpty(pn))              { result = false; out.println(newLine +"Inserisci la provincia di nascita"); }
+        if (pn.length() > 20)           { result = false; out.println(newLine +"La provincia_nascita è troppo lunga"); }
+
+        // Check residenza
+        if(Utils.checkEmpty(r))               { result = false; out.println(newLine +"Inserisci la residenza"); }
+        if (pr.length() > 20)           { result = false; out.println(newLine +"La provincia è troppo lunga"); }
+
+        // Check citta
+        if(Utils.checkEmpty(ci))              { result = false; out.println(newLine +"Inserisci la citta"); }
+        if (ci.length() > 20)           { result = false; out.println(newLine +"Citta' too long"); }
+
+        // Check telefono
+        if(Utils.checkEmpty(t))               { result = false; out.println(newLine +"Inserisci il telefono"); }
+        if (t.length() > 20)            { result = false; out.println(newLine +"Telefono too long");}
+        if (!t.matches("[0-9]+")) { result = false; out.println(newLine + "The telephone must contain only numbers"); }
+
+        // Check corso
+        if(Utils.checkEmpty(co))              { result = false; out.println(newLine +"Inserisci il corso"); }
+        if (co.length() > 20)           { result = false; out.println(newLine +"Corso too long"); }
+
+        // Check email
+        if (Utils.checkEmpty(em))               { result = false; out.println("Inserisci la mail");}
+        if (em.length() > 60)             { result = false; out.println("Email too long");}
+
+        // Check the cap string
+        if (Utils.checkEmpty(cap))           { result = false; out.println(newLine +"Invalid CAP");}
+        if (!cap.matches("[0-9]+"))    { result = false; out.println(newLine +"The CAP must contains only numbers"); }
+        if (cap.length() > 5)                { result = false; out.println("The cap can't be more then 5 numbers");}
+
+        // Check if the handicap string is empty
+        if (!mtt.equals("si") && !mtt.equals("no") ) {result=false; out.println("The handicap must be si/no");}
+
+        return result;
+
+    }
+
+    /* User authentication */
+    public static boolean userAuth(String email, String password) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
 
         try {
+            PreparedStatement pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
 
-            //Check if the login was successful
-            if (Utils.userAuth(email, pass)) {
+            if (rs.next()) {
 
-                // Creating a session
-                HttpSession session = request.getSession();
-
-                // Set the user object parameters
-                user.setEmail(email);
-
-                // Set the session attribute to check if the user is logegd in
-                session.setAttribute("loggedInUser", user);
-                response.sendRedirect("Welcome");
-
-            } else {
-                out.println("Sorry, username or Password incorrect");
-                RequestDispatcher rs = request.getRequestDispatcher("index.html");
-                rs.include(request, response);
+                //Check if the provided password and the hashed one are equal
+                if (Utils.checkPassword(password, rs.getString("password")))
+                    return true;
             }
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
+    // Query to check if the email already is in the db
+    public static boolean checkEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+
+        String query = "SELECT * FROM studente WHERE email = ?";
+        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
+            statement.setString(1, emailString);
+            try( ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch(SQLException se) {
+            se.printStackTrace();
+            return false;
         }
     }
 
-    // Registration process
-    protected void action_register(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
-
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        String cap_string = request.getParameter("CAP");
-        String handicap_string = request.getParameter("handicap");
-        String nome = request.getParameter("nome");
-        String pass = request.getParameter("password");
-        String dateString = request.getParameter("date");
-        String provincia = request.getParameter("provincia");
-        String provincia_n = request.getParameter("provincia_nascita");
-        String residenza = request.getParameter("residenza");
-        String citta = request.getParameter("citta");
-        String telefono = request.getParameter("telefono");
-        String corso = request.getParameter("corso_laurea");
-        String email = request.getParameter("email");
-        String cognome = request.getParameter("cognome");
-
-        boolean regOk = Utils.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
-                residenza, citta, cap_string, telefono, corso, email, handicap_string);
-
-        if (regOk) {
-
-            // If the registration check has been completed without errors
-            // We parse the necessary String variables to int and Boolean
-            // And insert them in the DB
-            int capInt = Integer.parseInt(request.getParameter("CAP"));
-
-            try {
-
-                // Conenct to the db pool
-                Connection dbConnection = DataSource.getInstance().getConnection();
-
-                PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-                ps.setString(1, nome);
-
-                // Prepare the query and execute it
-                ps.setString(2, Utils.hashPassword(pass));
-                ps.setDate(3, Utils.convertDate(dateString));
-                ps.setString(4, provincia);
-                ps.setString(5, provincia_n);
-                ps.setString(6, residenza);
-                ps.setString(7, citta);
-                ps.setInt(8, capInt);
-                ps.setString(9, telefono);
-                ps.setString(10, corso);
-                ps.setString(11, email);
-                ps.setString(12, handicap_string);
-                ps.setString(13, cognome);
-
-                int i = ps.executeUpdate();
-
-                if (i > 0) {
-                    out.println("You are sucessfully registered");
-                }
-
-            } catch (Exception se) {
-                se.printStackTrace();
-            }
+    // Check if the user is logged
+    public static boolean checkSession (HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loggedInUser") == null) {
+            return false;
         } else {
-            out.println("Registration failed");
+            return true;
         }
     }
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws javax.servlet.ServletException
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, SQLException, ClassNotFoundException, PropertyVetoException {
-        try {
-
-            if (request.getParameter("login") != null) {
-                action_login(request, response);
-            }
-
-
-            if (request.getParameter("register") != null) {
-                action_register(request, response);
-            }
-
-        } catch (IOException ex) {
-            request.setAttribute("exception", ex);
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            try {
-                processRequest(request, response);
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            try {
-                processRequest(request, response);
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     */
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

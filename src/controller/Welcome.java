@@ -16,9 +16,10 @@ public class Welcome extends HttpServlet {
             throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
+        boolean sessionOK = userController.checkSession(request);
 
         // Check if the user is logged
-        if (!controller.utilities.Utils.checkSession(request)) {
+        if (!sessionOK) {
             out.println("you can't access this page");
 
         } else {
@@ -29,6 +30,8 @@ public class Welcome extends HttpServlet {
             // Get the user object to display informations
             User userModel = (User) session.getAttribute("loggedInUser");
             out.println("Hello " + userModel.getEmail());
+
+            request.getRequestDispatcher("welcome.jsp").include(request, response);
         }
     }
 
