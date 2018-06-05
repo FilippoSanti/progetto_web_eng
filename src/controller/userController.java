@@ -17,14 +17,14 @@ public class userController {
     public static  String  newLine = System.getProperty("line.separator");
 
     /** Various checks for the registration process */
-    public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String d, String pr, String pn, String r,
-                                            String ci, String cap, String t, String co, String em, String mtt) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+    public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
+                                            String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
         boolean result = true;
 
         // If every field is empty, we only tell the user to insert the requested values
-        if (n.isEmpty() && c.isEmpty() && p.isEmpty() && d.isEmpty() && pr.isEmpty() &&
-                r.isEmpty() && ci.isEmpty() && cap.isEmpty() && t.isEmpty() && co.isEmpty() &&
-                em.isEmpty() && mtt.isEmpty() && pr.isEmpty()) {
+        if (n.isEmpty() && c.isEmpty() && p.isEmpty() && d.isEmpty() && r.isEmpty()
+                && ci.isEmpty() && cap.isEmpty() && t.isEmpty() && co.isEmpty() &&
+                em.isEmpty()) {
             result = false;
             out.println("You must insert some data");
             return result;
@@ -43,6 +43,7 @@ public class userController {
 
         // Check password
         if(Utils.checkEmpty(p))               { result = false; out.println(newLine +"Please enter a password"); }
+        if(!p.equals(rp))               {result = false; out.println("The passwords you entered are not equal"); }
         if(p.length() < 8)              { result = false; out.println(newLine +"The password must be at lest 8 characters long"); }
         if(p.length() > 35)             { result = false; out.println(newLine +"The password is too long"); }
 
@@ -52,14 +53,6 @@ public class userController {
 
         // Check email
         if (!Utils.isValidEmailAddress(em))   { result = false; out.println(newLine +"The email address is not valid"); }
-
-        // Check provincia
-        if(Utils.checkEmpty(pr))              { result = false; out.println(newLine +"Inserisci la provincia"); }
-        if (pr.length() > 20)           { result = false; out.println(newLine +"La provincia è troppo lunga"); }
-
-        // Check provincia_nascita
-        if(Utils.checkEmpty(pn))              { result = false; out.println(newLine +"Inserisci la provincia di nascita"); }
-        if (pn.length() > 20)           { result = false; out.println(newLine +"La provincia_nascita è troppo lunga"); }
 
         // Check residenza
         if(Utils.checkEmpty(r))               { result = false; out.println(newLine +"Inserisci la residenza"); }
@@ -87,8 +80,8 @@ public class userController {
         if (!cap.matches("[0-9]+"))    { result = false; out.println(newLine +"The CAP must contains only numbers"); }
         if (cap.length() > 5)                { result = false; out.println("The cap can't be more then 5 numbers");}
 
-        // Check if the handicap string is empty
-        if (!mtt.equals("si") && !mtt.equals("no") ) {result=false; out.println("The handicap must be si/no");}
+        if (Utils.checkEmpty(cod_fiscale)) { result = false; out.println("The codice fiscale(non so come cazzo si dice) cannot be empty"); }
+        if (cod_fiscale.length() < 3) {result = false; out.println("The cod fiscale must be at least x characters");}
 
         return result;
 

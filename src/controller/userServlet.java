@@ -70,9 +70,9 @@ public class userServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String cap_string = request.getParameter("CAP");
-        String handicap_string = request.getParameter("handicap");
         String nome = request.getParameter("nome");
         String pass = request.getParameter("password");
+        String ripeti_pass = request.getParameter("ripeti_password");
         String dateString = request.getParameter("date");
         String provincia = request.getParameter("provincia");
         String provincia_n = request.getParameter("provincia_nascita");
@@ -83,15 +83,26 @@ public class userServlet extends HttpServlet {
         String email = request.getParameter("email");
         String cognome = request.getParameter("cognome");
         String cod_fiscale = request.getParameter("cod_fiscale");
+        String handicapString = request.getParameter("handicap");
 
-        boolean regOk = userController.checkRegistration(out, nome, cognome, pass, dateString, provincia, provincia_n,
-                residenza, citta, cap_string, telefono, corso, email, handicap_string);
+        System.out.println(nome);
+
+        boolean regOk = userController.checkRegistration(out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+                residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
 
         if (regOk) {
 
             // If the registration check has been completed without errors
             // We parse the necessary String variables to int and Boolean
             // And insert them in the DB
+
+
+            // See if the handicap checkbox has been set and assign a value to a boolean variable
+            boolean handicapBool = false;
+            if (!handicapString.isEmpty()) {
+                handicapBool = true;
+            }
+
             int capInt = Integer.parseInt(request.getParameter("CAP"));
 
             try {
@@ -119,9 +130,9 @@ public class userServlet extends HttpServlet {
                 ps.setString(10, telefono);
                 ps.setString(11, corso);
                 ps.setString(12, email);
-                ps.setString(13, handicap_string);
+                ps.setBoolean(13, handicapBool);
                 ps.setString(14, cognome);
-                ps.setString(14, cod_fiscale);
+                ps.setString(15, cod_fiscale);
 
                 int i = ps.executeUpdate();
 
@@ -250,7 +261,8 @@ public class userServlet extends HttpServlet {
             }
 
             if (request.getParameter("registration_student") != null) {
-                System.out.println("entra");
+
+                System.out.println("just testing");
                 action_register_student(request, response);
             }
 

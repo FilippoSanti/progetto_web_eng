@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 
 public class Utils {
 
-    final  static  String  DATE_FORMAT = "dd/MM/yyyy";
+    final  static  String  DATE_FORMAT = "mm/dd/yyyy";
 
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
     private static int workload = 12;
