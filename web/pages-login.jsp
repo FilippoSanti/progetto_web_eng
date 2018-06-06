@@ -25,6 +25,8 @@
     <body>
 
         <section>
+
+            <form method="post" action="login">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -41,12 +43,10 @@
                                     <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                 </div>
                                 <div class="account-content">
-                                    <form class="form-horizontal" action="#">
-
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">
-                                                <label for="UserNamelog">User Name / E-mail</label>
-                                                <input class="form-control" type="name" id="UserNamelog" required placeholder="User Name / E-mail">
+                                                <label for="UserNamelog">e-mail</label>
+                                                <input name="email" class="form-control" type="name" id="UserNamelog" required placeholder="User Name / E-mail">
                                             </div>
                                         </div>
 
@@ -54,7 +54,7 @@
                                             <div class="col-xs-12">
                                                 <a href="pages-forget-password.html" class="text-muted pull-right font-14">Forgot your password?</a>
                                                 <label for="passwordlog">Password</label>
-                                                <input class="form-control" type="password" required id="passwordlog" placeholder="Enter your password">
+                                                <input name="pass" class="form-control" type="password" required id="passwordlog" placeholder="Enter your password">
                                             </div>
                                         </div>
 
@@ -71,18 +71,14 @@
 
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
-                                                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+                                                <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Sign In</button>
                                             </div>
                                         </div>
 
-                                    </form>
-
                                     <div class="clearfix"></div>
-
                                 </div>
                             </div>
                             <!-- end card-box-->
-
 
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
@@ -96,6 +92,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </section>
 
 

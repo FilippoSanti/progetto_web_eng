@@ -31,7 +31,7 @@ public class userController {
         }
 
         // Then we check if the user already exists in the db
-        if (checkEmailExists(em))       { result = false; out.println("A user with this email alreday exists"); return result;};
+        if (checkEmailExists(em))       { result = false; out.println("A user with this email alreday exists"); return result;}
 
         // Check name
         if(Utils.checkEmpty(n))               { result = false; out.println(newLine + "Please insert a name"); }

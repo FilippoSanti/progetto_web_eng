@@ -85,8 +85,6 @@ public class userServlet extends HttpServlet {
         String cod_fiscale = request.getParameter("cod_fiscale");
         String handicapString = request.getParameter("handicap");
 
-        System.out.println(nome);
-
         boolean regOk = userController.checkRegistration(out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                 residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
 
@@ -96,10 +94,10 @@ public class userServlet extends HttpServlet {
             // We parse the necessary String variables to int and Boolean
             // And insert them in the DB
 
-
             // See if the handicap checkbox has been set and assign a value to a boolean variable
+
             boolean handicapBool = false;
-            if (!handicapString.isEmpty()) {
+            if(handicapString != null && !handicapString.isEmpty()) {
                 handicapBool = true;
             }
 
