@@ -9,15 +9,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+
+        <!--Morris Chart CSS -->
+        <link rel="stylesheet" href="../../assets/plugins/morris/morris.css">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="../../assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -34,10 +37,10 @@
                 <div class="topbar-left">
                     <a href="../src/view/index.jsp" class="logo">
                         <span>
-                            <img src="assets/images/logo.png" alt="">
+                            <img src="../../assets/images/logo.png" alt="">
                         </span>
                         <i>
-                            <img src="assets/images/logo_sm.png" alt="">
+                            <img src="../../assets/images/logo_sm.png" alt="">
                         </i>
                     </a>
                 </div>
@@ -45,6 +48,7 @@
                 <nav class="navbar-custom">
 
                     <ul class="list-unstyled topbar-right-menu float-right mb-0">
+<!-- Scelta lingua -->
                         <li class="dropdown notification-list hide-phone">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
@@ -54,27 +58,12 @@
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item">
-                                    Spanish
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Italian
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    French
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Russian
+                                    Italiano
                                 </a>
 
                             </div>
                         </li>
-
+<!-- Gestione Notifiche -->
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
@@ -88,7 +77,7 @@
                                     <h6 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h6>
                                 </div>
 
-                                <div class="slimscroll" style="max-height: 190px;">
+                                <div class="slimscroll" style="max-height: 200px;">
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
@@ -127,11 +116,11 @@
 
                             </div>
                         </li>
-
+<!-- Menu Account -->
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
+                                <img src="../../assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
@@ -140,36 +129,31 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="../../extras-profile.jsp" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-settings"></i> <span>Settings</span>
+                                    <i class="ti-settings"></i> <span>My Internship</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-lock"></i> <span>Lock Screen</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="/logout" class="dropdown-item notify-item">
                                     <i class="ti-power-off"></i> <span>Logout</span>
                                 </a>
 
                             </div>
                         </li>
-
                     </ul>
-
+<!-- Nascondi menù laterale sinistro -->
                     <ul class="list-inline menu-left mb-0">
                         <li class="float-left">
                             <button class="button-menu-mobile open-left waves-light waves-effect">
                                 <i class="mdi mdi-menu"></i>
                             </button>
                         </li>
+<!-- Ricerca -->
                         <li class="hide-phone app-search">
                             <form role="search" class="">
                                 <input type="text" placeholder="Search..." class="form-control">
@@ -188,11 +172,11 @@
             <div class="left side-menu">
                 <div class="user-details">
                     <div class="pull-left">
-                        <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="../../assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
                         <a href="#">Stanley Jones</a>
-                        <p class="text-muted m-0">Administrator</p>
+                        <p class="text-muted m-0">Student</p>
                     </div>
                 </div>
 
@@ -203,99 +187,45 @@
                         <li class="menu-title">Navigation</li>
                         <li>
                             <a href="../src/view/index.jsp">
-                                <i class="ti-home"></i><span> Dashboard </span>
+                                <i class="ti-home"></i><span> Homepage </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="ui-elements.html">
-                                <i class="ti-paint-bucket"></i><span class="badge badge-custom pull-right">11</span> <span> UI Elements </span>
+                            <a href="javascript: void(0);"><i class="ti-user"></i> <span> My Profile </span> <span class="menu-arrow"></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="../../extras-profile.jsp">My Account</a></li>
+                                <li><a href="*.html">Edit Informations</a></li>
+                                <li><a href="*.html">My Internship</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="*.html"><i class="ti-list"></i><span> Company List </span>
+                            </a>
+                        </li>                        
+
+
+                        <li>
+                            <a href="*.html"><i class="ti-menu-alt"></i> <span> Internship List </span>
+                            </a>
+                        </li>
+
+                         <li>
+                            <a href="../../extras-timeline.jsp"><i class="ti-bell"></i>
+                                <span class="badge badge-custom pull-right">11</span> <span> Notifications </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="javascript: void(0);"><i class="ti-light-bulb"></i> <span> Components </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="components-range-slider.html">Range Slider</a></li>
-                                <li><a href="components-alerts.html">Alerts</a></li>
-                                <li><a href="components-icons.html">Icons</a></li>
-                                <li><a href="components-widgets.html">Widgets</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="typography.html">
-                                <i class="ti-spray"></i> <span> Typography </span>
+                            <a href="../../extras-contacts.jsp"><i class="ti-info"></i> <span> Contacts </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="javascript: void(0);"><i class="ti-pencil-alt"></i><span> Forms </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="forms-general.html">General Elements</a></li>
-                                <li><a href="forms-advanced.html">Advanced Form</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);"><i class="ti-menu-alt"></i><span> Tables </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="tables-basic.html">Basic tables</a></li>
-                                <li><a href="tables-advanced.html">Advanced tables</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="charts.html">
-                                <i class="ti-pie-chart"></i><span class="badge badge-custom pull-right">5</span> <span> Charts </span>
+                            <a href="../../extras-faqs.jsp"><i class="ti-light-bulb"></i> <span> FAQs </span>
                             </a>
-                        </li>
-
-                        <li>
-                            <a href="maps.html">
-                                <i class="ti-location-pin"></i> <span> Maps </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);"><i class="ti-files"></i><span> Pages </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="WEB-INF/views/login.jsp">Login</a></li>
-                                <li><a href="pages-register.html">Register</a></li>
-                                <li><a href="pages-forget-password.html">Forget Password</a></li>
-                                <li><a href="pages-lock-screen.html">Lock-screen</a></li>
-                                <li><a href="pages-blank.html">Blank page</a></li>
-                                <li><a href="pages-404.html">Error 404</a></li>
-                                <li><a href="pages-confirm-mail.html">Confirm Mail</a></li>
-                                <li><a href="pages-session-expired.html">Session Expired</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);"><i class="ti-widget"></i><span> Extra Pages </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="extras-timeline.jsp">Timeline</a></li>
-                                <li><a href="extras-invoice.html">Invoice</a></li>
-                                <li><a href="extras-profile.jsp">Profile</a></li>
-                                <li><a href="extras-calendar.html">Calendar</a></li>
-                                <li><a href="extras-faqs.jsp">FAQs</a></li>
-                                <li><a href="extras-pricing.html">Pricing</a></li>
-                                <li><a href="extras-contacts.jsp">Contacts</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);"><i class="ti-share"></i> <span> Multi Level </span> <span class="menu-arrow"></span></a>
-                            <ul class="nav-second-level nav" aria-expanded="false">
-                                <li><a href="javascript: void(0);">Level 1.1</a></li>
-                                <li><a href="javascript: void(0);" aria-expanded="false">Level 1.2 <span class="menu-arrow"></span></a>
-                                    <ul class="nav-third-level nav" aria-expanded="false">
-                                        <li><a href="javascript: void(0);">Level 2.1</a></li>
-                                        <li><a href="javascript: void(0);">Level 2.2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                        </li>                       
 
                     </ul>
 
@@ -317,33 +247,45 @@
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="header-title m-t-0 m-b-20">Contacts</h4>
+                            <div class="col-sm-4"></div>
+                            <div class=" col-sm-4 centra">
+                                 <h4 class="header-title m-t-0 m-b-20">Student's Homepage</h4>
                             </div>
+                            <div class="col-md-4"></div>
                         </div> <!-- end row -->
 
 
+
+
+
+
+<!--TODO  GESTIRE LA LUNGHEZZA DEI CARATTERI NEL DB DELLA SEDE LEGALE E NUMERO DEI TIROCINI PE RLA GRANDEZZA DELLE FINESTRE HOME -->
+
+
+
+
+
+
+<!--Company 1-->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
-                                        <span class="user-badge bg-warning">Founder</span>
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-success" title="verified user"></i>
+                                            <img src="../../assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            
                                         </div>
 
-                                        <div class="">
-                                            <h5 class="m-b-5 mt-2">Kendra V. Alfaro</h5>
-                                            <p class="text-muted">@CEO <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
-                                        </div>
+                                            <h5 class="m-b-5 mt-2">Company 1</h5>
 
+                                        <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
+                                        </div>
 
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -363,25 +305,24 @@
 
                             </div> <!-- end col -->
 
+<!--Company 2-->
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-2.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-muted" title="unverified user"></i>
+                                            <img src="../../assets/images/users/avatar-2.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
 
-                                        <div class="">
-                                            <h5 class="m-b-5 mt-2">Mark A. McKnight</h5>
-                                            <p class="text-muted">@Founder <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
-                                        </div>
+                                            <h5 class="m-b-5 mt-2">Company 2</h5>
 
+                                         <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
+                                        </div>
 
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -401,25 +342,23 @@
 
                             </div> <!-- end col -->
 
+<!--Company 3-->
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-success" title="verified user"></i>
+                                            <img src="../../assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
 
-                                        <div class="">
-                                            <h5 class="m-b-5 mt-2">Robert E. Schroth</h5>
-                                            <p class="text-muted">@Webdesigner <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
-                                        </div>
-
+                                            <h5 class="m-b-5 mt-2">Company 3</h5>
+                                             <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
+                                        </div>
 
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -441,28 +380,27 @@
                         </div>
                         <!-- end row -->
 
-
-
+<!--Company 4-->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-4.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-muted" title="unverified user"></i>
+                                            <img src="../../assets/images/users/avatar-4.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            
                                         </div>
 
                                         <div class="">
-                                            <h5 class="m-b-5 mt-2">Sandra D. Duby</h5>
-                                            <p class="text-muted">@Manager <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
+                                            <h5 class="m-b-5 mt-2">Company 4</h5>
                                         </div>
 
+                                       <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        </div>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -482,26 +420,25 @@
 
                             </div> <!-- end col -->
 
+<!--Company 5-->
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
-                                        <span class="user-badge bg-custom">Co-Founder</span>
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-5.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-success" title="verified user"></i>
+                                            <img src="../../assets/images/users/avatar-5.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
 
                                         <div class="">
-                                            <h5 class="m-b-5 mt-2">Edmund D. Barton</h5>
-                                            <p class="text-muted">@Webdeveloper <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
+                                            <h5 class="m-b-5 mt-2">Company 5</h5>
                                         </div>
 
+                                       <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        </div>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -521,25 +458,26 @@
 
                             </div> <!-- end col -->
 
+
+<!--Company 6-->
                             <div class="col-md-4">
                                 <div class="text-center card-box">
-                                    <div class="member-card mt-4">
+                                    <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-6.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <i class="mdi mdi-information-outline member-star text-success" title="verified user"></i>
+                                            <img src="../../assets/images/users/avatar-6.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
 
                                         <div class="">
-                                            <h5 class="m-b-5 mt-2">Janene C. Cox</h5>
-                                            <p class="text-muted">@Product Manager <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
+                                            <h5 class="m-b-5 mt-2">Company 6</h5>
                                         </div>
 
+                                        <div class="container container_dim">
                                         <p class="text-muted font-13">
-                                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+                                           <div class=""><row class="col-xs-6"><i>Internship Offers: </i><br> 95825 </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Legal Address: </i><br> Non mi viene un indirizzo  </row></div>
                                         </p>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">Message</button>
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Profile</button>
+                                        </div>
+                                        <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
                                         <ul class="social-links list-inline m-t-30">
                                             <li class="list-inline-item">
@@ -562,23 +500,32 @@
                         <!-- end row -->
 
                         <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-toggle="modal" data-target="#add-contact">Add Contact</button>
+<!--TODO   Spegnere Prev. Page se ci si trova all prima pagina-->
+                            <div class="col-md-6 text-center">
+                                <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-toggle="modal" data-target="#add-contact">Prev. Page</button>
                             </div><!-- end col -->
+
+                            <div class="col-sm-6 text-center">
+                                <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-toggle="modal" data-target="#add-contact">Next Page</button>
+                            </div><!-- end col -->
+
+                            
                         </div>
                         <!-- end row -->
-
+<br><br>
 
                     </div> <!-- container -->
 
 
                     <div class="footer">
                         <div class="pull-right hide-phone">
-                            Project Completed <strong class="text-custom">57%</strong>.
+                            Web Engineering Project 
                         </div>
                         <div>
-                            <strong>Simple Admin</strong> - Copyright © 2017 - 2018
+                             Copyright © 2018 - <a class="infindim">&infin;</a>
                         </div>
+                        
+                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
                     </div>
 
                 </div> <!-- content -->
@@ -636,16 +583,16 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/js/popper.min.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/metisMenu.min.js"></script>
+        <script src="../../assets/js/waves.js"></script>
+        <script src="../../assets/js/jquery.slimscroll.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="../../assets/js/jquery.core.js"></script>
+        <script src="../../assets/js/jquery.app.js"></script>
 
     </body>
 </html>

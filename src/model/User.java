@@ -1,8 +1,9 @@
 package model;
 
 public class User {
-    String nome, cognome, date, provincia, provincia_n, residenza, citta, corso, email, handicap, tel;
+    String nome, cognome, date, provincia, provincia_n, residenza, citta, corso, email, handicap, tel, userType ;
     int cap;
+
 
     public User() {
 
@@ -17,12 +18,13 @@ public class User {
         this.email       = "";
         this.handicap    = "";
         this.tel         = "";
+        this.userType    = "";
         this.cap         = 0;
 
     }
 
     public User(String n, String c, String d, String p, String pn,
-                String r, String ct, String cr, String em, String hc, String tel, int cap) {
+                String r, String ct, String cr, String em, String hc, String tel, String userType, int cap) {
 
         this.nome        = n;
         this.cognome     = c;
@@ -35,6 +37,7 @@ public class User {
         this.email       = em;
         this.handicap    = hc;
         this.tel         = tel;
+        this.userType    = userType;
         this.cap         = cap;
 
     }
@@ -134,5 +137,9 @@ public class User {
     public void setCap(int cap) {
         this.cap = cap;
     }
+
+    public String getUserType () {return this.userType; }
+
+    public void setUserType (String userType) { this.userType = userType; }
 
 }

@@ -260,7 +260,7 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-files"></i><span> Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="pages-login.jsp">Login</a></li>
+                                <li><a href="WEB-INF/views/login.jsp">Login</a></li>
                                 <li><a href="pages-register.html">Register</a></li>
                                 <li><a href="pages-forget-password.html">Forget Password</a></li>
                                 <li><a href="pages-lock-screen.html">Lock-screen</a></li>

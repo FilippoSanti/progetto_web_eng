@@ -46,7 +46,7 @@
 
                                         <div class="form-group metismenu styleregchoose">
                                             <li class="container"> 
-                            <a href="registration_student.jsp"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Studenti </span>
+                            <a href="WEB-INF/views/registration_student.jsp"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Studenti </span>
                              </a>
                         </li>
                                         </div>
