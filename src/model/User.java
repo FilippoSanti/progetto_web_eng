@@ -3,6 +3,7 @@ package model;
 public class User {
     String nome, cognome, date, provincia, provincia_n, residenza, citta, corso, email, handicap, tel, userType ;
     int cap;
+    int id;
 
 
     public User() {
@@ -20,11 +21,12 @@ public class User {
         this.tel         = "";
         this.userType    = "";
         this.cap         = 0;
+        this.id          = 0;
 
     }
 
     public User(String n, String c, String d, String p, String pn,
-                String r, String ct, String cr, String em, String hc, String tel, String userType, int cap) {
+                String r, String ct, String cr, String em, String hc, String tel, String userType, int cap, int id) {
 
         this.nome        = n;
         this.cognome     = c;
@@ -39,7 +41,16 @@ public class User {
         this.tel         = tel;
         this.userType    = userType;
         this.cap         = cap;
+        this.id          = id;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

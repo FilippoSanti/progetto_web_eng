@@ -61,7 +61,7 @@
                                         <div class="form-group m-b-30">
                                             <div class="col-xs-12">
                                                 <div class="checkbox checkbox-primary">
-                                                    <input id="checkbox5" type="checkbox">
+                                                    <input name="checkbox5" id="checkbox5" type="checkbox">
                                                     <label for="checkbox5">
                                                         Remember me
                                                     </label>
