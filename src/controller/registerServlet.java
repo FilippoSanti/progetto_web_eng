@@ -153,7 +153,7 @@ public class registerServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_student.jsp");
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_student.ftl");
 
         dispatcher.forward(request, response);
     }

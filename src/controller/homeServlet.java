@@ -46,7 +46,7 @@ public class homeServlet extends HttpServlet {
             out.println("Hello " + userModel.getEmail());
 
             RequestDispatcher dispatcher
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.jsp");
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
 
             dispatcher.forward(request, response);
         }

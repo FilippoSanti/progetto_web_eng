@@ -13,6 +13,8 @@ import java.sql.SQLException;
 
 public class loginServlet extends HttpServlet {
 
+    String staticEmail = "";
+
     // Login process
     protected void action_login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, PropertyVetoException {
@@ -35,14 +37,23 @@ public class loginServlet extends HttpServlet {
 
                 // Creating a session
                 HttpSession session = request.getSession();
-
                 User user = new User();
 
+                // Check if we have to remember the username
                 if(remember_me_is_checked)
                 {
                     Cookie c = new Cookie("email", email);
                     c.setMaxAge(24*60*60);
                     response.addCookie(c);  // response is an instance of type HttpServletReponse
+                } else {
+
+                    // If the remember me button is not checked
+                    // We delete the user cookie
+
+                    Cookie killMyCookie = new Cookie("email", null);
+                    killMyCookie.setMaxAge(0);
+                    response.addCookie(killMyCookie);
+                    staticEmail = "";
                 }
 
                 // Set the user object parameters
@@ -65,12 +76,7 @@ public class loginServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/login.jsp");
-        dispatcher.forward(request, response);
-
         Cookie[] cookies  = request.getCookies();
-        String   email    = null;
 
         /* Cookies are stored on the client side and are sent to the server with each request.
         It is not good practice to add passwords in cookies because they are easily intercepted
@@ -81,9 +87,13 @@ public class loginServlet extends HttpServlet {
             Cookie c = cookies[i];
             if (c.getName().equals("email"))
             {
-                email = c.getValue();
+                staticEmail = c.getValue();
             }
         }
+
+        // Check if the user has cookies to display on screen
+        request.setAttribute("email", staticEmail);
+        request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

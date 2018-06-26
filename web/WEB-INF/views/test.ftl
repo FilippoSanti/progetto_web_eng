@@ -2,7 +2,7 @@
 <head><title>FreeMarker Hello World</title>
 
 <body>
-<form name="user" action="hello" method="post">
+<form name="user" action="test" method="post">
     Id: <input type="text" name="id" /> <br/>
     Name: <input type="text" name="name" /> <br/>
     City: <input type="text" name="city" />       <br/>
