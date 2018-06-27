@@ -89,12 +89,21 @@ public class userController {
     }
 
     /* User authentication */
-    public static boolean userAuth(String email, String password) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+    public static boolean userAuth(String email, String password, String loginType) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = null;
 
         try {
-            PreparedStatement pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
+            // Login as a student
+            if (loginType.equals("studente")) {
+                pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
+            } else if (loginType.equals("azienda")) {
+
+                // Login as a company
+                pst = dbConnection.prepareStatement("SELECT password FROM azienda WHERE email = ?");
+            } else return false;
+
             pst.setString(1, email);
             ResultSet rs = pst.executeQuery();
 

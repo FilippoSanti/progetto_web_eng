@@ -26,23 +26,46 @@ public class registerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String cap_string = request.getParameter("CAP");
-        String nome = request.getParameter("nome");
-        String pass = request.getParameter("password");
-        String ripeti_pass = request.getParameter("ripeti_password");
-        String dateString = request.getParameter("date");
-        String provincia = request.getParameter("provincia");
-        String provincia_n = request.getParameter("provincia_nascita");
-        String residenza = request.getParameter("residenza");
-        String citta = request.getParameter("citta");
-        String telefono = request.getParameter("telefono");
-        String corso = request.getParameter("corso_laurea");
-        String email = request.getParameter("email");
-        String cognome = request.getParameter("cognome");
-        String cod_fiscale = request.getParameter("cod_fiscale");
-        String handicapString = request.getParameter("handicap");
+        // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
+        String cap_string, nome, pass, ripeti_pass, dateString, provincia, provincia_n, residenza, citta, telefono,
+                corso, email, cognome, cod_fiscale, handicapString;
 
-        boolean regOk = userController.checkRegistration(out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+        cap_string = nome = ripeti_pass = dateString = provincia = provincia_n = residenza = citta =
+                telefono = corso = email = cognome = cod_fiscale = handicapString = "";
+
+
+        // Get the parameter values
+        cap_string = request.getParameter("CAP");
+        nome = request.getParameter("nome");
+        pass = request.getParameter("password");
+        ripeti_pass = request.getParameter("ripeti_password");
+        dateString = request.getParameter("date");
+        provincia = request.getParameter("provincia");
+        provincia_n = request.getParameter("provincia_nascita");
+        residenza = request.getParameter("residenza");
+        citta = request.getParameter("citta");
+        telefono = request.getParameter("telefono");
+        corso = request.getParameter("corso_laurea");
+        email = request.getParameter("email");
+        cognome = request.getParameter("cognome");
+        cod_fiscale = request.getParameter("cod_fiscale");
+        handicapString = request.getParameter("handicap");
+
+        // Variable used to check if the registration is ok
+        boolean regOk;
+
+        // If strings are not initalized, it means there was an empty request by the user
+        // So we return false
+        if (cap_string == null && nome == null && pass == null && ripeti_pass == null && dateString == null &&
+                provincia == null && provincia_n == null && residenza == null && citta == null && telefono == null
+                && corso == null && email == null && cognome == null && cod_fiscale == null && handicapString == null) {
+
+            System.out.println("empty fields");
+
+            regOk = false;
+        }
+
+        regOk = userController.checkRegistration(out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                 residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
 
         if (regOk) {
@@ -150,22 +173,67 @@ public class registerServlet extends HttpServlet {
         }
     }
 
-    // Loads the default page
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    // Loads the default student page
+    private void action_default_student(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_student.ftl");
 
         dispatcher.forward(request, response);
     }
 
+    // Loads the default company page
+    private void action_default_company(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_company.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
+
+        // TODO: Check empty /register requests and redirect them to the first page
+
+        // URL Parameters
+        String paramName    = "user";
+        String submit       = "submit";
+
+        String paramValue = request.getParameter(paramName);
+        String sumbit = request.getParameter(submit);
+
+        // Build the full string to check its validity
+        String myURL = "?" + paramName + "=" + paramValue;
+
         try {
-            if (request.getParameter("register") != null) {
-                action_register_student(request, response);
-            } else {
-                action_default(request, response);
+
+            // Check for invalid requests
+            if (!controller.utilities.Utils.checkForValidURL(request, myURL)) {
+                System.out.println("Invalid request");
             }
+
+            // View the user registration page
+            else if (paramValue.equals("student")) {
+                action_default_student(request, response);
+            }
+
+            // View the company registration page
+            else if (paramValue.equals("company")) {
+                action_default_company(request, response);
+            }
+
+            // User registration request
+            else if (paramValue.equals("student") && sumbit.equals("true")) {
+                action_register_student(request, response);
+            }
+
+            // Company registration request
+            else if (paramValue.equals("company") && sumbit.equals("true")) {
+                action_registerAzienda(request, response);
+            } else {
+                System.out.println("request not valid");
+            }
+
+
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         } catch (SQLException e) {

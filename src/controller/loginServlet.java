@@ -24,7 +24,7 @@ public class loginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
-        boolean remember_me_is_checked = request.getParameter( "checkbox5" ) != null;
+        boolean remember_me_is_checked = request.getParameter( "checkbox5") != null;
 
         // Check if the fields are empty
         if (email.isEmpty() && pass.isEmpty()) {
@@ -32,8 +32,9 @@ public class loginServlet extends HttpServlet {
         }
 
         try {
-            //Check if the login was successful
-            if (userController.userAuth(email, pass)) {
+            // Check if our login belongs to a company or a user
+            if (userController.userAuth(email, pass, "studente") ||
+                    userController.userAuth(email, pass, "azienda")) {
 
                 // Creating a session
                 HttpSession session = request.getSession();

@@ -55,7 +55,7 @@
 
                                         <div class="form-group metismenu styleregchoose">
                                             <li class="container">
-                            <a href="registration_company.jsp"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Aziende </span>
+                            <a href="WEB-INF/views/registration_company.ftl"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Aziende </span>
                              </a>
                         </li>
                                         </div>

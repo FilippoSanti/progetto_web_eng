@@ -97,6 +97,16 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>controller.registerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.

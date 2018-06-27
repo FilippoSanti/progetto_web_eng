@@ -1,5 +1,6 @@
 package controller.utilities;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,5 +87,16 @@ public class Utils {
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    // Check URLs to see id they are valid
+    public static boolean checkForValidURL (HttpServletRequest request, String baseURL) {
+
+        String uri = request.getQueryString();
+
+        if (baseURL.equals(uri)) { return true; }
+
+        return false ;
+
     }
 }
