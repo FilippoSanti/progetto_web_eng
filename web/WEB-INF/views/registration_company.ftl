@@ -220,7 +220,7 @@
                         </li>
                         
                         <li>
-                            <a href="../../scelta_registrazione.jsp"><i class="ti-pencil-alt"></i><span> Registrati </span>
+                            <a href="scelta_registrazione.ftl"><i class="ti-pencil-alt"></i><span> Registrati </span>
                              </a>
                         </li>
 

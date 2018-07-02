@@ -347,11 +347,20 @@
                     </p>
                 </div>
 
-                <form method="post" action="register" class="form-validation">
+                <form method="post" action="register?user=student&submit=true" class="form-validation">
 
                 <div class="row">
 
                     <div class="col-md-6">
+
+                    <#if errors>
+
+                     <ul class="list-group">
+                        <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
+                     </ul>
+
+                    </#if>
+
                         <div class="p-20 m-b-20">
 
                             <div class="m-b-20">

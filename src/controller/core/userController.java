@@ -3,7 +3,9 @@ package controller.core;
 import controller.utilities.DataSource;
 import controller.utilities.Utils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -12,77 +14,194 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class userController {
 
-    public static  String  newLine = System.getProperty("line.separator");
+    // Declare a list of strings to save the errors
+    public static List<String> errorsList = new ArrayList<String>();
+    public static String newLine = System.getProperty("line.separator");
 
-    /** Various checks for the registration process */
-    public static Boolean checkRegistration(PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
-                                            String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+    /**
+     * Various checks for the registration process
+     */
+    // TODO: make the code more readable
+    public static boolean checkRegistration(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
+                                            String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
+
         boolean result = true;
 
-        // If every field is empty, we only tell the user to insert the requested values
-        if (n.isEmpty() && c.isEmpty() && p.isEmpty() && d.isEmpty() && r.isEmpty()
-                && ci.isEmpty() && cap.isEmpty() && t.isEmpty() && co.isEmpty() &&
-                em.isEmpty()) {
+        // We check if the user already exists in the db
+        if (checkEmailExists(em)) {
             result = false;
-            out.println("You must insert some data");
-            return result;
+            Utils.signalErrors(request);
+            errorsList.add("The user already exists");
         }
 
-        // Then we check if the user already exists in the db
-        if (checkEmailExists(em))       { result = false; out.println("A user with this email alreday exists"); return result;}
-
         // Check name
-        if(Utils.checkEmpty(n))               { result = false; out.println(newLine + "Please insert a name"); }
-        if (n.length() > 20)            { result = false; out.println(newLine +"The name is too long (15 characters max.)"); }
+        if (Utils.checkEmpty(n)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Please insert a name");
+        }
+        if (n.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The name is too long (15 characters max.)");
+        }
 
         // Check surname
-        if(Utils.checkEmpty(c))               { result = false; out.println(newLine +"Please enter a surname");  }
-        if(c.length() > 20)             { result = false; out.println(newLine +"The surname is too long"); }
+        if (Utils.checkEmpty(c)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Please enter a surname");
+        }
+        if (c.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The surname is too long");
+        }
 
         // Check password
-        if(Utils.checkEmpty(p))               { result = false; out.println(newLine +"Please enter a password"); }
-        if(!p.equals(rp))               {result = false; out.println("The passwords you entered are not equal"); }
-        if(p.length() < 8)              { result = false; out.println(newLine +"The password must be at lest 8 characters long"); }
-        if(p.length() > 35)             { result = false; out.println(newLine +"The password is too long"); }
+        if (Utils.checkEmpty(p)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Please enter a password");
+        }
+        if (!p.equals(rp)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The passwords you entered are not equal");
+        }
+        if (p.length() < 8) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The password must be at lest 8 characters long ");
+        }
+        if (p.length() > 45) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The password is too long");
+        }
 
         //Check date
-        if (!Utils.isDateValid(d))            { result = false; out.println(newLine +"Invalid date"); }
-        if (d.length() != 10)           { result = false; out.println(newLine +"Enter a valid number of characters for the date"); }
+        if (!Utils.isDateValid(d)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Invalid date");
+        }
+        if (d.length() != 10) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Enter a valid number of characters for the date");
+        }
 
         // Check email
-        if (!Utils.isValidEmailAddress(em))   { result = false; out.println(newLine +"The email address is not valid"); }
+        if (!Utils.isValidEmailAddress(em)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The email address is not valid");
+            //Utils.showMessage(request, response, "The email address is not valid");
+        }
 
         // Check residenza
-        if(Utils.checkEmpty(r))               { result = false; out.println(newLine +"Inserisci la residenza"); }
-        if (pr.length() > 20)           { result = false; out.println(newLine +"La provincia è troppo lunga"); }
+        if (Utils.checkEmpty(r)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Inserisci la residenza");
+        }
+        if (pr.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("La provincia è troppo lunga");
+        }
 
         // Check citta
-        if(Utils.checkEmpty(ci))              { result = false; out.println(newLine +"Inserisci la citta"); }
-        if (ci.length() > 20)           { result = false; out.println(newLine +"Citta' too long"); }
+        if (Utils.checkEmpty(ci)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Inserisci la citta");
+        }
+        if (ci.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Citta' too long");
+        }
 
         // Check telefono
-        if(Utils.checkEmpty(t))               { result = false; out.println(newLine +"Inserisci il telefono"); }
-        if (t.length() > 20)            { result = false; out.println(newLine +"Telefono too long");}
-        if (!t.matches("[0-9]+")) { result = false; out.println(newLine + "The telephone must contain only numbers"); }
+        if (Utils.checkEmpty(t)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Inserisci il telefono");
+        }
+        if (t.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Telefono too long");
+        }
+        if (!t.matches("[0-9]+")) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The telephone must contain only numbers");
+        }
 
         // Check corso
-        if(Utils.checkEmpty(co))              { result = false; out.println(newLine +"Inserisci il corso"); }
-        if (co.length() > 20)           { result = false; out.println(newLine +"Corso too long"); }
+        if (Utils.checkEmpty(co)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Inserisci il corso");
+        }
+        if (co.length() > 20) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Corso too long");
+        }
 
         // Check email
-        if (Utils.checkEmpty(em))               { result = false; out.println("Inserisci la mail");}
-        if (em.length() > 60)             { result = false; out.println("Email too long");}
+        if (Utils.checkEmpty(em)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Inserisci la mail");
+        }
+        if (em.length() > 60) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Email too long");
+        }
 
         // Check the cap string
-        if (Utils.checkEmpty(cap))           { result = false; out.println(newLine +"Invalid CAP");}
-        if (!cap.matches("[0-9]+"))    { result = false; out.println(newLine +"The CAP must contains only numbers"); }
-        if (cap.length() > 5)                { result = false; out.println("The cap can't be more then 5 numbers");}
+        if (Utils.checkEmpty(cap)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Invalid CAP");
+        }
+        if (!cap.matches("[0-9]+")) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The CAP must contains only numbers");
+        }
+        if (cap.length() > 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The cap can't be more then 5 numbers");
+        }
 
-        if (Utils.checkEmpty(cod_fiscale)) { result = false; out.println("The codice fiscale(non so come cazzo si dice) cannot be empty"); }
-        if (cod_fiscale.length() < 3) {result = false; out.println("The cod fiscale must be at least x characters");}
+        if (Utils.checkEmpty(cod_fiscale)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The codice fiscale(non so come cazzo si dice) cannot be empty");
+        }
+        if (cod_fiscale.length() < 3) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The cod fiscale must be at least x characters");
+        }
+
+        // If we have found at least an error, we send the list to the HTML page
+        if (errorsList.size() > 0) {
+            request.setAttribute("errorsList", errorsList);
+        }
 
         return result;
 
@@ -128,17 +247,17 @@ public class userController {
         String query = "SELECT * FROM studente WHERE email = ?";
         try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
             statement.setString(1, emailString);
-            try( ResultSet resultSet = statement.executeQuery()) {
+            try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next();
             }
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace();
             return false;
         }
     }
 
     // Check if the user is logged
-    public static boolean checkSession (HttpServletRequest request) {
+    public static boolean checkSession(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("loggedInUser") == null) {
             return false;

@@ -50,7 +50,6 @@ public class loginServlet extends HttpServlet {
 
                     // If the remember me button is not checked
                     // We delete the user cookie
-
                     Cookie killMyCookie = new Cookie("email", null);
                     killMyCookie.setMaxAge(0);
                     response.addCookie(killMyCookie);
@@ -77,23 +76,25 @@ public class loginServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        Cookie[] cookies  = request.getCookies();
+        Cookie[] cookies  = null;
+        cookies = request.getCookies();
 
         /* Cookies are stored on the client side and are sent to the server with each request.
         It is not good practice to add passwords in cookies because they are easily intercepted
         and in many cases stick around in the users browser even after they leave the site. */
 
-        for(int i = 0; i < cookies.length; i++)
-        {
-            Cookie c = cookies[i];
-            if (c.getName().equals("email"))
-            {
-                staticEmail = c.getValue();
-            }
-        }
-
         // Check if the user has cookies to display on screen
-        request.setAttribute("email", staticEmail);
+        if (cookies != null) {
+            for(int i = 0; i < cookies.length; i++)
+            {
+                Cookie c = cookies[i];
+                if (c.getName().equals("email"))
+                {
+                    staticEmail = c.getValue();
+                }
+            }
+            request.setAttribute("email", staticEmail);
+        }
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
     }
 

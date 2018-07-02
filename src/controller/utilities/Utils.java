@@ -1,9 +1,14 @@
 package controller.utilities;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
 
@@ -89,14 +94,11 @@ public class Utils {
         }
     }
 
-    // Check URLs to see id they are valid
-    public static boolean checkForValidURL (HttpServletRequest request, String baseURL) {
+    // Signal the HTML page that one or more errors
+    // has occurred during the registration
+    public static void signalErrors(HttpServletRequest request) {
 
-        String uri = request.getQueryString();
-
-        if (baseURL.equals(uri)) { return true; }
-
-        return false ;
-
+        boolean errors = true;
+        request.setAttribute("errors", errors);
     }
 }
