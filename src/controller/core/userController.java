@@ -382,9 +382,17 @@ public class userController {
     }
 
     // Check if the user is logged
-    public static boolean checkSession(HttpServletRequest request) {
+    public static boolean checkSession(HttpServletRequest request, String target) {
+
+        String sessionAttribute = null;
+        if (target.equals("studente")) {
+            sessionAttribute = "loggedInUser";
+        } else if (target.equals("azienda")) {
+            sessionAttribute = "loggedInCompany";
+        } else return false;
+
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loggedInUser") == null) {
+        if (session == null || session.getAttribute(sessionAttribute) == null) {
             return false;
         } else {
             return true;

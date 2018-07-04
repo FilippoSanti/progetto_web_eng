@@ -1,9 +1,8 @@
 package controller;
 
 import controller.core.userController;
+import model.Company;
 import model.User;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.beans.PropertyVetoException;
@@ -33,12 +32,38 @@ public class loginServlet extends HttpServlet {
 
         try {
             // Check if our login belongs to a company or a user
-            if (userController.userAuth(email, pass, "studente") ||
-                    userController.userAuth(email, pass, "azienda")) {
+            boolean userLogged    = userController.userAuth(email, pass, "studente");
+            boolean companyLogged = userController.userAuth(email, pass, "azienda" );
+            HttpSession session   = null;
 
-                // Creating a session
-                HttpSession session = request.getSession();
+            // TODO: Utente e Azienda possono avere le stesse mail, dato che appartenono a tabelle separate
+            // TODO: aggiungere un radiobutton che permette di scegliere tra azienda e utente quando si logga
+
+            if (userLogged) {
+
+                // Create a new user session
+                session = request.getSession();
                 User user = new User();
+
+                // Set the user object parameters
+                user.setEmail(email);
+
+                // Set the session attribute to check if the user is logged in
+                session.setAttribute("loggedInUser", user);
+
+            } else if (companyLogged) {
+
+                // Create a new company session
+                session = request.getSession();
+                Company comp = new Company();
+
+                // Set the company parameters
+
+                // Set the session attribute to check if a company is logged in
+                session.setAttribute("loggedInCompany", comp);
+            }
+
+            if (userLogged || companyLogged) {
 
                 // Check if we have to remember the username
                 if(remember_me_is_checked)
@@ -56,12 +81,6 @@ public class loginServlet extends HttpServlet {
                     staticEmail = "";
                 }
 
-                // Set the user object parameters
-                user.setEmail(email);
-                user.setUserType("student");
-
-                // Set the session attribute to check if the user is logged in
-                session.setAttribute("loggedInUser", user);
                 response.sendRedirect("/home");
 
             } else {
@@ -125,8 +144,9 @@ public class loginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // If the user is already logged in, we redirect him to the home page
-        if (controller.core.userController.checkSession(request)) {
+        // If the student|company is already logged in, we redirect him to the home page
+        if (controller.core.userController.checkSession(request, "studente") ||
+                controller.core.userController.checkSession(request, "azienda")) {
             response.sendRedirect("/home");
         } else { processRequest(request, response); }
     }

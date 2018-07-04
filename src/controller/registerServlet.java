@@ -253,6 +253,16 @@ public class registerServlet extends HttpServlet {
 
         try {
 
+            // If the session is active (user logged), we can't show the
+            // registration page
+            if (userController.checkSession(request, "studente") ||
+                    userController.checkSession(request, "azienda")) {
+                RequestDispatcher dispatcher
+                        = request.getServletContext().getRequestDispatcher("/home");
+
+                dispatcher.forward(request, response);
+            }
+
             // Check if the user has given the right parameters
             if (paramValue == null && submit_string == null) {
                 action_default(request, response);
