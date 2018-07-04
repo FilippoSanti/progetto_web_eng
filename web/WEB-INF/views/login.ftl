@@ -35,6 +35,7 @@
 
                             <div class="m-t-40 card-box">
                                 <div class="text-center">
+
                                     <h2 class="text-uppercase m-t-0 m-b-30">
                                         <a href="../src/view/index.jsp" class="text-success">
                                             <span><img src="../../assets/images/logo_dark.png" alt="" height="30"></span>
@@ -42,6 +43,13 @@
                                     </h2>
                                     <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                 </div>
+
+                                <#if registered>
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> ${registeredString}
+                                    </div>
+                                </#if>
+
                                 <div class="account-content">
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">

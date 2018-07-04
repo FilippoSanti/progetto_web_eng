@@ -341,12 +341,23 @@
                             Make sure you fill each field on the form correctly!
                             </p>
                         </div>
+
+                        <form method="post" action="register?user=company&submit=true" class="form-validation">
+
                         <div class="row">
                             <div class="col-md-6">
+
+                     <#if errors>
+
+                     <ul class="list-group">
+                        <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
+                     </ul>
+
+                    </#if>
+
                                <div class="p-20 m-b-20">
 
                                     <div class="m-b-20">
-                                        <form action="#" class="form-validation">
 
                                             <div class="form-group">
                                                 <label for="compName">Ragione Sociale/Nome<span class="text-danger">*</span></label>
@@ -390,21 +401,23 @@
                             Log In information:
                             </p>
                                 <div class="form-group">
-                                  <label for="username">email<span class="text-danger">*</span></label>
+                                  <label for="username">Email login<span class="text-danger">*</span></label>
                                   <input type="text" name="email_login" parsley-trigger="change" required
                                     placeholder="Enter User Name" class="form-control" id="username">
                                 </div>
 
                             <div class="form-group">
-                                                <label for="pass3">Password<span class="text-danger">*</span></label>
-                                                <input id="pass3" name="password" type="password" placeholder="Password" required
-                                                       class="form-control">
-                                            </div>
+                                   <label for="pass3">Password<span class="text-danger">*</span></label>
+                                   <input id="pass3" name="password" type="password" placeholder="Password" required class="form-control">
+                            </div>
 
+                                        <div class="form-group">
+                                            <label for="pass4">Ripeti Password<span class="text-danger">*</span></label>
+                                            <input id="pass4" name="ripeti_pass" type="password" placeholder="Ripeti Password" required
+                                                   class="form-control">
+                                        </div>
 
-                                        </form>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -412,12 +425,18 @@
                                <div class="p-20 m-b-20">
 
                                     <div class="m-b-20">
-                                        <form action="#" class="form-validation">
                                             <div class="form-group">
-                                                <label for="compCodes">Codice Fiscale/Partita IVA<span class="text-danger">*</span></label>
+                                                <label for="compCodes">Codice Fiscale<span class="text-danger">*</span></label>
                                                 <input type="text" name="cod_fiscale" parsley-trigger="change" required
                                                        placeholder="Enter Code/P. IVA" class="form-control uppercase" id="compCodes">
                                             </div>
+
+                                        <div class="form-group">
+                                            <label for="compCodes">Partita Iva<span class="text-danger">*</span></label>
+                                            <input type="text" name="part_iva" parsley-trigger="change" required
+                                                   placeholder="Enter Code/P. IVA" class="form-control uppercase" id="compCodes">
+                                        </div>
+
 
                                             <div class="form-group">
                                         <label>Provincia<span class="text-danger">*</span></label>
@@ -540,14 +559,6 @@
                                             <label class="control-label">Scegli Immagine</label>
                                             <input type="file" class="filestyle" data-size="sm" placeholder="Choose Img">
                                         </div>
-
-                                            <div class="form-group">
-                                                <label for="pass4">Ripeti Password<span class="text-danger">*</span></label>
-                                                <input id="pass4" name="ripeti_pass" type="password" placeholder="Ripeti Password" required
-                                                       class="form-control">
-                                            </div>
-
-                                        </form>
                                     </div>
 
                                 </div>
@@ -567,8 +578,9 @@
                                             </div>
                                             </div>
                         </div>
+                        </form>
                         <!-- end row -->
-<br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br>
                     <div class="footer">
                         <div>
                             <strong>Simple Admin</strong> - Copyright © 2017 - 2018

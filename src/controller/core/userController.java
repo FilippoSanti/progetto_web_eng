@@ -27,13 +27,13 @@ public class userController {
      * Various checks for the registration process
      */
     // TODO: make the code more readable
-    public static boolean checkRegistration(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
+    public static boolean checkStudentRegistration(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
                                             String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
 
         boolean result = true;
 
         // We check if the user already exists in the db
-        if (checkEmailExists(em)) {
+        if (checkStudentEmailExists(em)) {
             result = false;
             Utils.signalErrors(request);
             errorsList.add("The user already exists");
@@ -207,6 +207,114 @@ public class userController {
 
     }
 
+    public static boolean checkCompanyRegistration (HttpServletRequest request, String r, String ind, String cf, String part, String nc_rap,
+                                                    String nc_tir, String tel_tir, String em_tir, String foro, String prov, String em_log, String pass, String ripeti) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
+        boolean result = true;
+
+        if (checkCompanyEmailExists(em_log)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The login email already exists");
+        }
+
+        // Name check
+        if (r.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Ragione sociale too short");
+        }
+
+        //Part
+        if (part.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("part too short");
+        }
+
+        // Indirizzo
+        if (ind.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Indirizzo too short");
+        }
+
+        // CF
+        if (cf.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Codice fiscale too short");
+        }
+
+        // NC_rap
+        if (nc_rap.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Nome Rappresentante too short");
+        }
+
+        // NC_tir
+        if (nc_tir.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Nome Tirocinio too short");
+        }
+
+        // tel_tir
+        if (tel_tir.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Tel tirocinio too short");
+        }
+
+        // Email_tir
+        if (em_tir.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Email tirocinio too short");
+        }
+
+        // foro_comp
+        if (foro.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Foro too short");
+        }
+
+        // prov
+        if (prov.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Provincia too short");
+        }
+
+        // NC_rap
+        if (em_tir.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Nome Rappresentante too short");
+        }
+
+        // Password
+        if (pass.length() < 8) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Password too short");
+        }
+        if (!pass.equals(ripeti)) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Passwords are not the same");
+        }
+
+        // If we have found at least an error, we send the list to the HTML page
+        if (errorsList.size() > 0) {
+            request.setAttribute("errorsList", errorsList);
+        }
+
+        return result;
+
+    }
+
     /* User authentication */
     public static boolean userAuth(String email, String password, String loginType) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
@@ -220,7 +328,7 @@ public class userController {
             } else if (loginType.equals("azienda")) {
 
                 // Login as a company
-                pst = dbConnection.prepareStatement("SELECT password FROM azienda WHERE email = ?");
+                pst = dbConnection.prepareStatement("SELECT password FROM azienda WHERE email_login = ?");
             } else return false;
 
             pst.setString(1, email);
@@ -240,13 +348,30 @@ public class userController {
     }
 
     // Query to check if the email already is in the db
-    public static boolean checkEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+    public static boolean checkStudentEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
 
         String query = "SELECT * FROM studente WHERE email = ?";
         try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
             statement.setString(1, emailString);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    // Query to check if the email already is in the db
+    public static boolean checkCompanyEmailExists(String emailComp) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+
+        String query = "SELECT * FROM azienda WHERE email_login = ?";
+        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
+            statement.setString(1, emailComp);
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next();
             }

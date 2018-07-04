@@ -93,7 +93,10 @@ public class loginServlet extends HttpServlet {
                     staticEmail = c.getValue();
                 }
             }
+
+            // Set the necessary attributes
             request.setAttribute("email", staticEmail);
+            request.setAttribute("registered", false);
         }
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
     }

@@ -50,8 +50,6 @@ public class registerServlet extends HttpServlet {
         cod_fiscale     = request.getParameter("cod_fiscale");
         handicapString  = request.getParameter("handicap");
 
-        System.out.println(cap_string);
-
         // If strings are not initalized, it means there was an empty request by the user
         // So we return false
         if (cap_string == null && nome == null && pass == null && ripeti_pass == null && dateString == null &&
@@ -61,7 +59,7 @@ public class registerServlet extends HttpServlet {
             return false;
         }
 
-        boolean regOk = userController.checkRegistration(request, response, out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+        boolean regOk = userController.checkStudentRegistration(request, response, out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                     residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
 
         if (regOk) {
@@ -87,8 +85,6 @@ public class registerServlet extends HttpServlet {
 
                 ps.setNull(1, Types.INTEGER);
                 ps.setString(2, nome);
-
-                // Prepare the query and execute it
                 ps.setString(3, Utils.hashPassword(pass));
                 ps.setDate(4, Utils.convertDate(dateString));
                 ps.setString(5, provincia);
@@ -105,8 +101,18 @@ public class registerServlet extends HttpServlet {
 
                 int i = ps.executeUpdate();
 
+                // Registration ok
                 if (i > 0) {
-                    out.println("You are sucessfully registered");
+
+                    // Set two attributes to show in the login page
+                    boolean registered = true;
+                    request.setAttribute("registered", registered);
+                    request.setAttribute("registeredString", "Registration has been completed successfully");
+
+                    RequestDispatcher dispatcher
+                            = request.getServletContext().getRequestDispatcher("/login");
+
+                    dispatcher.forward(request, response);
                 }
 
             } catch (Exception se) {
@@ -122,55 +128,88 @@ public class registerServlet extends HttpServlet {
     }
 
     /** Registration of a company **/
-    protected void action_register_company(HttpServletRequest request, HttpServletResponse response)
+    protected boolean action_register_company(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        String username           = request.getParameter("username");
-        String nome               = request.getParameter("nome");
-        String ragione_sociale    = request.getParameter("ragione_sociale");
-        String indirizzo_sede_leg = request.getParameter("indirizzo_sede_legale");
-        String cf_rappresentante  = request.getParameter("cf_rappresentante");
-        String partita_iva_rap    = request.getParameter("partita_iva_rappresentante");
-        String nome_cognome_rap   = request.getParameter("nome_cognome_rappresentante");
-        String nome_cognome_tir   = request.getParameter("nome_cognome_Rtirocini");
-        String telefono_tirocini  = request.getParameter("telefono_RTirocini");
-        String email_tirocini     = request.getParameter("email_RTirocini");
-        String foro_competente    = request.getParameter("foro_competente");
+        String ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap,
+                nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass;
 
-        try {
+        ragione_sociale = indirizzo_sede_leg = cf_rappresentante = partita_iva_rap = nome_cognome_rap = nome_cognome_tir =
+                telefono_tirocini = email_tirocini = foro_competente = provincia = email_login = password = ripeti_pass = null;
 
-            // Connect to the db pool
-            Connection dbConnection = DataSource.getInstance().getConnection();
+        ragione_sociale    = request.getParameter("ragione_sociale");
+        indirizzo_sede_leg = request.getParameter("ind_legale");
+        cf_rappresentante  = request.getParameter("cod_fiscale");
+        partita_iva_rap    = request.getParameter("part_iva");
+        nome_cognome_rap   = request.getParameter("nome_rappr_legale");
+        nome_cognome_tir   = request.getParameter("nome_resp_tirocini");
+        telefono_tirocini  = request.getParameter("telefono_resp");
+        email_tirocini     = request.getParameter("email_resp");
+        foro_competente    = request.getParameter("foro_comp");
+        provincia          = request.getParameter("provincia");
+        email_login        = request.getParameter("email_login");
+        password           = request.getParameter("password");
+        ripeti_pass        = request.getParameter("ripeti_pass");
 
-            PreparedStatement ps = dbConnection.prepareStatement
-                    ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?)");
-
-            // Prepare the query and execute it
-            ps.setNull(1, Types.INTEGER);
-            ps.setString(2, username);
-            ps.setString(3, nome);
-            ps.setString(4, ragione_sociale);
-            ps.setString(5, indirizzo_sede_leg);
-            ps.setString(6, cf_rappresentante);
-            ps.setString(7, partita_iva_rap);
-            ps.setString(8, nome_cognome_rap);
-            ps.setString(9, nome_cognome_tir);
-            ps.setString(10, telefono_tirocini);
-            ps.setString(11, email_tirocini);
-            ps.setString(12, foro_competente);
-
-            int i = ps.executeUpdate();
-
-            if (i > 0) {
-                out.println("You are sucessfully registered");
-            }
-
-        } catch (Exception se) {
-            se.printStackTrace();
+        if (ragione_sociale == null && indirizzo_sede_leg == null && cf_rappresentante == null && partita_iva_rap == null &&
+                nome_cognome_rap == null && nome_cognome_tir == null && telefono_tirocini == null && email_tirocini == null && foro_competente ==
+                null && provincia == null && email_login == null && password == null && ripeti_pass == null) {
+            return false;
         }
+
+        boolean regOK = controller.core.userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap,
+                nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass);
+
+        if (regOK) {
+
+            try {
+                // Connect to the db pool
+                Connection dbConnection = DataSource.getInstance().getConnection();
+                PreparedStatement ps = dbConnection.prepareStatement
+                        ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                // Prepare the query and execute it
+                ps.setNull(1, Types.INTEGER);
+                ps.setString(2, email_login);
+                ps.setString(3, Utils.hashPassword(password));
+                ps.setString(4, ragione_sociale);
+                ps.setString(5, indirizzo_sede_leg);
+                ps.setString(6, cf_rappresentante);
+                ps.setString(7, partita_iva_rap);
+                ps.setString(8, nome_cognome_rap);
+                ps.setString(9, nome_cognome_tir);
+                ps.setString(10, telefono_tirocini);
+                ps.setString(11, email_tirocini);
+                ps.setString(12, foro_competente);
+                ps.setString(13, provincia);
+
+                int i = ps.executeUpdate();
+
+                if (i > 0) {
+                    // Set two attributes to show in the login page
+                    boolean registered = true;
+                    request.setAttribute("registered", registered);
+                    request.setAttribute("registeredString", "Registration has been completed successfully");
+
+                    RequestDispatcher dispatcher
+                            = request.getServletContext().getRequestDispatcher("/login");
+
+                    dispatcher.forward(request, response);
+                }
+
+            } catch (Exception se) {
+                se.printStackTrace();
+            }
+        } else {
+            action_default_company(request, response);
+
+            // Clear the errors list
+            userController.errorsList.clear();
+        }
+        return false;
     }
 
     // Loads the default page
