@@ -253,16 +253,6 @@ public class registerServlet extends HttpServlet {
 
         try {
 
-            // If the session is active (user logged), we can't show the
-            // registration page
-            if (userController.checkSession(request, "studente") ||
-                    userController.checkSession(request, "azienda")) {
-                RequestDispatcher dispatcher
-                        = request.getServletContext().getRequestDispatcher("/home");
-
-                dispatcher.forward(request, response);
-            }
-
             // Check if the user has given the right parameters
             if (paramValue == null && submit_string == null) {
                 action_default(request, response);
@@ -303,10 +293,16 @@ public class registerServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        // If the student|company is already logged in, we redirect him to the home page
+        if (controller.core.userController.checkSession(request, "studente") ||
+                controller.core.userController.checkSession(request, "azienda")) {
+            response.sendRedirect("/home");
+        } else {
+            try {
+                processRequest(request, response);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

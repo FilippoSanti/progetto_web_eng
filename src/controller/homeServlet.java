@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 public class homeServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
@@ -29,19 +31,44 @@ public class homeServlet extends HttpServlet {
             User userModel = (User) session.getAttribute("loggedInUser");
 
             loadHomepage(request, response);
-            System.out.println("Hello user");
+            // Load user functions
 
         } else if (userController.checkSession(request, "azienda")) {
             Company companyModel = (Company) session.getAttribute("loggedInAZienda");
 
             loadHomepage(request, response);
-            System.out.println("Hello azienda");
+            // Load company functions
+
+        } else {
+            response.sendRedirect("/login");
         }
+    }
+
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     public void loadHomepage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.ftl");
 
         dispatcher.forward(request, response);
     }

@@ -1,23 +1,27 @@
 package model;
 
+import java.util.Date;
+
 public class User {
-    String nome, cognome, date, provincia, provincia_n, residenza, citta, corso, email, handicap, tel, userType ;
+    String nome, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, userType ;
+    Date date;
     int cap;
     int id;
+    boolean handicap;
 
 
     public User() {
 
         this.nome        = "";
         this.cognome     = "";
-        this.date        = "";
+        this.date        = null;
         this.provincia   = "";
         this.provincia_n = "";
         this.residenza   = "";
         this.citta       = "";
         this.corso       = "";
         this.email       = "";
-        this.handicap    = "";
+        this.handicap    = false;
         this.tel         = "";
         this.userType    = "";
         this.cap         = 0;
@@ -25,8 +29,8 @@ public class User {
 
     }
 
-    public User(String n, String c, String d, String p, String pn,
-                String r, String ct, String cr, String em, String hc, String tel, String userType, int cap, int id) {
+    public User(String n, String c, Date d, String p, String pn,
+                String r, String ct, String cr, String em, boolean hc, String tel, String userType, int cap, int id) {
 
         this.nome        = n;
         this.cognome     = c;
@@ -69,11 +73,11 @@ public class User {
         this.cognome = cognome;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -125,11 +129,11 @@ public class User {
         this.email = email;
     }
 
-    public String getHandicap() {
+    public boolean getHandicap() {
         return handicap;
     }
 
-    public void setHandicap(String handicap) {
+    public void setHandicap(boolean handicap) {
         this.handicap = handicap;
     }
 

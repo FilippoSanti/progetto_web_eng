@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class loginServlet extends HttpServlet {
 
     String staticEmail = "";
+    boolean registered = false;
 
     // Login process
     protected void action_login(HttpServletRequest request, HttpServletResponse response)
@@ -95,6 +96,8 @@ public class loginServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        request.setAttribute("registered", false);
+
         Cookie[] cookies  = null;
         cookies = request.getCookies();
 
@@ -112,11 +115,8 @@ public class loginServlet extends HttpServlet {
                     staticEmail = c.getValue();
                 }
             }
-
-            // Set the necessary attributes
-            request.setAttribute("email", staticEmail);
-            request.setAttribute("registered", false);
         }
+        request.setAttribute("email", staticEmail);
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
     }
 
@@ -143,6 +143,9 @@ public class loginServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // Set the necessary attributes
+        request.setAttribute("registered", false);
 
         // If the student|company is already logged in, we redirect him to the home page
         if (controller.core.userController.checkSession(request, "studente") ||
