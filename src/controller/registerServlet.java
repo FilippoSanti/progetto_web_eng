@@ -262,21 +262,25 @@ public class registerServlet extends HttpServlet {
             // View the user registration page
             if (paramValue.equals("student") && submit_string == null) {
                 action_default_student(request, response);
+                return;
             }
 
             // View the company registration page
             if (paramValue.equals("company") && submit_string == null) {
                 action_default_company(request, response);
+                return;
             }
 
             // User registration request
             if (paramValue.equals("student") && submit_string.equals("true")) {
                 action_register_student(request, response);
+                return;
             }
 
             // Company registration request
             if (paramValue.equals("company") && submit_string.equals("true")) {
                 action_register_company(request, response);
+                return;
             }
 
         } catch (PropertyVetoException e) {
