@@ -30,7 +30,6 @@ public class homeServlet extends HttpServlet {
 
             // Get the user object attribute containing the user email
             User userModel = (User) session.getAttribute("loggedInUser");
-
             User newUser = userDAO.getUserDataByEmail(userModel.getEmail());
 
             System.out.println(newUser.getEmail());

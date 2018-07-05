@@ -24,7 +24,6 @@ public class registerServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
         String cap_string, nome, pass, ripeti_pass, dateString, provincia, provincia_n, residenza, citta, telefono,
@@ -59,7 +58,7 @@ public class registerServlet extends HttpServlet {
             return false;
         }
 
-        boolean regOk = userController.checkStudentRegistration(request, response, out, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+        boolean regOk = userController.checkStudentRegistration(request, response, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                     residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
 
         if (regOk) {
@@ -132,7 +131,6 @@ public class registerServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         String ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap,
                 nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass;
@@ -214,10 +212,9 @@ public class registerServlet extends HttpServlet {
 
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/scelta_registrazione.ftl");
 
-        dispatcher.forward(request, response);
+        System.out.println("entra");
+        request.getRequestDispatcher("/WEB-INF/views/scelta_registrazione.ftl").forward(request, response);
     }
 
     // Loads the default student page
@@ -251,11 +248,15 @@ public class registerServlet extends HttpServlet {
         String paramValue = request.getParameter(paramName);
         String submit_string = request.getParameter(submit);
 
+        System.out.println(paramValue);
+        System.out.println(submit_string);
+
         try {
 
             // Check if the user has given the right parameters
             if (paramValue == null && submit_string == null) {
                 action_default(request, response);
+                return;
             }
 
             // View the user registration page
@@ -297,13 +298,13 @@ public class registerServlet extends HttpServlet {
         if (controller.core.userController.checkSession(request, "studente") ||
                 controller.core.userController.checkSession(request, "azienda")) {
             response.sendRedirect("/home");
-        } else {
+        } else
             try {
                 processRequest(request, response);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 
     /**

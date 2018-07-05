@@ -27,7 +27,7 @@ public class userController {
      * Various checks for the registration process
      */
     // TODO: make the code more readable
-    public static boolean checkStudentRegistration(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String n, String c, String p, String rp, String d, String pr, String pn, String r,
+    public static boolean checkStudentRegistration(HttpServletRequest request, HttpServletResponse response, String n, String c, String p, String rp, String d, String pr, String pn, String r,
                                             String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
 
         boolean result = true;

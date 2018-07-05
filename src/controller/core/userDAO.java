@@ -1,6 +1,7 @@
 package controller.core;
 
 import controller.utilities.DataSource;
+import model.Company;
 import model.User;
 
 import java.beans.PropertyVetoException;
@@ -41,6 +42,24 @@ public class userDAO {
             usr.setCod_fiscale(rs.getString("cod_fiscale"));
         }
         return usr;
+    }
+
+    public static Company getCompanyDataByEmail(String userEmail) throws SQLException, IOException, PropertyVetoException {
+
+        Company companyModel = new Company();
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ?");
+
+        pst.setString(1, userEmail);
+
+        ResultSet rs = pst.executeQuery();
+
+        if(rs.next()) {
+
+        }
+
+        return companyModel;
     }
 
 }
