@@ -93,7 +93,7 @@
 
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Don't have an account? <a href="scelta_registrazione.ftl" class="text-dark m-l-5">Sign Up</a></p>
+                                    <p class="text-muted">Don't have an account? <a href="/register" class="text-dark m-l-5">Sign Up</a></p>
                                 </div>
                             </div>
 

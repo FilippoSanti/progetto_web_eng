@@ -9,15 +9,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="../../assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -34,10 +34,10 @@
                 <div class="topbar-left">
                     <a href="../src/view/index.jsp" class="logo">
                         <span>
-                            <img src="assets/images/logo.png" alt="">
+                            <img src="../../assets/images/logo.png" alt="">
                         </span>
                         <i>
-                            <img src="assets/images/logo_sm.png" alt="">
+                            <img src="../../assets/images/logo_sm.png" alt="">
                         </i>
                     </a>
                 </div>
@@ -131,7 +131,7 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
+                                <img src="../../assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
@@ -188,7 +188,7 @@
             <div class="left side-menu">
                 <div class="user-details">
                     <div class="pull-left">
-                        <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="../../assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
                         <a href="#">Stanley Jones</a>
@@ -274,13 +274,13 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-widget"></i><span> Extra Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="extras-timeline.jsp">Timeline</a></li>
+                                <li><a href="../../extras-timeline.jsp">Timeline</a></li>
                                 <li><a href="extras-invoice.html">Invoice</a></li>
-                                <li><a href="extras-profile.jsp">Profile</a></li>
+                                <li><a href="profile.ftl">Profile</a></li>
                                 <li><a href="extras-calendar.html">Calendar</a></li>
-                                <li><a href="extras-faqs.jsp">FAQs</a></li>
+                                <li><a href="../../extras-faqs.jsp">FAQs</a></li>
                                 <li><a href="extras-pricing.html">Pricing</a></li>
-                                <li><a href="extras-contacts.jsp">Contacts</a></li>
+                                <li><a href="../../extras-contacts.jsp">Contacts</a></li>
                             </ul>
                         </li>
 
@@ -321,7 +321,7 @@
                                 <div class="p-0 text-center">
                                     <div class="member-card">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="../../assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
                                             <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
                                         </div>
 
@@ -574,16 +574,16 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/js/popper.min.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/metisMenu.min.js"></script>
+        <script src="../../assets/js/waves.js"></script>
+        <script src="../../assets/js/jquery.slimscroll.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="../../assets/js/jquery.core.js"></script>
+        <script src="../../assets/js/jquery.app.js"></script>
 
     </body>
 </html>

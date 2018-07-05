@@ -82,6 +82,7 @@ public class loginServlet extends HttpServlet {
                     staticEmail = "";
                 }
 
+                // Redirect to the home page
                 response.sendRedirect("/home");
 
             } else {

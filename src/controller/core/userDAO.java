@@ -13,14 +13,14 @@ import java.sql.SQLException;
 public class userDAO {
 
     // Get the user data from DB
-    public User getUserDataByID (int userID) throws PropertyVetoException, SQLException, IOException {
+    public static User getUserDataByEmail (String userEmail) throws PropertyVetoException, SQLException, IOException {
 
         User usr = new User();
 
         Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE id = ?");
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ?");
 
-        pst.setInt(1, userID);
+        pst.setString(1, userEmail);
 
         ResultSet rs = pst.executeQuery();
 
@@ -29,16 +29,16 @@ public class userDAO {
             usr.setCognome(rs.getString("cognome"));
             usr.setDate(rs.getDate("date"));
             usr.setProvincia(rs.getString("provincia"));
-            usr.setProvincia_n(rs.getString("provincia_n"));
+            usr.setProvincia_n(rs.getString("provincia_nascita"));
             usr.setResidenza(rs.getString("residenza"));
             usr.setCitta(rs.getString("citta"));
             usr.setCorso(rs.getString("corso"));
             usr.setEmail(rs.getString("email"));
             usr.setHandicap(rs.getBoolean("handicap"));
-            usr.setTel(rs.getString("tel"));
+            usr.setTel(rs.getString("telefono"));
             usr.setNome(rs.getString("nome"));
             usr.setCap(rs.getInt("cap"));
-
+            usr.setCod_fiscale(rs.getString("cod_fiscale"));
         }
         return usr;
     }

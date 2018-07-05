@@ -276,7 +276,7 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="extras-timeline.jsp">Timeline</a></li>
                                 <li><a href="extras-invoice.html">Invoice</a></li>
-                                <li><a href="extras-profile.jsp">Profile</a></li>
+                                <li><a href="WEB-INF/views/extras-profile.ftl">Profile</a></li>
                                 <li><a href="extras-calendar.html">Calendar</a></li>
                                 <li><a href="extras-faqs.jsp">FAQs</a></li>
                                 <li><a href="extras-pricing.html">Pricing</a></li>

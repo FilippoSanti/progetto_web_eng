@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class User {
-    String nome, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, userType ;
+    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, userType ;
     Date date;
     int cap;
     int id;
@@ -26,11 +26,12 @@ public class User {
         this.userType    = "";
         this.cap         = 0;
         this.id          = 0;
+        this.cod_fiscale = null;
 
     }
 
     public User(String n, String c, Date d, String p, String pn,
-                String r, String ct, String cr, String em, boolean hc, String tel, String userType, int cap, int id) {
+                String r, String ct, String cr, String em, boolean hc, String tel, String userType, int cap, int id, String cod_fiscale) {
 
         this.nome        = n;
         this.cognome     = c;
@@ -46,6 +47,7 @@ public class User {
         this.userType    = userType;
         this.cap         = cap;
         this.id          = id;
+        this.cod_fiscale = cod_fiscale;
 
     }
 
@@ -157,4 +159,15 @@ public class User {
 
     public void setUserType (String userType) { this.userType = userType; }
 
+    public String getCod_fiscale() {
+        return cod_fiscale;
+    }
+
+    public void setCod_fiscale(String cod_fiscale) {
+        this.cod_fiscale = cod_fiscale;
+    }
+
+    public boolean isHandicap() {
+        return handicap;
+    }
 }

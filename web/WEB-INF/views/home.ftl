@@ -129,7 +129,7 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="../../extras-profile.jsp" class="dropdown-item notify-item">
+                                <a href="profile.ftl" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 
@@ -186,7 +186,7 @@
                     <ul class="metismenu" id="side-menu">
                         <li class="menu-title">Navigation</li>
                         <li>
-                            <a href="../src/view/index.jsp">
+                            <a href="/home">
                                 <i class="ti-home"></i><span> Homepage </span>
                             </a>
                         </li>
@@ -194,7 +194,7 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-user"></i> <span> My Profile </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="../../extras-profile.jsp">My Account</a></li>
+                                <li><a href="profile.ftl">My Account</a></li>
                                 <li><a href="*.html">Edit Informations</a></li>
                                 <li><a href="*.html">My Internship</a></li>
                             </ul>

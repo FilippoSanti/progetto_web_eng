@@ -1,6 +1,7 @@
 package controller;
 
 import controller.core.userController;
+import controller.core.userDAO;
 import model.Company;
 import model.User;
 
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 public class homeServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, PropertyVetoException, SQLException {
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
@@ -27,8 +28,12 @@ public class homeServlet extends HttpServlet {
         // Check if the user is logged
         if (userController.checkSession(request, "studente")) {
 
-            // Get the user object
+            // Get the user object attribute containing the user email
             User userModel = (User) session.getAttribute("loggedInUser");
+
+            User newUser = userDAO.getUserDataByEmail(userModel.getEmail());
+
+            System.out.println(newUser.getEmail());
 
             loadHomepage(request, response);
             // Load user functions
@@ -52,7 +57,13 @@ public class homeServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -63,7 +74,13 @@ public class homeServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadHomepage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
