@@ -212,8 +212,6 @@ public class registerServlet extends HttpServlet {
 
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        System.out.println("entra");
         request.getRequestDispatcher("/WEB-INF/views/scelta_registrazione.ftl").forward(request, response);
     }
 
@@ -248,11 +246,7 @@ public class registerServlet extends HttpServlet {
         String paramValue = request.getParameter(paramName);
         String submit_string = request.getParameter(submit);
 
-        System.out.println(paramValue);
-        System.out.println(submit_string);
-
         try {
-
             // Check if the user has given the right parameters
             if (paramValue == null && submit_string == null) {
                 action_default(request, response);
@@ -282,6 +276,9 @@ public class registerServlet extends HttpServlet {
                 action_register_company(request, response);
                 return;
             }
+
+            // Default action if no parameter is set properly
+            action_default(request, response);
 
         } catch (PropertyVetoException e) {
             e.printStackTrace();

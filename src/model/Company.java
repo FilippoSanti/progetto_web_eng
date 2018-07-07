@@ -2,8 +2,28 @@ package model;
 
 public class Company {
 
-    private String ragione_sociale ,indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap, telefono_tirocini,
-            email_tirocini, foro_competente, provincia, email_login, ripeti_pass;
+    private String ragione_sociale;
+    private String indirizzo_sede_leg;
+    private String cf_rappresentante;
+    private String partita_iva_rap;
+    private String nome_cognome_rap;
+    private String telefono_tirocini;
+
+    public String getNome_cognome_tir() {
+        return nome_cognome_tir;
+    }
+
+    public void setNome_cognome_tir(String nome_cognome_tir) {
+        this.nome_cognome_tir = nome_cognome_tir;
+    }
+
+    private String email_tirocini;
+    private String foro_competente;
+    private String provincia;
+    private String email_login;
+    private String ripeti_pass;
+    private String nome_cognome_tir;
+    private int company_id;
 
 
     public Company() {
@@ -18,9 +38,13 @@ public class Company {
         this.provincia = "";
         this.email_login = "";
         this.ripeti_pass = "";
+        this.company_id = 0;
+        this.nome_cognome_tir = "";
     }
 
-    public Company(String ragione_sociale, String indirizzo_sede_leg, String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String telefono_tirocini, String email_tirocini, String foro_competente, String provincia, String email_login, String password, String ripeti_pass) {
+    public Company(String nome_cognome_tir, String ragione_sociale, String indirizzo_sede_leg, String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String telefono_tirocini, String email_tirocini,
+                   String foro_competente, String provincia, String email_login, String password, String ripeti_pass, int company_id) {
+        this.nome_cognome_tir = nome_cognome_tir;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo_sede_leg = indirizzo_sede_leg;
         this.cf_rappresentante = cf_rappresentante;
@@ -32,6 +56,7 @@ public class Company {
         this.provincia = provincia;
         this.email_login = email_login;
         this.ripeti_pass = ripeti_pass;
+        this.company_id = company_id;
     }
 
     public String getRagione_sociale() {
@@ -60,6 +85,14 @@ public class Company {
 
     public String getPartita_iva_rap() {
         return partita_iva_rap;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public void setPartita_iva_rap(String partita_iva_rap) {

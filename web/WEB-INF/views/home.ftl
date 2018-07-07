@@ -129,7 +129,7 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="profile.ftl" class="dropdown-item notify-item">
+                                <a href="/profile" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 
@@ -194,7 +194,7 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-user"></i> <span> My Profile </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="profile.ftl">My Account</a></li>
+                                <li><a href="/profile">My Account</a></li>
                                 <li><a href="*.html">Edit Informations</a></li>
                                 <li><a href="*.html">My Internship</a></li>
                             </ul>

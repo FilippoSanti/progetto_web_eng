@@ -1,14 +1,15 @@
 package controller.utilities;
 
-import javax.servlet.ServletException;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Utils {
 
@@ -97,8 +98,28 @@ public class Utils {
     // Signal the HTML page that one or more errors
     // has occurred during the registration
     public static void signalErrors(HttpServletRequest request) {
-
         boolean errors = true;
         request.setAttribute("errors", errors);
+    }
+
+    public static void scale_img(InputStream imageInput, String filestring) throws IOException {
+
+        int thumbWidth = 128;
+        int thumbHeight = 128;
+
+        // Now scale the image using Java 2D API to the desired thumb size.
+        Image image = ImageIO.read(imageInput);
+        BufferedImage thumb = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphics2D = thumb.createGraphics();
+        graphics2D.setBackground(Color.WHITE);
+        graphics2D.setPaint(Color.WHITE);
+        graphics2D.fillRect(0, 0, thumbWidth, thumbHeight);
+        graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
+
+        File f = new File(filestring);
+
+        ImageIO.write(thumb, "PNG", f);
+
     }
 }

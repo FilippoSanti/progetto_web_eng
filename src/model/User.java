@@ -3,10 +3,11 @@ package model;
 import java.util.Date;
 
 public class User {
-    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, userType ;
+    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel;
     Date date;
     int cap;
     int id;
+    int userID;
     boolean handicap;
 
 
@@ -23,7 +24,7 @@ public class User {
         this.email       = "";
         this.handicap    = false;
         this.tel         = "";
-        this.userType    = "";
+        this.userID      = 0;
         this.cap         = 0;
         this.id          = 0;
         this.cod_fiscale = null;
@@ -31,7 +32,7 @@ public class User {
     }
 
     public User(String n, String c, Date d, String p, String pn,
-                String r, String ct, String cr, String em, boolean hc, String tel, String userType, int cap, int id, String cod_fiscale) {
+                String r, String ct, String cr, String em, boolean hc, String tel, int userID, int cap, int id, String cod_fiscale) {
 
         this.nome        = n;
         this.cognome     = c;
@@ -44,7 +45,7 @@ public class User {
         this.email       = em;
         this.handicap    = hc;
         this.tel         = tel;
-        this.userType    = userType;
+        this.userID    = userID;
         this.cap         = cap;
         this.id          = id;
         this.cod_fiscale = cod_fiscale;
@@ -151,13 +152,18 @@ public class User {
         return cap;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public void setCap(int cap) {
         this.cap = cap;
     }
 
-    public String getUserType () {return this.userType; }
-
-    public void setUserType (String userType) { this.userType = userType; }
 
     public String getCod_fiscale() {
         return cod_fiscale;

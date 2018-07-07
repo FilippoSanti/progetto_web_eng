@@ -18,6 +18,8 @@ import java.sql.SQLException;
 
 public class homeServlet extends HttpServlet {
 
+    public String loggedUserEmail = null;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, PropertyVetoException, SQLException {
 
@@ -30,9 +32,8 @@ public class homeServlet extends HttpServlet {
 
             // Get the user object attribute containing the user email
             User userModel = (User) session.getAttribute("loggedInUser");
-            User newUser = userDAO.getUserDataByEmail(userModel.getEmail());
 
-            System.out.println(newUser.getEmail());
+            loggedUserEmail = userModel.getEmail();
 
             loadHomepage(request, response);
             // Load user functions
@@ -88,6 +89,4 @@ public class homeServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
     }
-
-
 }

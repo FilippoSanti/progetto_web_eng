@@ -1,5 +1,7 @@
 package controller;
 
+import controller.core.userController;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,39 @@ public class profileServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // URL Parameters
+        String paramName  = "userid";
+        String paramValue = request.getParameter(paramName);
+
+        // If the userid is set
+        if (paramValue != null) {
+            action_view_userid(request, response, paramValue);
+            return;
+        }
+
+        // Default action if no parameter is set properly
         action_default(request, response);
+
+    }
+
+    // View the profile of a user
+    private void action_view_userid(HttpServletRequest request, HttpServletResponse response, String id) throws IOException, ServletException {
+
+        // Check if the string contains only numbers
+        if (!id.matches("[0-9]+")) {
+            action_default(request, response);
+            return;
+        }
+
+        // If the parameter is empty, we return and
+        // execute the default action
+        if (id.isEmpty()) {
+            action_default(request, response);
+            return;
+        }
+
+        // Get the user
     }
 
     /**
@@ -32,7 +66,15 @@ public class profileServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       processRequest(request, response);
+
+        if (!userController.checkSession(request, "studente") &&
+                !userController.checkSession(request, "azienda")) {
+            response.sendRedirect("/login");
+        } else {
+            processRequest(request, response);
+        }
+
+
     }
 
     /**
@@ -43,7 +85,12 @@ public class profileServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if (!userController.checkSession(request,"studente") &&
+                !userController.checkSession(request,"azienda")) {
+            response.sendRedirect("/login");
+        } else {
+            processRequest(request, response);
+        }
     }
 
 }
