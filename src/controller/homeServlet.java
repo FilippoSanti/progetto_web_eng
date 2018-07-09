@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 public class homeServlet extends HttpServlet {
 
-    public String loggedUserEmail = null;
+    public static String loggedUserEmail = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, PropertyVetoException, SQLException {

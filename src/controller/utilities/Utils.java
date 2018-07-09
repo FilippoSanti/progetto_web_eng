@@ -1,6 +1,10 @@
 package controller.utilities;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,6 +14,9 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -75,11 +82,14 @@ public class Utils {
         return true;
     }
 
-    public static boolean isValidEmailAddress(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
+
+    // Validate the user email with a useless regex because why not
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean isValidEmailAddress(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
     }
 
     // Date check function
@@ -104,22 +114,36 @@ public class Utils {
 
     public static void scale_img(InputStream imageInput, String filestring) throws IOException {
 
-        int thumbWidth = 128;
+        int thumbWidth  = 128;
         int thumbHeight = 128;
+        String formatName = "PNG";
+        BufferedImage thumb = null;
+        File file = new File(filestring);
 
-        // Now scale the image using Java 2D API to the desired thumb size.
-        Image image = ImageIO.read(imageInput);
-        BufferedImage thumb = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
-        Graphics2D graphics2D = thumb.createGraphics();
-        graphics2D.setBackground(Color.WHITE);
-        graphics2D.setPaint(Color.WHITE);
-        graphics2D.fillRect(0, 0, thumbWidth, thumbHeight);
-        graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
+        try {
 
-        File f = new File(filestring);
+            BufferedImage image = ImageIO.read(imageInput);
 
-        ImageIO.write(thumb, "PNG", f);
+            int height = ((BufferedImage) image).getHeight();
+            int width  = ((BufferedImage) image).getHeight();
 
+            if (height != 128 && width != 128) {
+
+                // Now scale the image using Java 2D API to the desired thumb size.
+                thumb = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
+                Graphics2D graphics2D = thumb.createGraphics();
+                graphics2D.setBackground(Color.WHITE);
+                graphics2D.setPaint(Color.WHITE);
+                graphics2D.fillRect(0, 0, thumbWidth, thumbHeight);
+                graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
+                ImageIO.write(thumb, formatName, file);
+
+            } else {
+                ImageIO.write(image, "png", file);
+            }
+        } catch (Exception e) {
+            // It's not an image.
+        }
     }
 }

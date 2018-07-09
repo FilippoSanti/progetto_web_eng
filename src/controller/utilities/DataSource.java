@@ -18,7 +18,7 @@ public class DataSource {
         cpds.setDriverClass("com.mysql.jdbc.Driver");
         cpds.setJdbcUrl("jdbc:mysql://localhost/login");
         cpds.setUser("root");
-        cpds.setPassword("");
+        cpds.setPassword("eden777");
 
         cpds.setMinPoolSize(5);
         cpds.setAcquireIncrement(5);

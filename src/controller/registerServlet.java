@@ -5,13 +5,17 @@ import controller.utilities.DataSource;
 import controller.utilities.Utils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -80,7 +84,7 @@ public class registerServlet extends HttpServlet {
                 Connection dbConnection = DataSource.getInstance().getConnection();
 
                 PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 ps.setNull(1, Types.INTEGER);
                 ps.setString(2, nome);
@@ -97,6 +101,7 @@ public class registerServlet extends HttpServlet {
                 ps.setBoolean(13, handicapBool);
                 ps.setString(14, cognome);
                 ps.setString(15, cod_fiscale);
+                ps.setString(16, "empty");
 
                 int i = ps.executeUpdate();
 

@@ -188,7 +188,7 @@
             <div class="left side-menu">
                 <div class="user-details">
                     <div class="pull-left">
-                        <img src="../../assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="${image_path}" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
                         <a href="#">Stanley Jones</a>
@@ -321,7 +321,7 @@
                                 <div class="p-0 text-center">
                                     <div class="member-card">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="../../assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
                                             <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
                                         </div>
                                     </div>
