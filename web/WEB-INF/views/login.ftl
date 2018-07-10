@@ -44,9 +44,9 @@
                                     <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                 </div>
 
-                                <#if registered>
+                                <#if registeredMessage?has_content>
                                     <div class="alert alert-success">
-                                        <strong>Success!</strong> ${registeredString}
+                                        <strong>Success!</strong> ${registeredMessage}
                                     </div>
                                 </#if>
 

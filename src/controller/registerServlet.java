@@ -23,6 +23,8 @@ import java.sql.Types;
 
 public class registerServlet extends HttpServlet {
 
+    public static String registeredMessage = "";
+
     /** Registration of a student**/
     protected boolean action_register_student(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
@@ -108,10 +110,7 @@ public class registerServlet extends HttpServlet {
                 // Registration ok
                 if (i > 0) {
 
-                    // Set two attributes to show in the login page
-                    boolean registered = true;
-                    request.setAttribute("registered", registered);
-                    request.setAttribute("registeredString", "Registration has been completed successfully");
+                    registeredMessage = "Registered successfully";
 
                     RequestDispatcher dispatcher
                             = request.getServletContext().getRequestDispatcher("/login");

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Lug 04, 2018 alle 08:54
--- Versione del server: 10.2.15-MariaDB
+-- Creato il: Lug 10, 2018 alle 09:36
+-- Versione del server: 10.2.16-MariaDB
 -- Versione PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,18 +41,20 @@ CREATE TABLE `azienda` (
   `telefono_tirocini` varchar(20) NOT NULL,
   `email_tirocini` varchar(40) NOT NULL,
   `foro_competente` varchar(50) NOT NULL,
-  `provincia` varchar(255) NOT NULL
+  `provincia` varchar(255) NOT NULL,
+  `abilitata` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `azienda`
 --
 
-INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione sociale`, `indirizzo_sede_legale`, `cf_rappresentante`, `partita_iva_rappresentante`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`) VALUES
-(2, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '-- Select --'),
-(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', 'asdasdas', 'asdasdasd', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL'),
-(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', 'aaaaaaa', 'asdaaa', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL'),
-(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN');
+INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione sociale`, `indirizzo_sede_legale`, `cf_rappresentante`, `partita_iva_rappresentante`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`) VALUES
+(2, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '-- Select --', 0),
+(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', 'asdasdas', 'asdasdasd', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL', 0),
+(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', 'aaaaaaa', 'asdaaa', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL', 0),
+(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1),
+(6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0);
 
 -- --------------------------------------------------------
 
@@ -62,6 +64,7 @@ INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione sociale
 
 CREATE TABLE `offerta_tirocinio` (
   `offerta_tirocinio_id` int(11) NOT NULL,
+  `azienda_id` int(11) NOT NULL,
   `luogo` varchar(100) NOT NULL,
   `orari` varchar(100) NOT NULL,
   `ore` varchar(10) NOT NULL,
@@ -69,15 +72,6 @@ CREATE TABLE `offerta_tirocinio` (
   `modalita` varchar(30) NOT NULL,
   `rimborsi_spese_facilitazioni_previste` varchar(600) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `offerta_tirocinio`
---
-
-INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `luogo`, `orari`, `ore`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`) VALUES
-(1, 'casa di peppe', '12-14 20-22', '55', 'succhiare', 'seduti', 'nessuna stronzo'),
-(2, 'casa di peppe', '12-14 20-22', '55', 'succhiare', 'seduti', 'nessuna stronzo'),
-(3, 'casa di peppe', '12-14 20-22', '55', 'succhiare', 'seduti', 'nessuna stronzo');
 
 -- --------------------------------------------------------
 
@@ -100,18 +94,19 @@ CREATE TABLE `studente` (
   `email` varchar(30) NOT NULL,
   `handicap` tinyint(1) NOT NULL,
   `cognome` varchar(30) NOT NULL,
-  `cod_fiscale` varchar(255) NOT NULL
+  `cod_fiscale` varchar(255) NOT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `ruolo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `studente`
 --
 
-INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`) VALUES
-(14, 'Stefano', '$2a$12$bQbYedV0jlY4km8IKsAH.uCt5lO1dsnLXKfckKuTOmkg9P55NXnTe', '1995-07-26', 'FR', 'FR', 'Via Rondinella', 'Arpino', 3033, '3343037176', 'Informatica', 'mikesh07mail@gmail.com', 0, 'De Ciantis', 'dcnfsfa'),
-(15, 'Sterano', '$2a$12$bh5gHxbb2M17hAKMPoM9bOKt7fTy3RMhiKXn4eyeOdHo3RmZFesf6', '1992-07-03', 'AL', 'AL', 'via rindinella', 'vaffanculo', 3033, '3383637382', 'iNFORMATICA', 'dio@po.rco', 1, 'de ciantis', 'dcndgd'),
-(16, 'sad', '$2a$12$1iYQdgFWEDuKTikVTFE0G.TWBOeN6wvoQgnPtD9onDrsDYYrkbtAq', '2018-07-11', 'AG', 'AG', 'asdasd', 'asdsadsad', 3033, '3333333', 'iNFORMATICA', 'asd@lol.com', 1, 'de ciantis', 'asdsadas'),
-(17, 'asd', '$2a$12$wpTnw7k.MZOTD0ekZ.QOMez7fZvTRSiCdtbPe49baPkFfv6UKp98a', '2018-07-17', 'AG', 'AG', 'asdasd', 'asdasdasd', 4044, '213123213', 'iNFORMATICA', 'dio@ca.ne', 0, 'asdad', 'asdasdasd');
+INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `profile_image`, `ruolo`) VALUES
+(20, 'asdasdas', '$2a$12$hk8SDaw10vC9Z2h2JDyyremzsEbidT//LKJW/TaosLU6J6kFCR9Me', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'empty', 'admin'),
+(21, 'sdasdasd', '$2a$12$oozOXSluADkqa/8Hbn0h3uHJ1UwR8UxNUM7gVDCZ7XmPfITJFcxIO', '2018-07-24', 'AL', 'AG', 'asdsadasd', 'asdasdasd', 3033, '123213123', 'asdsadasd', 'asd@lo.com', 1, 'adasdasd', 'adadasd', 'empty', ''),
+(22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', 'empty', '');
 
 --
 -- Indici per le tabelle scaricate
@@ -143,19 +138,19 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,7 +1,6 @@
 package controller.core;
 
 import controller.utilities.DataSource;
-import model.Company;
 import model.User;
 
 import java.beans.PropertyVetoException;
@@ -43,7 +42,7 @@ public class userDAO {
         return usr;
     }
 
-    public static boolean checkProfileImageByEmail(String userEmail) throws SQLException, IOException, PropertyVetoException {
+    public static boolean checkProfileImage(String userEmail) throws SQLException, IOException, PropertyVetoException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ? AND profile_image = 'empty'");
@@ -58,4 +57,36 @@ public class userDAO {
         return true;
     }
 
+    // Check if a user is admin
+    public static boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'");
+
+        pst.setString(1, userEmail);
+        ResultSet rs = pst.executeQuery();
+
+        if(rs.next()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Query to check if the email already is in the db
+    public static boolean checkStudentEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+
+        String query = "SELECT * FROM studente WHERE email = ?";
+        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
+            statement.setString(1, emailString);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
 }

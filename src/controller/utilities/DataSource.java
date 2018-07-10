@@ -39,5 +39,4 @@ public class DataSource {
     public Connection getConnection() throws SQLException {
         return this.cpds.getConnection();
     }
-
 }

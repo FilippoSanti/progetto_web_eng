@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static controller.core.companyDAO.checkCompanyEmailExists;
+import static controller.core.userDAO.checkStudentEmailExists;
 
 public class userController {
 
@@ -28,7 +30,7 @@ public class userController {
      */
     // TODO: make the code more readable
     public static boolean checkStudentRegistration(HttpServletRequest request, HttpServletResponse response, String n, String c, String p, String rp, String d, String pr, String pn, String r,
-                                            String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
+                                                   String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
 
         boolean result = true;
 
@@ -207,8 +209,8 @@ public class userController {
 
     }
 
-    public static boolean checkCompanyRegistration (HttpServletRequest request, String r, String ind, String cf, String part, String nc_rap,
-                                                    String nc_tir, String tel_tir, String em_tir, String foro, String prov, String em_log, String pass, String ripeti) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
+    public static boolean checkCompanyRegistration(HttpServletRequest request, String r, String ind, String cf, String part, String nc_rap,
+                                                   String nc_tir, String tel_tir, String em_tir, String foro, String prov, String em_log, String pass, String ripeti) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
         boolean result = true;
 
         if (checkCompanyEmailExists(em_log)) {
@@ -345,40 +347,6 @@ public class userController {
             return false;
         }
         return false;
-    }
-
-    // Query to check if the email already is in the db
-    public static boolean checkStudentEmailExists(String emailString) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
-
-        Connection dbConnection = DataSource.getInstance().getConnection();
-
-        String query = "SELECT * FROM studente WHERE email = ?";
-        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
-            statement.setString(1, emailString);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
-            }
-        } catch (SQLException se) {
-            se.printStackTrace();
-            return false;
-        }
-    }
-
-    // Query to check if the email already is in the db
-    public static boolean checkCompanyEmailExists(String emailComp) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
-
-        Connection dbConnection = DataSource.getInstance().getConnection();
-
-        String query = "SELECT * FROM azienda WHERE email_login = ?";
-        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
-            statement.setString(1, emailComp);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
-            }
-        } catch (SQLException se) {
-            se.printStackTrace();
-            return false;
-        }
     }
 
     // Check if the user is logged

@@ -1,10 +1,6 @@
 package controller.utilities;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReadParam;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,14 +10,15 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
-    final  static  String  DATE_FORMAT = "mm/dd/yyyy";
-
+    // Validate the user email with a useless regex because why not
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    final static String DATE_FORMAT = "mm/dd/yyyy";
     // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
     private static int workload = 12;
 
@@ -64,7 +61,6 @@ public class Utils {
         return (password_verified);
     }
 
-
     // Returns a java.sql.Date type given a string
     public static java.sql.Date convertDate(String dateString) throws ParseException {
 
@@ -74,27 +70,23 @@ public class Utils {
         return sqlDate;
     }
 
-    /** Method to check empty strings */
-    public static boolean checkEmpty(String value){
-        if(!(value==null))
+    /**
+     * Method to check empty strings
+     */
+    public static boolean checkEmpty(String value) {
+        if (!(value == null))
             return value.isEmpty();
 
         return true;
     }
 
-
-    // Validate the user email with a useless regex because why not
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
     public static boolean isValidEmailAddress(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
 
     // Date check function
-    public static boolean isDateValid(String date)
-    {
+    public static boolean isDateValid(String date) {
         try {
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);
             df.setLenient(false);
@@ -114,18 +106,17 @@ public class Utils {
 
     public static void scale_img(InputStream imageInput, String filestring) throws IOException {
 
-        int thumbWidth  = 128;
-        int thumbHeight = 128;
-        String formatName = "PNG";
-        BufferedImage thumb = null;
-        File file = new File(filestring);
+        int           thumbWidth   = 128;
+        int           thumbHeight  = 128;
+        String        formatName   = "PNG";
+        BufferedImage thumb        = null;
+        File          file         = new File(filestring);
 
         try {
-
             BufferedImage image = ImageIO.read(imageInput);
 
             int height = ((BufferedImage) image).getHeight();
-            int width  = ((BufferedImage) image).getHeight();
+            int width = ((BufferedImage) image).getHeight();
 
             if (height != 128 && width != 128) {
 
@@ -143,7 +134,7 @@ public class Utils {
                 ImageIO.write(image, "png", file);
             }
         } catch (Exception e) {
-            // It's not an image.
+            // not an image
         }
     }
 }

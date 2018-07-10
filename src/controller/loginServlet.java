@@ -97,7 +97,7 @@ public class loginServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        request.setAttribute("registered", false);
+        request.setAttribute("registeredMessage", registerServlet.registeredMessage);
 
         Cookie[] cookies  = null;
         cookies = request.getCookies();
@@ -144,9 +144,6 @@ public class loginServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Set the necessary attributes
-        request.setAttribute("registered", false);
 
         // If the student|company is already logged in, we redirect him to the home page
         if (controller.core.userController.checkSession(request, "studente") ||

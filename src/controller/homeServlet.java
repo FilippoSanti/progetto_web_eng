@@ -1,7 +1,6 @@
 package controller;
 
 import controller.core.userController;
-import controller.core.userDAO;
 import model.Company;
 import model.User;
 
