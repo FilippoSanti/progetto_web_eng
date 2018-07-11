@@ -103,7 +103,7 @@ public class registerServlet extends HttpServlet {
                 ps.setBoolean(13, handicapBool);
                 ps.setString(14, cognome);
                 ps.setString(15, cod_fiscale);
-                ps.setString(16, "empty");
+                ps.setString(16, "user");
 
                 int i = ps.executeUpdate();
 
@@ -171,7 +171,7 @@ public class registerServlet extends HttpServlet {
                 // Connect to the db pool
                 Connection dbConnection = DataSource.getInstance().getConnection();
                 PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 // Prepare the query and execute it
                 ps.setNull(1, Types.INTEGER);
@@ -187,6 +187,7 @@ public class registerServlet extends HttpServlet {
                 ps.setString(11, email_tirocini);
                 ps.setString(12, foro_competente);
                 ps.setString(13, provincia);
+                ps.setBoolean(14, false);
 
                 int i = ps.executeUpdate();
 
@@ -326,5 +327,4 @@ public class registerServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }

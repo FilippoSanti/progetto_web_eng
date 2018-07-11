@@ -42,7 +42,6 @@ public class uploadServlet extends HttpServlet {
         Part filePart = request.getPart("file");
 
         // MSIE fix.
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         InputStream fileContent = filePart.getInputStream();
 
         ServletContext context = getServletContext();

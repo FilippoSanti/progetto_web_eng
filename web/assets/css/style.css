@@ -952,6 +952,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
 }
 
+.font-15{
+font-size: -15px;
+}
+
 .thumb-sm {
   height: 32px;
   width: 32px;
@@ -3327,5 +3331,72 @@ h3.timeline-title {
 }
 
 .infindim{
+  vertical-align: sub;
+  font-size: 18px;
+}
+
+.loginmargin{
+  margin-right: 45px;
+}
+
+.langmargin{
+  margin-right: 15px;
+}
+
+.visitormenutop{
+  margin-top: 78px;
+}
+
+.notbell{
   font-size: 24px;
+  margin-top: 4px;
+}
+
+.red{
+  color: red;
+}
+
+.azure{
+  color: #5c95de;
+}
+
+.containeradd_dim{
+  margin-top: 25px;
+  max-width: 88%;
+  min-width: 86%;
+  max-height: 170px;
+  min-height: 170px;
+}
+
+.imgadddim{
+  width: 70%;
+}
+
+.btnadd{
+  border: none;
+  background-color: transparent;
+}
+
+.btnintlistdetails{
+  padding-top: 1px !important;
+  padding-right: 3px !important;
+  padding-bottom: 1px !important;
+  padding-left: 3px !important;
+  background-color: #3a90d6b5 !important;
+  border: none !important;
+  font-size: 12px !important;
+  border-radius: 8px;
+}
+
+.mrgntopcol{
+  margin-top: 25px;
+}
+
+.loground{
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.loground1{
+  margin-left: 15px;
 }

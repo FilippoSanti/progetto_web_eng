@@ -50,7 +50,7 @@
             <div class="p" id="p21" style="top:139.50377pt;left:301.25pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:21.426575pt;">DATA</div>
             <div class="p" id="p22" style="top:139.50377pt;left:324.87952pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:7.9917297pt;">DI</div>
             <div class="p" id="p23" style="top:139.50377pt;left:335.18674pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:57.646698pt;">RICEVIMENTO:</div>
-            <div class="p" id="p24" style="top:139.50377pt;left:395.14893pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:137.60449pt;">_______________________________</div>
+            <div class="p" id="p24" style="top:139.50377pt;left:395.14893pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:137.60449pt;"></div>
             <div class="p" id="p25" style="top:157.86375pt;left:301.25pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:16.980438pt;">Prot.</div>
             <div class="p" id="p26" style="top:157.86375pt;left:320.43338pt;line-height:8.9646pt;font-family:Arial;font-size:8.0pt;letter-spacing:-0.0449pt;width:7.9917297pt;">N.</div>
             <div class="r" style="left:50.52pt;top:137.89996pt;width:0.47999954pt;height:1.5599976pt;background-color:#000000;">&nbsp;</div>

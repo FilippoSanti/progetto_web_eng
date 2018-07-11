@@ -17,14 +17,12 @@ public class pdfServlet  extends HttpServlet {
             throws ServletException, IOException, PropertyVetoException, SQLException {
 
         action_default(request, response);
-
     }
 
     protected void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/document_1.ftl");
-
         dispatcher.forward(request, response);
 
     }
@@ -62,5 +60,4 @@ public class pdfServlet  extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }

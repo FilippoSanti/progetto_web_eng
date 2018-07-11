@@ -15,10 +15,72 @@ import java.io.IOException;
 import java.sql.SQLException;
 import controller.core.userDAO;
 import model.Company;
+import model.Security;
 import model.User;
 
 public class profileServlet extends HttpServlet {
 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // URL Parameters
+        String paramName  = "view";
+        String paramValue = request.getParameter(paramName);
+
+        // If the userid is set
+        if (paramValue == null) {
+
+            // Start user profile visualization
+            Security securityModel = controller.core.SecurityFilter.checkUsers(request);
+
+            if (securityModel.getUser().equals("student")) {
+                action_student(request, response);
+            } else if (securityModel.getUser().equals("company")) {
+                action_company(request, response);
+            } else action_load_login(request, response);
+
+
+        } else {
+            action_view_userid(request, response, paramName);
+        }
+
+    }
+
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request  servlet request
+     * @param response servlet response
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
 
@@ -30,6 +92,9 @@ public class profileServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * User specific methods
+     **/
     public void display_user_image(HttpServletRequest request) throws PropertyVetoException, SQLException, IOException {
 
         // Find out if the session belongs to a user or a company
@@ -79,24 +144,6 @@ public class profileServlet extends HttpServlet {
         }
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, PropertyVetoException, SQLException {
-
-        // URL Parameters
-        String paramName  = "userid";
-        String paramValue = request.getParameter(paramName);
-
-        // If the userid is set
-        if (paramValue != null) {
-            action_view_userid(request, response, paramValue);
-            return;
-        }
-
-        // Default action if no parameter is set properly
-        action_default(request, response);
-
-    }
-
     // View the profile of a user
     private void action_view_userid(HttpServletRequest request, HttpServletResponse response, String id) throws IOException, ServletException, PropertyVetoException, SQLException {
 
@@ -116,51 +163,19 @@ public class profileServlet extends HttpServlet {
         // Get the user
     }
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        if (!userController.checkSession(request, "studente") &&
-                !userController.checkSession(request, "azienda")) {
-            response.sendRedirect("/login");
-        } else {
-            try {
-                processRequest(request, response);
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-
+    protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+        action_default(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        if (!userController.checkSession(request,"studente") &&
-                !userController.checkSession(request,"azienda")) {
-            response.sendRedirect("/login");
-        } else {
-            try {
-                processRequest(request, response);
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+        action_default(request, response);
+    }
+
+    protected void action_load_login (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/login");
+
+        dispatcher.forward(request, response);
     }
 
 }

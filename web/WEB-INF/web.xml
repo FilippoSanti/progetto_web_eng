@@ -117,6 +117,16 @@
         <url-pattern>/document</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>company</servlet-name>
+        <servlet-class>controller.companyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>company</servlet-name>
+        <url-pattern>/company</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.

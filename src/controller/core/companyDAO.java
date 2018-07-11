@@ -130,4 +130,34 @@ public class companyDAO {
             return false;
         }
     }
+
+    public static ArrayList<Company> getCompaniesList() throws SQLException, IOException, PropertyVetoException {
+        ArrayList<Company> companiesList = new ArrayList<>();
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM azienda WHERE abilitata = 0 ORDER BY azienda.azienda_id ASC ");
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            Company company = new Company(
+                    rs.getString("nome_cognome_tirocini"),
+                    rs.getString("ragione_sociale"),
+                    rs.getString("indirizzo_sede_legale"),
+                    rs.getString("cf_rappresentante"),
+                    rs.getString("partita_iva_rappresentante"),
+                    rs.getString("nome_cognome_rappresentante"),
+                    rs.getString("telefono_tirocini"),
+                    rs.getString("email_tirocini"),
+                    rs.getString("foro_competente"),
+                    rs.getString("provincia"),
+                    rs.getString("email_login"),
+                    rs.getInt("azienda_id")
+            );
+            companiesList.add(company);
+        }
+
+        return companiesList;
+    }
 }
+

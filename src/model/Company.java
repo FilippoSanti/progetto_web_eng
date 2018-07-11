@@ -43,7 +43,7 @@ public class Company {
     }
 
     public Company(String nome_cognome_tir, String ragione_sociale, String indirizzo_sede_leg, String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String telefono_tirocini, String email_tirocini,
-                   String foro_competente, String provincia, String email_login, String password, String ripeti_pass, int company_id) {
+                   String foro_competente, String provincia, String email_login, int company_id) {
         this.nome_cognome_tir = nome_cognome_tir;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo_sede_leg = indirizzo_sede_leg;

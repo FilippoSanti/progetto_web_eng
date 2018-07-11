@@ -97,6 +97,12 @@
                                 </div>
                             </div>
 
+                            <div class="row m-t-50">
+                                <div class="col-sm-12 text-center">
+                                    <p class="text-muted">You can also enter the site as<a href="/home" class="text-dark m-l-5"> anonymous user</a></p>
+                                </div>
+                            </div>
+
                         </div>
                         <!-- end wrapper -->
 
