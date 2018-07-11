@@ -107,6 +107,16 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>document</servlet-name>
+        <servlet-class>controller.pdfServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>document</servlet-name>
+        <url-pattern>/document</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
