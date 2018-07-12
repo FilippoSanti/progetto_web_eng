@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import controller.core.userDAO;
+import controller.utilities.Utils;
 import model.Company;
 import model.Security;
 import model.User;
@@ -22,6 +23,8 @@ public class profileServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        request.setAttribute("errorMessage", "");
 
         // URL Parameters
         String paramName  = "view";
@@ -41,9 +44,8 @@ public class profileServlet extends HttpServlet {
 
 
         } else {
-            action_view_userid(request, response, paramName);
+            action_view_userid(request, response, paramValue);
         }
-
     }
 
     /**
@@ -61,7 +63,6 @@ public class profileServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -82,12 +83,22 @@ public class profileServlet extends HttpServlet {
         }
     }
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
+    private void action_default_user(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
 
         display_user_image(request);
 
         RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile.ftl");
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_user.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
+    private void action_default_company(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
+
+        display_user_image(request);
+
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_user.ftl");
 
         dispatcher.forward(request, response);
     }
@@ -147,31 +158,74 @@ public class profileServlet extends HttpServlet {
     // View the profile of a user
     private void action_view_userid(HttpServletRequest request, HttpServletResponse response, String id) throws IOException, ServletException, PropertyVetoException, SQLException {
 
+        System.out.println(id);
+        Security securityModel = controller.core.SecurityFilter.checkUsers(request);
+
         // Check if the string contains only numbers
-        if (!id.matches("[0-9]+")) {
-            action_default(request, response);
+        if (!Utils.isNumeric(id)) {
+
+            if (securityModel.equals("company")) {
+                action_default_company(request, response);
+            } else if (securityModel.equals("student")) {
+                action_default_user(request, response);
+            }
             return;
         }
 
         // If the parameter is empty, we return and
         // execute the default action
         if (id.isEmpty()) {
-            action_default(request, response);
+            if (securityModel.equals("company")) {
+                action_default_company(request, response);
+            } else if (securityModel.equals("student")) {
+                action_default_user(request, response);
+            }
+
             return;
         }
 
-        // Get the user
+        if (securityModel.getUser().equals("student")) {
+
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Only companies can access user profiles");
+            action_default_user(request, response);
+
+            return;
+        } else if (securityModel.getUser().equals("anonymous")) {
+            RequestDispatcher dispatcher
+                    = request.getServletContext().getRequestDispatcher("/WEB-INF/views/login.ftl");
+
+            dispatcher.forward(request, response);
+        }
+
+        // Get the user object from the DB
+
+
     }
 
+    // I'm a logged student and i want to see my own profile
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-        action_default(request, response);
+
+        User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
+
+        // Set the user attributes to display on screen
+        request.setAttribute("userData", user);
+        action_default_user(request, response);
+
     }
 
+    // I'm a logged company and i want to see my own profile
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-        action_default(request, response);
+
+        Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+
+        // Set the user attributes to display on screen
+        request.setAttribute("companyData", company);
+
+        action_default_company(request, response);
     }
 
-    protected void action_load_login (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void action_load_login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/login");
 

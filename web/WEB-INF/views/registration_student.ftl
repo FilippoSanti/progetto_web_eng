@@ -389,7 +389,7 @@
 
                                     <div class="form-group">
                                         <label for="birthPlace">Luogo di Nascita<span class="text-danger">*</span></label>
-                                        <input type="text" name="birthPlace" parsley-trigger="change" required
+                                        <input type="text" name="luogo_nascita" parsley-trigger="change" required
                                                placeholder="Enter Birth Place" class="form-control" id="birthPlace">
                                     </div>
 

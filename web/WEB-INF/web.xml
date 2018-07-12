@@ -98,13 +98,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>profile</servlet-name>
+        <servlet-name>userProfile</servlet-name>
         <servlet-class>controller.profileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
+        <servlet-name>userProfile</servlet-name>
+        <url-pattern>/userProfile</url-pattern>
     </servlet-mapping>
 
     <servlet>

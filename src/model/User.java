@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class User {
-    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel;
+    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, luogo_nascita;
     Date date;
     int cap;
     int id;
@@ -13,43 +13,54 @@ public class User {
 
     public User() {
 
-        this.nome        = "";
-        this.cognome     = "";
-        this.date        = null;
-        this.provincia   = "";
+        this.nome = "";
+        this.cognome = "";
+        this.date = null;
+        this.provincia = "";
         this.provincia_n = "";
-        this.residenza   = "";
-        this.citta       = "";
-        this.corso       = "";
-        this.email       = "";
-        this.handicap    = false;
-        this.tel         = "";
-        this.userID      = 0;
-        this.cap         = 0;
-        this.id          = 0;
+        this.residenza = "";
+        this.citta = "";
+        this.corso = "";
+        this.email = "";
+        this.handicap = false;
+        this.tel = "";
+        this.userID = 0;
+        this.cap = 0;
+        this.id = 0;
         this.cod_fiscale = null;
+        this.luogo_nascita = "";
 
     }
 
     public User(String n, String c, Date d, String p, String pn,
-                String r, String ct, String cr, String em, boolean hc, String tel, int userID, int cap, int id, String cod_fiscale) {
+                String r, String ct, String cr, String em, boolean hc, String tel, int userID, int cap, int id, String cod_fiscale, String luogo_nascita) {
 
-        this.nome        = n;
-        this.cognome     = c;
-        this.date        = d;
-        this.provincia   = p;
+        this.nome = n;
+        this.cognome = c;
+        this.date = d;
+        this.provincia = p;
         this.provincia_n = pn;
-        this.residenza   = r;
-        this.citta       = ct;
-        this.corso       = cr;
-        this.email       = em;
-        this.handicap    = hc;
-        this.tel         = tel;
-        this.userID    = userID;
-        this.cap         = cap;
-        this.id          = id;
+        this.residenza = r;
+        this.citta = ct;
+        this.corso = cr;
+        this.email = em;
+        this.handicap = hc;
+        this.tel = tel;
+        this.userID = userID;
+        this.cap = cap;
+        this.id = id;
         this.cod_fiscale = cod_fiscale;
+        this.luogo_nascita = luogo_nascita;
 
+
+    }
+
+    public String getLuogo_nascita() {
+        return luogo_nascita;
+    }
+
+    public void setLuogo_nascita(String luogo_nascita) {
+        this.luogo_nascita = luogo_nascita;
     }
 
     public int getId() {
@@ -136,10 +147,6 @@ public class User {
         return handicap;
     }
 
-    public void setHandicap(boolean handicap) {
-        this.handicap = handicap;
-    }
-
     public String getTel() {
         return tel;
     }
@@ -152,6 +159,10 @@ public class User {
         return cap;
     }
 
+    public void setCap(int cap) {
+        this.cap = cap;
+    }
+
     public int getUserID() {
         return userID;
     }
@@ -159,11 +170,6 @@ public class User {
     public void setUserID(int userID) {
         this.userID = userID;
     }
-
-    public void setCap(int cap) {
-        this.cap = cap;
-    }
-
 
     public String getCod_fiscale() {
         return cod_fiscale;
@@ -175,5 +181,9 @@ public class User {
 
     public boolean isHandicap() {
         return handicap;
+    }
+
+    public void setHandicap(boolean handicap) {
+        this.handicap = handicap;
     }
 }

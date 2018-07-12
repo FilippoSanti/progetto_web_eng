@@ -33,10 +33,10 @@ public class registerServlet extends HttpServlet {
 
         // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
         String cap_string, nome, pass, ripeti_pass, dateString, provincia, provincia_n, residenza, citta, telefono,
-                corso, email, cognome, cod_fiscale, handicapString;
+                corso, email, cognome, cod_fiscale, handicapString, luogo_nascita;
 
         cap_string = nome = ripeti_pass = dateString = provincia = provincia_n = residenza = citta =
-                telefono = corso = email = cognome = cod_fiscale = handicapString = null;
+                telefono = corso = email = cognome = cod_fiscale = handicapString = luogo_nascita = null;
 
         // Get the parameter values
         cap_string      = request.getParameter("CAP");
@@ -54,18 +54,21 @@ public class registerServlet extends HttpServlet {
         cognome         = request.getParameter("cognome");
         cod_fiscale     = request.getParameter("cod_fiscale");
         handicapString  = request.getParameter("handicap");
+        luogo_nascita   = request.getParameter("luogo_nascita");
+
 
         // If strings are not initalized, it means there was an empty request by the user
         // So we return false
         if (cap_string == null && nome == null && pass == null && ripeti_pass == null && dateString == null &&
                 provincia == null && provincia_n == null && residenza == null && citta == null && telefono == null
-                && corso == null && email == null && cognome == null && cod_fiscale == null && handicapString == null) {
+                && corso == null && email == null && cognome == null && cod_fiscale == null && handicapString == null && luogo_nascita
+                == null) {
 
             return false;
         }
 
         boolean regOk = userController.checkStudentRegistration(request, response, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
-                    residenza, citta, cap_string, telefono, corso, email, cod_fiscale);
+                    residenza, citta, cap_string, telefono, corso, email, cod_fiscale, luogo_nascita);
 
         if (regOk) {
 
@@ -86,7 +89,7 @@ public class registerServlet extends HttpServlet {
                 Connection dbConnection = DataSource.getInstance().getConnection();
 
                 PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 ps.setNull(1, Types.INTEGER);
                 ps.setString(2, nome);
@@ -104,6 +107,7 @@ public class registerServlet extends HttpServlet {
                 ps.setString(14, cognome);
                 ps.setString(15, cod_fiscale);
                 ps.setString(16, "user");
+                ps.setString(17, luogo_nascita);
 
                 int i = ps.executeUpdate();
 

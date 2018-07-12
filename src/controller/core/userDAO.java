@@ -38,6 +38,7 @@ public class userDAO {
             usr.setNome(rs.getString("nome"));
             usr.setCap(rs.getInt("cap"));
             usr.setCod_fiscale(rs.getString("cod_fiscale"));
+            usr.setLuogo_nascita(rs.getString("luogo_nascita"));
         }
         return usr;
     }
@@ -88,5 +89,22 @@ public class userDAO {
             se.printStackTrace();
             return false;
         }
+    }
+
+    public static int getIDbyEmail(String emailString) throws SQLException, IOException, PropertyVetoException {
+
+        int userID = 0;
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ?");
+
+        pst.setString(1, emailString);
+        ResultSet rs = pst.executeQuery();
+
+        if(rs.next()) {
+            userID= rs.getInt("studente_id");
+        }
+
+        return userID;
     }
 }

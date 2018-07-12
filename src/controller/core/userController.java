@@ -30,7 +30,7 @@ public class userController {
      */
     // TODO: make the code more readable
     public static boolean checkStudentRegistration(HttpServletRequest request, HttpServletResponse response, String n, String c, String p, String rp, String d, String pr, String pn, String r,
-                                                   String ci, String cap, String t, String co, String em, String cod_fiscale) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
+                                                   String ci, String cap, String t, String co, String em, String cod_fiscale, String luogo_n) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException, ServletException {
 
         boolean result = true;
 
@@ -198,6 +198,12 @@ public class userController {
             result = false;
             Utils.signalErrors(request);
             errorsList.add("The cod fiscale must be at least x characters");
+        }
+
+        if (luogo_n.length() < 3) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("The luogo_nascita must be at least 3 characters");
         }
 
         // If we have found at least an error, we send the list to the HTML page
