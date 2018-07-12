@@ -38,10 +38,9 @@ public class profileServlet extends HttpServlet {
 
             if (securityModel.getUser().equals("student")) {
                 action_student(request, response);
-            } else if (securityModel.getUser().equals("company")) {
+            } else if (securityModel.getUser().equals("azienda")) {
                 action_company(request, response);
             } else action_load_login(request, response);
-
 
         } else {
             action_view_userid(request, response, paramValue);
@@ -98,7 +97,7 @@ public class profileServlet extends HttpServlet {
         display_user_image(request);
 
         RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_user.ftl");
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_company.ftl");
 
         dispatcher.forward(request, response);
     }
@@ -164,7 +163,7 @@ public class profileServlet extends HttpServlet {
         // Check if the string contains only numbers
         if (!Utils.isNumeric(id)) {
 
-            if (securityModel.equals("company")) {
+            if (securityModel.equals("azienda")) {
                 action_default_company(request, response);
             } else if (securityModel.equals("student")) {
                 action_default_user(request, response);
@@ -175,7 +174,7 @@ public class profileServlet extends HttpServlet {
         // If the parameter is empty, we return and
         // execute the default action
         if (id.isEmpty()) {
-            if (securityModel.equals("company")) {
+            if (securityModel.equals("azienda")) {
                 action_default_company(request, response);
             } else if (securityModel.equals("student")) {
                 action_default_user(request, response);
@@ -218,6 +217,8 @@ public class profileServlet extends HttpServlet {
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+
+        System.out.println(company.getRagione_sociale());
 
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);

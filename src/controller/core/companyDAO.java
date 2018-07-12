@@ -18,7 +18,7 @@ public class companyDAO {
         Company companyModel = new Company();
 
         Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ?");
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM azienda WHERE email_login = ?");
 
         pst.setString(1, userEmail);
         ResultSet rs = pst.executeQuery();
@@ -31,7 +31,7 @@ public class companyDAO {
             companyModel.setCf_rappresentante(rs.getString("cf_rappresentante"));
             companyModel.setPartita_iva_rap(rs.getString("partita_iva_rappresentante"));
             companyModel.setNome_cognome_rap(rs.getString("nome_cognome_rappresentante"));
-            companyModel.setNome_cognome_tir(rs.getString(rs.getString("nome_cognome_tir")));
+            companyModel.setNome_cognome_tir(rs.getString("nome_cognome_tirocini"));
             companyModel.setTelefono_tirocini(rs.getString("telefono_tirocini"));
             companyModel.setEmail_tirocini(rs.getString("email_tirocini"));
             companyModel.setForo_competente("foro_competente");
