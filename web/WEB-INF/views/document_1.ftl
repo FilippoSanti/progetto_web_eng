@@ -174,14 +174,14 @@
             <div class="p" id="p113" style="top:445.61618pt;left:370.91278pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:7.748871pt;">di</div>
             <div class="p" id="p114" style="top:445.61618pt;left:381.46042pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:29.989502pt;">doppia</div>
             <div class="p" id="p115" style="top:445.61618pt;left:414.2188pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:32.200714pt;">scelta):</div>
-            <div class="p" id="p116" style="top:460.042pt;left:56.64pt;line-height:13.247986pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">□</div>
+            <div class="p" id="p116" style="top:460.042pt;left:56.64pt;line-height:13.247986pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p117" style="top:459.97pt;left:70.704pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:48.023987pt;">Studente</div>
             <div class="p" id="p118" style="top:459.97pt;left:122.09999pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:32.039993pt;">Corso</div>
             <div class="p" id="p119" style="top:459.97pt;left:157.39198pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:9.371994pt;">di</div>
             <div class="p" id="p120" style="top:459.97pt;left:170.09998pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:37.355972pt;">Laurea</div>
             <div class="p" id="p121" style="top:459.97pt;left:210.83995pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:12.587997pt;">in:</div>
             <div class="p" id="p122" style="top:459.97pt;left:230.03995pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:306.93826pt;">______________________________________________</div>
-            <div class="p" id="p123" style="top:487.642pt;left:56.64pt;line-height:13.247986pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;"></div>
+            <div class="p" id="p123" style="top:487.642pt;left:56.64pt;line-height:13.247986pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p124" style="top:487.57pt;left:70.704pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:57.408012pt;">Diplomato.</div>
             <div class="p" id="p125" style="top:487.57pt;left:131.48401pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:43.968002pt;">Diploma</div>
             <div class="p" id="p126" style="top:487.57pt;left:178.62001pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:64.583984pt;">universitario</div>
@@ -192,7 +192,7 @@
             <div class="p" id="p131" style="top:501.37pt;left:107.96399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:25.440002pt;">mesi</div>
             <div class="p" id="p132" style="top:501.37pt;left:136.73999pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:15.971985pt;">dal</div>
             <div class="p" id="p133" style="top:501.37pt;left:156.04797pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:46.067993pt;">diploma)</div>
-            <div class="p" id="p134" style="top:529.04193pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;"></div>
+            <div class="p" id="p134" style="top:529.04193pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p135" style="top:528.97pt;left:70.704pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:50.687996pt;">Laureato.</div>
             <div class="p" id="p136" style="top:528.97pt;left:124.764pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:37.35598pt;">Laurea</div>
             <div class="p" id="p137" style="top:528.97pt;left:165.39598pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:12.707993pt;">in:</div>
@@ -202,13 +202,13 @@
             <div class="p" id="p141" style="top:542.77pt;left:107.96399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:25.440002pt;">mesi</div>
             <div class="p" id="p142" style="top:542.77pt;left:136.73999pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:25.25998pt;">dalla</div>
             <div class="p" id="p143" style="top:542.77pt;left:165.37196pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:37.355988pt;">laurea)</div>
-            <div class="p" id="p144" style="top:570.472pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;"></div>
+            <div class="p" id="p144" style="top:570.472pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p145" style="top:570.4pt;left:70.704pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:49.36799pt;">Dottorato</div>
             <div class="p" id="p146" style="top:570.4pt;left:123.44399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:9.396004pt;">di</div>
             <div class="p" id="p147" style="top:570.4pt;left:136.176pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:35.975998pt;">ricerca</div>
             <div class="p" id="p148" style="top:570.4pt;left:175.512pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:12.563995pt;">in:</div>
             <div class="p" id="p149" style="top:570.4pt;left:194.78398pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:339.93622pt;">___________________________________________________</div>
-            <div class="p" id="p150" style="top:611.87195pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;"></div>
+            <div class="p" id="p150" style="top:611.87195pt;left:56.64pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p151" style="top:611.8pt;left:70.704pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:36.78pt;">Scuola</div>
             <div class="p" id="p152" style="top:611.8pt;left:110.724pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:6.671997pt;">o</div>
             <div class="p" id="p153" style="top:611.8pt;left:120.79199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:29.243988pt;">corso</div>
@@ -237,9 +237,9 @@
             <div class="p" id="p176" style="top:754.98pt;left:208.71599pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:47.243988pt;">tirocinio</div>
             <div class="p" id="p177" style="top:754.98pt;left:259.49pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:273.37225pt;">________________________________________________</div>
             <div class="p" id="p178" style="top:675.88pt;left:178.82pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:10.703995pt;">Si</div>
-            <div class="p" id="p179" style="top:674.63196pt;left:274.85pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.036pt;width:10.691986pt;"></div>
+            <div class="p" id="p179" style="top:674.63196pt;left:274.85pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.036pt;width:10.691986pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
             <div class="p" id="p180" style="top:693.64pt;left:176.42pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.024pt;width:15.311996pt;">No</div>
-            <div class="p" id="p181" style="top:693.352pt;left:274.85pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:-0.024pt;width:10.691986pt;"></div>
+            <div class="p" id="p181" style="top:693.352pt;left:274.85pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:-0.024pt;width:10.691986pt;">&#x25FB</div>  <!--   &#x2612   casella barrata  -->
         </div>
         <div class="page" id="page_1" style="width:595.32pt;height:841.92pt;overflow:hidden;">
             <img
@@ -416,7 +416,7 @@
             <div class="p" id="p347" style="top:138.2pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:48.708pt;">Obblighi</div>
             <div class="p" id="p348" style="top:138.2pt;left:108.684pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:17.387993pt;">del</div>
             <div class="p" id="p349" style="top:138.2pt;left:129.44398pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:65.17198pt;">tirocinante:</div>
-            <div class="p" id="p350" style="top:165.44pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;"></div>
+            <div class="p" id="p350" style="top:165.44pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;">&#9679</div>
             <div class="p" id="p351" style="top:166.64pt;left:70.824pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:41.316pt;">Seguire</div>
             <div class="p" id="p352" style="top:166.64pt;left:116.724pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:9.335999pt;">le</div>
             <div class="p" id="p353" style="top:166.64pt;left:130.63199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:55.90799pt;">indicazioni</div>
@@ -436,7 +436,7 @@
             <div class="p" id="p367" style="top:180.43999pt;left:144.76799pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:13.403992pt;">ed</div>
             <div class="p" id="p368" style="top:180.43999pt;left:161.54398pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:23.399994pt;">altre</div>
             <div class="p" id="p369" style="top:180.43999pt;left:188.07597pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:57.99597pt;">evenienze;</div>
-            <div class="p" id="p370" style="top:193.76001pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;"></div>
+            <div class="p" id="p370" style="top:193.76001pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;">&#9679</div>
             <div class="p" id="p371" style="top:194.96pt;left:70.824pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:54.780006pt;">Rispettare</div>
             <div class="p" id="p372" style="top:194.96pt;left:134.004pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:11.927994pt;">gli</div>
             <div class="p" id="p373" style="top:194.96pt;left:154.27199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:41.26796pt;">obblighi</div>
@@ -464,7 +464,7 @@
             <div class="p" id="p395" style="top:222.55998pt;left:70.824pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:64.079994pt;">svolgimento</div>
             <div class="p" id="p396" style="top:222.55998pt;left:138.19199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:16.103989pt;">del</div>
             <div class="p" id="p397" style="top:222.55998pt;left:157.51198pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:44.699997pt;">tirocinio;</div>
-            <div class="p" id="p398" style="top:236.02997pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;"></div>
+            <div class="p" id="p398" style="top:236.02997pt;left:56.64pt;line-height:14.651993pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;">&#9679</div>
             <div class="p" id="p399" style="top:237.22997pt;left:70.824pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:54.780006pt;">Rispettare</div>
             <div class="p" id="p400" style="top:237.22997pt;left:128.94pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:2.6640015pt;">i</div>
             <div class="p" id="p401" style="top:237.22997pt;left:134.94pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:62.519974pt;">regolamenti</div>
@@ -478,7 +478,7 @@
             <div class="p" id="p409" style="top:237.22997pt;left:380.17197pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:31.97998pt;">igiene</div>
             <div class="p" id="p410" style="top:237.22997pt;left:415.52396pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:6.671997pt;">e</div>
             <div class="p" id="p411" style="top:237.22997pt;left:425.48395pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:53.976013pt;">sicurezza;</div>
-            <div class="p" id="p412" style="top:250.66998pt;left:56.64pt;line-height:14.652008pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;"></div>
+            <div class="p" id="p412" style="top:250.66998pt;left:56.64pt;line-height:14.652008pt;font-family:ABCDEE SymbolMT;font-size:12.0pt;letter-spacing:-0.0449pt;width:5.5200005pt;">&#9679</div>
             <div class="p" id="p413" style="top:251.86998pt;left:70.824pt;line-height:13.37999pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:35.95199pt;">Inviare</div>
             <div class="p" id="p414" style="top:251.86998pt;left:117.22799pt;line-height:13.37999pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:9.372002pt;">al</div>
             <div class="p" id="p415" style="top:251.86998pt;left:137.00398pt;line-height:13.37999pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:67.93198pt;">Dipartimento</div>
