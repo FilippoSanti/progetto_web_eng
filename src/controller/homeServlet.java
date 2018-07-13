@@ -1,6 +1,7 @@
 package controller;
 
 import controller.core.userDAO;
+import model.Company;
 import model.Security;
 import model.User;
 
@@ -107,6 +108,12 @@ public class homeServlet extends HttpServlet {
     }
 
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
+        // Get the user object attribute containing the user email
+        Company companyModel = (Company) session.getAttribute("loggedInCompany");
+        loggedUserEmail = companyModel.getEmail_login();
         action_default(request, response);
     }
 

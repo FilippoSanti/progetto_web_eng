@@ -59,6 +59,7 @@ public class loginServlet extends HttpServlet {
                 Company comp = new Company();
 
                 // Set the company parameters
+                comp.setEmail_login(email);
 
                 // Set the session attribute to check if a company is logged in
                 session.setAttribute("loggedInCompany", comp);
