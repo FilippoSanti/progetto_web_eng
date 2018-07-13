@@ -92,39 +92,33 @@
                                <div class="p-20 m-b-20">
                                     <div class="m-b-20">
                                             <div class="form-group">
-                                                <label for="compName">Ragione Sociale/Nome<span class="text-danger">*</span></label>
+                                                <label for="compName">Business Name/Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="ragione_sociale" parsley-trigger="change" required
                                                        placeholder="Enter Company Name" class="form-control" id="compName">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="legaladdress">Indirizzo Legale<span class="text-danger">*</span></label>
+                                                <label for="legaladdress">Legal Address<span class="text-danger">*</span></label>
                                                 <input type="text" name="ind_legale" parsley-trigger="change" required
                                                        placeholder="Enter Legal Address" class="form-control" id="legaladdress">
                                             </div>
 
                                        <div class="form-group">
-                                                <label for="solicitor">Nome Rappresentante Legale<span class="text-danger">*</span></label>
+                                                <label for="solicitor">Solicitor's Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_rappr_legale" parsley-trigger="change" required
                                                        placeholder="Enter Solicitor's Name " class="form-control" id="solicitor">
                                             </div>
 
                                        <div class="form-group">
-                                                <label for="managerName">Nome Responsabile dei Tirocini<span class="text-danger">*</span></label>
+                                                <label for="managerName">Internships Manager's Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_resp_tirocini" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's Name" class="form-control" id="managerName">
                                             </div>
 
                                         <div class="form-group">
-                                                <label for="managerPhone">Telefono Responsabile Tirocini<span class="text-danger">*</span></label>
+                                                <label for="managerPhone">Internships Manager's Telephone Number<span class="text-danger">*</span></label>
                                                 <input type="text" name="telefono_resp" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's Telephone Number" class="form-control" id="managerPhone">
-                                            </div>
-
-                                          <div class="form-group">
-                                                <label for="jurisdiction">Foro Competente<span class="text-danger">*</span></label>
-                                                <input type="text" name="foro_comp" parsley-trigger="change" required
-                                                       placeholder="Enter Competent Jurisdiction" class="form-control" id="jurisdiction">
                                             </div>
 
                                             <br><br>
@@ -138,14 +132,9 @@
                                     placeholder="Enter User Name" class="form-control" id="username">
                                 </div>
 
-                            <div class="form-group">
-                                   <label for="pass3">Password<span class="text-danger">*</span></label>
-                                   <input id="pass3" name="password" type="password" placeholder="Password" required class="form-control">
-                            </div>
-
                                         <div class="form-group">
-                                            <label for="pass4">Ripeti Password<span class="text-danger">*</span></label>
-                                            <input id="pass4" name="ripeti_pass" type="password" placeholder="Ripeti Password" required
+                                            <label for="pass4">Repeat Password<span class="text-danger">*</span></label>
+                                            <input id="pass4" name="ripeti_pass" type="password" placeholder="Repeat Password" required
                                                    class="form-control">
                                         </div>
 
@@ -158,20 +147,13 @@
 
                                     <div class="m-b-20">
                                             <div class="form-group">
-                                                <label for="compCodes">Codice Fiscale<span class="text-danger">*</span></label>
+                                                <label for="compCodes">Fiscal Code (NIN)<span class="text-danger">*</span></label>
                                                 <input type="text" name="cod_fiscale" parsley-trigger="change" required
-                                                       placeholder="Enter Code/P. IVA" class="form-control uppercase" id="compCodes">
+                                                       placeholder="Enter Fiscal Code (NIN)" class="form-control uppercase" id="compCodes">
                                             </div>
 
-                                        <div class="form-group">
-                                            <label for="compCodes">Partita Iva<span class="text-danger">*</span></label>
-                                            <input type="text" name="part_iva" parsley-trigger="change" required
-                                                   placeholder="Enter Code/P. IVA" class="form-control uppercase" id="compCodes">
-                                        </div>
-
-
                                             <div class="form-group">
-                                        <label>Provincia<span class="text-danger">*</span></label>
+                                        <label>Province<span class="text-danger">*</span></label>
                                         <select name="provincia" class="form-control select2">
                                         <option>-- Select --</option>
                                         <option value="AG">Agrigento</option>
@@ -279,42 +261,64 @@
                                         <option value="VT">Viterbo</option>
                                     </select>
                                     </div>
-                                            <div class="form-group">
-                                                <label for="managerEmail">E-mail Responsabile Tirocini<span class="text-danger">*</span></label>
+
+                                        <div class="form-group">
+                                            <label for="compCodes">Partita I.V.A. (VAT)<span class="text-danger">*</span></label>
+                                            <input type="text" name="part_iva" parsley-trigger="change" required
+                                                   placeholder="Enter P. IVA (VAT)" class="form-control uppercase" id="compCodes">
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label for="managerEmail">Internships Manager's Email Address<span class="text-danger">*</span></label>
                                                 <input type="text" name="email_resp" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's E-mail Address" class="form-control" id="managerEmail">
                                             </div>
 
-                                            <br><br><br><br><br><br><br><br>
+                                        <div class="form-group">
+                                            <label for="jurisdiction">Competent Jurisdiction<span class="text-danger">*</span></label>
+                                            <input type="text" name="foro_comp" parsley-trigger="change" required
+                                                   placeholder="Enter Competent Jurisdiction" class="form-control" id="jurisdiction">
+                                        </div>
 
-                                            <div class="form-group rippwd4">
-                                            <label class="control-label">Scegli Immagine</label>
-                                            <input type="file" class="filestyle" data-size="sm" placeholder="Choose Img">
+                                            <br><br><br><br>
+
+
+                                        <div class="form-group rippwd4">
+                                            <label for="pass3">Password<span class="text-danger">*</span></label>
+                                            <input id="pass3" name="password" type="password" placeholder="Password" required class="form-control">
                                         </div>
                                     </div>
-
+                                    </div>
                                 </div>
                             </div>
                              
-                             <div class="row">
-                             <div class="form-group formspace">                                                
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                                        Register
-                                                    </button>
-                                                    <button type="reset"
-                                                            class="btn btn-default waves-effect m-l-5">
-                                                        Cancel
-                                                    </button>                                                
-                                            </div>
-                                            </div>
+                            <div class="row">
+                                                                         
+                                <div class="col-md-3"></div>
+                                 <div class="col-md-3 centra">
+                                     <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                         Send Agreement Request to Administrator
+                                     </button>
+                                 </div>
+                                 <div class="col-md-3 centra">
+                                     <button type="reset" class="btn btn-default waves-effect m-l-5"> Cancel </button>
+                                 </div>                                                
+                                            
+                            </div>
+
                         </div>
                         </form>
                         <!-- end row -->
                     <br><br><br><br><br><br><br><br>
                     <div class="footer">
-                        <div>
-                            <strong>Simple Admin</strong> - Copyright © 2017 - 2018
+                        <div class="pull-right hide-phone">
+                            Web Engineering Project
                         </div>
+                        <div>
+                            Copyright © 2018 - <a class="ti-infinite infindim"></a>
+                        </div>
+
+                        <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
                     </div>
 
                 </div> <!-- content -->

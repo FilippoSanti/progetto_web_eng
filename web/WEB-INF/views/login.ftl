@@ -53,7 +53,7 @@
                                 <div class="account-content">
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">
-                                                <label for="UserNamelog">e-mail</label>
+                                                <label for="UserNamelog">E-mail</label>
 
                                                 <input name="email" class="form-control" type="name" id="UserNamelog" required placeholder="Email / Password"
                                                 <#if email?has_content> value="${email}" </#if>/>
@@ -78,6 +78,15 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <br>
+                                            <div class="radio radio-info form-check-inline loground col-xs-12">
+                                                <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked>
+                                                <label for="inlineRadio1"> Student </label>
+                                            </div>
+                                            <div class="radio form-check-inline loground1">
+                                                <input type="radio" id="inlineRadio2" value="option2" name="radioInline" checked>
+                                                <label for="inlineRadio2"> Company </label>
+                                            </div>
                                         </div>
 
                                         <div class="form-group account-btn text-center m-t-10">
@@ -99,7 +108,7 @@
 
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">You can also enter the site as<a href="/home" class="text-dark m-l-5"> anonymous user</a></p>
+                                    <p class="text-muted">You can also enter the site as<a href="/home" class="text-dark m-l-5"> Anonymous User</a></p>
                                 </div>
                             </div>
 

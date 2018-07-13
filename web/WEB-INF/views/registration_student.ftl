@@ -366,12 +366,6 @@
                                                class="form-control">
                                     </div>
 
-                                    <div class="form-group rippwd4">
-                                        <label for="pass2">Ripeti Password<span class="text-danger">*</span></label>
-                                        <input id="pass2" name="ripeti_password" type="password" placeholder="Repeat Password" required
-                                           class="form-control">
-                                    </div>
-
                             </div>
 
                         </div>
@@ -424,31 +418,45 @@
                                             <label for="handicap"> Portatore di Handicap </label>
                                         </div>
                                     </div>
-                            </div>
 
+<br><br><br>
+                                <div class="form-group rippwd4">
+                                    <label for="pass2">Ripeti Password<span class="text-danger">*</span></label>
+                                    <input id="pass2" name="ripeti_password" type="password" placeholder="Repeat Password" required
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group formspace">
-                            <button type="submit" name="register" class="btn btn-primary waves-effect waves-light">
-                                Register
-                            </button>
-                            <button type="reset"
-                                    class="btn btn-default waves-effect m-l-5">
-                                Clear
+
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3 centra">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                Sign Up
                             </button>
                         </div>
+                        <div class="col-md-3 centra">
+                            <button type="reset" class="btn btn-default waves-effect m-l-5"> Cancel </button>
+                        </div>
+
                     </div>
                 </div>
                 </form>
                 <!-- end row -->
                 <br><br><br><br><br><br><br><br>
-                <div class="footer">
-                    <div>
-                        <strong>Simple Admin</strong> - Copyright © 2017 - 2018
-                    </div>
+            <div class="footer">
+                <div class="pull-right hide-phone">
+                    Web Engineering Project
                 </div>
+                <div>
+                    Copyright © 2018 - <a class="ti-infinite infindim"></a>
+                </div>
+
+                <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
+            </div>
 
             </div> <!-- content -->
 
