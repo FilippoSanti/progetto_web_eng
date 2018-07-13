@@ -3388,6 +3388,18 @@ h3.timeline-title {
   border-radius: 5px;
 }
 
+.btnintlistdetails2{
+  border: 1px solid #cf2f4078 !important;
+  padding-top: 3px !important;
+  padding-right: 6px !important;
+  padding-bottom: 3px !important;
+  padding-left: 6px !important;
+  background-color: #ffffff57 !important;
+  color: black !important;
+  font-size: 12px !important;
+  border-radius: 5px;
+}
+
 .mrgntopcol{
   margin-top: 25px;
 }
@@ -3439,4 +3451,8 @@ font-size: 12px;
 
 .mrgnacceptint{
   margin-left: 10px;
+}
+
+.imgdelete{
+  width: 26px;
 }
