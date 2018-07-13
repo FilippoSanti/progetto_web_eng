@@ -128,6 +128,28 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>companies_list</servlet-name>
+        <servlet-class>controller.companyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>companies_list</servlet-name>
+        <url-pattern>/companies_list</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>internships_list</servlet-name>
+        <servlet-class>controller.internships_listServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>internships_list</servlet-name>
+        <url-pattern>/internships_list</url-pattern>
+    </servlet-mapping>
+
+
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
         RequestDispatcher.forward/include should and will still work. Removing
