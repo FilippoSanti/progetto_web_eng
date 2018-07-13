@@ -100,13 +100,13 @@
 
                             <div class="m-b-20">
                                     <div class="form-group">
-                                        <label for="name">Nome<span class="text-danger">*</span></label>
+                                        <label for="name">Name<span class="text-danger">*</span></label>
                                         <input type="text" name="nome" parsley-trigger="change" required
                                                placeholder="Enter Name" class="form-control" id="name">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Data di Nascita<span class="text-danger">*</span><a>  (usare il formato: giorno/mese/anno)</a></label>
+                                        <label>Birth Date<span class="text-danger">*</span><a>  (use format: mm/dd/yyyy)</a></label>
                                         <div class="input-group">
                                             <input type="text" name="date" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
                                             <div class="input-group-append">
@@ -116,7 +116,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Provincia di Nascita<span class="text-danger">*</span></label>
+                                        <label>Birth Province<span class="text-danger">*</span></label>
                                         <select name="provincia_nascita" class="form-control select2">
                                             <option>-- Select --</option>
                                             <option value="AG">Agrigento</option>
@@ -226,13 +226,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Address">Indirizzo di Residenza<span class="text-danger">*</span></label>
+                                        <label for="Address">Residence Address<span class="text-danger">*</span></label>
                                         <input type="text" name="residenza" parsley-trigger="change" required
                                                placeholder="Enter Address" class="form-control" id="Address">
                                     </div>
 
-                                    <div class="form-group">f
-                                        <label>Provincia di Residenza<span class="text-danger">*</span></label>
+                                    <div class="form-group">
+                                        <label>Residence Province<span class="text-danger">*</span></label>
                                         <select name="provincia" class="form-control select2" parsley-trigger="change" required>
                                             <option>-- Select --</option>
                                             <option value="AG">Agrigento</option>
@@ -343,13 +343,13 @@
 
 
                                     <div class="form-group">
-                                        <label for="telephone">Telefono<span class="text-danger">*</span></label>
+                                        <label for="telephone">Telephone<span class="text-danger">*</span></label>
                                         <input type="text" name="telefono" parsley-trigger="change" required
                                                placeholder="Enter Telephone Number" class="form-control" id="telephone">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="degree">Corso di Laurea<span class="text-danger">*</span></label>
+                                        <label for="degree">Degree Course<span class="text-danger">*</span></label>
                                         <input type="text" name="corso_laurea" parsley-trigger="change" required
                                                placeholder="Enter Degree Course" class="form-control" id="degree">
                                     </div>
@@ -376,25 +376,25 @@
 
                             <div class="m-b-20">
                                     <div class="form-group">
-                                        <label for="userSurname">Cognome<span class="text-danger">*</span></label>
+                                        <label for="userSurname">Surname<span class="text-danger">*</span></label>
                                         <input type="text" name="cognome" parsley-trigger="change" required
                                                placeholder="Enter Surname" class="form-control" id="userSurname">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="birthPlace">Luogo di Nascita<span class="text-danger">*</span></label>
+                                        <label for="birthPlace">Birth Place<span class="text-danger">*</span></label>
                                         <input type="text" name="luogo_nascita" parsley-trigger="change" required
                                                placeholder="Enter Birth Place" class="form-control" id="birthPlace">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="code">Codice Fiscale<span class="text-danger">*</span></label>
+                                        <label for="code">Fiscal Code (NIN)<span class="text-danger">*</span></label>
                                         <input type="text" name="cod_fiscale" parsley-trigger="change" required
                                                placeholder="Enter fiscal code" class="form-control" id="code">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="city">Città<span class="text-danger">*</span></label>
+                                        <label for="city">City<span class="text-danger">*</span></label>
                                         <input type="text" name="citta" parsley-trigger="change" required
                                                placeholder="Enter City" class="form-control" id="city">
                                     </div>
@@ -406,22 +406,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="userEmail">Indirizzo E-mail<span class="text-danger">*</span></label>
+                                        <label for="userEmail">E-mail Address<span class="text-danger">*</span></label>
                                         <input type="text" name="email" parsley-trigger="change" required
                                                placeholder="Enter Email Address" class="form-control" id="userEmail">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="handicap">Altro</label>
+                                        <label for="handicap">Other</label>
                                         <div class="checkbox handicap">
                                             <input id="handicap" name="handicap" type="checkbox">
-                                            <label for="handicap"> Portatore di Handicap </label>
+                                            <label for="handicap">Disabled Person </label>
                                         </div>
                                     </div>
 
 <br><br><br>
                                 <div class="form-group rippwd4">
-                                    <label for="pass2">Ripeti Password<span class="text-danger">*</span></label>
+                                    <label for="pass2">Repeat Password<span class="text-danger">*</span></label>
                                     <input id="pass2" name="ripeti_password" type="password" placeholder="Repeat Password" required
                                            class="form-control">
                                 </div>
