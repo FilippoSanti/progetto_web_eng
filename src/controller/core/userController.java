@@ -372,4 +372,76 @@ public class userController {
             return true;
         }
     }
+
+    public static boolean checkAddInternships(HttpServletRequest request, String nome, String descrizione, String luogo,
+                                             String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste)
+            throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
+        boolean result = true;
+
+
+        if (nome.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("nome too short");
+        }
+
+
+        if (descrizione.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("descrizione too short");
+        }
+
+
+        if (luogo.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Indirizzo too short");
+        }
+
+
+        if (orari.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Orari too short");
+        }
+
+
+        if (ore.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Ore too short");
+        }
+
+
+        if (obiettivi.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Nome Tirocinio too short");
+        }
+
+
+        if (modalita.length() < 5) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("Tel tirocinio too short");
+        }
+
+
+        if (rimborsi_spese_facilitazioni_previste.length() < 2) {
+            result = false;
+            Utils.signalErrors(request);
+            errorsList.add("compilare il campo");
+        }
+
+
+
+        // If we have found at least an error, we send the list to the HTML page
+        if (errorsList.size() > 0) {
+            request.setAttribute("errorsList", errorsList);
+        }
+
+        return result;
+
+    }
 }
