@@ -175,7 +175,7 @@ public class registerServlet extends HttpServlet {
                 // Connect to the db pool
                 Connection dbConnection = DataSource.getInstance().getConnection();
                 PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        ("insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                 // Prepare the query and execute it
                 ps.setNull(1, Types.INTEGER);
@@ -192,6 +192,7 @@ public class registerServlet extends HttpServlet {
                 ps.setString(12, foro_competente);
                 ps.setString(13, provincia);
                 ps.setBoolean(14, false);
+                ps.setString(15, "");
 
                 int i = ps.executeUpdate();
 

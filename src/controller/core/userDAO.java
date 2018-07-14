@@ -40,6 +40,8 @@ public class userDAO {
             usr.setCod_fiscale(rs.getString("cod_fiscale"));
             usr.setLuogo_nascita(rs.getString("luogo_nascita"));
         }
+
+        dbConnection.close();
         return usr;
     }
 
@@ -54,6 +56,7 @@ public class userDAO {
         if(rs.next()) {
             return false;
         }
+        dbConnection.close();
 
         return true;
     }
@@ -70,6 +73,7 @@ public class userDAO {
         if(rs.next()) {
             return false;
         }
+        dbConnection.close();
 
         return true;
     }
@@ -104,7 +108,24 @@ public class userDAO {
         if(rs.next()) {
             userID= rs.getInt("studente_id");
         }
+        dbConnection.close();
 
         return userID;
+    }
+
+    public static void updateStudentField(String field, String field_text, String email_login) throws SQLException, IOException, PropertyVetoException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+
+        PreparedStatement preparedStmt = dbConnection.prepareStatement("UPDATE studente \n" +
+                "SET nome = ?, password = ?, date = ?, provincia = ?, provincia_nascita = ?, residenza = ?, citta = ?, CAP = ?, telefono = ?, corso = ?, email = ?, handicap = ?, cognome = ?, cod_fiscale = ?, ruolo = ?, luogo_nascita = ?  \n" +
+                "WHERE studente.email = 'mikesh07mail@gmail.com';");
+        preparedStmt.setString(1, field);
+        preparedStmt.setString(2, field_text);
+        preparedStmt.setString(3,email_login);
+
+        preparedStmt.executeUpdate();
+        dbConnection.close();
+
     }
 }

@@ -65,9 +65,7 @@ public class companyServlet  extends HttpServlet {
     }
 
     protected void action_view_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
-
     }
 
     protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

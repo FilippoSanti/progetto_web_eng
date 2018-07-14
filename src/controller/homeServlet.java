@@ -1,6 +1,7 @@
 package controller;
 
 import controller.core.userDAO;
+import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
 import model.User;
@@ -24,7 +25,7 @@ public class homeServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        Security securityModel = controller.core.SecurityFilter.checkUsers(request);
+        Security securityModel = SecurityFilter.checkUsers(request);
 
         if (securityModel.getUser().equals("student")) {
             action_student(request, response);
@@ -104,7 +105,6 @@ public class homeServlet extends HttpServlet {
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_visitor.ftl");
 
         dispatcher.forward(request, response);
-        action_default(request, response);
     }
 
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -4,6 +4,7 @@ import controller.utilities.DataSource;
 import model.Company;
 import model.Internship;
 
+import javax.servlet.http.HttpServletRequest;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
@@ -34,9 +35,11 @@ public class companyDAO {
             companyModel.setNome_cognome_tir(rs.getString("nome_cognome_tirocini"));
             companyModel.setTelefono_tirocini(rs.getString("telefono_tirocini"));
             companyModel.setEmail_tirocini(rs.getString("email_tirocini"));
-            companyModel.setForo_competente("foro_competente");
-            companyModel.setProvincia("provincia");
+            companyModel.setForo_competente(rs.getString("foro_competente"));
+            companyModel.setProvincia(rs.getString("provincia"));
         }
+
+        dbConnection.close();
         return companyModel;
     }
 
@@ -64,6 +67,7 @@ public class companyDAO {
             return true;
         }
 
+        dbConnection.close();
         return false;
     }
 
@@ -81,6 +85,7 @@ public class companyDAO {
         if (rs.next()) {
 
         }
+        dbConnection.close();
         return false;
     }
 
@@ -96,6 +101,7 @@ public class companyDAO {
         if (rs.next()) {
             return true;
         }
+        dbConnection.close();
         return false;
     }
 
@@ -111,6 +117,7 @@ public class companyDAO {
         if (rs.next()) {
             return true;
         }
+        dbConnection.close();
         return false;
     }
 
@@ -157,7 +164,44 @@ public class companyDAO {
             companiesList.add(company);
         }
 
+        dbConnection.close();
         return companiesList;
+    }
+
+    public static boolean updateCompanyField(String e, String r_s, String i_s_l, String cf, String p_i_r,
+                                          String n_c_rapp, String n_c_tir, String t_t, String e_t, String f_c, String pr,
+                                          boolean ab, String de, String targetUpdate) throws SQLException, IOException, PropertyVetoException {
+
+        String updateQuery = "UPDATE azienda\n" +
+                    "      SET `email_login` = ?, `ragione_sociale` = ?, `indirizzo_sede_legale` = ?, \n" +
+                    "      `cf_rappresentante` = ?, `partita_iva_rappresentante` = ?, `nome_cognome_rappresentante`= ?,\n" +
+                    "      `nome_cognome_tirocini`= ?, `telefono_tirocini` = ?, `email_tirocini`= ?, `foro_competente`= ?,\n" +
+                    "      `provincia`= ?, `abilitata`= ?, `descrizione` = ?\n" +
+                    "WHERE `azienda`.`email_login` = ?";
+
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement preparedStmt = dbConnection.prepareStatement(updateQuery);
+
+        preparedStmt.setString(1, e);
+        preparedStmt.setString(2, r_s);
+        preparedStmt.setString(3, i_s_l);
+        preparedStmt.setString(4, cf);
+        preparedStmt.setString(5,p_i_r);
+        preparedStmt.setString(6, n_c_rapp);
+        preparedStmt.setString(7, n_c_tir);
+        preparedStmt.setString(8, t_t);
+        preparedStmt.setString(9, e_t);
+        preparedStmt.setString(10, f_c);
+        preparedStmt.setString(11,pr);
+        preparedStmt.setBoolean(12, ab);
+        preparedStmt.setString(13, de);
+        preparedStmt.setString(14, targetUpdate);
+
+        preparedStmt.executeUpdate();
+        dbConnection.close();
+
+        return true;
     }
 }
 

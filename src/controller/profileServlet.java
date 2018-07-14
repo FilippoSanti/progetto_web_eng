@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import controller.core.userDAO;
+import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
 import model.Company;
 import model.Security;
@@ -34,7 +35,7 @@ public class profileServlet extends HttpServlet {
         if (paramValue == null) {
 
             // Start user profile visualization
-            Security securityModel = controller.core.SecurityFilter.checkUsers(request);
+            Security securityModel = SecurityFilter.checkUsers(request);
 
             if (securityModel.getUser().equals("student")) {
                 action_student(request, response);
@@ -158,7 +159,7 @@ public class profileServlet extends HttpServlet {
     private void action_view_userid(HttpServletRequest request, HttpServletResponse response, String id) throws IOException, ServletException, PropertyVetoException, SQLException {
 
         System.out.println(id);
-        Security securityModel = controller.core.SecurityFilter.checkUsers(request);
+        Security securityModel = SecurityFilter.checkUsers(request);
 
         // Check if the string contains only numbers
         if (!Utils.isNumeric(id)) {
@@ -217,9 +218,6 @@ public class profileServlet extends HttpServlet {
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
-
-        System.out.println(company.getRagione_sociale());
-
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);
 

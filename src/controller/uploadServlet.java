@@ -90,8 +90,9 @@ public class uploadServlet extends HttpServlet {
 
         }
 
-        // TODO: check if we have to resize the image
         controller.utilities.Utils.scale_img(fileContent, pathname);
+
+        response.sendRedirect("/editProfile");
 
     }
 
