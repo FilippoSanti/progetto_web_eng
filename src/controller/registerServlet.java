@@ -192,7 +192,7 @@ public class registerServlet extends HttpServlet {
                 ps.setString(12, foro_competente);
                 ps.setString(13, provincia);
                 ps.setBoolean(14, false);
-                ps.setString(15, "");
+                ps.setString(15, "Description Sample");
 
                 int i = ps.executeUpdate();
 

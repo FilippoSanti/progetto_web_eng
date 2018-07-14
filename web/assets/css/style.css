@@ -3378,14 +3378,14 @@ h3.timeline-title {
 }
 
 .btnintlistdetails{
-  padding-top: 1px !important;
-  padding-right: 3px !important;
-  padding-bottom: 1px !important;
-  padding-left: 3px !important;
-  background-color: #3a90d6b5 !important;
-  border: none !important;
+  padding-top: 3px !important;
+  padding-right: 6px !important;
+  padding-bottom: 3px !important;
+  padding-left: 6px !important;
+  background-color: #ffffff57 !important;
+  color: black !important;
   font-size: 12px !important;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .mrgntopcol{
@@ -3399,4 +3399,44 @@ h3.timeline-title {
 
 .loground1{
   margin-left: 15px;
+}
+.t12{
+font-size: 12px;
+}
+
+.interstatus1{
+  color: red;
+  font-weight: 700;
+}
+
+.interstatus2{
+  color: orange;
+  font-weight: 700;
+}
+
+.interstatus3{
+  color: green;
+  font-weight: 700;
+}
+
+.margdoc{
+  margin-left: -10%;
+  margin-bottom: 10px;
+}
+
+.mrgnlftcheckboxadd{
+  margin-left: 25px;
+}
+
+.mrgnlftcheckboxadd123{
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+
+.mrglbladdint{
+  margin-left: 10px;
+}
+
+.mrgnacceptint{
+  margin-left: 10px;
 }

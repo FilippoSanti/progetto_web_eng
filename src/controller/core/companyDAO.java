@@ -1,6 +1,7 @@
 package controller.core;
 
 import controller.utilities.DataSource;
+import controller.utilities.Utils;
 import model.Company;
 import model.Internship;
 
@@ -37,6 +38,7 @@ public class companyDAO {
             companyModel.setEmail_tirocini(rs.getString("email_tirocini"));
             companyModel.setForo_competente(rs.getString("foro_competente"));
             companyModel.setProvincia(rs.getString("provincia"));
+            companyModel.setDescrizione(rs.getString("descrizione"));
         }
 
         dbConnection.close();
@@ -159,7 +161,8 @@ public class companyDAO {
                     rs.getString("foro_competente"),
                     rs.getString("provincia"),
                     rs.getString("email_login"),
-                    rs.getInt("azienda_id")
+                    rs.getInt("azienda_id"),
+                    rs.getString("descrizione")
             );
             companiesList.add(company);
         }
@@ -202,6 +205,22 @@ public class companyDAO {
         dbConnection.close();
 
         return true;
+    }
+
+
+    public static void updateEmailAndPassword(String email, String password, String emailQuery) throws SQLException, IOException, PropertyVetoException {
+
+        String updateQuery = "UPDATE azienda SET email_login = ?, password = ? WHERE azienda.email_login = ?";
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement preparedStmt = dbConnection.prepareStatement(updateQuery);
+
+        preparedStmt.setString(1, email);
+        preparedStmt.setString(2, Utils.hashPassword(password));
+        preparedStmt.setString(3, emailQuery);
+
+        preparedStmt.executeUpdate();
+
     }
 }
 

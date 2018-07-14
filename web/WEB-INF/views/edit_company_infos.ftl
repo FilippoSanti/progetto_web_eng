@@ -324,10 +324,11 @@
                                 </div> <!-- end card-box -->
                             </div> <!-- end col -->
                         </div> <!-- end row -->
-                        <form method="post" action="editProfile" class="form-validation">
+
                         <div class="m-t-30">
                                 <div class="tab-pane" id="profile-b1">
 
+                                    <form method="post" action="editProfile?sumbit=login" class="form-validation">
 
                                     <!-- Personal-Information -->
                                     <div class="panel panel-default panel-fill">
@@ -372,8 +373,9 @@
 
                                     </div>
                                     <!-- Personal-Information -->
+                                    </form>
 
-
+                                    <form method="post" action="editProfile?sumbit=info" class="form-validation">
                                     <!-- Personal-Information -->
                                     <div class="panel panel-default panel-fill">
                                         <div class="panel-heading">
@@ -536,7 +538,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="AboutMe">Edit Company Description</label>
-                                                <textarea name="descrizione" style="height: 125px" id="AboutMe" class="form-control">${companyData.get}</textarea>
+                                                <textarea name="descrizione" style="height: 125px" id="AboutMe" class="form-control">${companyData.getDescrizione()}</textarea>
                                             </div>
 
                                             <br><br>
@@ -547,6 +549,7 @@
 
                                         </div>
                                         <!-- Personal-Information -->
+                                    </form>
                                     </div>
                                         <br>
 
@@ -556,7 +559,7 @@
 
                             </div>
                         </div> <!-- container -->
-                            </form>
+
 
 
 

@@ -8,15 +8,7 @@ public class Company {
     private String partita_iva_rap;
     private String nome_cognome_rap;
     private String telefono_tirocini;
-
-    public String getNome_cognome_tir() {
-        return nome_cognome_tir;
-    }
-
-    public void setNome_cognome_tir(String nome_cognome_tir) {
-        this.nome_cognome_tir = nome_cognome_tir;
-    }
-
+    private String descrizione;
     private String email_tirocini;
     private String foro_competente;
     private String provincia;
@@ -25,6 +17,13 @@ public class Company {
     private String nome_cognome_tir;
     private int company_id;
 
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
 
     public Company() {
         this.ragione_sociale = "";
@@ -40,10 +39,11 @@ public class Company {
         this.ripeti_pass = "";
         this.company_id = 0;
         this.nome_cognome_tir = "";
-    }
+        this.descrizione = "";
 
+    }
     public Company(String nome_cognome_tir, String ragione_sociale, String indirizzo_sede_leg, String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String telefono_tirocini, String email_tirocini,
-                   String foro_competente, String provincia, String email_login, int company_id) {
+                   String foro_competente, String provincia, String email_login, int company_id, String descrizione) {
         this.nome_cognome_tir = nome_cognome_tir;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo_sede_leg = indirizzo_sede_leg;
@@ -57,6 +57,15 @@ public class Company {
         this.email_login = email_login;
         this.ripeti_pass = ripeti_pass;
         this.company_id = company_id;
+        this.descrizione = descrizione;
+    }
+
+    public String getNome_cognome_tir() {
+        return nome_cognome_tir;
+    }
+
+    public void setNome_cognome_tir(String nome_cognome_tir) {
+        this.nome_cognome_tir = nome_cognome_tir;
     }
 
     public String getRagione_sociale() {
@@ -87,16 +96,16 @@ public class Company {
         return partita_iva_rap;
     }
 
+    public void setPartita_iva_rap(String partita_iva_rap) {
+        this.partita_iva_rap = partita_iva_rap;
+    }
+
     public int getCompany_id() {
         return company_id;
     }
 
     public void setCompany_id(int company_id) {
         this.company_id = company_id;
-    }
-
-    public void setPartita_iva_rap(String partita_iva_rap) {
-        this.partita_iva_rap = partita_iva_rap;
     }
 
     public String getNome_cognome_rap() {

@@ -150,6 +150,36 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>editProfile</servlet-name>
+        <servlet-class>controller.editProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>editProfile</servlet-name>
+        <url-pattern>/editProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>document_2</servlet-name>
+        <servlet-class>controller.document2Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>document_2</servlet-name>
+        <url-pattern>/document_2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>document_3</servlet-name>
+        <servlet-class>controller.document3Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>document_3</servlet-name>
+        <url-pattern>/document_3</url-pattern>
+    </servlet-mapping>
+
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
         RequestDispatcher.forward/include should and will still work. Removing

@@ -194,8 +194,8 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-user"></i> <span> My Profile </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="/profile">My Account</a></li>
-                                <li><a href="*.html">Edit Informations</a></li>
+                                <li><a href="/userProfile">My Account</a></li>
+                                <li><a href="/editProfile">Edit Informations</a></li>
                                 <li><a href="*.html">My Internship</a></li>
                             </ul>
                         </li>

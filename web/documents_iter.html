@@ -9,15 +9,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- DataTables -->
+        <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Multi Item Selection examples -->
+        <link href="assets/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
-        <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        <script src="../../assets/js/modernizr.min.js"></script>
+        <script src="assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -32,48 +41,19 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="../../index.html" class="logo">
+                    <a href="index.html" class="logo">
                         <span>
-                            <img src="../../assets/images/logo.png" alt="">
+                            <img src="assets/images/logo.png" alt="">
                         </span>
                         <i>
-                            <img src="../../assets/images/logo_sm.png" alt="">
+                            <img src="assets/images/logo_sm.png" alt="">
                         </i>
                     </a>
                 </div>
 
                 <nav class="navbar-custom">
 
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-                        <li class="dropdown notification-list hide-phone">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-earth"></i> English  <i class="mdi mdi-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Spanish
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Italian
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    French
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Russian
-                                </a>
-
-                            </div>
-                        </li>
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">>
 
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -131,7 +111,7 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="../../assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
+                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
@@ -147,11 +127,6 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="ti-settings"></i> <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-lock"></i> <span>Lock Screen</span>
                                 </a>
 
                                 <!-- item-->
@@ -188,7 +163,7 @@
             <div class="left side-menu">
                 <div class="user-details">
                     <div class="pull-left">
-                        <img src="../../assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
                         <a href="#">Stanley Jones</a>
@@ -202,7 +177,7 @@
                     <ul class="metismenu" id="side-menu">
                         <li class="menu-title">Navigation</li>
                         <li>
-                            <a href="../../index.html">
+                            <a href="index.html">
                                 <i class="ti-home"></i><span> Dashboard </span>
                             </a>
                         </li>
@@ -260,8 +235,8 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-files"></i><span> Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="../../pages-login.html">Login</a></li>
-                                <li><a href="../../pages-register.html">Register</a></li>
+                                <li><a href="pages-login.html">Login</a></li>
+                                <li><a href="pages-register.html">Register</a></li>
                                 <li><a href="pages-forget-password.html">Forget Password</a></li>
                                 <li><a href="pages-lock-screen.html">Lock-screen</a></li>
                                 <li><a href="pages-blank.html">Blank page</a></li>
@@ -316,153 +291,79 @@
                 <div class="content">
                     <div class="container-fluid">
 
-                         <div class="row">
+                        <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
-                                 <h4 class="header-title m-t-0 m-b-20">Account Info</h4>
+<br>
+                                 <h4 class="header-title m-t-0 m-b-20">Documentation's Iter</h4>
                             </div>
-<br><br><br><br>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
+<br><br><br>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="p-0 text-center">
-                                    <div class="member-card">
-                                        <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
-                                        </div>
-
-                                        <div class="">
-                                            <h5 class="m-b-5 mt-3">Company Name</h5>
-                                        </div>
-                                        <p class="text-muted m-t-10">
-                                            Brief Description, Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-                                        </p>
-                                    </div>
-
-                                </div> <!-- end card-box -->
-
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-
-                        <div class="m-t-30">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="home-b1">
-                                    <div class="row">
-
-                                        <div class="col-md-1"></div>
-
-                                        <div class="col-md-10">
-                                            <!-- Information -->
-                                            <div class="panel panel-default panel-fill">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Comapny Informations</h3>
-                                                </div>
-
-                                                <div class="container">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>Business Name/Name</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getRagione_sociale()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Legal Address</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getIndirizzo_sede_leg()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Solicitor's Name</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
-                                                            </div> 
-                                                            <div class="m-b-20">
-                                                                <strong>Internships Manager's Name</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getNome_cognome_tir()}</p>
-                                                            </div>
-                                                             <div class="m-b-20">
-                                                                <strong>Internships Manager's Telephone Number</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getTelefono_tirocini()}</p>
-                                                            </div>
-                                                             <div class="m-b-20">
-                                                                <strong>Competent Jurisdiction</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getForo_competente()}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>Fiscal Code</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getCf_rappresentante()}</p>
-                                                            </div>
-
-                                                            <div class="m-b-20">
-                                                                <strong>P. IVA</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getPartita_iva_rap()}</p>
-                                                            </div>
-
-                                                            <div class="m-b-20">
-                                                                <strong>Province</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getProvincia()}</p>
-                                                            </div>
-
-                                                        <div class="m-b-20">
-                                                                <strong>Internships Manager's Surname</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
-                                                        </div>
-                                                        <div class="m-b-20">
-                                                                <strong>Internships Manager's Email Address</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getEmail_tirocini()}</p>
-                                                        </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Login Email address</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getEmail_login()}</p>
-                                                            </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <!-- Information -->
-                                        </div>
-
-                                        <div class="col-md-1"></div>
-
-                                    </div>
+                        <div class="m-b-20">
+                            <div class="container">
                                 <div class="row">
-                                    <div class="col-md-5"></div>
-                                    <div class="col-md-2 text-center">
-                                        <a href="/editProfile"><button class="btn btn-primary btn-rounded btn-lg" data-toggle="modal" data-target="#add-contact">Edit Informations</button></a>
-                                    <div class="col-md-5"></div>
-                                    </div><!-- end col -->
+
+                                    <div class="col-md-3 centra">
+                                        <b>STEP 1</b>                                    
+                                    </div>
+
+                                    <div class="col-md-6 centra">
+                                        <i>Be sure to download and print the document <ins>ONLY</ins> after checking the company's signature and stamp.</i>                                    
+                                    </div>                                    
                                 </div>
+
+<br><br>
+                                
+                                <div class="row">
+
+                                    <div class="col-sm-3"></div>
+
+                                    <div class="centra">
+                                        <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>                                    
+                                    </div>
                                 </div>
-                            </div>
+
+<br><br><br><br><br>
+
+                                <div class="row">
+
+                                    <div class="col-md-3 centra">
+                                        <b>STEP 2</b>                                    
+                                    </div>
+
+                                    <div class="col-md-6 centra">
+                                        <i>Be sure to upload the document only after <ins>SIGNING IT</ins>, taking it to the student secretary and <ins>REGISTERING</ins>.</i>                                    
+                                    </div>                                    
+                                </div>
+
+<br><br>
+                                <div class="row">
+
+                                    <div class="col-sm-3"></div>
+                                    
+                                    <div class="centra">
+                                        <input type="file" class="filestyle" data-input="false">
+                                    </div>
+                                </div>
+
+                            </div>                                           
+
                         </div>
 
                     </div> <!-- container -->
 
-
+<br><br>
                     <div class="footer">
                         <div class="pull-right hide-phone">
-                            Project Completed <strong class="text-custom">57%</strong>.
+                            Web Engineering Project 
                         </div>
                         <div>
-                            <strong>Simple Admin</strong> - Copyright © 2017 - 2018
+                             Copyright © 2018 - <a class="ti-infinite infindim"></a>
                         </div>
+                        
+                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
                     </div>
 
                 </div> <!-- content -->
@@ -481,16 +382,73 @@
 
 
         <!-- jQuery  -->
-        <script src="../../assets/js/jquery.min.js"></script>
-        <script src="../../assets/js/popper.min.js"></script>
-        <script src="../../assets/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/metisMenu.min.js"></script>
-        <script src="../../assets/js/waves.js"></script>
-        <script src="../../assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+
+        <!-- Required datatable js -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="assets/plugins/datatables/buttons.print.min.js"></script>
+
+        <!-- Key Tables -->
+        <script src="assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+
+        <!-- Responsive examples -->
+        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- Selection table -->
+        <script src="assets/plugins/datatables/dataTables.select.min.js"></script>
 
         <!-- App js -->
-        <script src="../../assets/js/jquery.core.js"></script>
-        <script src="../../assets/js/jquery.app.js"></script>
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                // Default Datatable
+                $('#datatable').DataTable();
+
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf']
+                });
+
+                // Key Tables
+
+                $('#key-table').DataTable({
+                    keys: true
+                });
+
+                // Responsive Datatable
+                $('#responsive-datatable').DataTable();
+
+                // Multi Selection Datatable
+                $('#selection-datatable').DataTable({
+                    select: {
+                        style: 'multi'
+                    }
+                });
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
+
+        </script>
+
 
     </body>
 </html>

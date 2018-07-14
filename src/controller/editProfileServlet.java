@@ -25,8 +25,13 @@ public class editProfileServlet extends HttpServlet {
             throws ServletException, IOException, PropertyVetoException, SQLException {
 
         response.setContentType("text/html;charset=UTF-8");
-
         request.setAttribute("errorMessage", "");
+
+        String paramValue = "";
+
+        // URL Parameters
+        String paramName    = "sumbit";
+        paramValue = request.getParameter(paramName);
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
@@ -37,7 +42,23 @@ public class editProfileServlet extends HttpServlet {
         }
 
         if (securityModel.getUser().equals("azienda")) {
-            action_company(request, response);
+
+            // Check if we are trying to edit company login data or informations
+
+            if (paramValue == null) {
+                action_company(request, response);
+                return;
+            }
+
+            if (paramValue.equals("login")) {
+                action_update_login_values_company(request, response);
+            }
+
+            if (paramValue.equals("info")) {
+                action_update_profile_values_company(request, response);
+                return;
+            }
+
             return;
         }
 
@@ -74,19 +95,7 @@ public class editProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
-            Security securityModel = SecurityFilter.checkUsers(request);
-
-            if (securityModel.getUser().equals("student")) {
-                // studente
-                return;
-            }
-
-            if (securityModel.getUser().equals("azienda")) {
-                action_update_values_company(request, response);
-                return;
-            }
-
+            processRequest(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (PropertyVetoException e) {
@@ -189,39 +198,67 @@ public class editProfileServlet extends HttpServlet {
         }
     }
 
-    protected void action_update_values_company (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {
+    protected void action_update_profile_values_company (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String ragione_sociale   = request.getParameter("ragione_sociale");
-        String indirizzo_legle   = request.getParameter("indirizzo_legale");
-        String nome_cognome_rapp = request.getParameter("nome_cognome_rap");
-        String nome_cognome_tir  = request.getParameter("nome_cognome_tir");
-        String foro_comp         = request.getParameter("foro_comp");
-        String cf_rapp           = request.getParameter("cf_rapp");
-        String partita_iva       = request.getParameter("partita_iva_rapp");
-        String provincia         = request.getParameter("provincia");
-        String email_tirocini    = request.getParameter("email_tirocini");
-        String descrizione       = request.getParameter("descrizione");
-        String email_login       = request.getParameter("email_login");
-        String telefono          = request.getParameter("telefono");
+        String email_login = homeServlet.loggedUserEmail;
 
-        if (ragione_sociale.isEmpty() || indirizzo_legle.isEmpty() || nome_cognome_rapp.isEmpty() || nome_cognome_tir.isEmpty() ||
-                foro_comp.isEmpty() || cf_rapp.isEmpty() || partita_iva.isEmpty() || provincia.isEmpty() || email_tirocini.isEmpty() ||
-                descrizione.isEmpty() || email_login.isEmpty() || telefono.isEmpty()) {
+        String ragione_sociale, indirizzo_legle, nome_cognome_rapp, nome_cognome_tir, foro_comp,
+                cf_rapp, partita_iva, provincia, email_tirocini, descrizione, telefono;
+
+        ragione_sociale = indirizzo_legle = nome_cognome_rapp = nome_cognome_tir = foro_comp = cf_rapp = partita_iva =
+                provincia = email_tirocini = descrizione = telefono = "";
+
+        ragione_sociale   = request.getParameter("ragione_sociale");
+        indirizzo_legle   = request.getParameter("indirizzo_legale");
+        nome_cognome_rapp = request.getParameter("nome_cognome_rap");
+        nome_cognome_tir  = request.getParameter("nome_cognome_tir");
+        foro_comp         = request.getParameter("foro_comp");
+        cf_rapp           = request.getParameter("cf_rapp");
+        partita_iva       = request.getParameter("partita_iva_rapp");
+        provincia         = request.getParameter("provincia");
+        email_tirocini    = request.getParameter("email_tirocini");
+        descrizione       = request.getParameter("descrizione");
+        telefono          = request.getParameter("telefono");
+
+        if (ragione_sociale.isEmpty() || indirizzo_legle.isEmpty() || nome_cognome_rapp.isEmpty() || nome_cognome_tir.isEmpty() || foro_comp.isEmpty() ||
+                cf_rapp.isEmpty() || partita_iva.isEmpty() || provincia.isEmpty() || email_tirocini.isEmpty() || descrizione.isEmpty()) {
 
             // Signal that an error has occurred
             request.setAttribute("errorMessage", "Fields cannot be empty");
 
             action_company(request, response);
+
         } else {
+
             // Update the fields in the DB
             companyDAO.updateCompanyField(email_login, ragione_sociale, indirizzo_legle, cf_rapp, partita_iva,
                     nome_cognome_rapp, nome_cognome_tir, telefono, email_tirocini, foro_comp, provincia, true, descrizione, email_login);
 
-            action_company(request, response);
+            response.sendRedirect("/editProfile");
+        }
+    }
 
+    protected void action_update_login_values_company (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {
+
+        String email_login   = request.getParameter("email_login");
+        String password      = request.getParameter("password_company");
+        String ripeti_pass   = request.getParameter("ripeti_password_company");
+
+        if (password.isEmpty() || email_login.isEmpty()) {
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Fields cannot be empty");
+            action_company(request, response);
         }
 
+        if (!password.equals(ripeti_pass)) {
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Passwords don't match");
+            action_company(request, response);
+        } else {
+            companyDAO.updateEmailAndPassword(email_login, password, email_login);
+            response.sendRedirect("/logout");
+        }
     }
 }
