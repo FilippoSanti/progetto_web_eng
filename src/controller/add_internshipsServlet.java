@@ -85,15 +85,22 @@ public class add_internshipsServlet extends HttpServlet {
 
                 // Registration ok
                 if (i > 0) {
+                    // Set two attributes to show in the login page
+                    boolean added = true;
+                    request.setAttribute("added", added);
+                    request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
 
-                    response.sendRedirect("/home");
+                    RequestDispatcher dispatcher
+                            = request.getServletContext().getRequestDispatcher("/home_company");
+
+                    dispatcher.forward(request, response);
                 }
 
             } catch (Exception se) {
                 se.printStackTrace();
             }
         } else {
-            action_default_student(request, response);
+            action_default_company(request, response);
 
              //Clear the errors list
             userController.errorsList.clear();
