@@ -1,5 +1,6 @@
 package controller;
 
+import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
 
@@ -18,13 +19,58 @@ import controller.core.companyDAO;
 public class companyServlet  extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, PropertyVetoException, SQLException {
 
         request.setAttribute("companiesList", null);
+
+        request.setAttribute("header", "");
+        request.setAttribute("sidemenu", "");
 
         // URL Parameters
         String paramName    = "view";
         String paramValue = request.getParameter(paramName);
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("student")) {
+            request.setAttribute("header", "student");
+            request.setAttribute("sidemenu", "student");
+
+            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        if (securityModel.getUser().equals("azienda")) {
+            request.setAttribute("header", "company");
+            request.setAttribute("sidemenu", "company");
+
+            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        if (securityModel.getUser().equals("anonymous")) {
+            request.setAttribute("header", "anonymous");
+            request.setAttribute("sidemenu", "anonymous");
+
+            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        if (securityModel.getUser().equals("admin")) {
+            request.setAttribute("header", "admin");
+            request.setAttribute("sidemenu", "admin");
+
+            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+
 
         try {
             // Check if the user has given the right parameters
@@ -84,6 +130,10 @@ public class companyServlet  extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -98,6 +148,10 @@ public class companyServlet  extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
