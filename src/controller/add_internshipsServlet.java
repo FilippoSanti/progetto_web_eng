@@ -2,7 +2,9 @@ package controller;
 
 import controller.core.userController;
 import controller.utilities.DataSource;
+import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
+import model.Security;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,8 +62,6 @@ public class add_internshipsServlet extends HttpServlet {
         if (regOk) {
 
 
-
-
             try {
 
                 // Connect to DB
@@ -108,8 +108,6 @@ public class add_internshipsServlet extends HttpServlet {
         return false;
     }
 
-
-
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getRequestDispatcher("/WEB-INF/views/add_internship.ftl").forward(request, response);
@@ -132,7 +130,42 @@ public class add_internshipsServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, PropertyVetoException, SQLException {
+
+
+        request.setAttribute("companiesList", null);
+
+        request.setAttribute("header", "");
+        request.setAttribute("sidemenu", "");
+        response.setContentType("text/html;charset=UTF-8");
+
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("student")) {
+            response.sendRedirect("/home");;
+            return;
+        }
+
+        if (securityModel.getUser().equals("azienda")) {
+            request.setAttribute("header", "company");
+            request.setAttribute("sidemenu", "company");
+
+            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/add_internship.ftl");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        if (securityModel.getUser().equals("anonymous")) {
+            response.sendRedirect("/home_visitor.ftl");
+            return;
+        }
+
+        if (securityModel.getUser().equals("admin")) {
+            response.sendRedirect("/home_admin.ftl");;
+            return;
+        }
+
+
 
         // We need to initialize the boolean variable 'errors' to false
         // This is used to signal that an error has occurred during the registration
@@ -199,6 +232,10 @@ public class add_internshipsServlet extends HttpServlet {
                 processRequest(request, response);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (PropertyVetoException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
     }
@@ -214,6 +251,10 @@ public class add_internshipsServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
