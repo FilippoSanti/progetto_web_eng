@@ -334,11 +334,10 @@
                                         </div>
 
                                         <div class="">
-                                            <h5 class="m-b-5 mt-3">Company Name</h5>
+                                            <h5 class="m-b-5 mt-3">${companyData.getRagione_sociale()}</h5>
                                         </div>
                                         <p class="text-muted m-t-10">
-                                            Brief Description, Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-                                        </p>
+                                           ${companyData.getDescrizione()}
                                     </div>
 
                                 </div> <!-- end card-box -->

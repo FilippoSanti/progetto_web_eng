@@ -1,6 +1,7 @@
 package controller.core;
 
 import controller.utilities.DataSource;
+import controller.utilities.Utils;
 import model.User;
 
 import java.beans.PropertyVetoException;
@@ -26,7 +27,7 @@ public class userDAO {
         if(rs.next()) {
             usr.setNome(rs.getString("nome"));
             usr.setCognome(rs.getString("cognome"));
-            usr.setDate(rs.getDate("date"));
+            usr.setDate(rs.getString("date"));
             usr.setProvincia(rs.getString("provincia"));
             usr.setProvincia_n(rs.getString("provincia_nascita"));
             usr.setResidenza(rs.getString("residenza"));
@@ -113,16 +114,49 @@ public class userDAO {
         return userID;
     }
 
-    public static void updateStudentField(String field, String field_text, String email_login) throws SQLException, IOException, PropertyVetoException {
+
+    public static void updateUserFields(String nome, String date, String provincia, String provincia_nascita, String residenza, String citta,
+                                        String cap, String telefono, String corso, String cognome, String cod_fiscale, String luogo_nascita,
+                                        String emailQuery) throws PropertyVetoException, SQLException, IOException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
 
-        PreparedStatement preparedStmt = dbConnection.prepareStatement("UPDATE studente \n" +
-                "SET nome = ?, password = ?, date = ?, provincia = ?, provincia_nascita = ?, residenza = ?, citta = ?, CAP = ?, telefono = ?, corso = ?, email = ?, handicap = ?, cognome = ?, cod_fiscale = ?, ruolo = ?, luogo_nascita = ?  \n" +
-                "WHERE studente.email = 'mikesh07mail@gmail.com';");
-        preparedStmt.setString(1, field);
-        preparedStmt.setString(2, field_text);
-        preparedStmt.setString(3,email_login);
+        String qualcosa = "UPDATE studente SET nome = ?, date = ?, provincia = ?, provincia_nascita = ?, residenza = ?, citta = ?, CAP = ?, " +
+                "telefono = ?, corso = ?, cognome = ?, cod_fiscale = ?, luogo_nascita = ? " +
+                "WHERE studente.email = ?";
+
+        PreparedStatement preparedStmt = dbConnection.prepareStatement(qualcosa);
+
+        preparedStmt.setString(1, nome);
+        preparedStmt.setString(2, date);
+        preparedStmt.setString(3, provincia);
+        preparedStmt.setString(4, provincia_nascita);
+        preparedStmt.setString(5, residenza);
+        preparedStmt.setString(6, citta);
+        preparedStmt.setString(7, cap);
+        preparedStmt.setString(8, telefono);
+        preparedStmt.setString(9, corso);
+        preparedStmt.setString(10, cognome);
+        preparedStmt.setString(11, cod_fiscale);
+        preparedStmt.setString(12, luogo_nascita);
+        preparedStmt.setString(13, emailQuery);
+
+        preparedStmt.executeUpdate();
+        dbConnection.close();
+
+    }
+
+    // Update the user email and password
+    public static void updateEmailAndPassword(String password, String email, String emailQuery) throws SQLException, IOException, PropertyVetoException {
+
+        String updateQuery = "UPDATE studente SET email = ?, password = ? WHERE studente.email = ?";
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement preparedStmt = dbConnection.prepareStatement(updateQuery);
+
+        preparedStmt.setString(1, email);
+        preparedStmt.setString(2, Utils.hashPassword(password));
+        preparedStmt.setString(3, emailQuery);
 
         preparedStmt.executeUpdate();
         dbConnection.close();

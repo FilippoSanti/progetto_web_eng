@@ -171,24 +171,6 @@ public class companyDAO {
         return companiesList;
     }
 
-
-    public static int getCompanyIDbyEmail(String emailString) throws SQLException, IOException, PropertyVetoException {
-
-        int aziendaID = 0;
-
-        Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM azienda WHERE email_login = ?");
-
-        pst.setString(1, emailString);
-        ResultSet rs = pst.executeQuery();
-
-        if(rs.next()) {
-            aziendaID= rs.getInt("azienda_id");
-        }
-
-        return aziendaID;
-    }
-
     public static boolean updateCompanyField(String e, String r_s, String i_s_l, String cf, String p_i_r,
                                           String n_c_rapp, String n_c_tir, String t_t, String e_t, String f_c, String pr,
                                           boolean ab, String de, String targetUpdate) throws SQLException, IOException, PropertyVetoException {
@@ -199,7 +181,6 @@ public class companyDAO {
                     "      `nome_cognome_tirocini`= ?, `telefono_tirocini` = ?, `email_tirocini`= ?, `foro_competente`= ?,\n" +
                     "      `provincia`= ?, `abilitata`= ?, `descrizione` = ?\n" +
                     "WHERE `azienda`.`email_login` = ?";
-
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement preparedStmt = dbConnection.prepareStatement(updateQuery);
@@ -239,6 +220,23 @@ public class companyDAO {
 
         preparedStmt.executeUpdate();
 
+    }
+
+    public static int getCompanyIDbyEmail(String emailString) throws SQLException, IOException, PropertyVetoException {
+
+        int aziendaID = 0;
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM azienda WHERE email_login = ?");
+
+        pst.setString(1, emailString);
+        ResultSet rs = pst.executeQuery();
+
+        if(rs.next()) {
+            aziendaID= rs.getInt("azienda_id");
+        }
+
+        return aziendaID;
     }
 }
 

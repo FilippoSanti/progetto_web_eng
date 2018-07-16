@@ -158,7 +158,7 @@
             <div class="left side-menu">
                 <div class="user-details">
                     <div class="pull-left">
-                        <img src="../../assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
+                        <img src="${image_path}" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
                         <a href="#">Stanley Jones</a>
@@ -300,14 +300,23 @@
                                 <div class="p-0">
                                     <div class="member-card">
 
+                                        <#if errorMessage?has_content >
+                                            <div class="alert alert-danger">
+                                                <strong>Error</strong> ${errorMessage}
+                                            </div>
+                                        </#if>
+
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="../../assets/images/users/avatar-3.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
-<br>
-                                        <div class="form-group">
-                                            <label class="control-label">Edit Profile Img  </label>
-                                            <input type="file" class="filestyle" data-size="sm" placeholder="Choose  New Img">
-                                        </div> 
+                                        <br>
+                                        <form action="upload" method ="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlFile1">Choose a profile image</label>
+                                                <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                        </form>
                                     </div>
 
                                 </div> <!-- end card-box -->
@@ -315,7 +324,59 @@
                         </div> <!-- end row -->
 
                         <div class="m-t-30">
+                            <div class="tab-pane" id="profile-b1">
+
+                                <form method="post" action="editProfile?sumbit=login" class="form-validation">
+
+                                    <!-- Personal-Information -->
+                                    <div class="panel panel-default panel-fill">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Edit Log In Informations</h3>
+                                        </div>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-6 mrgntopcol">
+
+                                                    <div class="form-group">
+                                                        <label for="C_Username">email</label>
+                                                        <input type="email" value="${userData.getEmail()}" id="C_Username" class="form-control" name="email_student">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 mrgntopcol">
+                                                    <div class="form-group">
+                                                        <label for="edit_company_pass rippwd4">New Password</label>
+                                                        <input id="edit_company_pass" type="password" placeholder="New Password" class="form-control" name="password_student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6"></div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="edit_company_pass_2">Repeat New Password</label>
+                                                        <input id="edit_company_pass_2" type="password" placeholder="Repeat New Password" class="form-control" name="ripeti_password_student">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br><br>
+                                        <div class="center-page centra">
+                                            <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Update</button>
+                                        </div>
+                                        <br>
+
+                                    </div>
+                                    <!-- Personal-Information -->
+                                </form>
+
+                                <form method="post" action="editProfile?sumbit=info" class="form-validation">
+                                <div class="m-t-30">
                                 <div class="tab-pane" id="profile-b1">
+
                                     <!-- Personal-Information -->
                                     <div class="panel panel-default panel-fill">
                                         <div class="panel-heading">
@@ -330,12 +391,12 @@
                                             <form role="form">
                                                 <div class="form-group">
                                                     <label for="Name">Name</label>
-                                                    <input type="text" value="Database Value here" id="Name" class="form-control">
+                                                    <input type="text" value="${userData.getNome()}" id="Name" class="form-control" name="nome">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Birth Date<span class="text-danger">* </span><a>  (use the format: mm/dd/yyyy)</a></label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
+                                                        <input type="text" class="form-control" value= "${userData.getDate()}" id="datepicker-autoclose" name ="data_nascita">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
@@ -343,8 +404,8 @@
                                                 </div>
                                                 <div class="form-group">
                                         <label>Birth Province</label>
-                                        <select class="form-control select2">
-                                        <option>-- Select --</option>
+                                        <select class="form-control select2" name="provincia_n">
+                                        <option>${userData.getProvincia_n()}</option>
                                         <option value="AG">Agrigento</option>
                                         <option value="AL">Alessandria</option>
                                         <option value="AN">Ancona</option>
@@ -451,13 +512,10 @@
                                     </select>
                                     </div>
                                                 <div class="form-group">
-                                                    <label for="Address">Address</label>
-                                                    <input type="text" value="Database Value here" id="Address" class="form-control">
-                                                </div>
-                                                <div class="form-group"> 
+
                                         <label>Residence Province</label>
-                                        <select class="form-control select2">
-                                        <option>-- Select --</option>
+                                        <select class="form-control select2" name="provincia">
+                                        <option>${userData.getProvincia()}</option>
                                         <option value="AG">Agrigento</option>
                                         <option value="AL">Alessandria</option>
                                         <option value="AN">Ancona</option>
@@ -563,86 +621,63 @@
                                         <option value="VT">Viterbo</option>
                                     </select>
                                     </div>
+
+                                                <div class="form-group">
+                                                    <label for="Phone_Number">Residenza</label>
+                                                    <input type="text" value="${userData.getResidenza()}" id="Phone_Number" class="form-control" name="residenza">
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="Phone_Number">Telephone Number</label>
-                                                    <input type="text" value="Database Value here" id="Phone_Number" class="form-control">
+                                                    <input type="text" value="${userData.getTel()}" id="Phone_Number" class="form-control" name="telefono">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Degree">Degree Course</label>
-                                                    <input type="text" value="Database Value here" id="Degree" class="form-control">
+                                                    <input type="text" value="${userData.getCorso()}" id="Degree" class="form-control" name="corso">
                                                 </div>
                                 </div>
 
                                 <div class="col-md-6 mrgntopcol">
-                                                  <div class="form-group">
-                                                    <label for="Surname">Surname</label>
-                                                    <input type="email" value="Database Value here" id="Surname" class="form-control">
+
+                                                <div class="form-group">
+                                                    <label for="cognome">Cognome</label>
+                                                    <input type="text" value="${userData.getCognome()}" id="cognome" class="form-control" name="cognome">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="BPlace">Birth Place</label>
-                                                    <input type="text" value="Database Value here" id="BPlace" class="form-control">
+                                                    <input type="text" value="${userData.getLuogo_nascita()}" id="BPlace" class="form-control" name="luogo_nascita">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Fiscal_Code">Fiscal Code</label>
-                                                    <input type="text" value="Database Value here" id="Fiscal_Code" class="form-control uppercase">
+                                                    <input type="text" value="${userData.getCod_fiscale()}" id="Fiscal_Code" class="form-control uppercase" name="codice_fiscale">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="City">City</label>
-                                                    <input type="text" value="Database Value here" id="City" class="form-control">
+                                                    <input type="text" value="${userData.getCitta()}" id="City" class="form-control" name="citta">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="CAP">C.A.P.</label>
-                                                    <input type="text" value="Database Value here" id="CAP" class="form-control">
+                                                    <input type="text" value="${userData.getCap()}" id="CAP" class="form-control" name="cap">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="Email">Email</label>
-                                                    <input type="email" value="Database Value here" id="Email" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Other">Other</label>
-                                                    <div class="checkbox handicap">
-                                                    <input id="handicap" type="checkbox">
-                                                    <label for="handicap"> Portatore di Handicap </label>
-                                                    </div>
+                                              </div>
                                             </div>
-                                </div>
-                            </div>
-                                                <div class="form-group">
-                                                    <label for="AboutMe">Edit Description</label>
-                                                    <textarea style="height: 125px" id="AboutMe" class="form-control">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</textarea>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="Username">UserName</label>
-                                                            <input type="Username" value="Database Value here" id="Username" class="form-control">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="pass1">New Password</label>
-                                                            <input id="pass1" type="password" placeholder="New Password" required
-                                                            class="form-control">
-                                                        </div>
-                                                        <div class="form-group rippwd4">
-                                                            <label for="pass2">Repeat New Password</label>
-                                                            <input id="pass2" type="password" placeholder="Repeat New Password" required
-                                                            class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-<br><br>
+                                                <br><br>
                                                 <div class="center-page centra">
                                                     <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save</button>
                                                 </div>
 <br>
-                                            </form>                                    
+                                            </form>
                                         </div>
+
                                     <!-- Personal-Information -->
+
                                 </div>
+
                             </div>
+
                         </div> <!-- container -->
+                                    </form>
+                                </form>
+
 <br><br>
 
                     <div class="footer">

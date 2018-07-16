@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class User {
     String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, luogo_nascita;
-    Date date;
+    String date;
     int cap;
     int id;
     int userID;
@@ -32,7 +32,7 @@ public class User {
 
     }
 
-    public User(String n, String c, Date d, String p, String pn,
+    public User(String n, String c, String d, String p, String pn,
                 String r, String ct, String cr, String em, boolean hc, String tel, int userID, int cap, int id, String cod_fiscale, String luogo_nascita) {
 
         this.nome = n;
@@ -87,11 +87,11 @@ public class User {
         this.cognome = cognome;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

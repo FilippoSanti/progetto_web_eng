@@ -22,16 +22,16 @@ public class internshipDAO {
 
         while (rs.next()) {
             Internship internship = new Internship(
-            rs.getInt("offerta_tirocinio_id"),
-            rs.getInt("azienda_id"),
-            rs.getString("nome"),
-            rs.getString("descrizione"),
-            rs.getString("luogo"),
-            rs.getString("orari"),
-            rs.getString("ore"),
-            rs.getString("obiettivi"),
-            rs.getString("modalita"),
-            rs.getString("rimborsi_spese_facilitazioni_previste")
+                    rs.getInt("offerta_tirocinio_id"),
+                    rs.getInt("azienda_id"),
+                    rs.getString("nome"),
+                    rs.getString("descrizione"),
+                    rs.getString("luogo"),
+                    rs.getString("orari"),
+                    rs.getString("ore"),
+                    rs.getString("obiettivi"),
+                    rs.getString("modalita"),
+                    rs.getString("rimborsi_spese_facilitazioni_previste")
             );
 
             internshipsList.add(internship);

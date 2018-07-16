@@ -37,14 +37,27 @@ public class editProfileServlet extends HttpServlet {
 
         // Security model checks
         if (securityModel.getUser().equals("student")) {
-            action_student(request, response);
+            // Check if we are trying to edit company login data or informations
+
+            if (paramValue == null) {
+                action_student(request, response);
+                return;
+            }
+
+            if (paramValue.equals("login")) {
+                action_update_login_values_student(request, response);
+            }
+
+            if (paramValue.equals("info")) {
+                action_update_profile_values_student(request, response);
+                return;
+            }
             return;
         }
 
         if (securityModel.getUser().equals("azienda")) {
 
             // Check if we are trying to edit company login data or informations
-
             if (paramValue == null) {
                 action_company(request, response);
                 return;
@@ -58,7 +71,6 @@ public class editProfileServlet extends HttpServlet {
                 action_update_profile_values_company(request, response);
                 return;
             }
-
             return;
         }
 
@@ -201,7 +213,6 @@ public class editProfileServlet extends HttpServlet {
     protected void action_update_profile_values_company (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-
         String email_login = homeServlet.loggedUserEmail;
 
         String ragione_sociale, indirizzo_legle, nome_cognome_rapp, nome_cognome_tir, foro_comp,
@@ -258,6 +269,66 @@ public class editProfileServlet extends HttpServlet {
             action_company(request, response);
         } else {
             companyDAO.updateEmailAndPassword(email_login, password, email_login);
+            response.sendRedirect("/logout");
+        }
+    }
+
+
+    protected void action_update_profile_values_student (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {
+
+        // We get the user email from the session
+        String emailQuery = homeServlet.loggedUserEmail;
+
+        String provincia      = request.getParameter("provincia");
+        String provincia_n    = request.getParameter("provincia_n");
+        String nome           = request.getParameter("nome");
+        String data_nascita   = request.getParameter("data_nascita");
+        String residenza      = request.getParameter("residenza");
+        String telefono       = request.getParameter("telefono");
+        String corso          = request.getParameter("corso");
+        String luogo_nascita  = request.getParameter("luogo_nascita");
+        String codice_fiscale = request.getParameter("codice_fiscale");
+        String citta          = request.getParameter("citta");
+        String cap            = request.getParameter("cap");
+        String cognome        = request.getParameter("cognome");
+
+
+        // If one of the strings is empty, we forward an error message to the page
+        if (provincia.isEmpty() || provincia_n.isEmpty() || nome.isEmpty() || data_nascita.isEmpty() || residenza.isEmpty()
+                || telefono.isEmpty() || corso.isEmpty() || luogo_nascita.isEmpty() || codice_fiscale.isEmpty() || citta.isEmpty() ||
+                cap.isEmpty()) {
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Fields cannot be empty");
+
+            action_student(request, response);
+        } else {
+
+            // Update the fields in the DB
+            userDAO.updateUserFields(nome, data_nascita, provincia, provincia_n, residenza, citta,
+                    cap,telefono, corso, cognome,codice_fiscale,luogo_nascita,emailQuery);
+
+            response.sendRedirect("/editProfile");
+        }
+    }
+
+    protected void action_update_login_values_student (HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
+
+        String email_login   = request.getParameter("email_student");
+        String password      = request.getParameter("password_student");
+        String ripeti_pass   = request.getParameter("ripeti_password_student");
+
+        if (password.isEmpty() || email_login.isEmpty()) {
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Fields cannot be empty");
+            action_student(request, response);
+        }
+
+        if (!password.equals(ripeti_pass)) {
+            // Signal that an error has occurred
+            request.setAttribute("errorMessage", "Passwords don't match");
+            action_student(request, response);
+        } else {
+            userDAO.updateEmailAndPassword(email_login, password, email_login);
             response.sendRedirect("/logout");
         }
     }
