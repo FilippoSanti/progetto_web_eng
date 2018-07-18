@@ -59,7 +59,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>controller.loginServlet</servlet-class>
+        <servlet-class>controller.servlets.loginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -69,7 +69,7 @@
 
     <servlet>
         <servlet-name>home</servlet-name>
-        <servlet-class>controller.homeServlet</servlet-class>
+        <servlet-class>controller.servlets.homeServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -79,7 +79,7 @@
 
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>controller.logoutServlet</servlet-class>
+        <servlet-class>controller.servlets.logoutServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -89,7 +89,7 @@
 
     <servlet>
         <servlet-name>register</servlet-name>
-        <servlet-class>controller.registerServlet</servlet-class>
+        <servlet-class>controller.servlets.registerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -99,7 +99,7 @@
 
     <servlet>
         <servlet-name>userProfile</servlet-name>
-        <servlet-class>controller.profileServlet</servlet-class>
+        <servlet-class>controller.servlets.profileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -109,7 +109,7 @@
 
     <servlet>
         <servlet-name>document</servlet-name>
-        <servlet-class>controller.pdfServlet</servlet-class>
+        <servlet-class>controller.servlets.pdfServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -119,7 +119,7 @@
 
     <servlet>
         <servlet-name>company</servlet-name>
-        <servlet-class>controller.companyServlet</servlet-class>
+        <servlet-class>controller.servlets.companyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -130,7 +130,7 @@
 
     <servlet>
         <servlet-name>companies_list</servlet-name>
-        <servlet-class>controller.companyServlet</servlet-class>
+        <servlet-class>controller.servlets.companyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -141,7 +141,7 @@
 
     <servlet>
         <servlet-name>internships_list</servlet-name>
-        <servlet-class>controller.internships_listServlet</servlet-class>
+        <servlet-class>controller.servlets.internships_listServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -152,7 +152,7 @@
 
     <servlet>
         <servlet-name>editProfile</servlet-name>
-        <servlet-class>controller.editProfileServlet</servlet-class>
+        <servlet-class>controller.servlets.editProfileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -162,7 +162,7 @@
 
     <servlet>
         <servlet-name>document_2</servlet-name>
-        <servlet-class>controller.document2Servlet</servlet-class>
+        <servlet-class>controller.servlets.document2Servlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -172,12 +172,52 @@
 
     <servlet>
         <servlet-name>document_3</servlet-name>
-        <servlet-class>controller.document3Servlet</servlet-class>
+        <servlet-class>controller.servlets.document3Servlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>document_3</servlet-name>
         <url-pattern>/document_3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_internship</servlet-name>
+        <servlet-class>controller.servlets.addInternshipsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add_internship</servlet-name>
+        <url-pattern>/add_internship</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>list_internships</servlet-name>
+        <servlet-class>controller.servlets.internshipsListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>list_internships</servlet-name>
+        <url-pattern>/list_internships</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>company_internships</servlet-name>
+        <servlet-class>controller.servlets.internshipsCompanyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>company_internships</servlet-name>
+        <url-pattern>/company_internships</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>lista_candidati</servlet-name>
+        <servlet-class>controller.servlets.listaCandidatiServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>lista_candidati</servlet-name>
+        <url-pattern>/lista_candidati</url-pattern>
     </servlet-mapping>
 
     <!--

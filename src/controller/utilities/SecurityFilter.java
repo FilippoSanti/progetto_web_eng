@@ -1,11 +1,8 @@
 package controller.utilities;
 
 import controller.core.userController;
-import controller.homeServlet;
 import model.Security;
-import model.User;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.beans.PropertyVetoException;
 import java.io.IOException;

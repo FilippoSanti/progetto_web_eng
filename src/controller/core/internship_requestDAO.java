@@ -2,7 +2,7 @@ package controller.core;
 
 import controller.utilities.DataSource;
 import model.Internship;
-import model.Internship_request;
+import model.InternshipRequest;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class internship_requestDAO {
 
-    public static ArrayList<Internship_request> getListaCandidatibyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
-        ArrayList<Internship_request> listaCandidati = new ArrayList<>();
+    public static ArrayList<InternshipRequest> getListaCandidatibyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
+        ArrayList<InternshipRequest> listaCandidati = new ArrayList<>();
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && azienda_id = ? && accettata = 0 ");
@@ -24,7 +24,7 @@ public class internship_requestDAO {
         ResultSet rs = pst.executeQuery();
 
         while (rs.next()) {
-            Internship_request internship_request = new Internship_request(
+            InternshipRequest internship_request = new InternshipRequest(
                     rs.getInt("richiesta_tirocinio_id"),
                     rs.getInt("azienda_id"),
                     rs.getInt("offerta_tirocinio_id"),
