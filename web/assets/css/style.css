@@ -3353,11 +3353,15 @@ h3.timeline-title {
 }
 
 .red{
-  color: red;
+  color: red !important;
+}
+
+.green{
+  color: green !important;
 }
 
 .azure{
-  color: #5c95de;
+  color: #5c95de !important;
 }
 
 .containeradd_dim{
@@ -3378,6 +3382,18 @@ h3.timeline-title {
 }
 
 .btnintlistdetails{
+  padding-top: 3px !important;
+  padding-right: 6px !important;
+  padding-bottom: 3px !important;
+  padding-left: 6px !important;
+  background-color: #ffffff57 !important;
+  color: black !important;
+  font-size: 12px !important;
+  border-radius: 5px;
+}
+
+.btnintlistdetails2{
+  border: 1px solid #cf2f4078 !important;
   padding-top: 3px !important;
   padding-right: 6px !important;
   padding-bottom: 3px !important;
@@ -3439,4 +3455,53 @@ font-size: 12px;
 
 .mrgnacceptint{
   margin-left: 10px;
+}
+
+.imgdelete{
+  width: 26px;
+}
+
+.brdrcolorgreen{
+  border: 1pt solid #036506 !important;
+  padding: 4px !important;
+  border-radius: 10px !important;
+  background-color: #ffffff57 !important;  
+  font-size: 12px !important;
+  color: #036506 !important;
+}
+
+.brdrcolorred{
+  border: 1pt solid red !important;
+  padding: 4px !important;
+  border-radius: 10px !important;
+  background-color: #ffffff57 !important;
+  font-size: 12px !important;
+  color: red !important;
+}
+
+.brdrcolorblue{
+  border: 1pt solid blue !important;
+  padding: 4px !important;
+  border-radius: 10px !important;
+  background-color: #ffffff57 !important;
+  font-size: 12px !important;
+  color: blue !important;
+}
+
+.pdom{
+  color: #5f64678a;
+}
+
+.agrmnts{
+  margin-left: 18px;
+}
+
+.intrnshpdtls{
+  border: 1pt solid gainsboro;
+  padding: 10px;
+  width: 100%;
+}
+
+.mrgnlft15px{
+  margin-left: 15px;
 }
