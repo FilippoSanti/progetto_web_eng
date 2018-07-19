@@ -1,5 +1,9 @@
 package controller.servlets;
 
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
 import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
@@ -9,14 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import controller.core.companyDAO;
 
-public class companyServlet  extends HttpServlet {
+public class companyServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, PropertyVetoException, SQLException {
@@ -27,7 +29,7 @@ public class companyServlet  extends HttpServlet {
         request.setAttribute("sidemenu", "");
 
         // URL Parameters
-        String paramName    = "view";
+        String paramName = "view";
         String paramValue = request.getParameter(paramName);
 
         response.setContentType("text/html;charset=UTF-8");
@@ -38,7 +40,7 @@ public class companyServlet  extends HttpServlet {
             request.setAttribute("header", "student");
             request.setAttribute("sidemenu", "student");
 
-            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
             dispatcher.forward(request, response);
             return;
         }
@@ -47,7 +49,7 @@ public class companyServlet  extends HttpServlet {
             request.setAttribute("header", "company");
             request.setAttribute("sidemenu", "company");
 
-            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
             dispatcher.forward(request, response);
             return;
         }
@@ -56,7 +58,7 @@ public class companyServlet  extends HttpServlet {
             request.setAttribute("header", "anonymous");
             request.setAttribute("sidemenu", "anonymous");
 
-            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
             dispatcher.forward(request, response);
             return;
         }
@@ -65,11 +67,10 @@ public class companyServlet  extends HttpServlet {
             request.setAttribute("header", "admin");
             request.setAttribute("sidemenu", "admin");
 
-            RequestDispatcher dispatcher= this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
             dispatcher.forward(request, response);
             return;
         }
-
 
 
         try {
@@ -103,8 +104,10 @@ public class companyServlet  extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        companyDao compDao = new companyDaoImpl();
+
         // Get the company list
-        ArrayList<Company> companiesArray = controller.core.companyDAO.getCompaniesList();
+        ArrayList<Company> companiesArray = compDao.getCompaniesList();
         request.setAttribute("companiesList", companiesArray);
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
 
@@ -114,7 +117,7 @@ public class companyServlet  extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
     }
 
-    protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected static void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
     }
 

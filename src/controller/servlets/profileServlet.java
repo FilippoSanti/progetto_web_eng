@@ -1,7 +1,10 @@
 package controller.servlets;
 
-import controller.core.companyDAO;
-import controller.core.userController;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
+import controller.userController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,7 +16,7 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import controller.core.userDAO;
+
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
 import model.Company;
@@ -108,6 +111,9 @@ public class profileServlet extends HttpServlet {
      **/
     public void display_user_image(HttpServletRequest request) throws PropertyVetoException, SQLException, IOException {
 
+        UserDao userDao = new UserDaoImpl();
+        companyDao compDao = new companyDaoImpl();
+
         // Find out if the session belongs to a user or a company
         String userType = null;
         if (userController.checkSession(request,"studente")) {
@@ -120,7 +126,7 @@ public class profileServlet extends HttpServlet {
 
             // Check if a user image has been uploaded by the user
             // Other wise we include the default image
-            User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
+            User user = userDao.getUser(homeServlet.loggedUserEmail);
             String userID = String.valueOf(user.getId());
 
             ServletContext context = getServletContext();
@@ -138,7 +144,7 @@ public class profileServlet extends HttpServlet {
         } else {
 
             // Same thing but for the companies
-            Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+            Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
             String userID = String.valueOf(company.getCompany_id());
 
             ServletContext context = getServletContext();
@@ -206,7 +212,9 @@ public class profileServlet extends HttpServlet {
     // I'm a logged student and i want to see my own profile
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
+        UserDao userDao = new UserDaoImpl();
+
+        User user = userDao.getUser(homeServlet.loggedUserEmail);
 
         // Set the user attributes to display on screen
         request.setAttribute("userData", user);
@@ -217,7 +225,9 @@ public class profileServlet extends HttpServlet {
     // I'm a logged company and i want to see my own profile
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+        companyDao compDao = new companyDaoImpl();
+
+        Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);
 

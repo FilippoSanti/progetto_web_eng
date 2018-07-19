@@ -1,8 +1,9 @@
 package controller.servlets;
 
-import controller.core.companyDAO;
-import controller.core.internshipDAO;
-import model.Company;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.internshipDao;
+import controller.dao.internshipDaoImpl;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -56,8 +57,10 @@ public class internshipsListServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        internshipDao intDao = new internshipDaoImpl();
+
         // Get the internships list
-        ArrayList<Internship>internshipsArray = internshipDAO.getInternshipList();
+        ArrayList<Internship>internshipsArray = intDao.getInternshipList();
         request.setAttribute("internships_list", internshipsArray);
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
 

@@ -1,6 +1,9 @@
 package controller.servlets;
 
-import controller.core.internshipDAO;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -54,14 +57,16 @@ public class internshipsCompanyServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        String email_azie = homeServlet.loggedUserEmail;
-        int az_id = controller.core.companyDAO.getCompanyIDbyEmail(email_azie);
+        companyDao compDao = new companyDaoImpl();
 
-        System.out.println(email_azie);
-        System.out.println(az_id);
-        ArrayList<Internship>internshipsArray = internshipDAO.getInternshipListbyId(az_id);
-        request.setAttribute("internships_list_company", internshipsArray);
-        request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
+        String email_azie = homeServlet.loggedUserEmail;
+       // int az_id = compDao.getCompanyDataByEmail(email_azie);
+
+        //System.out.println(email_azie);
+        //System.out.println(az_id);
+        //ArrayList<Internship>internshipsArray = internshipDAO.getInternshipListbyId(az_id);
+        //request.setAttribute("internships_list_company", internshipsArray);
+        //request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
 
     }
 

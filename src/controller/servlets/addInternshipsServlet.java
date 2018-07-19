@@ -1,8 +1,12 @@
 package controller.servlets;
 
-import controller.core.userController;
-import controller.utilities.DataSource;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.internshipDao;
+import controller.dao.internshipDaoImpl;
+import controller.userController;
 import controller.utilities.SecurityFilter;
+import model.Internship;
 import model.Security;
 
 import javax.servlet.RequestDispatcher;
@@ -34,7 +38,7 @@ public class addInternshipsServlet extends HttpServlet {
 
         // Get the parameter values
         companyMail =   homeServlet.loggedUserEmail;
-        companyId =     controller.core.companyDAO.getCompanyIDbyEmail(companyMail);
+        //companyId =     controller.core.companyDAO.getCompanyIDbyEmail(companyMail);
         nome            = request.getParameter("nome");
         descrizione     = request.getParameter("descrizione");
         luogo           = request.getParameter("luogo");
@@ -44,9 +48,6 @@ public class addInternshipsServlet extends HttpServlet {
         modalita        = request.getParameter("modalita");
         rimborsi_spese_facilitazioni_previste       = request.getParameter("rimborsi_spese_facilitazioni_previste");
 
-
-
-
         // If strings are not initalized, it means there was an empty request by the user
         // So we return false
         if (nome == null && luogo == null && orari == null && ore == null && obiettivi == null && modalita == null &&
@@ -55,55 +56,33 @@ public class addInternshipsServlet extends HttpServlet {
             return false;
         }
 
-        boolean regOk = userController.checkAddInternships(request, nome, descrizione, luogo,
+        boolean checkOk = userController.checkAddInternships(request, nome, descrizione, luogo,
                 orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste);
 
-        if (regOk) {
+        if (checkOk) {
 
+            internshipDao internshipDao = new internshipDaoImpl();
+            boolean addOK = internshipDao.addInternship(companyId, nome, descrizione, luogo, orari, ore, obiettivi,
+                    modalita, rimborsi_spese_facilitazioni_previste);
 
-            try {
+            if (addOK) {
+                boolean added = true;
+                request.setAttribute("added", added);
+                request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
 
-                // Connect to DB
-                Connection dbConnection = DataSource.getInstance().getConnection();
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home_company");
 
-                PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?)");
+                dispatcher.forward(request, response);
+            } else {
 
-                ps.setNull(1, Types.INTEGER);
-                ps.setInt(2, companyId);
-                ps.setString(3, nome);
-                ps.setString(4, descrizione);
-                ps.setString(5, luogo);
-                ps.setString(6, orari);
-                ps.setString(7, ore);
-                ps.setString(8, obiettivi);
-                ps.setString(9, modalita);
-                ps.setString(10, rimborsi_spese_facilitazioni_previste);
+                action_default_company(request, response);
 
-                int i = ps.executeUpdate();
-
-                // Registration ok
-                if (i > 0) {
-                    // Set two attributes to show in the login page
-                    boolean added = true;
-                    request.setAttribute("added", added);
-                    request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
-
-                    RequestDispatcher dispatcher
-                            = request.getServletContext().getRequestDispatcher("/home_company");
-
-                    dispatcher.forward(request, response);
-                }
-
-            } catch (Exception se) {
-                se.printStackTrace();
+                //Clear the errors list
+                userController.errorsList.clear();
             }
-        } else {
-            action_default_company(request, response);
-
-             //Clear the errors list
-            userController.errorsList.clear();
         }
+
+
         return false;
     }
 

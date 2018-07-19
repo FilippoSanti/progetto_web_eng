@@ -1,8 +1,10 @@
 package controller.servlets;
 
-import controller.core.companyDAO;
-import controller.core.userController;
-import controller.core.userDAO;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
+import controller.userController;
 import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
@@ -126,10 +128,12 @@ public class editProfileServlet extends HttpServlet {
     /** User */
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        UserDao userDao = new UserDaoImpl();
         display_user_image(request);
 
         // Get the user object and set the attribute
-        User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
+        User user = userDao.getUser(homeServlet.loggedUserEmail);
+
         request.setAttribute("userData", user);
 
         RequestDispatcher dispatcher
@@ -142,9 +146,10 @@ public class editProfileServlet extends HttpServlet {
     /** Company */
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        companyDao compDao = new companyDaoImpl();
         display_user_image(request);
 
-        Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+        Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
 
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);
@@ -163,6 +168,9 @@ public class editProfileServlet extends HttpServlet {
 
     public void display_user_image(HttpServletRequest request) throws PropertyVetoException, SQLException, IOException {
 
+        UserDao userDao = new UserDaoImpl();
+        companyDao compDao = new companyDaoImpl();
+
         // Find out if the session belongs to a user or a company
         String userType = null;
         if (userController.checkSession(request,"studente")) {
@@ -175,7 +183,7 @@ public class editProfileServlet extends HttpServlet {
 
             // Check if a user image has been uploaded by the user
             // Other wise we include the default image
-            User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
+            User user = userDao.getUser(homeServlet.loggedUserEmail);
             String userID = String.valueOf(user.getId());
 
             ServletContext context = getServletContext();
@@ -193,7 +201,7 @@ public class editProfileServlet extends HttpServlet {
         } else {
 
             // Same thing but for the companies
-            Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+            Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
             String userID = String.valueOf(company.getCompany_id());
 
             ServletContext context = getServletContext();
@@ -243,8 +251,10 @@ public class editProfileServlet extends HttpServlet {
 
         } else {
 
+            companyDao compDao = new companyDaoImpl();
+
             // Update the fields in the DB
-            companyDAO.updateCompanyField(email_login, ragione_sociale, indirizzo_legle, cf_rapp, partita_iva,
+            compDao.updateCompanyField(email_login, ragione_sociale, indirizzo_legle, cf_rapp, partita_iva,
                     nome_cognome_rapp, nome_cognome_tir, telefono, email_tirocini, foro_comp, provincia, true, descrizione, email_login);
 
             response.sendRedirect("/editProfile");
@@ -256,6 +266,7 @@ public class editProfileServlet extends HttpServlet {
         String email_login   = request.getParameter("email_login");
         String password      = request.getParameter("password_company");
         String ripeti_pass   = request.getParameter("ripeti_password_company");
+        companyDao compDao = new companyDaoImpl();
 
         if (password.isEmpty() || email_login.isEmpty()) {
             // Signal that an error has occurred
@@ -268,7 +279,7 @@ public class editProfileServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Passwords don't match");
             action_company(request, response);
         } else {
-            companyDAO.updateEmailAndPassword(email_login, password, email_login);
+            compDao.updateEmailAndPassword(email_login, password, email_login);
             response.sendRedirect("/logout");
         }
     }
@@ -278,6 +289,7 @@ public class editProfileServlet extends HttpServlet {
 
         // We get the user email from the session
         String emailQuery = homeServlet.loggedUserEmail;
+        UserDao userDao = new UserDaoImpl();
 
         String provincia      = request.getParameter("provincia");
         String provincia_n    = request.getParameter("provincia_n");
@@ -304,7 +316,7 @@ public class editProfileServlet extends HttpServlet {
         } else {
 
             // Update the fields in the DB
-            userDAO.updateUserFields(nome, data_nascita, provincia, provincia_n, residenza, citta,
+            userDao.updateUserInfo(nome, data_nascita, provincia, provincia_n, residenza, citta,
                     cap,telefono, corso, cognome,codice_fiscale,luogo_nascita,emailQuery);
 
             response.sendRedirect("/editProfile");
@@ -316,6 +328,7 @@ public class editProfileServlet extends HttpServlet {
         String email_login   = request.getParameter("email_student");
         String password      = request.getParameter("password_student");
         String ripeti_pass   = request.getParameter("ripeti_password_student");
+        UserDao userDao = new UserDaoImpl();
 
         if (password.isEmpty() || email_login.isEmpty()) {
             // Signal that an error has occurred
@@ -328,7 +341,7 @@ public class editProfileServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Passwords don't match");
             action_student(request, response);
         } else {
-            userDAO.updateEmailAndPassword(email_login, password, email_login);
+            userDao.updateUserData(email_login, password, email_login);
             response.sendRedirect("/logout");
         }
     }

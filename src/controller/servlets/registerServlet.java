@@ -1,21 +1,17 @@
 package controller.servlets;
 
-import controller.core.userController;
-import controller.utilities.DataSource;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.userController;
 import controller.utilities.Utils;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -67,10 +63,10 @@ public class registerServlet extends HttpServlet {
             return false;
         }
 
-        boolean regOk = userController.checkStudentRegistration(request, response, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+        boolean checkOk = userController.checkStudentRegistration(request, response, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                     residenza, citta, cap_string, telefono, corso, email, cod_fiscale, luogo_nascita);
 
-        if (regOk) {
+        if (checkOk) {
 
             // See if the handicap checkbox has been set and assign a value to a boolean variable
             boolean handicapBool = false;
@@ -83,58 +79,30 @@ public class registerServlet extends HttpServlet {
             // And insert them in the DB
             int capInt = Integer.parseInt(request.getParameter("CAP"));
 
-            try {
+            // Add the user to DB
+            UserDao userDAO = new UserDaoImpl();
+            boolean regOK = userDAO.addUser(nome, pass,dateString, provincia, provincia_n, residenza, citta, capInt,
+                    telefono, corso, email, handicapBool, cognome, cod_fiscale, luogo_nascita);
 
-                // Connect to DB
-                Connection dbConnection = DataSource.getInstance().getConnection();
+            if (regOK) {
+                registeredMessage = "Registered successfully";
 
-                PreparedStatement ps = dbConnection.prepareStatement
-                        ("insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                RequestDispatcher dispatcher
+                        = request.getServletContext().getRequestDispatcher("/login");
 
-                ps.setNull(1, Types.INTEGER);
-                ps.setString(2, nome);
-                ps.setString(3, Utils.hashPassword(pass));
-                ps.setDate(4, Utils.convertDate(dateString));
-                ps.setString(5, provincia);
-                ps.setString(6, provincia_n);
-                ps.setString(7, residenza);
-                ps.setString(8, citta);
-                ps.setInt(9, capInt);
-                ps.setString(10, telefono);
-                ps.setString(11, corso);
-                ps.setString(12, email);
-                ps.setBoolean(13, handicapBool);
-                ps.setString(14, cognome);
-                ps.setString(15, cod_fiscale);
-                ps.setString(16, "user");
-                ps.setString(17, luogo_nascita);
+                dispatcher.forward(request, response);
+            } else {
+                action_default_student(request, response);
 
-                int i = ps.executeUpdate();
-
-                // Registration ok
-                if (i > 0) {
-
-                    registeredMessage = "Registered successfully";
-
-                    RequestDispatcher dispatcher
-                            = request.getServletContext().getRequestDispatcher("/login");
-
-                    dispatcher.forward(request, response);
-                }
-
-            } catch (Exception se) {
-                se.printStackTrace();
+                // Clear the errors list
+                userController.errorsList.clear();
             }
-        } else {
-            action_default_student(request, response);
 
-            // Clear the errors list
-            userController.errorsList.clear();
         }
         return false;
     }
 
-    /** Registration of a company **/
+    /** Registration of a company
     protected boolean action_register_company(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
@@ -166,7 +134,7 @@ public class registerServlet extends HttpServlet {
             return false;
         }
 
-        boolean regOK = controller.core.userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap,
+        boolean regOK = userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap,
                 nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass);
 
         if (regOK) {
@@ -218,7 +186,7 @@ public class registerServlet extends HttpServlet {
             userController.errorsList.clear();
         }
         return false;
-    }
+    } **/
 
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -283,7 +251,7 @@ public class registerServlet extends HttpServlet {
 
             // Company registration request
             if (paramValue.equals("company") && submit_string.equals("true")) {
-                action_register_company(request, response);
+                //action_register_company(request, response);
                 return;
             }
 
@@ -306,8 +274,8 @@ public class registerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // If the student|company is already logged in, we redirect him to the home page
-        if (controller.core.userController.checkSession(request, "studente") ||
-                controller.core.userController.checkSession(request, "azienda")) {
+        if (userController.checkSession(request, "studente") ||
+                userController.checkSession(request, "azienda")) {
             response.sendRedirect("/home");
         } else
             try {

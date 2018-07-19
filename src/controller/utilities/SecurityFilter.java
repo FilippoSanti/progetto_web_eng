@@ -1,6 +1,6 @@
 package controller.utilities;
 
-import controller.core.userController;
+import controller.userController;
 import model.Security;
 
 import javax.servlet.http.HttpServletRequest;

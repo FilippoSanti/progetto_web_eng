@@ -1,6 +1,6 @@
 package controller.servlets;
 
-import controller.core.userController;
+import controller.userController;
 import model.Company;
 import model.User;
 import javax.servlet.ServletException;
@@ -147,8 +147,8 @@ public class loginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // If the student|company is already logged in, we redirect him to the home page
-        if (controller.core.userController.checkSession(request, "studente") ||
-                controller.core.userController.checkSession(request, "azienda")) {
+        if (userController.checkSession(request, "studente") ||
+                userController.checkSession(request, "azienda")) {
             response.sendRedirect("/home");
         } else { processRequest(request, response); }
     }

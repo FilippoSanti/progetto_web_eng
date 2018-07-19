@@ -1,6 +1,7 @@
 package controller.servlets;
 
-import controller.core.userDAO;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
 import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
@@ -84,13 +85,14 @@ public class homeServlet extends HttpServlet {
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         HttpSession session = request.getSession();
+        UserDao userDao = new UserDaoImpl();
 
         // Get the user object attribute containing the user email
         User userModel = (User) session.getAttribute("loggedInUser");
         loggedUserEmail = userModel.getEmail();
 
         //Check if the user is an admin
-        if (userDAO.checkAdmin(loggedUserEmail)) {
+        if (userDao.checkAdmin(loggedUserEmail)) {
             System.out.println("You look like an admin");
         } else System.out.println("You're just a simple user");
 

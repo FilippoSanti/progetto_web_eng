@@ -1,7 +1,10 @@
 package controller.servlets;
 
-import controller.core.companyDAO;
-import controller.core.userController;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
+import controller.userController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -15,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
-import controller.core.userDAO;
 import model.Company;
 import model.User;
 
@@ -32,6 +34,9 @@ public class uploadServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IOException, ServletException {
+
+        UserDao userDao = new UserDaoImpl();
+        companyDao compDao = new companyDaoImpl();
 
         // Retrieves <input type="file" name="file">
         Part filePart = request.getPart("file");
@@ -55,15 +60,8 @@ public class uploadServlet extends HttpServlet {
 
         if (userType.equals("student")) {
 
-            try {
-                User user = userDAO.getUserDataByEmail(homeServlet.loggedUserEmail);
-                userID = String.valueOf(user.getId());
-
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            User user = userDao.getUser(homeServlet.loggedUserEmail);
+            userID = String.valueOf(user.getId());
 
             String filename = "/assets/images/users/"+ "user_"+userID+".png";
             pathname = context.getRealPath(filename);
@@ -71,7 +69,7 @@ public class uploadServlet extends HttpServlet {
         } else {
 
             try {
-                Company company = companyDAO.getCompanyDataByEmail(homeServlet.loggedUserEmail);
+                Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
                 userID = String.valueOf(company.getCompany_id());
 
             } catch (PropertyVetoException e) {

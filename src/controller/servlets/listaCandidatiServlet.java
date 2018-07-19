@@ -1,6 +1,5 @@
 package controller.servlets;
 
-import controller.core.internship_requestDAO;
 import model.InternshipRequest;
 
 import javax.servlet.ServletException;
@@ -54,13 +53,13 @@ public class listaCandidatiServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        String email_azie = homeServlet.loggedUserEmail;
-        int az_id = controller.core.companyDAO.getCompanyIDbyEmail(email_azie);
+      //  String email_azie = homeServlet.loggedUserEmail;
+        //int az_id = controller.core.companyDAO.getCompanyIDbyEmail(email_azie);
 
-       int tir_id = 13;
-        ArrayList<InternshipRequest> internshipsArray = internship_requestDAO.getListaCandidatibyTirocinioId(tir_id, az_id);
-        request.setAttribute("listaCandidati", internshipsArray);
-        request.getRequestDispatcher("/WEB-INF/views/listaCandidati.ftl").forward(request, response);
+       //int tir_id = 13;
+       // ArrayList<InternshipRequest> internshipsArray = internship_requestDAO.getListaCandidatibyTirocinioId(tir_id, az_id);
+       // request.setAttribute("listaCandidati", internshipsArray);
+       // request.getRequestDispatcher("/WEB-INF/views/listaCandidati.ftl").forward(request, response);
 
     }
 
