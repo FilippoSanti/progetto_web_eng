@@ -28,6 +28,7 @@ public class companyDaoImpl implements companyDao {
             "      `nome_cognome_tirocini`= ?, `telefono_tirocini` = ?, `email_tirocini`= ?, `foro_competente`= ?,\n" +
             "      `provincia`= ?, `abilitata`= ?, `descrizione` = ?\n" +
             "WHERE `azienda`.`email_login` = ?";
+    private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
 
     /**
      * Get a company object by its login_email
@@ -248,5 +249,27 @@ public class companyDaoImpl implements companyDao {
 
         preparedStmt.executeUpdate();
 
+    }
+
+    public int getCompanyIdbyEmail(String email) throws PropertyVetoException, SQLException, IOException {
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_ID_MAIL);
+
+        int az_id = 0;
+
+        pst.setString(1, email);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_id = rs.getInt("azienda_id");
+
+        }
+
+        dbConnection.close();
+        return az_id;
     }
 }

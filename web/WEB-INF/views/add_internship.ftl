@@ -70,7 +70,7 @@
 
                             </#if>
 
-                        <form method="post" action="add_internship?user=company&submit=true" class="form-validation">
+                        <form method="post" action="internships?view=add&submit=true" class="form-validation">
                         <div class="p-20 m-b-20">
 
                             <div class="form-group">

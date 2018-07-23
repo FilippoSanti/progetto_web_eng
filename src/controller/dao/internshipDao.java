@@ -15,6 +15,6 @@ public interface internshipDao {
 
     public ArrayList<InternshipRequest> getListaCandidatibyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException;
     public boolean addInternship(int companyId, String nome, String descrizione, String luogo,
-                                 String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException;
+                                 String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException, IOException, PropertyVetoException;
 
 }

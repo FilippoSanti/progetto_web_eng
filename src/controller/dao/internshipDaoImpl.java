@@ -112,13 +112,12 @@ public class internshipDaoImpl implements internshipDao {
      * Add a tirocinio
      */
     public boolean addInternship(int companyId, String nome, String descrizione, String luogo,
-                                        String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException {
-        Connection conn = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+                                        String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException, IOException, PropertyVetoException {
 
-        PreparedStatement ps = conn.prepareStatement
-                    ("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?)");
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?)");
+
+
 
         ps.setNull(1, Types.INTEGER);
         ps.setInt(2, companyId);
