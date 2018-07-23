@@ -102,13 +102,13 @@
 
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Don't have an account? <a href="/register" class="text-dark m-l-5">Sign Up</a></p>
+                                    <p class="text-muted">Don't have an account? <ins><a href="/register" class="text-dark m-l-5">Sign Up</a></ins></p>
                                 </div>
                             </div>
 
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">You can also enter the site as<a href="/home" class="text-dark m-l-5"> Anonymous User</a></p>
+                                    <p class="text-muted">You can also enter the site as<ins><a href="/home" class="text-dark m-l-5"> Anonymous User</a></ins></p>
                                 </div>
                             </div>
 
