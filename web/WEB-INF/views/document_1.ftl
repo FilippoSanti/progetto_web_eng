@@ -148,28 +148,27 @@
             <div class="p" id="p87" style="top:306.83002pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:65.27999pt;">Nominativo</div>
             <div class="p" id="p88" style="top:306.83002pt;left:125.25599pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:17.375984pt;">del</div>
             <div class="p" id="p89" style="top:306.83002pt;left:146.00397pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:61.248pt;">tirocinante</div>
-            <div class="p" id="p90" style="top:306.83002pt;left:210.77pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:326.71222pt;">_________________________________________________</div>
+            <div class="p" id="p90" style="top:306.83002pt;left:210.77pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:326.71222pt;">${nome_studente}  ${cognome_studente}</div>
             <div class="p" id="p91" style="top:334.43pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:26.664001pt;">Nato</div>
             <div class="p" id="p92" style="top:334.43pt;left:86.664pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:6.671997pt;">a</div>
-            <div class="p" id="p93" style="top:334.43pt;left:100.1pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:341.244pt;">__________________________________________Prov._____</div>
+            <div class="p" id="p93" style="top:334.43pt;left:100.1pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:341.244pt;">${luogo_nascita}        Prov.${prov_nascita}</div>
             <div class="p" id="p94" style="top:334.43pt;left:444.716pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:5.328003pt;">il</div>
-            <div class="p" id="p95" style="top:334.43pt;left:453.38pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:53.31604pt;">____/___/</div>
-            <div class="p" id="p96" style="top:334.43pt;left:510.06805pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:26.687988pt;">____</div>
+            <div class="p" id="p95" style="top:334.43pt;left:453.38pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:53.31604pt;">${data_nascita}</div>
             <div class="p" id="p97" style="top:362.03pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:57.40799pt;">Residente</div>
             <div class="p" id="p98" style="top:362.03pt;left:117.41999pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:10.704002pt;">in</div>
-            <div class="p" id="p99" style="top:362.03pt;left:131.42pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:321.24002pt;">____________________________________________Prov.</div>
-            <div class="p" id="p100" style="top:362.03pt;left:456.03204pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:54.70804pt;">(_______)</div>
+            <div class="p" id="p99" style="top:362.03pt;left:131.42pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:321.24002pt;">${indirizzo_residenza}    Prov.</div>
+            <div class="p" id="p100" style="top:362.03pt;left:456.03204pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:54.70804pt;">(${prov_residenza})</div>
             <div class="p" id="p101" style="top:389.63pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:40.01999pt;">Codice</div>
             <div class="p" id="p102" style="top:389.63pt;left:100.03199pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:37.411995pt;">fiscale</div>
-            <div class="p" id="p103" style="top:389.63pt;left:137.42pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:399.9601pt;">____________________________________________________________</div>
+            <div class="p" id="p103" style="top:389.63pt;left:137.42pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:399.9601pt;">${cf_studente}</div>
             <div class="p" id="p104" style="top:417.25pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:50.04pt;">Telefono</div>
-            <div class="p" id="p105" style="top:417.25pt;left:110.06pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:426.68414pt;">________________________________________________________________</div>
+            <div class="p" id="p105" style="top:417.25pt;left:110.06pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:426.68414pt;">${telefono_studente}</div>
             <div class="p" id="p106" style="top:445.61618pt;left:148.58pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:30.965652pt;">Attuale</div>
             <div class="p" id="p107" style="top:445.61618pt;left:182.40417pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:47.73831pt;">condizione</div>
             <div class="p" id="p108" style="top:445.61618pt;left:232.87152pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:35.587067pt;">(barrare</div>
             <div class="p" id="p109" style="top:445.61618pt;left:271.347pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:7.6891174pt;">la</div>
             <div class="p" id="p110" style="top:445.61618pt;left:281.805pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:31.144897pt;">casella</div>
-            <div class="p" id="p111" style="top:445.61618pt;left:315.89pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:5.5377502pt;">–</div>
+            <div class="p" id="p111" style="top:445.61618pt;left:315.89pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:5.5377502pt;">-</div>
             <div class="p" id="p112" style="top:445.61618pt;left:324.29pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:43.78415pt;">possibilit&#224</div>
             <div class="p" id="p113" style="top:445.61618pt;left:370.91278pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:7.748871pt;">di</div>
             <div class="p" id="p114" style="top:445.61618pt;left:381.46042pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;letter-spacing:0.024pt;width:29.989502pt;">doppia</div>
@@ -180,7 +179,7 @@
             <div class="p" id="p119" style="top:459.97pt;left:157.39198pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:9.371994pt;">di</div>
             <div class="p" id="p120" style="top:459.97pt;left:170.09998pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:37.355972pt;">Laurea</div>
             <div class="p" id="p121" style="top:459.97pt;left:210.83995pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:12.587997pt;">in:</div>
-            <div class="p" id="p122" style="top:459.97pt;left:230.03995pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:306.93826pt;">______________________________________________</div>
+            <div class="p" id="p122" style="top:459.97pt;left:230.03995pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:306.93826pt;">${cdl_studente}</div>
             <div class="p" id="p123" style="top:487.642pt;left:56.64pt;line-height:13.247986pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.024pt;width:10.692001pt;">&#x25FB</div> <!--   &#x2612   casella barrata  -->
             <div class="p" id="p124" style="top:487.57pt;left:70.704pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:57.408012pt;">Diplomato.</div>
             <div class="p" id="p125" style="top:487.57pt;left:131.48401pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:43.968002pt;">Diploma</div>
@@ -229,13 +228,13 @@
             <div class="p" id="p168" style="top:653.2pt;left:281.43192pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:51.912018pt;">handicap:</div>
             <div class="p" id="p169" style="top:727.38pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:75.28801pt;">Ente/Azienda</div>
             <div class="p" id="p170" style="top:727.38pt;left:135.3pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:53.255997pt;">ospitante</div>
-            <div class="p" id="p171" style="top:727.38pt;left:192.02pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:340.1282pt;">___________________________________________________</div>
+            <div class="p" id="p171" style="top:727.38pt;left:192.02pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:340.1282pt;">${nome_azienda}</div>
             <div class="p" id="p172" style="top:754.98pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:36.612007pt;">Luogo</div>
             <div class="p" id="p173" style="top:754.98pt;left:96.588005pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:10.667999pt;">di</div>
             <div class="p" id="p174" style="top:754.98pt;left:110.628006pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:73.95599pt;">effettuazione</div>
             <div class="p" id="p175" style="top:754.98pt;left:187.956pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:17.388pt;">del</div>
             <div class="p" id="p176" style="top:754.98pt;left:208.71599pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:47.243988pt;">tirocinio</div>
-            <div class="p" id="p177" style="top:754.98pt;left:259.49pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:273.37225pt;">_________________________________________</div>
+            <div class="p" id="p177" style="top:754.98pt;left:259.49pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:273.37225pt;">${luogo_tirocinio}</div>
             <div class="p" id="p178" style="top:675.88pt;left:178.82pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:10.703995pt;">Si</div>
             <div class="p" id="p179" style="top:674.63196pt;left:274.85pt;line-height:13.248047pt;font-family:ABCDEE Wingdings-Regular;font-size:12.0pt;letter-spacing:0.036pt;width:10.691986pt;">&#x25FB</div> <!--   &#x2612   casella barrata  -->
             <div class="p" id="p180" style="top:693.64pt;left:176.42pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.024pt;width:15.311996pt;">No</div>
@@ -265,22 +264,22 @@
             <div class="p" id="p200" style="top:138.2pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:41.328003pt;">Settore</div>
             <div class="p" id="p201" style="top:138.2pt;left:101.340004pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">di</div>
             <div class="p" id="p202" style="top:138.2pt;left:115.392pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:67.895966pt;">inserimento</div>
-            <div class="p" id="p203" style="top:138.2pt;left:186.74pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:346.98215pt;">____________________________________________________</div>
+            <div class="p" id="p203" style="top:138.2pt;left:186.74pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:346.98215pt;">${settore}</div>
             <div class="p" id="p204" style="top:165.79997pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:35.364pt;">Tempi</div>
             <div class="p" id="p205" style="top:165.79997pt;left:95.376pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">di</div>
             <div class="p" id="p206" style="top:165.79997pt;left:109.38pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:47.39997pt;">accesso</div>
             <div class="p" id="p207" style="top:165.79997pt;left:160.00797pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.043991pt;">ai</div>
             <div class="p" id="p208" style="top:165.79997pt;left:173.42395pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:30.647995pt;">locali</div>
             <div class="p" id="p209" style="top:165.79997pt;left:207.34795pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:50.688004pt;">aziendali</div>
-            <div class="p" id="p210" style="top:165.79997pt;left:261.53pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:273.37228pt;">_________________________________________</div>
+            <div class="p" id="p210" style="top:165.79997pt;left:261.53pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:273.37228pt;">${orari}</div>
             <div class="p" id="p211" style="top:193.40001pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:44.736pt;">Periodo</div>
             <div class="p" id="p212" style="top:193.40001pt;left:104.712pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">di</div>
             <div class="p" id="p213" style="top:193.40001pt;left:118.74pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:47.267998pt;">tirocinio</div>
             <div class="p" id="p214" style="top:193.40001pt;left:169.46pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:9.935989pt;">n.</div>
-            <div class="p" id="p215" style="top:193.40001pt;left:182.636pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:46.72795pt;">_______</div>
+            <div class="p" id="p215" style="top:193.40001pt;left:182.636pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:46.72795pt;">${mesi}</div>
             <div class="p" id="p216" style="top:193.40001pt;left:232.63995pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:25.440002pt;">mesi</div>
-            <div class="p" id="p217" style="top:193.40001pt;left:261.29596pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:152.13614pt;">dal___________________al</div>
-            <div class="p" id="p218" style="top:193.40001pt;left:416.6481pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:120.06009pt;">__________________</div>
+            <div class="p" id="p217" style="top:193.40001pt;left:261.29596pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:152.13614pt;">dal${mese_inizio}  al</div>
+            <div class="p" id="p218" style="top:193.40001pt;left:416.6481pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:120.06009pt;">${mese_fine}</div>
             <div class="p" id="p219" style="top:207.2pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:23.339996pt;">(con</div>
             <div class="p" id="p220" style="top:207.2pt;left:83.36399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:52.620003pt;">possibilit&#224</div>
             <div class="p" id="p221" style="top:207.2pt;left:139.35599pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:9.395996pt;">di</div>
@@ -297,23 +296,23 @@
             <div class="p" id="p232" style="top:234.83pt;left:104.016pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:18.671997pt;">ore</div>
             <div class="p" id="p233" style="top:234.83pt;left:126.07199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">di</div>
             <div class="p" id="p234" style="top:234.83pt;left:140.124pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:47.135986pt;">tirocinio</div>
-            <div class="p" id="p235" style="top:234.83pt;left:190.59598pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:66.75595pt;">__________</div>
+            <div class="p" id="p235" style="top:234.83pt;left:190.59598pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:66.75595pt;">${ore}</div>
             <div class="p" id="p236" style="top:234.83pt;left:260.72394pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:18.600006pt;">per</div>
             <div class="p" id="p237" style="top:234.83pt;left:282.65994pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:6.720001pt;">il</div>
             <div class="p" id="p238" style="top:234.83pt;left:292.61993pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:88.691986pt;">conseguimento</div>
             <div class="p" id="p239" style="top:234.83pt;left:384.64792pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">di</div>
             <div class="p" id="p240" style="top:234.83pt;left:398.68793pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:10.667999pt;">n.</div>
-            <div class="p" id="p241" style="top:234.83pt;left:412.6079pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:73.32007pt;">___________</div>
+            <div class="p" id="p241" style="top:234.83pt;left:412.6079pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:73.32007pt;">${cfu}</div>
             <div class="p" id="p242" style="top:234.83pt;left:489.3pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:24.659973pt;">CFU</div>
             <div class="p" id="p243" style="top:273.95pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:37.272003pt;">Tutore</div>
             <div class="p" id="p244" style="top:273.95pt;left:97.284004pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:71.964pt;">universitario</div>
-            <div class="p" id="p245" style="top:273.95pt;left:169.34pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:366.74417pt;">_______________________________________________________</div>
-            <div class="p" id="p246" style="top:301.55pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:280.09192pt;">Telefono___________________________________</div>
+            <div class="p" id="p245" style="top:273.95pt;left:169.34pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:366.74417pt;">${nome_tutor1} ${cognome_tutor1}</div>
+            <div class="p" id="p246" style="top:301.55pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:280.09192pt;">Email  ${email_tutor1}</div>
             <div class="p" id="p247" style="top:329.15pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:37.272003pt;">Tutore</div>
             <div class="p" id="p248" style="top:329.15pt;left:97.284004pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:54.071968pt;">aziendale</div>
             <div class="p" id="p249" style="top:329.15pt;left:151.46pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:3.3359985pt;">:</div>
-            <div class="p" id="p250" style="top:329.15pt;left:158.06pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:380.22626pt;">_________________________________________________________</div>
-            <div class="p" id="p251" style="top:356.75pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:280.09192pt;">Telefono___________________________________</div>
+            <div class="p" id="p250" style="top:329.15pt;left:158.06pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:380.22626pt;">${nome_tutor2} ${cognome_tutor2}</div>
+            <div class="p" id="p251" style="top:356.75pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.0449pt;width:280.09192pt;">Email  ${email_tutor2}</div>
             <div class="p" id="p252" style="top:384.35pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:40.727997pt;">Polizze</div>
             <div class="p" id="p253" style="top:384.35pt;left:100.644pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:-0.0449pt;width:69.26399pt;">assicurative</div>
             <div class="p" id="p254" style="top:384.35pt;left:170.06pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:3.3359985pt;">:</div>
@@ -357,9 +356,9 @@
             <div class="p" id="p292" style="top:530.41003pt;left:116.004pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;font-weight:bold;letter-spacing:0.024pt;width:35.171997pt;">INAIL:</div>
             <div class="p" id="p293" style="top:544.20996pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:53.471992pt;">Copertura</div>
             <div class="p" id="p294" style="top:544.20996pt;left:113.33999pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:63.312004pt;">assicurativa</div>
-            <div class="p" id="p295" style="top:544.20996pt;left:180.02399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:13.296005pt;">“in</div>
+            <div class="p" id="p295" style="top:544.20996pt;left:180.02399pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:13.296005pt;">"in</div>
             <div class="p" id="p296" style="top:544.20996pt;left:196.69199pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:29.35199pt;">conto</div>
-            <div class="p" id="p297" style="top:544.20996pt;left:229.41597pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:32.06401pt;">Stato”</div>
+            <div class="p" id="p297" style="top:544.20996pt;left:229.41597pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:32.06401pt;">Stato"</div>
             <div class="p" id="p298" style="top:544.20996pt;left:264.684pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:12.708008pt;">ex</div>
             <div class="p" id="p299" style="top:544.20996pt;left:280.608pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:17.399994pt;">art.</div>
             <div class="p" id="p300" style="top:544.20996pt;left:301.344pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:6.671997pt;">2</div>
@@ -371,16 +370,15 @@
             <div class="p" id="p306" style="top:571.6462pt;left:56.64pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:0.024pt;width:40.039207pt;">Obiettivi</div>
             <div class="p" id="p307" style="top:571.6462pt;left:99.44809pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:0.024pt;width:14.392197pt;">del</div>
             <div class="p" id="p308" style="top:571.6462pt;left:116.60917pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:0.024pt;width:42.64872pt;">tirocinio:</div>
-            <div class="p" id="p309" style="top:583.24pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:480.02414pt;">________________________________________________________________________</div>
-            <div class="p" id="p310" style="top:597.04pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:480.02414pt;">________________________________________________________________________</div>
-            <div class="p" id="p311" style="top:610.83997pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:466.71616pt;">______________________________________________________________________</div>
-            <div class="p" id="p312" style="top:610.83997pt;left:524.02pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:13.271973pt;">__</div>
-            <div class="p" id="p313" style="top:624.64pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">________________________________________________________________________</div>
+            <div class="p" id="p309" style="top:583.24pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:480.02414pt;">${obiettivi1}</div>
+            <div class="p" id="p310" style="top:597.04pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:480.02414pt;">${obiettivi2}</div>
+            <div class="p" id="p311" style="top:610.83997pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.024pt;width:466.71616pt;">${obiettivi3}</div>
+            <div class="p" id="p313" style="top:624.64pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">${obiettivi4}</div>
             <div class="p" id="p314" style="top:649.88617pt;left:56.64pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:43.83396pt;">Modalit&#224:</div>
-            <div class="p" id="p315" style="top:661.48pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">________________________________________________________________________</div>
-            <div class="p" id="p316" style="top:675.28pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">________________________________________________________________________</div>
-            <div class="p" id="p317" style="top:689.08pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.27826pt;">________________________________________________________________________</div>
-            <div class="p" id="p318" style="top:702.88pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">________________________________________________________________________</div>
+            <div class="p" id="p315" style="top:661.48pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">${modalita1}</div>
+            <div class="p" id="p316" style="top:675.28pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">${modalita2}</div>
+            <div class="p" id="p317" style="top:689.08pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.27826pt;">${modalita3}</div>
+            <div class="p" id="p318" style="top:702.88pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.02414pt;">${modalita4}</div>
             <div class="p" id="p319" style="top:741.94617pt;left:56.64pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:57.09073pt;">Facilitazioni</div>
             <div class="p" id="p320" style="top:741.94617pt;left:116.49961pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:41.67266pt;">previste:</div>
             <div class="p" id="p321" style="top:741.94617pt;left:160.97102pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:40.50731pt;">sussidio</div>
@@ -390,7 +388,7 @@
             <div class="p" id="p325" style="top:741.94617pt;left:280.28183pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:31.284332pt;">servizi</div>
             <div class="p" id="p326" style="top:741.94617pt;left:314.33505pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:42.11093pt;">aziendali</div>
             <div class="p" id="p327" style="top:741.94617pt;left:359.17505pt;line-height:11.105408pt;font-family:Arial;font-size:9.0pt;font-weight:bold;letter-spacing:-0.072pt;width:38.196594pt;">(mensa)</div>
-            <div class="p" id="p328" style="top:753.54pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.53806pt;">________________________________________________________________________</div>
+            <div class="p" id="p328" style="top:753.54pt;left:56.64pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:-0.072pt;width:480.53806pt;">${facilitazioni}</div>
         </div>
         <div class="page" id="page_2" style="width:595.32pt;height:841.92pt;overflow:hidden;">
             <img

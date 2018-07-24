@@ -208,13 +208,13 @@
             <div class="p" id="p155" style="top:393.25pt;left:375.07pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:15.972015pt;">del</div>
             <div class="p" id="p156" style="top:393.25pt;left:394.39pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:60.10199pt;">14.04.2018</div>
             <div class="p" id="p157" style="top:420.85pt;left:294.31pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:6.671997pt;">e</div>
-            <div class="p" id="p158" style="top:448.45pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:477.6822pt;">L'Ente/Azienda___________________________________________________________,</div>
+            <div class="p" id="p158" style="top:448.45pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:477.6822pt;">L'Ente/Azienda ${nome_azienda} ,</div>
             <div class="p" id="p159" style="top:462.25pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:19.379997pt;">con</div>
             <div class="p" id="p160" style="top:462.25pt;left:86.604pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:25.979996pt;">sede</div>
             <div class="p" id="p161" style="top:462.25pt;left:123.16799pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:32.00399pt;">legale</div>
             <div class="p" id="p162" style="top:462.25pt;left:165.74399pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:9.335999pt;">in</div>
             <div class="p" id="p163" style="top:462.25pt;left:185.532pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:51.947998pt;">(indirizzo)</div>
-            <div class="p" id="p164" style="top:462.25pt;left:247.99199pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:290.05225pt;">___________________________________________,</div>
+            <div class="p" id="p164" style="top:462.25pt;left:247.99199pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:290.05225pt;">${sede_legale}  ${prov_sede} ,</div>
             <div class="p" id="p165" style="top:476.05pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:37.40399pt;">Codice</div>
             <div class="p" id="p166" style="top:476.05pt;left:97.53599pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:38.00399pt;">Fiscale</div>
             <div class="p" id="p167" style="top:476.05pt;left:139.1pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:10.631989pt;">(o</div>
@@ -222,10 +222,10 @@
             <div class="p" id="p169" style="top:476.05pt;left:191.34798pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:23.538025pt;">IVA)</div>
             <div class="r" style="left:139.1pt;top:488.22998pt;width:3.9600067pt;height:0.83999634pt;background-color:#000000;">&nbsp;</div>
             <div class="r" style="left:210.89pt;top:488.22998pt;width:3.9600067pt;height:0.83999634pt;background-color:#000000;">&nbsp;</div>
-            <div class="p" id="p170" style="top:476.05pt;left:218.33pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:320.00424pt;">________________________________________________</div>
+            <div class="p" id="p170" style="top:476.05pt;left:218.33pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:320.00424pt;">${cf_piva_azienda}</div>
             <div class="p" id="p171" style="top:489.85pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:74.06398pt;">rappresentato</div>
             <div class="p" id="p172" style="top:489.85pt;left:134.07597pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:13.29599pt;">da</div>
-            <div class="p" id="p173" style="top:489.85pt;left:150.74396pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:266.58005pt;">________________________________________</div>
+            <div class="p" id="p173" style="top:489.85pt;left:150.74396pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:266.58005pt;">${nome_rappresentante}  ${cognome_rappresentante}</div>
             <div class="p" id="p174" style="top:531.25pt;left:268.97pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:57.40802pt;">Premesso:</div>
             <div class="p" id="p175" style="top:558.51996pt;left:56.64pt;line-height:14.651978pt;font-family:SymbolMT;font-size:12.0pt;letter-spacing:0.048pt;width:5.5200005pt;">&#9679</div>
             <div class="p" id="p176" style="top:559.72pt;left:90.864pt;line-height:13.380005pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.048pt;width:19.379997pt;">che</div>
