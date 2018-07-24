@@ -1,15 +1,24 @@
 package controller.utilities;
 
 import javax.imageio.ImageIO;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Timestamp;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Properties;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -151,4 +160,40 @@ public class Utils {
         }
         return true;
     }
+
+    /**
+     * Outgoing Mail (SMTP) Server
+     * requires TLS or SSL: smtp.gmail.com (use authentication)
+     * Use Authentication: Yes
+     * Port for TLS/STARTTLS: 587
+     */
+    public static void sendMail(String targetEmail, String messageBody) {
+        final String fromEmail = "unnamedgroup.official@gmail.com"; //requires valid gmail id
+        final String password = "unnamedpass123"; // correct password for gmail id
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        props.put("mail.smtp.port", "587"); //TLS Port
+        props.put("mail.smtp.auth", "true"); //enable authentication
+        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+
+        //create Authenticator object to pass in Session.getInstance argument
+        Authenticator auth = new Authenticator() {
+            //override the getPasswordAuthentication method
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session session = Session.getInstance(props, auth);
+
+        EmailUtil.sendEmail(session, targetEmail,"Unnamed Website Reset password", messageBody);
+    }
+
+    // Generate a a random UUID (Universally unique identifier)
+    public static String generateUUID() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
+
 }

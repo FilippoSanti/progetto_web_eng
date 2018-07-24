@@ -28,7 +28,7 @@ public class companyDaoImpl implements companyDao {
             "      `nome_cognome_tirocini`= ?, `telefono_tirocini` = ?, `email_tirocini`= ?, `foro_competente`= ?,\n" +
             "      `provincia`= ?, `abilitata`= ?, `descrizione` = ?\n" +
             "WHERE `azienda`.`email_login` = ?";
-    private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
+    private static final String CHECK_COMPANY_EMAIL = "SELECT * FROM azienda WHERE email_login=?";
 
     /**
      * Get a company object by its login_email
@@ -251,25 +251,37 @@ public class companyDaoImpl implements companyDao {
 
     }
 
-    public int getCompanyIdbyEmail(String email) throws PropertyVetoException, SQLException, IOException {
-        Connection dbConnection = null;
-        PreparedStatement pst = null;
+    public boolean checkCompany(String email) throws IOException, PropertyVetoException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
         ResultSet rs = null;
 
-        dbConnection = DataSource.getInstance().getConnection();
-        pst = dbConnection.prepareStatement(GET_ID_MAIL);
+        try {
+            Connection dbConnection = DataSource.getInstance().getConnection();
+            PreparedStatement pst = dbConnection.prepareStatement(CHECK_COMPANY_EMAIL);
 
-        int az_id = 0;
+            pst.setString(1, email);
+            rs = pst.executeQuery();
 
-        pst.setString(1, email);
-        rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
 
-        if (rs.next()) {
-            az_id = rs.getInt("azienda_id");
-
+        } catch (SQLException ex) {
+            // Exception handling stuff
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
         }
-
-        dbConnection.close();
-        return az_id;
+        return false;
     }
+
 }
