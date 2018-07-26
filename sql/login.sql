@@ -2,9 +2,9 @@
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Lug 24, 2018 alle 16:47
--- Versione del server: 10.1.34-MariaDB
+-- Host: localhost
+-- Creato il: Lug 16, 2018 alle 13:43
+-- Versione del server: 10.2.16-MariaDB
 -- Versione PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -96,25 +96,6 @@ INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `password_reset`
---
-
-CREATE TABLE `password_reset` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `expiration_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dump dei dati per la tabella `password_reset`
---
-
-INSERT INTO `password_reset` (`email`, `token`, `expiration_date`) VALUES
-('mikesh07mail@gmail.com', '869bf961-3fcb-468e-afd8-19238489d74b', '2018-07-24 16:01:43');
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `richieste_tirocinio`
 --
 
@@ -157,12 +138,11 @@ CREATE TABLE `studente` (
 --
 
 INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `ruolo`, `luogo_nascita`) VALUES
-(20, 'asdasda', '$2a$12$WIWILQmNpJJR1sUj54y9xOvwZJDeiO0gVa8G811sZrlFvDKJSkuG6', '2018-07-02', 'A', 'A', 'asdsa', 'asdasdasd', 303, '12313', 'ascasdadsa', 'mikesh07mail@gmail.com', 2, 'asdsadsa', 'adasdadas', 'admi', 'll'),
+(20, 'asdasda', '$2a$12$hk8SDaw10vC9Z2h2JDyyremzsEbidT//LKJW/TaosLU6J6kFCR99', '2018-07-02', 'A', 'A', 'asdsa', 'asdasdasd', 303, '12313', 'ascasdadsa', 'mikesh07mail@gmail.c', 2, 'asdsadsa', 'adasdadas', 'admi', 'll'),
 (21, 'sdasdasd', '$2a$12$oozOXSluADkqa/8Hbn0h3uHJ1UwR8UxNUM7gVDCZ7XmPfITJFcxIO', '2018-07-24', 'AL', 'AG', 'asdsadasd', 'asdasdasd', 3033, '123213123', 'asdsadasd', 'asd@lo.com', 1, 'adasdasd', 'adadasd', '', ''),
 (22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', '', ''),
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
-(24, 'asdasdasd', '$2a$12$Rk1PzmxUXWA/uxGoa9sjteu175MFZFaeepkZRVqaq2R8JCHuu1L1K', '2019-03-07', 'PD', 'PD', 'asdasdasd', 'asdsad', 3033, '13123123', 'asdasdsad', 'asdasdasd', 1, 'asdasdasdsad', 'kkokokokok', 'user', 'asdasda'),
-(25, 'sdfsdfsdfs', '$2a$12$4lo6ldSE4Q.uuMj8iWOQz.OxxEsYLRZhgDXQ0DnBKfZ6KWp5/4JIu', '2020-07-07', 'AG', 'AL', 'sdfsdfsdf', 'asdasdasdas', 3033, '345345', 'asdfasdasdasd', 'testuser@outlook.com', 1, 'asddasdasd', 'asddasda', 'user', 'asdasdasd');
+(24, 'asdasdasd', '$2a$12$Rk1PzmxUXWA/uxGoa9sjteu175MFZFaeepkZRVqaq2R8JCHuu1L1K', '2019-03-07', 'PD', 'PD', 'asdasdasd', 'asdsad', 3033, '13123123', 'asdasdsad', 'asdasdasd', 1, 'asdasdasdsad', 'kkokokokok', 'user', 'asdasda');
 
 --
 -- Indici per le tabelle scaricate
@@ -222,7 +202,7 @@ ALTER TABLE `richieste_tirocinio`
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Limiti per le tabelle scaricate

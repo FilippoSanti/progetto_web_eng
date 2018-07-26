@@ -141,7 +141,7 @@
 
     <servlet>
         <servlet-name>internships_list</servlet-name>
-        <servlet-class>controller.servlets.internships_listServlet</servlet-class>
+        <servlet-class>controller.servlets.internshipsListServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -218,6 +218,16 @@
     <servlet-mapping>
         <servlet-name>lista_candidati</servlet-name>
         <url-pattern>/lista_candidati</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>resetPassword</servlet-name>
+        <servlet-class>controller.servlets.resetPasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>resetPassword</servlet-name>
+        <url-pattern>/resetPassword</url-pattern>
     </servlet-mapping>
 
     <!--

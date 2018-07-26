@@ -80,7 +80,6 @@
                                 </div>
                             </div>
 <br>
-                            
 
                             <div class="form-group">
                                 <label for="luogo">Luogo<span class="col-md-2 col-form-label">*</span></label>

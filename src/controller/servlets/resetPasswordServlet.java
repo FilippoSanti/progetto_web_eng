@@ -200,7 +200,7 @@ public class resetPasswordServlet extends HttpServlet {
     }
 
     protected void action_show_reset_form(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/reinsert_forgetted_password.ftl").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/update_password.ftl").forward(request, response);
     }
 
     /**

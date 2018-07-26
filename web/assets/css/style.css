@@ -3453,6 +3453,10 @@ font-size: 12px;
   margin-left: 10px;
 }
 
+.mrglbladdint1{
+  margin-left: -10px;
+}
+
 .mrgnacceptint{
   margin-left: 10px;
 }

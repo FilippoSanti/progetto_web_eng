@@ -63,7 +63,7 @@
 
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">
-                                                <a href="pages-forget-password.html" class="text-muted pull-right font-14">Forgot your password?</a>
+                                                <a href="/resetPassword" class="text-muted pull-right font-14">Forgot your password?</a>
                                                 <label for="passwordlog">Password</label>
                                                 <input name="pass" class="form-control" type="password" required id="passwordlog" placeholder="Enter your password">
                                             </div>
@@ -79,14 +79,6 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="radio radio-info form-check-inline loground col-xs-12">
-                                                <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked>
-                                                <label for="inlineRadio1"> Student </label>
-                                            </div>
-                                            <div class="radio form-check-inline loground1">
-                                                <input type="radio" id="inlineRadio2" value="option2" name="radioInline" checked>
-                                                <label for="inlineRadio2"> Company </label>
-                                            </div>
                                         </div>
 
                                         <div class="form-group account-btn text-center m-t-10">

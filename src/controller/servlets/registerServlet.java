@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.ParseException;
 
 public class registerServlet extends HttpServlet {
 
@@ -23,7 +24,7 @@ public class registerServlet extends HttpServlet {
 
     /** Registration of a student**/
     protected boolean action_register_student(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException, ParseException {
 
         response.setContentType("text/html;charset=UTF-8");
 
@@ -210,7 +211,7 @@ public class registerServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, ParseException {
 
         // We need to initialize the boolean variable 'errors' to false
         // This is used to signal that an error has occurred during the registration
@@ -282,6 +283,8 @@ public class registerServlet extends HttpServlet {
                 processRequest(request, response);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
 
     }
@@ -297,6 +300,8 @@ public class registerServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
