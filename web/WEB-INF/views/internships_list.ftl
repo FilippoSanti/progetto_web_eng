@@ -342,7 +342,7 @@
                                         <tr>
                                             <th>Internship name</th>
                                             <th>Company ID</th>
-                                            <th>Description</th>
+                                            <th>Details</th>
                                             <th>Details</th>
                                         </tr>
                                         </thead>
@@ -354,7 +354,7 @@
                                           <tr>
                                               <td>${val.getNome()}</td>
                                               <td>${val.getAzienda_id()}</td>
-                                              <td>${val.getDescrizione()}</td>
+                                              <td>${val.getDettagli()}</td>
                                               <td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></td>
                                               </td>

@@ -1,5 +1,7 @@
 package controller.servlets;
 
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.utilities.SecurityFilter;
@@ -21,7 +23,6 @@ public class companyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, PropertyVetoException, SQLException {
 
-        response.setContentType("text/html;charset=UTF-8");
         request.setAttribute("companiesList", null);
 
         request.setAttribute("header", "");
@@ -31,27 +32,46 @@ public class companyServlet extends HttpServlet {
         String paramName = "view";
         String paramValue = request.getParameter(paramName);
 
+        response.setContentType("text/html;charset=UTF-8");
+
         Security securityModel = SecurityFilter.checkUsers(request);
 
         if (securityModel.getUser().equals("student")) {
             request.setAttribute("header", "student");
             request.setAttribute("sidemenu", "student");
+
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
         }
 
         if (securityModel.getUser().equals("azienda")) {
             request.setAttribute("header", "company");
             request.setAttribute("sidemenu", "company");
+
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
         }
 
         if (securityModel.getUser().equals("anonymous")) {
             request.setAttribute("header", "anonymous");
             request.setAttribute("sidemenu", "anonymous");
+
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
         }
 
         if (securityModel.getUser().equals("admin")) {
             request.setAttribute("header", "admin");
             request.setAttribute("sidemenu", "admin");
+
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/companies_list.ftl");
+            dispatcher.forward(request, response);
+            return;
         }
+
 
         try {
             // Check if the user has given the right parameters
@@ -88,11 +108,9 @@ public class companyServlet extends HttpServlet {
 
         // Get the company list
         ArrayList<Company> companiesArray = compDao.getCompaniesList();
-
-        System.out.println(companiesArray.get(0).getRagione_sociale());
-
         request.setAttribute("companiesList", companiesArray);
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
+
     }
 
     protected void action_view_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {

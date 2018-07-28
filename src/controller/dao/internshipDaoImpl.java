@@ -1,7 +1,6 @@
 package controller.dao;
 
 import controller.dao.config.DataSource;
-import controller.utilities.Utils;
 import model.Internship;
 import model.InternshipRequest;
 
@@ -35,10 +34,13 @@ public class internshipDaoImpl implements internshipDao {
                     rs.getInt("offerta_tirocinio_id"),
                     rs.getInt("azienda_id"),
                     rs.getString("nome"),
-                    rs.getString("descrizione"),
+                    rs.getString("dettagli"),
                     rs.getString("luogo"),
+                    rs.getString("mesi"),
                     rs.getString("orari"),
                     rs.getString("ore"),
+                    rs.getString("mese_iniziale"),
+                    rs.getString("mese_finale"),
                     rs.getString("obiettivi"),
                     rs.getString("modalita"),
                     rs.getString("rimborsi_spese_facilitazioni_previste")
@@ -67,10 +69,13 @@ public class internshipDaoImpl implements internshipDao {
                     rs.getInt("offerta_tirocinio_id"),
                     rs.getInt("azienda_id"),
                     rs.getString("nome"),
-                    rs.getString("descrizione"),
+                    rs.getString("dettagli"),
                     rs.getString("luogo"),
+                    rs.getString("mesi"),
                     rs.getString("orari"),
                     rs.getString("ore"),
+                    rs.getString("mese_iniziale"),
+                    rs.getString("mese_finale"),
                     rs.getString("obiettivi"),
                     rs.getString("modalita"),
                     rs.getString("rimborsi_spese_facilitazioni_previste")
@@ -111,25 +116,27 @@ public class internshipDaoImpl implements internshipDao {
     /**
      * Add a tirocinio
      */
-    public boolean addInternship(int companyId, String nome, String descrizione, String luogo,
-                                        String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException {
-        Connection conn = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+    public boolean addInternship(int companyId, String nome, String dettagli, String luogo, String mesi,
+                                 String orari, String ore, String meseIniziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException, IOException, PropertyVetoException {
 
-        PreparedStatement ps = conn.prepareStatement
-                    ("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?)");
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+
 
         ps.setNull(1, Types.INTEGER);
         ps.setInt(2, companyId);
         ps.setString(3, nome);
-        ps.setString(4, descrizione);
+        ps.setString(4, dettagli);
         ps.setString(5, luogo);
-        ps.setString(6, orari);
-        ps.setString(7, ore);
-        ps.setString(8, obiettivi);
-        ps.setString(9, modalita);
-        ps.setString(10, rimborsi_spese_facilitazioni_previste);
+        ps.setString(6, mesi);
+        ps.setString(7, orari);
+        ps.setString(8, ore);
+        ps.setString(9, meseIniziale);
+        ps.setString(10, meseFinale);
+        ps.setString(11, obiettivi);
+        ps.setString(12, modalita);
+        ps.setString(13, rimborsi_spese_facilitazioni_previste);
 
         int i = ps.executeUpdate();
 
