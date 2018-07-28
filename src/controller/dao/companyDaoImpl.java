@@ -89,6 +89,28 @@ public class companyDaoImpl implements companyDao {
         return companyModel;
     }
 
+    public int getCompanyIdbyEmail(String email) throws PropertyVetoException, SQLException, IOException {
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_ID_MAIL);
+
+        int az_id = 0;
+
+        pst.setString(1, email);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_id = rs.getInt("azienda_id");
+
+        }
+
+        dbConnection.close();
+        return az_id;
+    }
+
     /**
      * Add tirocinio
      */
