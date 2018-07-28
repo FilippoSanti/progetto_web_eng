@@ -25,7 +25,5 @@ public interface companyDao {
                                       String n_c_rapp, String n_c_tir, String t_t, String e_t, String f_c, String pr,
                                       boolean ab, String de, String targetUpdate) throws SQLException, IOException, PropertyVetoException;
     public void updateEmailAndPassword(String email, String password, String emailQuery) throws SQLException, IOException, PropertyVetoException;
-
-    public int getCompanyIdbyEmail(String email) throws PropertyVetoException, SQLException, IOException;
-
+    public boolean checkCompany(String email) throws IOException, PropertyVetoException;
 }

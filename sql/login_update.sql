@@ -2,9 +2,9 @@
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Lug 16, 2018 alle 13:43
--- Versione del server: 10.2.16-MariaDB
+-- Host: 127.0.0.1
+-- Creato il: Lug 28, 2018 alle 17:27
+-- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `login`
+-- Database: `login_2`
 --
+CREATE DATABASE IF NOT EXISTS `login_2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `login_2`;
 
 -- --------------------------------------------------------
 
@@ -42,29 +44,20 @@ CREATE TABLE `azienda` (
   `email_tirocini` varchar(40) NOT NULL,
   `foro_competente` varchar(50) NOT NULL,
   `provincia` varchar(255) NOT NULL,
-  `abilitata` tinyint(1) NOT NULL,
-  `descrizione` varchar(600) NOT NULL
+  `abilitata` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `azienda`
 --
 
-INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale`, `indirizzo_sede_legale`, `cf_rappresentante`, `partita_iva_rappresentante`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`, `descrizione`) VALUES
-(2, 'aa', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '-- Select --', 0, ''),
-(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', 'asdasdas', 'asdasdasd', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL', 0, ''),
-(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', 'aaaaaaa', 'asdaaa', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL', 0, ''),
-(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1, ''),
-(6, 'microsoftitalia@outlook.it', 'asd', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'foro_competente', 'provincia', 1, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.'),
-(7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 0, ''),
-(8, 'apple@outlook.com', '$2a$12$AT3B7PnxFNyF9laxKSGlIOBsPb57plfyTXTpDNq0.GI3wR.NUmwM.', 'asdasdsad', 'asdasdasd', 'adasdasd', 'dio canguro', 'asdasdasd', 'asdasdasd', 'Coglione', 'adasdasd', 'asdf', 'dio serpente', 1, 'Ciao sono un azienda  di merda porco dio'),
-(9, 'a', 'l', 'asdasdas', 'asdasdasd', 'asdasdad', 'adasdasd', 'asdasdasd', 'asdasdsad', 'asdasdsad', 'adasdsadsad', 'asdsadasd', 'AG', 1, 'Sonmo una merda di azienda dio porco sono proprio una merda dio schifosoooooooooooooooooooooooooooo'),
-(10, 'dio@paradiso.com', '$2a$12$5VZaT2yujrzzwrgOzxZ8HubwbaaA4qOIpuTnogS1XXXZ3rXFjbEQe', 'asdadsad', 'sadasdsa', 'adadasd', 'asdsadsad', 'asdsadsad', 'asdsadsa', 'adsadsad', 'adasdasda', 'adasdasd', 'AG', 0, 'Description Sample'),
-(11, 'alberto@stasi.co', '$2a$12$TgFuqRYfv66AN7h.gCJtTeljEkcBwpdNsTL5O2d4IA01RmZLFum.', 'aaaaaaa', 'aaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaaa', 'aaaaaaaaaa', 'aaaaaaaaaaaaa', 'AAAAAAAAAAAAAA', 'AAAAAAAAAAAA', 'AG', 0, 'Description Sample'),
-(12, 'dio@rapace.si', 'diomerda2', 'sadsadsd', 'asdasdasd', 'adasdsad', 'asdadad', 'asdasdasd', 'sadsadsad', 'adasdsad', 'dasdadasd', 'asdasdsadsa', 'AG', 0, 'Description Sample'),
-(13, 'paolu@cc.io', '$2a$12$ll03b5oB8mVSTCYuRLbwPOUua7R.5Vwl5zM3huK.EcrRvKvwFmbhi', 'sasadasd', 'asdasdasd', 'sdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdsad', 'asdasdsad', 'asdsadad', 'asdasdasd', 'AG', 0, 'Description Sample'),
-(14, 'mikeshx@lol.com', '$2a$12$NjbdUwyEWa8MQdMqUrO16uusEhnuyXMWj69A892Cl1uJR2uYJ4NsC', 'sdsadsad', 'asdasdasd', 'asdasdasd', 'sadasdd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'aasdasdasd', 'adasdasdasd', 'AL', 1, 'merda'),
-(15, 'diomerda@diocane.com', '$2a$12$N6Vhgyf/pmQWhq59MjFMT.tCMBhA41.mSGlxd82zm2x4cvqFz5JY.', 'asdasdsad', 'asdsadasd', 'asdasdasd', 'asdasdsad', 'asdasdsad', 'asdasdsad', 'dasdsadsad', 'asdasdsad', 'asdsadsad', 'AG', 1, 'Azienda di merda');
+INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale`, `indirizzo_sede_legale`, `cf_rappresentante`, `partita_iva_rappresentante`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`) VALUES
+(2, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '-- Select --', 0),
+(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', 'asdasdas', 'asdasdasd', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL', 0),
+(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', 'aaaaaaa', 'asdaaa', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL', 0),
+(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1),
+(6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0),
+(7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 0);
 
 -- --------------------------------------------------------
 
@@ -76,10 +69,13 @@ CREATE TABLE `offerta_tirocinio` (
   `offerta_tirocinio_id` int(11) NOT NULL,
   `azienda_id` int(11) NOT NULL,
   `nome` varchar(111) NOT NULL,
-  `descrizione` varchar(300) NOT NULL,
+  `dettagli` varchar(300) NOT NULL,
   `luogo` varchar(100) NOT NULL,
-  `orari` varchar(100) NOT NULL,
-  `ore` varchar(10) NOT NULL,
+  `mesi` varchar(11) NOT NULL,
+  `ore` varchar(100) NOT NULL,
+  `orari` varchar(10) NOT NULL,
+  `mese_iniziale` varchar(50) NOT NULL,
+  `mese_finale` varchar(60) NOT NULL,
   `obiettivi` varchar(300) NOT NULL,
   `modalita` varchar(30) NOT NULL,
   `rimborsi_spese_facilitazioni_previste` varchar(600) NOT NULL
@@ -89,9 +85,37 @@ CREATE TABLE `offerta_tirocinio` (
 -- Dump dei dati per la tabella `offerta_tirocinio`
 --
 
-INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `descrizione`, `luogo`, `orari`, `ore`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`) VALUES
-(1, 3, '', '', 'casamuraglia', '14 settembrice', '12', 'cacca', 'di merda', 'mai'),
-(2, 4, '', '', 'stoa', 'giovanni', '12', '66', '123123', 'certo che no');
+INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`) VALUES
+(1, 3, '', '', 'casamuraglia', '0', '14 settembrice', '12', '', '', 'cacca', 'di merda', 'mai'),
+(2, 4, '', '', 'stoa', '0', 'giovanni', '12', '', '', '66', '123123', 'certo che no'),
+(9, 7, 'asdasads', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasads', 'adsadsads', 'asdsdaads'),
+(10, 7, 'scaccomaggio', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasdasdsda', 'dffff', 'ccc'),
+(11, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo'),
+(12, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo'),
+(13, 7, 'sccccc', '', 'scccaaaa', '0', '08:00 - 12:00', '10', '', '', 'ccccc', 'r44444', 'faffaaf'),
+(34, 7, 'schiappozz', '', 'casamurana', '0', '08:00 - 12:00', '10', '', '', 'sdadd', 'ccacc', 'STO CAZ'),
+(35, 7, 'cazziemazzi', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asfaff', 'sfasfd', 'ffff'),
+(36, 7, 'AAAAAAAAAAA', 'SSSSSSSSS', 'DDDDDDDDDD', '1', '08:00 - 12:00', '10', 'January', 'January', 'FFFFFFFFF', 'AAAAAAAAAAAA', 'DDDDDDDDDDD'),
+(37, 7, 'GGGGGG', 'GGGGGGG', 'GGGGGG', '1', '08:00 - 12:00', '10', 'January', 'January', 'GGGGG', 'GGGGGGGG', 'GGGGGGGG');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `password_reset`
+--
+
+CREATE TABLE `password_reset` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expiration_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `password_reset`
+--
+
+INSERT INTO `password_reset` (`email`, `token`, `expiration_date`) VALUES
+('mikesh07mail@gmail.com', 'e39ccd90-3e50-45bf-a61c-b03e21903e59', '2018-07-26 11:37:50');
 
 -- --------------------------------------------------------
 
@@ -100,12 +124,22 @@ INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `
 --
 
 CREATE TABLE `richieste_tirocinio` (
-  `richieste_tirocinio_id` int(11) NOT NULL,
+  `richiesta_tirocinio_id` int(11) NOT NULL,
   `azienda_id` int(11) NOT NULL,
   `offerta_tirocinio_id` int(11) NOT NULL,
   `studente_id` int(11) NOT NULL,
   `accettata` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `richieste_tirocinio`
+--
+
+INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`) VALUES
+(1, 7, 1, 23, 0),
+(2, 7, 13, 20, 0),
+(3, 7, 13, 23, 0),
+(4, 7, 13, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -138,11 +172,11 @@ CREATE TABLE `studente` (
 --
 
 INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `ruolo`, `luogo_nascita`) VALUES
-(20, 'asdasda', '$2a$12$hk8SDaw10vC9Z2h2JDyyremzsEbidT//LKJW/TaosLU6J6kFCR99', '2018-07-02', 'A', 'A', 'asdsa', 'asdasdasd', 303, '12313', 'ascasdadsa', 'mikesh07mail@gmail.c', 2, 'asdsadsa', 'adasdadas', 'admi', 'll'),
+(20, 'asdasdas', '$2a$12$hk8SDaw10vC9Z2h2JDyyremzsEbidT//LKJW/TaosLU6J6kFCR9Me', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'admin', ''),
 (21, 'sdasdasd', '$2a$12$oozOXSluADkqa/8Hbn0h3uHJ1UwR8UxNUM7gVDCZ7XmPfITJFcxIO', '2018-07-24', 'AL', 'AG', 'asdsadasd', 'asdasdasd', 3033, '123213123', 'asdsadasd', 'asd@lo.com', 1, 'adasdasd', 'adadasd', '', ''),
 (22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', '', ''),
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
-(24, 'asdasdasd', '$2a$12$Rk1PzmxUXWA/uxGoa9sjteu175MFZFaeepkZRVqaq2R8JCHuu1L1K', '2019-03-07', 'PD', 'PD', 'asdasdasd', 'asdsad', 3033, '13123123', 'asdasdsad', 'asdasdasd', 1, 'asdasdasdsad', 'kkokokokok', 'user', 'asdasda');
+(24, 'catamarano', '$2a$12$TLo06N1XOkr8V2iJ07ERouT69C62y3E1Oth73ad8QmthL5P3.g4ii', '2018-09-07', 'AG', 'AL', 'aaa', 'ascccc', 4444, '11222', '1111', 'davide.ubaldi@outlook.it', 1, 'luzi', 'asdasdasd', 'user', 'asccc');
 
 --
 -- Indici per le tabelle scaricate
@@ -165,7 +199,7 @@ ALTER TABLE `offerta_tirocinio`
 -- Indici per le tabelle `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  ADD PRIMARY KEY (`richieste_tirocinio_id`),
+  ADD PRIMARY KEY (`richiesta_tirocinio_id`),
   ADD KEY `azienda_id` (`azienda_id`),
   ADD KEY `offerta_tirocinio_id` (`offerta_tirocinio_id`),
   ADD KEY `studente_id` (`studente_id`);
@@ -184,19 +218,19 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richieste_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
