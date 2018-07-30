@@ -12,6 +12,7 @@ Azienda:
 - Scelta dello studente
 - Compilazione valutazione (documento)
 - Visualizzazione profilo azienda
+- Eliminare un tirocinio inserito
 
 Studenti:
 
@@ -25,6 +26,3 @@ Generali:
 Admin:
 - Accettare richiesta di registrazione azienda
 - Gestire utenti e aziende
-
-
-
