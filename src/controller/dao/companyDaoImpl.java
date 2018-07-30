@@ -30,6 +30,7 @@ public class companyDaoImpl implements companyDao {
             "WHERE `azienda`.`email_login` = ?";
     private static final String CHECK_COMPANY_EMAIL = "SELECT * FROM azienda WHERE email_login=?";
     private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
+    private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     /**
      * Get a company object by its login_email
@@ -307,4 +308,50 @@ public class companyDaoImpl implements companyDao {
         return false;
     }
 
+    public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg,
+                           String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String nome_cognome_tir,
+                           String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(INSERT_USER);
+
+            ps.setNull(1, Types.INTEGER);
+            ps.setString(2, email_login);
+            ps.setString(3, Utils.hashPassword(password));
+            ps.setString(4, ragione_sociale);
+            ps.setString(5, indirizzo_sede_leg);
+            ps.setString(6, cf_rappresentante);
+            ps.setString(7, partita_iva_rap);
+            ps.setString(8, nome_cognome_rap);
+            ps.setString(9, nome_cognome_tir);
+            ps.setString(10, telefono_tirocini);
+            ps.setString(11, email_tirocini);
+            ps.setString(12, foro_competente);
+            ps.setString(13, provincia);
+            ps.setBoolean(14, false);
+            ps.setString(15, "Description Sample");
+
+            int i = ps.executeUpdate();
+
+            if (i > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { /* ignored */}
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) { /* ignored */}
+            }
+        }
+        return false;
+    }
 }
