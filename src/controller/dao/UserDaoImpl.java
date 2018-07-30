@@ -3,12 +3,14 @@ package controller.dao;
 
 import controller.dao.config.DataSource;
 import controller.utilities.Utils;
+import model.Company;
 import model.User;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class UserDaoImpl implements UserDao {
 
@@ -29,6 +31,7 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECK_EMAIL_USER = "SELECT * FROM studente WHERE email=?";
     private static final String GET_EMAIL_BY_TOKEN = "SELECT email FROM password_reset WHERE token = ?";
     private static final String GET_ID_BY_EMAIL = "SELECT email FROM studente WHERE studente_id = ?";
+    private static final String GET_USER_LIST = "SELECT * FROM `studente` ORDER BY `studente`.`studente_id` DESC";
 
     /**
      * Get a user object by an email
@@ -511,6 +514,62 @@ public class UserDaoImpl implements UserDao {
                 result = rs.getString("email");
             }
 
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<User> getUserList() {
+
+        ArrayList<User> result = new ArrayList<User>();
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_USER_LIST);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User usr = new User();
+
+                usr.setNome(rs.getString("nome"));
+                usr.setCognome(rs.getString("cognome"));
+                usr.setDate(rs.getString("date"));
+                usr.setProvincia(rs.getString("provincia"));
+                usr.setProvincia_n(rs.getString("provincia_nascita"));
+                usr.setResidenza(rs.getString("residenza"));
+                usr.setCitta(rs.getString("citta"));
+                usr.setCorso(rs.getString("corso"));
+                usr.setEmail(rs.getString("email"));
+                usr.setHandicap(rs.getBoolean("handicap"));
+                usr.setTel(rs.getString("telefono"));
+                usr.setNome(rs.getString("nome"));
+                usr.setCap(rs.getInt("cap"));
+                usr.setCod_fiscale(rs.getString("cod_fiscale"));
+                usr.setLuogo_nascita(rs.getString("luogo_nascita"));
+                usr.setId(rs.getInt("studente_id"));
+
+                result.add(usr);
+            }
         } catch (SQLException | PropertyVetoException | IOException e) {
             e.printStackTrace();
         } finally {

@@ -16,6 +16,7 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
@@ -34,7 +35,6 @@ public class profileServlet extends HttpServlet {
         String paramName  = "view";
         String paramValue = request.getParameter(paramName);
 
-        // If the userid is set
         if (paramValue == null) {
 
             // Start user profile visualization
@@ -46,9 +46,31 @@ public class profileServlet extends HttpServlet {
                 action_company(request, response, homeServlet.loggedUserEmail);
             } else action_load_login(request, response);
 
+        }
+
+        else if (paramValue.equals("all")) {
+            // List every user profiles
+            // This is only available to the administrator
+            action_show_all(request, response);
         } else {
+
+            // It means we are loading a userID
             action_view_userid(request, response, paramValue);
         }
+    }
+
+    /** List the user profiles */
+    private void action_show_all(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
+
+        UserDao uDao = new UserDaoImpl();
+
+        // Get the user list
+        ArrayList<User> userArray = uDao.getUserList();
+        request.setAttribute("userList", userArray);
+
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/students_list_admin.ftl");
+        dispatcher.forward(request, response);
     }
 
     /**

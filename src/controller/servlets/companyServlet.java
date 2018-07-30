@@ -31,8 +31,6 @@ public class companyServlet extends HttpServlet {
         String paramName = "view";
         String paramValue = request.getParameter(paramName);
 
-        System.out.println(paramValue);
-
         Security securityModel = SecurityFilter.checkUsers(request);
 
         if (securityModel.getUser().equals("student")) {
@@ -90,8 +88,6 @@ public class companyServlet extends HttpServlet {
 
         // Get the company list
         ArrayList<Company> companiesArray = compDao.getCompaniesList();
-
-        System.out.println(companiesArray.get(0).getRagione_sociale());
 
         request.setAttribute("companiesList", companiesArray);
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
