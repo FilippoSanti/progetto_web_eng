@@ -312,6 +312,7 @@
                             Make sure you fill each field on the form correctly!
                             </p>
                         </div>
+
                         <form method="post" action="internships?view=add&submit=true" class="form-validation">
                           <#if errors>
 
@@ -322,18 +323,15 @@
                           </#if>
 
 
-                            <div class="p-20 m-b-20">
+                        <div class="p-20 m-b-20">
 
                                 <div class="form-group">
-                                    <label for ="nome" class="col-md-2 col-form-label">Offer Name</label>
+                                    <label for ="nome" class="col-md-2 col-form-label">Internship Name</label>
                                     <div class="col-md-10">
-                                        <textarea class="form-control"  name="nome" rows="3" placeholder="Type here (max 3 rows)"></textarea>
+                                        <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
-                                <br>
-
-
-                        <div class="p-20 m-b-20">
+<br>
 
                             <div class="form-group">
                                 <label for ="dettagli" class="col-md-2 col-form-label">Offer Details</label>
@@ -346,18 +344,29 @@
 
                             <div class="form-group">
                                 <label for="luogo" class="col-md-12 col-form-label">Place</label>
-
-                                <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
+                                <div class="checkbox form-check-inline mrgnlftcheckboxadd">
+                                    <input type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label for="inlineCheckbox1"> Company Headquarters </label>
+                                </div>
+                                <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option1" checked>
+                                    <label for="inlineCheckbox2"> Remote Connection (from home) </label>
+                                </div>
+                                <div class="checkbox checkbox-pink form-check-inline mrgnlftcheckboxadd">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option1">
+                                    <label for="inlineCheckbox3"> Other </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
                             </div>
 <br>
+
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for ="mesi" class="col-md-5 col-form-label">N&#176 Months</label>
-                                        <select name="mesi"
-                                        <select class="form-control mrglbladdint">
+                                        <select name="mesi" class="form-control mrglbladdint">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -378,8 +387,8 @@
                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="ore"class="col-md-3 col-form-label">N&#176 Hours</label>
-                                        <select name="ore"<select class="form-control">
+                                        <label for="ore"class="col-md-6 col-form-label">N&#176 Hours</label>
+                                        <select name="ore" class="form-control">
                                             <option>10</option>
                                             <option>20</option>
                                             <option>30</option>
@@ -415,7 +424,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for ="orari"class="col-md-3 col-form-label">Timetables</label>
-                                        <select name="orari"<select class="form-control">
+                                        <select name="orari" class="form-control">
                                             <option>08:00 - 12:00</option>
                                             <option>09:00 - 13:00</option>
                                             <option>10:00 - 14:00</option>
@@ -429,11 +438,11 @@
                                 </div>
                             </div>
 <br>
-							<div class="row">
-								<div class="col-md-3 mrglbladdint">
-									<div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3 mrglbladdint">
+                                    <div class="form-group">
                                         <label for="meseIniziale"class="col-md-8 col-form-label">Start Month</label>
-                                        <select name="mese_iniziale"<select class="form-control">
+                                        <select name="mese_iniziale" class="form-control">
                                             <option>January</option>
                                             <option>February</option>
                                             <option>March</option>
@@ -448,14 +457,14 @@
                                             <option>December</option>
                                         </select>
                                     </div>
-								</div>
+                                </div>
 
-								<div class="col-md-1"></div>
+                                <div class="col-md-1"></div>
 
-								<div class="col-md-3  mrglbladdint1">
-									<div class="form-group">
+                                <div class="col-md-3 mrglbladdint1">
+                                    <div class="form-group">
                                         <label for="meseFinale"class="col-md-8 col-form-label">End Month</label>
-                                        <select name="mese_finale"<select class="form-control">
+                                        <select name="mese_finale" class="form-control">
                                             <option>January</option>
                                             <option>February</option>
                                             <option>March</option>
@@ -470,11 +479,11 @@
                                             <option>December</option>
                                         </select>
                                     </div>
-								</div>
+                                </div>
 
-								<div class="col-md-4"></div>
+                                <div class="col-md-4"></div>
 
-							</div>
+                            </div>
 <br>
                             <div class="form-group">
                                 <label for ="obiettivi" class="col-md-2 col-form-label">Generic Targets</label>
@@ -485,7 +494,7 @@
 <br>
 
                             <div class="form-group">
-                                <label for = "modalita"class="col-md-2 col-form-label">Work Mode</label>
+                                <label for = "modalita" class="col-md-2 col-form-label">Work Mode</label>
                                 <div class="col-md-10">
                                 <textarea class="form-control" name="modalita" rows="3" placeholder="Type here (max 3 rows)"></textarea>
                                 </div>
@@ -494,16 +503,34 @@
 
                             <div class="form-group">
                                 <label for="rimborsi_spese_facilitazioni_previste"class="col-md-12 col-form-label">Refunds and/or Facilitations</label>
-
-                                        <input type="text"name="rimborsi_spese_facilitazioni_previste"  class="form-control" placeholder="Some text value..." value="">
+                                <div class="checkbox form-check-inline mrgnlftcheckboxadd123">
+                                    <input type="checkbox" id="inlineCheckbox1" value="option10">
+                                    <label for="inlineCheckbox1"> Refound of Expenses </label>
+                                </div>
+                                <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd123">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option11" checked>
+                                    <label for="inlineCheckbox2"> Company Refectory </label>
+                                </div>
+                                <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd123">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option12" checked>
+                                    <label for="inlineCheckbox2"> Training Aid </label>
+                                </div>
+                                <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd">
+                                    <input type="checkbox" id="inlineCheckbox2" value="option13" checked>
+                                    <label for="inlineCheckbox2">Nothing </label>
+                                </div>
+                                <div class="checkbox checkbox-pink form-check-inline mrgnlftcheckboxadd">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option14">
+                                    <label for="inlineCheckbox3"> Other... </label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                          
 
-
-                                  
                 <div class="form-group formspace">             
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -516,8 +543,7 @@
                         <div class="col-md-3"></div>
                     </div>
                 </div>
-                    </form>
-
+                
 <br><br><br><br>
 
                     <div class="footer">
@@ -532,7 +558,7 @@
                     </div>
 
                 </div> <!-- content -->
-
+    </form>
             </div>
 
 
