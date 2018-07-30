@@ -233,7 +233,6 @@ public class UserDaoImpl implements UserDao {
 
         Connection conn = null;
         PreparedStatement pst = null;
-        ResultSet rs = null;
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(ADD_USER);
@@ -266,11 +265,6 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException | PropertyVetoException | IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                rs.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
             try {
                 pst.close();
             } catch (Exception sse) {
