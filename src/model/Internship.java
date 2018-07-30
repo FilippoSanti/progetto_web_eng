@@ -3,18 +3,18 @@ package model;
 public class Internship {
 
     private int iternship_id, azienda_id;
-    private String nome, descrizione, luogo, orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste;
+    private String nome,  dettagli, luogo,mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste;
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getDettagli() {
+        return dettagli;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setDettagli(String dettagli) {
+        this.dettagli = dettagli;
     }
 
     public void setNome(String nome) {
@@ -79,18 +79,46 @@ public class Internship {
         return rimborsi_spese_facilitazioni_previste;
     }
 
+    public void setMeseFinale(String meseFinale) {
+        this.meseFinale = meseFinale;
+    }
+
+    public void setMeseInziale(String meseInziale) {
+        this.meseInziale = meseInziale;
+    }
+
+    public void setMesi(String mesi) {
+        this.mesi = mesi;
+    }
+
+    public String getMesi() {
+        return mesi;
+    }
+
+    public String getMeseInziale()
+    {
+        return meseInziale;
+    }
+
+    public String getMeseFinale() {
+        return meseFinale;
+    }
+
     public void setRimborsi_spese_facilitazioni_previste(String rimborsi_spese_facilitazioni_previste) {
         this.rimborsi_spese_facilitazioni_previste = rimborsi_spese_facilitazioni_previste;
     }
 
-    public Internship(int iternship_id, int azienda_id,String  nome, String descrizione, String luogo, String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) {
+    public Internship(int iternship_id, int azienda_id,String  nome, String dettagli, String luogo, String mesi, String orari, String ore, String meseInziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) {
         this.iternship_id = iternship_id;
         this.azienda_id = azienda_id;
         this.nome = nome;
-        this.descrizione = descrizione;
+        this.dettagli = dettagli;
         this.luogo = luogo;
+        this.mesi = mesi;
         this.orari = orari;
         this.ore = ore;
+        this.meseInziale = meseInziale;
+        this.meseFinale = meseFinale;
         this.obiettivi = obiettivi;
         this.modalita = modalita;
         this.rimborsi_spese_facilitazioni_previste = rimborsi_spese_facilitazioni_previste;
