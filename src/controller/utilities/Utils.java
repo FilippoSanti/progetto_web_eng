@@ -1,17 +1,29 @@
 package controller.utilities;
 
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
+import controller.servlets.homeServlet;
+import controller.userController;
+import model.Company;
+import model.User;
+
 import javax.imageio.ImageIO;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Timestamp;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -115,11 +127,11 @@ public class Utils {
 
     public static void scale_img(InputStream imageInput, String filestring) throws IOException {
 
-        int           thumbWidth   = 128;
-        int           thumbHeight  = 128;
-        String        formatName   = "PNG";
-        BufferedImage thumb        = null;
-        File          file         = new File(filestring);
+        int thumbWidth = 128;
+        int thumbHeight = 128;
+        String formatName = "PNG";
+        BufferedImage thumb = null;
+        File file = new File(filestring);
 
         try {
             BufferedImage image = ImageIO.read(imageInput);
@@ -148,14 +160,10 @@ public class Utils {
     }
 
     // Check if a string is numeric
-    public static boolean isNumeric(String str)
-    {
-        try
-        {
+    public static boolean isNumeric(String str) {
+        try {
             double d = Double.parseDouble(str);
-        }
-        catch(NumberFormatException nfe)
-        {
+        } catch (NumberFormatException nfe) {
             return false;
         }
         return true;
@@ -186,7 +194,7 @@ public class Utils {
         };
         Session session = Session.getInstance(props, auth);
 
-        EmailUtil.sendEmail(session, targetEmail,"Unnamed Website Reset password", messageBody);
+        EmailUtil.sendEmail(session, targetEmail, "Unnamed Website Reset password", messageBody);
     }
 
     // Generate a a random UUID (Universally unique identifier)
@@ -195,5 +203,58 @@ public class Utils {
         return uuid.toString();
     }
 
+    // Display the user image
+    public static String display_user_image(ServletContext context, HttpServletRequest request, String email) throws PropertyVetoException, SQLException, IOException {
 
+        UserDao userDao = new UserDaoImpl();
+        companyDao compDao = new companyDaoImpl();
+        String result = "";
+
+        // Find out if the session belongs to a user or a company
+        String userType = null;
+        if (userController.checkSession(request, "studente")) {
+            userType = "student";
+        } else if (userController.checkSession(request, "azienda")) {
+            userType = "azienda";
+        }
+
+        boolean isCompany = compDao.checkCompany(email);
+        boolean isUser = userDao.checkUser(email);
+
+        if (isUser) {
+
+            // Check if a user image has been uploaded by the user
+            // Otherwise we include the default image
+            User user = userDao.getUser(email);
+            String userID = String.valueOf(user.getId());
+
+            String filename = "/assets/images/users/" + "user_" + userID + ".png";
+            String pathname = context.getRealPath(filename);
+
+            File f = new File(pathname);
+            if (f.exists() && !f.isDirectory()) {
+                result = "../../assets/images/users/" + "user_" + userID + ".png";
+            } else {
+                result = "../../assets/images/users/default_user.png";
+            }
+
+        } else if (isCompany) {
+
+            // Same thing but for the companies
+            Company company = compDao.getCompanyDataByEmail(email);
+            String userID = String.valueOf(company.getCompany_id());
+
+            String filename = "/assets/images/users/" + "company_" + userID + ".png";
+            String pathname = context.getRealPath(filename);
+
+            File f = new File(pathname);
+            if (f.exists() && !f.isDirectory()) {
+                // Set the page attribute
+                result = "../../assets/images/users/" + "company_" + userID + ".png";
+            } else {
+                result = "../../assets/images/users/default_company.png";
+            }
+        }
+        return result;
+    }
 }

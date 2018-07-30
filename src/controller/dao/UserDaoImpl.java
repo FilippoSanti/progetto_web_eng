@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECK_FOR_TOKEN = "SELECT * FROM password_reset WHERE token = ?";
     private static final String CHECK_EMAIL_USER = "SELECT * FROM studente WHERE email=?";
     private static final String GET_EMAIL_BY_TOKEN = "SELECT email FROM password_reset WHERE token = ?";
+    private static final String GET_ID_BY_EMAIL = "SELECT email FROM studente WHERE studente_id = ?";
 
     /**
      * Get a user object by an email
@@ -62,6 +63,7 @@ public class UserDaoImpl implements UserDao {
                 usr.setCap(rs.getInt("cap"));
                 usr.setCod_fiscale(rs.getString("cod_fiscale"));
                 usr.setLuogo_nascita(rs.getString("luogo_nascita"));
+                usr.setId(rs.getInt("studente_id"));
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -490,5 +492,44 @@ public class UserDaoImpl implements UserDao {
             }
         }
         return email;
+    }
+
+    public String getEmailByID(int id) {
+        String result = "";
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_ID_BY_EMAIL);
+
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs != null) {
+
+                result = rs.getString("email");
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
     }
 }

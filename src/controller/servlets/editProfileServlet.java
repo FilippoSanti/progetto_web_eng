@@ -6,6 +6,7 @@ import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.userController;
 import controller.utilities.SecurityFilter;
+import controller.utilities.Utils;
 import model.Company;
 import model.Security;
 import model.User;
@@ -129,7 +130,10 @@ public class editProfileServlet extends HttpServlet {
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         UserDao userDao = new UserDaoImpl();
-        display_user_image(request);
+
+        ServletContext context = getServletContext();
+        String result = Utils.display_user_image(context, request, homeServlet.loggedUserEmail);
+        request.setAttribute("image_path", result);
 
         // Get the user object and set the attribute
         User user = userDao.getUser(homeServlet.loggedUserEmail);
@@ -147,7 +151,10 @@ public class editProfileServlet extends HttpServlet {
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         companyDao compDao = new companyDaoImpl();
-        display_user_image(request);
+
+        ServletContext context = getServletContext();
+        String result = Utils.display_user_image(context, request, homeServlet.loggedUserEmail);
+        request.setAttribute("image_path", result);
 
         Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
 
@@ -164,58 +171,6 @@ public class editProfileServlet extends HttpServlet {
     /** Anon */
     protected void action_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action_default(request, response);
-    }
-
-    public void display_user_image(HttpServletRequest request) throws PropertyVetoException, SQLException, IOException {
-
-        UserDao userDao = new UserDaoImpl();
-        companyDao compDao = new companyDaoImpl();
-
-        // Find out if the session belongs to a user or a company
-        String userType = null;
-        if (userController.checkSession(request,"studente")) {
-            userType = "student";
-        } else if (userController.checkSession(request, "azienda")) {
-            userType = "azienda";
-        }
-
-        if (userType.equals("student")) {
-
-            // Check if a user image has been uploaded by the user
-            // Other wise we include the default image
-            User user = userDao.getUser(homeServlet.loggedUserEmail);
-            String userID = String.valueOf(user.getId());
-
-            ServletContext context = getServletContext();
-            String filename = "/assets/images/users/"+ "user_"+userID+".png";
-            String pathname = context.getRealPath(filename);
-
-            File f = new File(pathname);
-            if(f.exists() && !f.isDirectory()) {
-                // Set the page attribute
-                request.setAttribute("image_path", "../../assets/images/users/"+ "user_"+userID+".png");
-            } else {
-                request.setAttribute("image_path", "../../assets/images/users/default_user.png");
-            }
-
-        } else {
-
-            // Same thing but for the companies
-            Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
-            String userID = String.valueOf(company.getCompany_id());
-
-            ServletContext context = getServletContext();
-            String filename = "/assets/images/users/"+ "company_"+userID+".png";
-            String pathname = context.getRealPath(filename);
-
-            File f = new File(pathname);
-            if(f.exists() && !f.isDirectory()) {
-                // Set the page attribute
-                request.setAttribute("image_path", "../../assets/images/users/"+ "company_"+userID+".png");
-            } else {
-                request.setAttribute("image_path", "../../assets/images/users/default_company.png");
-            }
-        }
     }
 
     protected void action_update_profile_values_company (HttpServletRequest request, HttpServletResponse response) throws SQLException, PropertyVetoException, ServletException, IOException {

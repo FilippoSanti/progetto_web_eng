@@ -41,9 +41,9 @@ public class profileServlet extends HttpServlet {
             Security securityModel = SecurityFilter.checkUsers(request);
 
             if (securityModel.getUser().equals("student")) {
-                action_student(request, response);
+                action_student(request, response, homeServlet.loggedUserEmail);
             } else if (securityModel.getUser().equals("azienda")) {
-                action_company(request, response);
+                action_company(request, response, homeServlet.loggedUserEmail);
             } else action_load_login(request, response);
 
         } else {
@@ -86,9 +86,11 @@ public class profileServlet extends HttpServlet {
         }
     }
 
-    private void action_default_user(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
+    private void action_default_user(HttpServletRequest request, HttpServletResponse response, String email) throws IOException, ServletException, PropertyVetoException, SQLException {
 
-        display_user_image(request);
+        ServletContext context = getServletContext();
+        String result = Utils.display_user_image(context, request, email);
+        request.setAttribute("image_path", result);
 
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_user.ftl");
@@ -96,9 +98,11 @@ public class profileServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void action_default_company(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, PropertyVetoException, SQLException {
+    private void action_default_company(HttpServletRequest request, HttpServletResponse response, String email) throws IOException, ServletException, PropertyVetoException, SQLException {
 
-        display_user_image(request);
+        ServletContext context = getServletContext();
+        String result = Utils.display_user_image(context, request, email);
+        request.setAttribute("image_path", result);
 
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/profile_company.ftl");
@@ -109,71 +113,18 @@ public class profileServlet extends HttpServlet {
     /**
      * User specific methods
      **/
-    public void display_user_image(HttpServletRequest request) throws PropertyVetoException, SQLException, IOException {
 
-        UserDao userDao = new UserDaoImpl();
-        companyDao compDao = new companyDaoImpl();
-
-        // Find out if the session belongs to a user or a company
-        String userType = null;
-        if (userController.checkSession(request,"studente")) {
-            userType = "student";
-        } else if (userController.checkSession(request, "azienda")) {
-            userType = "azienda";
-        }
-
-        if (userType.equals("student")) {
-
-            // Check if a user image has been uploaded by the user
-            // Other wise we include the default image
-            User user = userDao.getUser(homeServlet.loggedUserEmail);
-            String userID = String.valueOf(user.getId());
-
-            ServletContext context = getServletContext();
-            String filename = "/assets/images/users/"+ "user_"+userID+".png";
-            String pathname = context.getRealPath(filename);
-
-            File f = new File(pathname);
-            if(f.exists() && !f.isDirectory()) {
-                // Set the page attribute
-                request.setAttribute("image_path", "../../assets/images/users/"+ "user_"+userID+".png");
-            } else {
-                request.setAttribute("image_path", "../../assets/images/users/default_user.png");
-            }
-
-        } else {
-
-            // Same thing but for the companies
-            Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
-            String userID = String.valueOf(company.getCompany_id());
-
-            ServletContext context = getServletContext();
-            String filename = "/assets/images/users/"+ "company_"+userID+".png";
-            String pathname = context.getRealPath(filename);
-
-            File f = new File(pathname);
-            if(f.exists() && !f.isDirectory()) {
-                // Set the page attribute
-                request.setAttribute("image_path", "../../assets/images/users/"+ "company_"+userID+".png");
-            } else {
-                request.setAttribute("image_path", "../../assets/images/users/default_company.png");
-            }
-        }
-    }
 
     // View the profile of a user
     private void action_view_userid(HttpServletRequest request, HttpServletResponse response, String id) throws IOException, ServletException, PropertyVetoException, SQLException {
-
-        System.out.println(id);
         Security securityModel = SecurityFilter.checkUsers(request);
 
         // Check if the string contains only numbers
         if (!Utils.isNumeric(id)) {
-
-            if (securityModel.equals("azienda")) {
-                action_default_company(request, response);
-            } else if (securityModel.equals("student")) {
-                action_default_user(request, response);
+            if (securityModel.getUser().equals("student")) {
+                action_student(request, response, homeServlet.loggedUserEmail);
+            } else if (securityModel.getUser().equals("azienda")) {
+                action_company(request, response, homeServlet.loggedUserEmail);
             }
             return;
         }
@@ -181,12 +132,11 @@ public class profileServlet extends HttpServlet {
         // If the parameter is empty, we return and
         // execute the default action
         if (id.isEmpty()) {
-            if (securityModel.equals("azienda")) {
-                action_default_company(request, response);
-            } else if (securityModel.equals("student")) {
-                action_default_user(request, response);
+            if (securityModel.getUser().equals("student")) {
+                action_student(request, response, homeServlet.loggedUserEmail);
+            } else if (securityModel.getUser().equals("azienda")) {
+                action_company(request, response, homeServlet.loggedUserEmail);
             }
-
             return;
         }
 
@@ -194,9 +144,9 @@ public class profileServlet extends HttpServlet {
 
             // Signal that an error has occurred
             request.setAttribute("errorMessage", "Only companies can access user profiles");
-            action_default_user(request, response);
-
+            action_student(request, response, homeServlet.loggedUserEmail);
             return;
+
         } else if (securityModel.getUser().equals("anonymous")) {
             RequestDispatcher dispatcher
                     = request.getServletContext().getRequestDispatcher("/WEB-INF/views/login.ftl");
@@ -205,12 +155,33 @@ public class profileServlet extends HttpServlet {
         }
 
         // Get the user object from the DB
+        UserDao uDao = new UserDaoImpl();
 
+        int newID = Integer.parseInt(id);
+        String email = uDao.getEmailByID(newID);
 
+        // If the email is an empty string, the user id doesn't exist
+        if (email != null && !email.isEmpty()) {
+            User u = uDao.getUser(email);
+
+            // Load the default user page with the right info
+            request.setAttribute("userData", u);
+            action_default_user(request, response, email);
+
+        } else {
+
+            if (securityModel.getUser().equals("student")) {
+                action_student(request, response, homeServlet.loggedUserEmail);
+
+            } else if (securityModel.getUser().equals("azienda")) {
+                action_company(request, response, homeServlet.loggedUserEmail);
+            }
+
+        }
     }
 
     // I'm a logged student and i want to see my own profile
-    protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_student(HttpServletRequest request, HttpServletResponse response, String email) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         UserDao userDao = new UserDaoImpl();
 
@@ -218,12 +189,12 @@ public class profileServlet extends HttpServlet {
 
         // Set the user attributes to display on screen
         request.setAttribute("userData", user);
-        action_default_user(request, response);
+        action_default_user(request, response, email);
 
     }
 
     // I'm a logged company and i want to see my own profile
-    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_company(HttpServletRequest request, HttpServletResponse response, String email) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         companyDao compDao = new companyDaoImpl();
 
@@ -231,7 +202,7 @@ public class profileServlet extends HttpServlet {
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);
 
-        action_default_company(request, response);
+        action_default_company(request, response, email);
     }
 
     protected void action_load_login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -240,5 +211,4 @@ public class profileServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
     }
-
 }
