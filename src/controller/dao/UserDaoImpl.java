@@ -95,14 +95,11 @@ public class UserDaoImpl implements UserDao {
                                   String userEmail) throws IOException {
         Connection conn = null;
         PreparedStatement pst = null;
-        ResultSet rs = null;
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(UPDATE_USER_INFO);
 
             pst.setString(1, userEmail);
-            rs = pst.executeQuery();
-
             pst.setString(1, nome);
             pst.setString(2, date);
             pst.setString(3, provincia);
@@ -116,17 +113,11 @@ public class UserDaoImpl implements UserDao {
             pst.setString(11, cod_fiscale);
             pst.setString(12, luogo_nascita);
             pst.setString(13, userEmail);
-
             pst.executeUpdate();
 
         } catch (SQLException | PropertyVetoException e) {
             e.printStackTrace();
         } finally {
-            try {
-                rs.close();
-            } catch (Exception rse) {
-                rse.printStackTrace();
-            }
             try {
                 pst.close();
             } catch (Exception sse) {

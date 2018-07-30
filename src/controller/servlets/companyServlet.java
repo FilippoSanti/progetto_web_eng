@@ -31,6 +31,8 @@ public class companyServlet extends HttpServlet {
         String paramName = "view";
         String paramValue = request.getParameter(paramName);
 
+        System.out.println(paramValue);
+
         Security securityModel = SecurityFilter.checkUsers(request);
 
         if (securityModel.getUser().equals("student")) {
