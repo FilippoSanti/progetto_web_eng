@@ -8,4 +8,3 @@
     
        <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
 </div>
-

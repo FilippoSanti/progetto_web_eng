@@ -30,71 +30,9 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            <!-- Top Bar Start -->
-            <div class="topbar">
+            <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">
 
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <a href="/home" class="logo">
-                        <span>
-                            <img src="assets/images/logo.png" alt="">
-                        </span>
-                        <i>
-                            <img src="assets/images/logo_sm.png" alt="">
-                        </i>
-                    </a>
-                </div>
-
-                <nav class="navbar-custom">
-
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-<!-- Scelta lingua -->
-                        <li class="dropdown notification-list hide-phone langmargin">
-                            <div class="dropdown-menu dropdown-menu-right">
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Italiano
-                                </a>
-
-                            </div>
-                        </li>
-
-<!-- Menu Account -->           
-                            <li>
-                               <a class="nav-link  waves-effect waves-light nav-user loginmargin"  href="/login"
-                               aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-login"></i> Log In 
-                            </a>
-                           
-                        
-                        </li>
-                    </ul>
-
-<!-- Nascondi menù laterale sinistro -->
-                    <ul class="list-inline menu-left mb-0">
-                        <li class="float-left">
-                            <button class="button-menu-mobile open-left waves-light waves-effect">
-                                <i class="mdi mdi-menu"></i>
-                            </button>
-                        </li>
-
-<!-- Ricerca -->
-                        <li class="hide-phone app-search">
-                            <form role="search" class="">
-                                <input type="text" placeholder="Search..." class="form-control">
-                                <a href=""><i class="fa fa-search"></i></a>
-                            </form>
-                        </li>
-                    </ul>
-
-                </nav>
-
-            </div>
-            <!-- Top Bar End -->
-
-            <#include "/WEB-INF/views/sidebar_visitor.ftl">
+            <#include "/WEB-INF/views/FreeMarker/sidebar_visitor.ftl">
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
@@ -375,16 +313,7 @@
                     </div> <!-- container -->
 
 
-                     <div class="footer">
-                        <div class="pull-right hide-phone">
-                            Web Engineering Project 
-                        </div>
-                        <div>
-                             Copyright © 2018 - <a class="ti-infinite infindim"></a>
-                        </div>
-                        
-                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
-                    </div>
+              <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
 
@@ -398,47 +327,6 @@
 
         </div>
         <!-- END wrapper -->
-
-
-
-        <!-- sample modal content -->
-        <div id="add-contact" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="add-contactLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="add-contactLabel">Add Contact</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="position">Position</label>
-                                <input type="text" class="form-control" id="position" placeholder="Enter position">
-                            </div>
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" class="form-control" id="company" placeholder="Enter company">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default " data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary ">Save</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-
-
 
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
