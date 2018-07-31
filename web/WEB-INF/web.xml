@@ -212,6 +212,16 @@
         <url-pattern>/lista_candidati</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>resetPassword</servlet-name>
+        <servlet-class>controller.servlets.resetPasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>resetPassword</servlet-name>
+        <url-pattern>/resetPassword</url-pattern>
+    </servlet-mapping>
+
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
         RequestDispatcher.forward/include should and will still work. Removing
