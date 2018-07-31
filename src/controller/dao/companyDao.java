@@ -30,4 +30,5 @@ public interface companyDao {
     public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg,
                            String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String nome_cognome_tir,
                            String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException;
+    public String getEmailByID(int id);
 }

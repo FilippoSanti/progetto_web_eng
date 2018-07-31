@@ -31,6 +31,7 @@ public class companyDaoImpl implements companyDao {
     private static final String CHECK_COMPANY_EMAIL = "SELECT * FROM azienda WHERE email_login=?";
     private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
     private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String GET_EMAIL_BY_ID = "SELECT email_login FROM azienda WHERE azienda_id = ?";
 
     /**
      * Get a company object by its login_email
@@ -313,7 +314,6 @@ public class companyDaoImpl implements companyDao {
                            String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException {
         Connection conn = null;
         PreparedStatement ps = null;
-
         try {
             conn = DataSource.getInstance().getConnection();
             ps = conn.prepareStatement(INSERT_USER);
@@ -353,5 +353,44 @@ public class companyDaoImpl implements companyDao {
             }
         }
         return false;
+    }
+
+    public String getEmailByID(int id) {
+        String result = "";
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_EMAIL_BY_ID);
+
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs != null) {
+
+                result = rs.getString("email_login");
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
     }
 }
