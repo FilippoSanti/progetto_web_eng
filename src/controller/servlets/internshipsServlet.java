@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static java.lang.reflect.Modifier.STATIC;
+
 public class internshipsServlet extends HttpServlet {
 
     public static String addedMessage = "";
@@ -31,6 +33,7 @@ public class internshipsServlet extends HttpServlet {
 
         String paramValue = request.getParameter(paramName);
         String submit_string = request.getParameter(submit);
+
 
 
         try {
@@ -66,6 +69,20 @@ public class internshipsServlet extends HttpServlet {
                 action_add_internships(request, response);
                 return;
             }
+
+            //candidate
+
+            if (paramValue.equals("candidate") && submit_string == null) {
+                action_default(request, response);
+                return;
+            }
+
+            if (paramValue.equals("candidate") && submit_string.matches("[0-9]+")) {
+
+                action_candidate(request, response);
+                return;
+            }
+
 
 
             // Default action if no parameter is set properly
@@ -170,6 +187,26 @@ public class internshipsServlet extends HttpServlet {
 
         }
 
+
+        return false;
+    }
+
+
+    protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException,  PropertyVetoException {
+
+
+
+        internshipDao internshipDao = new internshipDaoImpl();
+        boolean candidateOK = internshipDao.request_internship(1);
+
+        if (candidateOK) {
+
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
+
+        dispatcher.forward(request, response);
+
+        return true;}
 
         return false;
     }
