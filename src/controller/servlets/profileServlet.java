@@ -52,7 +52,6 @@ public class profileServlet extends HttpServlet {
             }
 
             if (typeValue.equals("company") && idValue.matches("[0-9]+")) {
-                System.out.println("entra 1");
                 action_view_userid(request, response, idValue, "company");
             }
         }
@@ -171,6 +170,9 @@ public class profileServlet extends HttpServlet {
                 action_default_user(request, response, email);
 
             } else {
+
+                request.setAttribute("errorMessage", "The user ID does not exist");
+
                 if (securityModel.getUser().equals("student")) {
                     action_student(request, response, homeServlet.loggedUserEmail);
                 } else if (securityModel.getUser().equals("azienda")) {
@@ -195,6 +197,9 @@ public class profileServlet extends HttpServlet {
                 action_default_company(request, response, email);
 
             } else {
+
+                request.setAttribute("errorMessage", "The user ID does not exist");
+
                 if (securityModel.getUser().equals("student")) {
                     action_student(request, response, homeServlet.loggedUserEmail);
                 } else if (securityModel.getUser().equals("azienda")) {
@@ -221,8 +226,6 @@ public class profileServlet extends HttpServlet {
 
         companyDao compDao = new companyDaoImpl();
         Company company = compDao.getCompanyDataByEmail(email);
-
-        System.out.println(email);
 
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);

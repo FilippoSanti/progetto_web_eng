@@ -32,6 +32,7 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_EMAIL_BY_TOKEN = "SELECT email FROM password_reset WHERE token = ?";
     private static final String GET_ID_BY_EMAIL = "SELECT email FROM studente WHERE studente_id = ?";
     private static final String GET_USER_LIST = "SELECT * FROM `studente` ORDER BY `studente`.`studente_id` DESC";
+    private static final String CHECK_ADMIN = "SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'";
 
     /**
      * Get a user object by an email
@@ -100,6 +101,8 @@ public class UserDaoImpl implements UserDao {
                                   String userEmail) throws IOException {
         Connection conn = null;
         PreparedStatement pst = null;
+        boolean result = false;
+
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(UPDATE_USER_INFO);
@@ -118,7 +121,11 @@ public class UserDaoImpl implements UserDao {
             pst.setString(11, cod_fiscale);
             pst.setString(12, luogo_nascita);
             pst.setString(13, userEmail);
-            pst.executeUpdate();
+            int i = pst.executeUpdate();
+
+            if (i > 0) {
+                result = true;
+            }
 
         } catch (SQLException | PropertyVetoException e) {
             e.printStackTrace();
@@ -135,7 +142,7 @@ public class UserDaoImpl implements UserDao {
             }
         }
 
-        return false;
+        return result;
     }
 
     /**
@@ -145,6 +152,8 @@ public class UserDaoImpl implements UserDao {
 
         Connection conn = null;
         PreparedStatement pst = null;
+        boolean result = false;
+
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(UPDATE_USER_DATA);
@@ -153,7 +162,11 @@ public class UserDaoImpl implements UserDao {
             pst.setString(2, Utils.hashPassword(password));
             pst.setString(3, emailQuery);
 
-            pst.executeUpdate();
+            int i = pst.executeUpdate();
+
+            if (i > 0) {
+                result = true;
+            }
 
         } catch (SQLException | PropertyVetoException | IOException e) {
             e.printStackTrace();
@@ -170,54 +183,43 @@ public class UserDaoImpl implements UserDao {
             }
         }
 
-        return false;
+        return result;
     }
 
     /**
      * Check if the user is admin
      */
-    public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException {
+    public boolean checkAdmin(String userEmail) throws IOException, PropertyVetoException {
 
-        Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement pst = dbConnection.prepareStatement("SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'");
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
 
-        pst.setString(1, userEmail);
-        ResultSet rs = pst.executeQuery();
-
-        if (rs.next()) {
-            return true;
-        }
-        dbConnection.close();
-
-        return false;
-    }
-
-    /**
-     * Query to check if the email already is in the db
-     */
-    public boolean checkStudentEmailExists(String emailString) {
-
-        Connection dbConnection = null;
         try {
-            dbConnection = DataSource.getInstance().getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_ADMIN);
 
-        String query = "SELECT * FROM studente WHERE email = ?";
-        try (PreparedStatement statement = dbConnection.prepareStatement(query)) {
-            statement.setString(1, emailString);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+            ps.setString(1, userEmail);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = true;
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
-            return false;
+
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
         }
+        return result;
     }
 
     /**
@@ -229,6 +231,8 @@ public class UserDaoImpl implements UserDao {
 
         Connection conn = null;
         PreparedStatement pst = null;
+        boolean result = false;
+
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(ADD_USER);
@@ -255,7 +259,7 @@ public class UserDaoImpl implements UserDao {
 
             // Registration ok
             if (i > 0) {
-                return true;
+                result = true;
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -272,7 +276,7 @@ public class UserDaoImpl implements UserDao {
                 cse.printStackTrace();
             }
         }
-        return false;
+        return result;
     }
 
     /**
@@ -282,6 +286,8 @@ public class UserDaoImpl implements UserDao {
 
         Connection conn = null;
         PreparedStatement pst = null;
+        boolean result = false;
+
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(RESET_PASSWORD_REQ);
@@ -294,7 +300,7 @@ public class UserDaoImpl implements UserDao {
 
             // Registration ok
             if (i > 0) {
-                return true;
+                result = true;
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {
@@ -311,7 +317,7 @@ public class UserDaoImpl implements UserDao {
                 cse.printStackTrace();
             }
         }
-        return false;
+        return result;
     }
 
     /**
@@ -319,19 +325,35 @@ public class UserDaoImpl implements UserDao {
      */
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException {
 
-        Connection dbConnection = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
 
-        dbConnection = DataSource.getInstance().getConnection();
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_EMAIl_RESET);
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(CHECK_EMAIl_RESET)) {
-            statement.setString(1, emailString);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+            ps.setString(1, emailString);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = true;
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
-            return false;
+
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
         }
+        return result;
     }
 
     /**
@@ -397,16 +419,17 @@ public class UserDaoImpl implements UserDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        boolean result = false;
 
         try {
-            Connection dbConnection = DataSource.getInstance().getConnection();
-            PreparedStatement pst = dbConnection.prepareStatement(CHECK_FOR_TOKEN);
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_FOR_TOKEN);
 
-            pst.setString(1, token);
-            rs = pst.executeQuery();
+            ps.setString(1, token);
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                return true;
+                result = true;
             }
 
         } catch (SQLException ex) {
@@ -422,28 +445,29 @@ public class UserDaoImpl implements UserDao {
                 conn.close();
             } catch (Exception e) { /* ignored */ }
         }
-        return false;
+        return result;
     }
 
+    /** Check if a user exists */
     public boolean checkUser(String email) throws IOException, PropertyVetoException {
 
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        boolean result = false;
 
         try {
-            Connection dbConnection = DataSource.getInstance().getConnection();
-            PreparedStatement pst = dbConnection.prepareStatement(CHECK_EMAIL_USER);
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_EMAIL_USER);
 
-            pst.setString(1, email);
-            rs = pst.executeQuery();
+            ps.setString(1, email);
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                return true;
+                result = true;
             }
 
         } catch (SQLException ex) {
-            // Exception handling stuff
         } finally {
             try {
                 rs.close();
@@ -455,7 +479,7 @@ public class UserDaoImpl implements UserDao {
                 conn.close();
             } catch (Exception e) { /* ignored */ }
         }
-        return false;
+        return result;
     }
 
     public String getEmailbyToken(String token) {
@@ -498,6 +522,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public String getEmailByID(int id) {
+
         String result = "";
         Connection conn = null;
         PreparedStatement pst = null;

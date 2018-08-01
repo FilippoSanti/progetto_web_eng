@@ -33,7 +33,6 @@ public interface UserDao {
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException;
     public boolean checkUser(String email) throws IOException, PropertyVetoException;
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
-    public boolean checkStudentEmailExists(String emailString);
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
 
 }

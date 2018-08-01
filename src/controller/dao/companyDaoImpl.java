@@ -73,8 +73,8 @@ public class companyDaoImpl implements companyDao {
     /**
      * Add tirocinio
      */
-
     public int getCompanyIdbyEmail(String email) throws PropertyVetoException, SQLException, IOException {
+
         Connection dbConnection = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -91,15 +91,15 @@ public class companyDaoImpl implements companyDao {
             az_id = rs.getInt("azienda_id");
 
         }
-
         dbConnection.close();
         return az_id;
     }
+
     public boolean insertInternship(Internship tirocinio) throws PropertyVetoException, SQLException, IOException {
 
         Connection dbConnection = null;
         PreparedStatement pst = null;
-        ResultSet rs = null;
+        boolean result = false;
 
         dbConnection = DataSource.getInstance().getConnection();
         pst = dbConnection.prepareStatement(INSERT_INTERNSHIP);
@@ -116,11 +116,11 @@ public class companyDaoImpl implements companyDao {
 
         // Registration ok
         if (i > 0) {
-            return true;
+            result = true;
         }
 
         dbConnection.close();
-        return false;
+        return result;
     }
 
     /**
@@ -130,15 +130,16 @@ public class companyDaoImpl implements companyDao {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(GET_COMPANY_INTERNSHIPS);
+        boolean result = false;
 
         pst.setString(1, company_login_email);
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
-
+            result = true;
         }
         dbConnection.close();
-        return false;
+        return result;
     }
 
     /**
@@ -148,15 +149,16 @@ public class companyDaoImpl implements companyDao {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(CHECK_COMPANY_ENABLED);
+        boolean result = false;
 
         pst.setString(1, company_login_email);
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
-            return true;
+            result = true;
         }
         dbConnection.close();
-        return false;
+        return result;
     }
 
     /**
@@ -166,15 +168,16 @@ public class companyDaoImpl implements companyDao {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(ENABLE_COMPANY);
+        boolean result = false;
 
         pst.setString(1, company_login_email);
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
-            return true;
+            result = true;
         }
         dbConnection.close();
-        return false;
+        return result;
     }
 
     /**
@@ -182,17 +185,36 @@ public class companyDaoImpl implements companyDao {
      */
     public boolean checkCompanyEmailExists(String emailComp) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
 
-        Connection dbConnection = DataSource.getInstance().getConnection();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
 
-        try (PreparedStatement statement = dbConnection.prepareStatement(CHECK_EM_EXISTS)) {
-            statement.setString(1, emailComp);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_EM_EXISTS);
+
+            ps.setString(1, emailComp);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = true;
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
-            return false;
+
+        } catch (SQLException ex) {
+            // Exception handling stuff
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
         }
+        return result;
     }
 
     /**
@@ -238,6 +260,7 @@ public class companyDaoImpl implements companyDao {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement preparedStmt = dbConnection.prepareStatement(UPDATE_COMPANY_INFO);
+        boolean result = false;
 
         preparedStmt.setString(1, e);
         preparedStmt.setString(2, r_s);
@@ -254,10 +277,15 @@ public class companyDaoImpl implements companyDao {
         preparedStmt.setString(13, de);
         preparedStmt.setString(14, targetUpdate);
 
-        preparedStmt.executeUpdate();
+        int i = preparedStmt.executeUpdate();
+
+        if (i > 0) {
+            result = true;
+        }
+
         dbConnection.close();
 
-        return true;
+        return result;
     }
 
     /**
@@ -273,6 +301,7 @@ public class companyDaoImpl implements companyDao {
         preparedStmt.setString(3, emailQuery);
 
         preparedStmt.executeUpdate();
+        dbConnection.close();
 
     }
 
@@ -281,16 +310,17 @@ public class companyDaoImpl implements companyDao {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        boolean result = false;
 
         try {
-            Connection dbConnection = DataSource.getInstance().getConnection();
-            PreparedStatement pst = dbConnection.prepareStatement(CHECK_COMPANY_EMAIL);
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_COMPANY_EMAIL);
 
-            pst.setString(1, email);
-            rs = pst.executeQuery();
+            ps.setString(1, email);
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                return true;
+                result = true;
             }
 
         } catch (SQLException ex) {
@@ -306,7 +336,7 @@ public class companyDaoImpl implements companyDao {
                 conn.close();
             } catch (Exception e) { /* ignored */ }
         }
-        return false;
+        return result;
     }
 
     public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg,
@@ -314,6 +344,8 @@ public class companyDaoImpl implements companyDao {
                            String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException {
         Connection conn = null;
         PreparedStatement ps = null;
+        boolean result = false;
+
         try {
             conn = DataSource.getInstance().getConnection();
             ps = conn.prepareStatement(INSERT_USER);
@@ -337,7 +369,7 @@ public class companyDaoImpl implements companyDao {
             int i = ps.executeUpdate();
 
             if (i > 0) {
-                return true;
+                result = true;
             }
         } catch (SQLException ex) {
         } finally {
@@ -352,14 +384,16 @@ public class companyDaoImpl implements companyDao {
                 } catch (SQLException e) { /* ignored */}
             }
         }
-        return false;
+        return result;
     }
 
     public String getEmailByID(int id) {
+
         String result = "";
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
+
         try {
             conn = DataSource.getInstance().getConnection();
             pst = conn.prepareStatement(GET_EMAIL_BY_ID);

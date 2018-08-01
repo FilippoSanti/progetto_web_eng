@@ -39,7 +39,7 @@ public class userController {
         boolean result = true;
 
         // We check if the user already exists in the db
-        if (userDao.checkStudentEmailExists(em)) {
+        if (userDao.checkUser(em)) {
             result = false;
             Utils.signalErrors(request);
             errorsList.add("The user already exists");
