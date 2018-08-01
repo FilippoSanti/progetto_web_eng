@@ -23,22 +23,24 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/modernizr.min.js"></script>
 </head>
+
 <!-- header -->
    <#if header == "anonymous">
-       <#include "/WEB-INF/views/header_visitor.ftl">
+       <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">
    <#else>
-       <#include "/WEB-INF/views/header.ftl">
+       <#include "/WEB-INF/views/FreeMarker/header.ftl">
    </#if>
 <!-- sidebar menu -->
    <#if sidemenu == "anonymous">
-       <#include "/WEB-INF/views/sidebar_visitor.ftl">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_visitor.ftl">
    <#elseif sidemenu == "student">
-       <#include "/WEB-INF/views/sidebar_student.ftl">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_student.ftl">
    <#elseif sidemenu == "company">
-       <#include "/WEB-INF/views/sidebar_company.ftl">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_company.ftl">
    <#elseif sidemenu == "admin">
-       <#include "/WEB-INF/views/sidebar_admin.ftl">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_admin.ftl">
    </#if>
+
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
@@ -87,7 +89,9 @@
         </div>
         <!-- container -->
         <br><br>
-         <#include "/WEB-INF/views/footer.ftl">
+
+         <#include "/WEB-INF/views/FreeMarker/footer.ftl">
+
     </div>
     <!-- content -->
 </div>

@@ -37,28 +37,7 @@
     <!-- Begin page -->
     <div id="wrapper">
 
-        <!-- Top Bar Start -->
-        <div class="topbar">
-
-            <!-- LOGO -->
-            <div class="topbar-left">
-                <a href="index.html" class="logo">
-                <span>
-                    <img src="../../assets/images/logo.png" alt="">
-                </span>
-                    <i>
-                        <img src="../../assets/images/logo_sm.png" alt="">
-                    </i>
-                </a>
-            </div>
-
-            <nav class="navbar-custom">
-                <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                </ul>
-            </nav>
-        </div>
-        <!-- Top Bar End -->
+        <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -311,16 +290,8 @@
                         </form>
                         <!-- end row -->
                     <br><br><br><br><br><br><br><br>
-                    <div class="footer">
-                        <div class="pull-right hide-phone">
-                            Web Engineering Project
-                        </div>
-                        <div>
-                            Copyright © 2018 - <a class="ti-infinite infindim"></a>
-                        </div>
 
-                        <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
-                    </div>
+                    <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
 
