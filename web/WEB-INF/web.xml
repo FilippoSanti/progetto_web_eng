@@ -180,8 +180,6 @@
         <url-pattern>/document_3</url-pattern>
     </servlet-mapping>
 
-
-
     <servlet>
         <servlet-name>internships</servlet-name>
         <servlet-class>controller.servlets.internshipsServlet</servlet-class>

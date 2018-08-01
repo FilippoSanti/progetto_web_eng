@@ -83,12 +83,12 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="extras-profile.html" class="dropdown-item notify-item">
+                                <a href="/userProfile" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="/logout" class="dropdown-item notify-item">
                                     <i class="ti-power-off"></i> <span>Logout</span>
                                 </a>
 

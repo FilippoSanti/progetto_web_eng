@@ -76,7 +76,7 @@
                                <td>${val.getRagione_sociale()}</td>
                                <td>${val.getIndirizzo_sede_leg()}</td>
                                <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Internships</button></td>
-                               <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Company Info</button></td>
+                               <td><a href="userProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Company Info</button></a></td>
                            </tr>
                            </#list>
                            </#if>
