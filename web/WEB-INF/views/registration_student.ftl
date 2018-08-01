@@ -231,7 +231,7 @@
                                                placeholder="Enter Address" class="form-control" id="Address">
                                     </div>
 
-                                    <div class="form-group">f
+                                    <div class="form-group">
                                         <label>Provincia di Residenza<span class="text-danger">*</span></label>
                                         <select name="provincia" class="form-control select2" parsley-trigger="change" required>
                                             <option>-- Select --</option>
