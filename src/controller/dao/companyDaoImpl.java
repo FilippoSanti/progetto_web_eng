@@ -32,6 +32,7 @@ public class companyDaoImpl implements companyDao {
     private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
     private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT email_login FROM azienda WHERE azienda_id = ?";
+    private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
 
     /**
      * Get a company object by its login_email
@@ -293,16 +294,31 @@ public class companyDaoImpl implements companyDao {
      **/
     public void updateEmailAndPassword(String email, String password, String emailQuery) throws SQLException, IOException, PropertyVetoException {
 
-        Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement preparedStmt = dbConnection.prepareStatement(UPDATE_COMPANY_DATA);
+        Connection conn = null;
+        PreparedStatement ps = null;
 
-        preparedStmt.setString(1, email);
-        preparedStmt.setString(2, Utils.hashPassword(password));
-        preparedStmt.setString(3, emailQuery);
+        // It means we want to change only the email address
+        if (password.isEmpty()) {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(UPDATE_COMPANY_EMAIL);
 
-        preparedStmt.executeUpdate();
-        dbConnection.close();
+            ps.setString(1, email);
+            ps.setString(2, emailQuery);
+            ps.executeUpdate();
+            conn.close();
 
+        } else {
+
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(UPDATE_COMPANY_DATA);
+
+            ps.setString(1, email);
+            ps.setString(2, Utils.hashPassword(password));
+            ps.setString(3, emailQuery);
+
+            ps.executeUpdate();
+            conn.close();
+        }
     }
 
     public boolean checkCompany(String email) throws IOException, PropertyVetoException {

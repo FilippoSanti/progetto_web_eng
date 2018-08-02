@@ -33,6 +33,7 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_ID_BY_EMAIL = "SELECT email FROM studente WHERE studente_id = ?";
     private static final String GET_USER_LIST = "SELECT * FROM `studente` ORDER BY `studente`.`studente_id` DESC";
     private static final String CHECK_ADMIN = "SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'";
+    private static final String UPDATE_USER_EMAIL = "UPDATE studente SET email = ? WHERE studente.email = ?";
 
     /**
      * Get a user object by an email
@@ -155,17 +156,34 @@ public class UserDaoImpl implements UserDao {
         boolean result = false;
 
         try {
-            conn = DataSource.getInstance().getConnection();
-            pst = conn.prepareStatement(UPDATE_USER_DATA);
+            // Check if we have the update only the email
+            if (password.isEmpty()) {
 
-            pst.setString(1, email);
-            pst.setString(2, Utils.hashPassword(password));
-            pst.setString(3, emailQuery);
+                conn = DataSource.getInstance().getConnection();
+                pst = conn.prepareStatement(UPDATE_USER_EMAIL);
 
-            int i = pst.executeUpdate();
+                pst.setString(1, email);
+                pst.setString(2, emailQuery);
 
-            if (i > 0) {
-                result = true;
+                int i = pst.executeUpdate();
+
+                if (i > 0) {
+                    result = true;
+                }
+            } else {
+
+                conn = DataSource.getInstance().getConnection();
+                pst = conn.prepareStatement(UPDATE_USER_DATA);
+
+                pst.setString(1, email);
+                pst.setString(2, Utils.hashPassword(password));
+                pst.setString(3, emailQuery);
+
+                int i = pst.executeUpdate();
+
+                if (i > 0) {
+                    result = true;
+                }
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {

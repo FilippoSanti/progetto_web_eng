@@ -223,16 +223,37 @@ public class editProfileServlet extends HttpServlet {
         String ripeti_pass   = request.getParameter("ripeti_password_company");
         companyDao compDao = new companyDaoImpl();
 
-        if (password.isEmpty() || email_login.isEmpty()) {
+        if (password.isEmpty() && ripeti_pass.isEmpty() && email_login.isEmpty()) {
             // Signal that an error has occurred
             request.setAttribute("errorMessage", "Fields cannot be empty");
             action_company(request, response);
+            return;
+        }
+
+        // If we have chosen a different email,
+        // it means we are trying to update it
+        if (!email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
+            compDao.updateEmailAndPassword(email_login, password, homeServlet.loggedUserEmail);
+            response.sendRedirect("/logout");
+            return;
+
+        } else if (email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
+            request.setAttribute("errorMessage", "Coose a different email");
+            action_company(request, response);
+            return;
         }
 
         if (!password.equals(ripeti_pass)) {
-            // Signal that an error has occurred
             request.setAttribute("errorMessage", "Passwords don't match");
             action_company(request, response);
+        }
+
+        // If we are trying to update only the password
+        if (!password.isEmpty() && !ripeti_pass.isEmpty() && email_login.isEmpty()) {
+            compDao.updateEmailAndPassword(homeServlet.loggedUserEmail, password, homeServlet.loggedUserEmail);
+            response.sendRedirect("/logout");
+            return;
+
         } else {
             compDao.updateEmailAndPassword(email_login, password, email_login);
             response.sendRedirect("/logout");
@@ -283,20 +304,41 @@ public class editProfileServlet extends HttpServlet {
         String email_login   = request.getParameter("email_student");
         String password      = request.getParameter("password_student");
         String ripeti_pass   = request.getParameter("ripeti_password_student");
-        UserDao userDao = new UserDaoImpl();
+        UserDao uDao = new UserDaoImpl();
 
-        if (password.isEmpty() || email_login.isEmpty()) {
+        if (password.isEmpty() && ripeti_pass.isEmpty() && email_login.isEmpty()) {
             // Signal that an error has occurred
             request.setAttribute("errorMessage", "Fields cannot be empty");
             action_student(request, response);
+            return;
+        }
+
+        // If we have chosen a different email,
+        // it means we are trying to update it
+        if (!email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
+            uDao.updateUserData(password, email_login, homeServlet.loggedUserEmail);
+            response.sendRedirect("/logout");
+            return;
+
+        } else if (email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
+            request.setAttribute("errorMessage", "Coose a different email");
+            action_student(request, response);
+            return;
         }
 
         if (!password.equals(ripeti_pass)) {
-            // Signal that an error has occurred
             request.setAttribute("errorMessage", "Passwords don't match");
             action_student(request, response);
+        }
+
+        // If we are trying to update only the password
+        if (!password.isEmpty() && !ripeti_pass.isEmpty() && email_login.isEmpty()) {
+            uDao.updateUserData(password, homeServlet.loggedUserEmail, homeServlet.loggedUserEmail);
+            response.sendRedirect("/logout");
+            return;
+
         } else {
-            userDao.updateUserData(email_login, password, email_login);
+            uDao.updateUserData(password, email_login, email_login);
             response.sendRedirect("/logout");
         }
     }
