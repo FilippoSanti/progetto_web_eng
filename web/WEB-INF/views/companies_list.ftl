@@ -24,6 +24,11 @@
     <script src="assets/js/modernizr.min.js"></script>
 </head>
 
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
 <!-- header -->
    <#if header == "anonymous">
        <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">

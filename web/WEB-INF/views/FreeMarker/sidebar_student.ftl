@@ -31,12 +31,12 @@
                         </li>
 
                         <li>
-                            <a href="company?view=all"><i class="ti-list"></i><span> Company List </span>
+                            <a href="company?view=all"><i class="ti-list"></i><span> Companies List </span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="internships?view=all"><i class="ti-menu-alt"></i> <span> Internship List </span>
+                            <a href="internships?view=all"><i class="ti-menu-alt"></i> <span> Internships List </span>
                             </a>
                         </li>
 
