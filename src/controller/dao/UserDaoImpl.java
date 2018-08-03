@@ -258,7 +258,7 @@ public class UserDaoImpl implements UserDao {
             pst.setNull(1, Types.INTEGER);
             pst.setString(2, nome);
             pst.setString(3, Utils.hashPassword(pass));
-            pst.setDate(4, Utils.convertDate(dateString));
+            pst.setString(4, dateString);
             pst.setString(5, provincia);
             pst.setString(6, provincia_n);
             pst.setString(7, residenza);

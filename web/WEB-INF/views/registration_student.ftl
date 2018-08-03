@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label>Data di Nascita<span class="text-danger">*</span><a>  (usare il formato: giorno/mese/anno)</a></label>
                                         <div class="input-group">
-                                            <input type="text" name="date" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
+                                            <input type="text" name="date" class="form-control" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" id="datepicker-autoclose">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                             </div>
@@ -398,7 +398,7 @@
                                         </div>
                                     </div>
 
-<br><br><br>
+                                <br><br><br>
                                 <div class="form-group rippwd4">
                                     <label for="pass2">Ripeti Password<span class="text-danger">*</span></label>
                                     <input id="pass2" name="ripeti_password" type="password" placeholder="Repeat Password" required

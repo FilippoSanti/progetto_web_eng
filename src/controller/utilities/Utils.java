@@ -82,15 +82,6 @@ public class Utils {
         return (password_verified);
     }
 
-    // Returns a java.sql.Date type given a string
-    public static java.sql.Date convertDate(String dateString) throws ParseException {
-
-        java.util.Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-        return sqlDate;
-    }
-
     /**
      * Method to check empty strings
      */
@@ -209,14 +200,6 @@ public class Utils {
         UserDao userDao = new UserDaoImpl();
         companyDao compDao = new companyDaoImpl();
         String result = "";
-
-        // Find out if the session belongs to a user or a company
-        String userType = null;
-        if (userController.checkSession(request, "studente")) {
-            userType = "student";
-        } else if (userController.checkSession(request, "azienda")) {
-            userType = "azienda";
-        }
 
         boolean isCompany = compDao.checkCompany(email);
         boolean isUser = userDao.checkUser(email);

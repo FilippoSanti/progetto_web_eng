@@ -169,7 +169,7 @@
                                                 <div class="form-group">
                                                     <label>Birth Date<span class="text-danger">* </span><a>  (use the format: mm/dd/yyyy)</a></label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" value= "${userData.getDate()}" id="datepicker-autoclose" name ="data_nascita">
+                                                        <input type="text" class="form-control" value= "${userData.getDate()}" id="datepicker-autoclose" name ="data_nascita" data-date-format="dd/mm/yyyy">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
