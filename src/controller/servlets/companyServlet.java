@@ -6,7 +6,6 @@ import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +25,6 @@ public class companyServlet extends HttpServlet {
 
         request.setAttribute("header", "");
         request.setAttribute("sidemenu", "");
-
-        // URL Parameters
-        String paramName = "view";
-        String paramValue = request.getParameter(paramName);
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
@@ -53,33 +48,9 @@ public class companyServlet extends HttpServlet {
             request.setAttribute("sidemenu", "admin");
         }
 
-        try {
-            // Check if the user has given the right parameters
-            if (paramValue == null) {
-                action_default(request, response);
-                return;
-            }
+        // Execute the default action
+        action_view_all(request, response);
 
-            // View the company list
-            if (paramValue.equals("all")) {
-                action_view_all(request, response);
-                return;
-            }
-
-            // View a specific company
-            if (paramValue.matches("[0-9]+")) {
-                action_view_company(request, response);
-                return;
-            }
-
-            // Default action if no parameter is set properly
-            action_default(request, response);
-
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
@@ -90,14 +61,6 @@ public class companyServlet extends HttpServlet {
         ArrayList<Company> companiesArray = compDao.getCompaniesList();
 
         request.setAttribute("companiesList", companiesArray);
-        request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
-    }
-
-    protected void action_view_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-        request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
-    }
-
-    protected static void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/companies_list.ftl").forward(request, response);
     }
 

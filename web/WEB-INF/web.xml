@@ -98,13 +98,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>userProfile</servlet-name>
+        <servlet-name>viewProfile</servlet-name>
         <servlet-class>controller.servlets.profileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>userProfile</servlet-name>
-        <url-pattern>/userProfile</url-pattern>
+        <servlet-name>viewProfile</servlet-name>
+        <url-pattern>/viewProfile</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -118,37 +118,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>company</servlet-name>
+        <servlet-name>companiesList</servlet-name>
         <servlet-class>controller.servlets.companyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>company</servlet-name>
-        <url-pattern>/company</url-pattern>
+        <servlet-name>companiesList</servlet-name>
+        <url-pattern>/companiesList</url-pattern>
     </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>companies_list</servlet-name>
-        <servlet-class>controller.servlets.companyServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>companies_list</servlet-name>
-        <url-pattern>/companies_list</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>internships_list</servlet-name>
-        <servlet-class>controller.servlets.internships_listServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>internships_list</servlet-name>
-        <url-pattern>/internships_list</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>editProfile</servlet-name>
@@ -218,6 +195,16 @@
     <servlet-mapping>
         <servlet-name>resetPassword</servlet-name>
         <url-pattern>/resetPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userList</servlet-name>
+        <servlet-class>controller.servlets.userListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userList</servlet-name>
+        <url-pattern>/userList</url-pattern>
     </servlet-mapping>
 
     <!--

@@ -24,14 +24,14 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-user"></i> <span> My Profile </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="/userProfile">My Account</a></li>
+                                <li><a href="/viewProfile">My Account</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
                                 <li><a href="*.html">My Internships</a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="company?view=all"><i class="ti-list"></i><span> Companies List </span>
+                            <a href="companiesList"><i class="ti-list"></i><span> Companies List </span>
                             </a>
                         </li>
 

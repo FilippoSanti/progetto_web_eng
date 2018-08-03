@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class profileServlet extends HttpServlet {
 
@@ -32,16 +31,10 @@ public class profileServlet extends HttpServlet {
 
         // URL Parameters
         String type = "type";
-        String paramName = "view";
         String id = "id";
 
         String typeValue = request.getParameter(type);
-        String paramValue = request.getParameter(paramName);
         String idValue = request.getParameter(id);
-
-        if (paramValue != null && paramValue.equals("all")) {
-            action_show_all(request, response);
-        }
 
         // If every parameter is set, we check them
         // This is done to avoid null pointer exceptions
@@ -65,22 +58,6 @@ public class profileServlet extends HttpServlet {
             action_load_home(request, response);
             return;
         }
-    }
-
-    /**
-     * List the user profiles
-     */
-    private void action_show_all(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
-
-        UserDao uDao = new UserDaoImpl();
-
-        // Get the user list
-        ArrayList<User> userArray = uDao.getUserList();
-        request.setAttribute("userList", userArray);
-
-        RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/students_list_admin.ftl");
-        dispatcher.forward(request, response);
     }
 
     private void action_default_user(HttpServletRequest request, HttpServletResponse response, String email) throws IOException, ServletException, PropertyVetoException, SQLException {
@@ -137,7 +114,8 @@ public class profileServlet extends HttpServlet {
         }
 
         // More security checks
-        if (userType.equals("student") && securityModel.getUser().equals("student")) {
+        if (userType.equals("student") && securityModel.getUser().equals("student")
+                && securityModel.getRole().equals("user")) {
             // Signal that an error has occurred
             request.setAttribute("errorMessage", "Only companies can access user profiles");
             action_student(request, response, homeServlet.loggedUserEmail);

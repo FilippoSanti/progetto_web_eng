@@ -20,7 +20,7 @@
                 </li>
 
                 <li>
-                    <a href="/company?view=all"><i class="ti-list"></i><span> Companies List </span>
+                    <a href="companiesList"><i class="ti-list"></i><span> Companies List </span>
                     </a>
                 </li>
 

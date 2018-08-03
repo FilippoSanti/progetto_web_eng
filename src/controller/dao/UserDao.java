@@ -21,6 +21,7 @@ public interface UserDao {
                            String cognome, String cod_fiscale, String luogo_nascita) throws ParseException;
     public boolean insertPasswordResetRequest(String email, String token, java.util.Date expirationDate);
     public void deleteResetRequest(String token) throws SQLException, IOException, PropertyVetoException;
+    public boolean deleteUser(int userID) throws SQLException, IOException, PropertyVetoException;
 
     /** Get functions */
     public User getUser(String userEmail);

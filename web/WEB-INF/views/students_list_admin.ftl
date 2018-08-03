@@ -61,8 +61,24 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <div class="table-responsive">                                   
-<br>
+                                <div class="table-responsive">
+
+                                    <#if errorMessage?has_content>
+
+                                        <div class="alert alert-danger" role="alert">
+                                            ${errorMessage}
+                                        </div>
+
+                                    </#if>
+
+                                    <#if Message?has_content>
+
+                                        <div class="alert alert-success" role="alert">
+                                            ${Message}
+                                        </div>
+
+                                    </#if>
+
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
@@ -82,8 +98,8 @@
                                             <td>${val.getCognome()}</td>
                                             <td>${val.getCorso()}</td>
 
-                                            <a href="userProfile?view=${val.getId()}"><td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Profile</button></td></a>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
+                                            <td><a href="viewProfile?type=student&id=${val.getId()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Profile</button></a></td>
+                                            <td><a href="userList?action=delete&id=${val.getId()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
                                         </tr>
                                         </#list>
                                         </#if>

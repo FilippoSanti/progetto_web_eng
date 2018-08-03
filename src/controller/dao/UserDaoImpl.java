@@ -31,9 +31,10 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECK_EMAIL_USER = "SELECT * FROM studente WHERE email=?";
     private static final String GET_EMAIL_BY_TOKEN = "SELECT email FROM password_reset WHERE token = ?";
     private static final String GET_ID_BY_EMAIL = "SELECT email FROM studente WHERE studente_id = ?";
-    private static final String GET_USER_LIST = "SELECT * FROM `studente` ORDER BY `studente`.`studente_id` DESC";
+    private static final String GET_USER_LIST = "SELECT * FROM studente ORDER BY studente.studente_id DESC";
     private static final String CHECK_ADMIN = "SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'";
     private static final String UPDATE_USER_EMAIL = "UPDATE studente SET email = ? WHERE studente.email = ?";
+    private static final String DELETE_USER = "DELETE FROM studente WHERE studente.studente_id = ?";
 
     /**
      * Get a user object by an email
@@ -632,6 +633,22 @@ public class UserDaoImpl implements UserDao {
                 cse.printStackTrace();
             }
         }
+        return result;
+    }
+
+    public boolean deleteUser(int userID) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(DELETE_USER);
+
+        pst.setInt(1, userID);
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            result = true;
+        }
+        dbConnection.close();
         return result;
     }
 }
