@@ -329,38 +329,6 @@ public class userController {
 
     }
 
-    /* User authentication */
-    public static boolean userAuth(String email, String password, String loginType) throws SQLException, ClassNotFoundException, PropertyVetoException, IOException {
-
-        Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement pst = null;
-
-        try {
-            // Login as a student
-            if (loginType.equals("studente")) {
-                pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
-            } else if (loginType.equals("azienda")) {
-
-                // Login as a company
-                pst = dbConnection.prepareStatement("SELECT password FROM azienda WHERE email_login = ?");
-            } else return false;
-
-            pst.setString(1, email);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-
-                //Check if the provided password and the hashed one are equal
-                if (Utils.checkPassword(password, rs.getString("password")))
-                    return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
-    }
-
     // Check if the user is logged
     public static boolean checkSession(HttpServletRequest request, String target) {
 

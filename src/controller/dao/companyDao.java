@@ -16,6 +16,7 @@ import java.util.List;
 public interface companyDao {
 
     public Company getCompanyDataByEmail(String userEmail) throws SQLException, IOException, PropertyVetoException;
+    public boolean enableCompany(String company_login_email) throws SQLException, IOException, PropertyVetoException;
     public boolean insertInternship(Internship tirocinio) throws PropertyVetoException, SQLException, IOException;
     public boolean getCompanyInternships(String company_login_email) throws PropertyVetoException, SQLException, IOException;
     public boolean checkCompanyEnabled(String company_login_email) throws SQLException, IOException, PropertyVetoException;
@@ -30,5 +31,8 @@ public interface companyDao {
     public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg,
                            String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String nome_cognome_tir,
                            String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException;
+
+    public ArrayList<Company> getCompaniesToBeApproved() throws SQLException, IOException, PropertyVetoException;
     public String getEmailByID(int id);
+    public boolean deleteCompany(int userID) throws SQLException, IOException, PropertyVetoException;
 }

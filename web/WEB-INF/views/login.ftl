@@ -50,6 +50,12 @@
                                     </div>
                                 </#if>
 
+                                <#if Message?has_content>
+                                    <div class="alert alert-warning">
+                                        <strong>Warning!</strong> ${Message}
+                                    </div>
+                                </#if>
+
                                 <div class="account-content">
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">

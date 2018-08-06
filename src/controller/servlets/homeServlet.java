@@ -28,17 +28,85 @@ public class homeServlet extends HttpServlet {
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
-        if (securityModel.getUser().equals("student")) {
+        if (securityModel.getUser().equals("student")){
             action_student(request, response);
         }
+
 
         if (securityModel.getUser().equals("azienda")) {
             action_company(request, response);
         }
 
         if (securityModel.getUser().equals("anonymous")) {
-            action_anonymous(request, response);
+            action_default_anonymous(request, response);
         }
+    }
+
+    protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        HttpSession session = request.getSession();
+        UserDao userDao = new UserDaoImpl();
+
+        // Get the user object attribute containing the user email
+        User userModel = (User) session.getAttribute("loggedInUser");
+        loggedUserEmail = userModel.getEmail();
+
+        // The security model uses loggedUserEmail, so we must declare it later
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getRole().equals("admin")) {
+            action_default_admin(request, response);
+        } else {
+            action_default_student(request, response);
+        }
+    }
+
+    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
+        // Get the user object attribute containing the user email
+        Company companyModel = (Company) session.getAttribute("loggedInCompany");
+        loggedUserEmail = companyModel.getEmail_login();
+        action_default_company(request, response);
+    }
+
+    protected void action_admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        action_default_admin(request, response);
+
+    }
+
+    /** Default actions **/
+
+    public void action_default_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
+    public void action_default_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_company.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
+    public void action_default_admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_admin.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
+    protected void action_default_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // home_visitor.ftl
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_visitor.ftl");
+
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -74,49 +142,4 @@ public class homeServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    public void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home.ftl");
-
-        dispatcher.forward(request, response);
-    }
-
-    protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-
-        HttpSession session = request.getSession();
-        UserDao userDao = new UserDaoImpl();
-
-        // Get the user object attribute containing the user email
-        User userModel = (User) session.getAttribute("loggedInUser");
-        loggedUserEmail = userModel.getEmail();
-
-        //Check if the user is an admin
-        if (userDao.checkAdmin(loggedUserEmail)) {
-            System.out.println("You look like an admin");
-        } else System.out.println("You're just a simple user");
-
-        action_default(request, response);
-
-    }
-
-    protected void action_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // home_visitor.ftl
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_visitor.ftl");
-
-        dispatcher.forward(request, response);
-    }
-
-    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-
-        // Get the user object attribute containing the user email
-        Company companyModel = (Company) session.getAttribute("loggedInCompany");
-        loggedUserEmail = companyModel.getEmail_login();
-        action_default(request, response);
-    }
-
 }

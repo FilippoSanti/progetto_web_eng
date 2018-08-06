@@ -22,6 +22,7 @@ public interface UserDao {
     public boolean insertPasswordResetRequest(String email, String token, java.util.Date expirationDate);
     public void deleteResetRequest(String token) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteUser(int userID) throws SQLException, IOException, PropertyVetoException;
+    public boolean userAuth(String email, String password, String loginType) throws SQLException,PropertyVetoException, IOException;
 
     /** Get functions */
     public User getUser(String userEmail);

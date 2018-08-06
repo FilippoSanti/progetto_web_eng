@@ -207,6 +207,16 @@
         <url-pattern>/userList</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>agreementRequests</servlet-name>
+        <servlet-class>controller.servlets.agreementRequestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>agreementRequests</servlet-name>
+        <url-pattern>/agreementRequests</url-pattern>
+    </servlet-mapping>
+
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
         RequestDispatcher.forward/include should and will still work. Removing

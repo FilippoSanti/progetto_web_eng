@@ -21,6 +21,7 @@ public class companyDaoImpl implements companyDao {
     private static final String ENABLE_COMPANY = "UPDATE azienda SET abilitata = '1' WHERE azienda.email_login = ?";
     private static final String CHECK_EM_EXISTS = "SELECT * FROM azienda WHERE email_login = ?";
     private static final String COMPANY_LIST = "SELECT * FROM azienda WHERE abilitata = 1 ORDER BY azienda.azienda_id ASC";
+    private static final String COMPANY_LIST_NOT_APPROVED = "SELECT * FROM azienda WHERE abilitata = 0 ORDER BY azienda.azienda_id ASC";
     private static final String UPDATE_COMPANY_DATA = "UPDATE azienda SET email_login = ?, password = ? WHERE azienda.email_login = ?";
     private static final String UPDATE_COMPANY_INFO = "UPDATE azienda\n" +
             "      SET `email_login` = ?, `ragione_sociale` = ?, `indirizzo_sede_legale` = ?, \n" +
@@ -33,6 +34,7 @@ public class companyDaoImpl implements companyDao {
     private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT email_login FROM azienda WHERE azienda_id = ?";
     private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
+    private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
 
     /**
      * Get a company object by its login_email
@@ -172,11 +174,12 @@ public class companyDaoImpl implements companyDao {
         boolean result = false;
 
         pst.setString(1, company_login_email);
-        ResultSet rs = pst.executeQuery();
+        int rslt = pst.executeUpdate();
 
-        if (rs.next()) {
+        if (rslt > 0) {
             result = true;
         }
+
         dbConnection.close();
         return result;
     }
@@ -441,6 +444,53 @@ public class companyDaoImpl implements companyDao {
                 cse.printStackTrace();
             }
         }
+        return result;
+    }
+
+    public ArrayList<Company> getCompaniesToBeApproved() throws SQLException, IOException, PropertyVetoException {
+        ArrayList<Company> companiesList = new ArrayList<>();
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(COMPANY_LIST_NOT_APPROVED);
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            Company company = new Company(
+                    rs.getString("nome_cognome_tirocini"),
+                    rs.getString("ragione_sociale"),
+                    rs.getString("indirizzo_sede_legale"),
+                    rs.getString("cf_rappresentante"),
+                    rs.getString("partita_iva_rappresentante"),
+                    rs.getString("nome_cognome_rappresentante"),
+                    rs.getString("telefono_tirocini"),
+                    rs.getString("email_tirocini"),
+                    rs.getString("foro_competente"),
+                    rs.getString("provincia"),
+                    rs.getString("email_login"),
+                    rs.getInt("azienda_id"),
+                    rs.getString("descrizione")
+            );
+            companiesList.add(company);
+        }
+
+        dbConnection.close();
+        return companiesList;
+    }
+
+    public boolean deleteCompany(int userID) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(DELETE_COMPANY_BY_ID);
+
+        pst.setInt(1, userID);
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            result = true;
+        }
+        dbConnection.close();
         return result;
     }
 }

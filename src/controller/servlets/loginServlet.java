@@ -1,5 +1,9 @@
 package controller.servlets;
 
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
 import controller.userController;
 import model.Company;
 import model.User;
@@ -13,7 +17,6 @@ import java.sql.SQLException;
 public class loginServlet extends HttpServlet {
 
     String staticEmail = "";
-    boolean registered = false;
 
     // Login process
     protected void action_login(HttpServletRequest request, HttpServletResponse response)
@@ -31,74 +34,79 @@ public class loginServlet extends HttpServlet {
             out.println("You must enter some data lo login");
         }
 
-        try {
-            // Check if our login belongs to a company or a user
-            boolean userLogged    = userController.userAuth(email, pass, "studente");
-            boolean companyLogged = userController.userAuth(email, pass, "azienda" );
-            HttpSession session   = null;
+        // Check if our login belongs to a company or a user
+        UserDao uDao = new UserDaoImpl();
 
-            // TODO: Utente e Azienda possono avere le stesse mail, dato che appartenono a tabelle separate
-            // TODO: aggiungere un radiobutton che permette di scegliere tra azienda e utente quando si logga
+        boolean userLogged    = uDao.userAuth(email, pass, "studente");
+        boolean companyLogged = uDao.userAuth(email, pass, "azienda");
+        HttpSession session   = null;
 
-            if (userLogged) {
+        // TODO: Utente e Azienda possono avere le stesse mail, dato che appartenono a tabelle separate
+        // TODO: Checkare tutto a dovere
 
-                // Create a new user session
-                session = request.getSession();
-                User user = new User();
+        if (userLogged) {
 
-                // Set the user object parameters
-                user.setEmail(email);
+            // Create a new user session
+            session = request.getSession();
+            User user = new User();
 
-                // Set the session attribute to check if the user is logged in
-                session.setAttribute("loggedInUser", user);
+            // Set the user object parameters
+            user.setEmail(email);
 
-            } else if (companyLogged) {
+            // Set the session attribute to check if the user is logged in
+            session.setAttribute("loggedInUser", user);
 
-                // Create a new company session
-                session = request.getSession();
-                Company comp = new Company();
+        } else if (companyLogged) {
 
-                // Set the company parameters
-                comp.setEmail_login(email);
+            // Check if the company is approved
+            companyDao cDao = new companyDaoImpl();
 
-                // Set the session attribute to check if a company is logged in
-                session.setAttribute("loggedInCompany", comp);
+            if (!cDao.checkCompanyEnabled(email)) {
+                request.getSession().setAttribute("Message", "The administrator is reviewing your account, try again later");
+                response.sendRedirect("/login");
+                return;
             }
 
-            if (userLogged || companyLogged) {
+            // Create a new company session
+            session = request.getSession();
+            Company comp = new Company();
 
-                // Check if we have to remember the username
-                if(remember_me_is_checked)
-                {
-                    Cookie c = new Cookie("email", email);
-                    c.setMaxAge(24*60*60);
-                    response.addCookie(c);  // response is an instance of type HttpServletReponse
-                } else {
+            // Set the company parameters
+            comp.setEmail_login(email);
 
-                    // If the remember me button is not checked
-                    // We delete the user cookie
-                    Cookie killMyCookie = new Cookie("email", null);
-                    killMyCookie.setMaxAge(0);
-                    response.addCookie(killMyCookie);
-                    staticEmail = "";
-                }
+            // Set the session attribute to check if a company is logged in
+            session.setAttribute("loggedInCompany", comp);
+        }
 
-                // Redirect to the home page
-                response.sendRedirect("/home");
+        if (userLogged || companyLogged) {
 
+            // Check if we have to remember the username
+            if(remember_me_is_checked)
+            {
+                Cookie c = new Cookie("email", email);
+                c.setMaxAge(24*60*60);
+                response.addCookie(c);  // response is an instance of type HttpServletReponse
             } else {
-                out.println("Sorry, username or Password incorrect");
-                action_default(request, response);
+
+                // If the remember me button is not checked
+                // We delete the user cookie
+                Cookie killMyCookie = new Cookie("email", null);
+                killMyCookie.setMaxAge(0);
+                response.addCookie(killMyCookie);
+                staticEmail = "";
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+
+            // Redirect to the home page
+            response.sendRedirect("/home");
+
+        } else {
+            out.println("Sorry, username or Password incorrect");
+            action_default(request, response);
         }
     }
 
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        request.setAttribute("registeredMessage", registerServlet.registeredMessage);
 
         Cookie[] cookies  = null;
         cookies = request.getCookies();
@@ -120,6 +128,9 @@ public class loginServlet extends HttpServlet {
         }
         request.setAttribute("email", staticEmail);
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
+
+        request.getSession().removeAttribute("Message");
+        request.getSession().removeAttribute("registeredMessage");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

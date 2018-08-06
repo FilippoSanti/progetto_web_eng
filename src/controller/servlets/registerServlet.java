@@ -23,8 +23,6 @@ import java.text.ParseException;
 
 public class registerServlet extends HttpServlet {
 
-    public static String registeredMessage = "";
-
     /** Registration of a student**/
     protected boolean action_register_student(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, PropertyVetoException, ParseException {
@@ -89,12 +87,8 @@ public class registerServlet extends HttpServlet {
                     telefono, corso, email, handicapBool, cognome, cod_fiscale, luogo_nascita);
 
             if (regOK) {
-                registeredMessage = "Registered successfully";
-
-                RequestDispatcher dispatcher
-                        = request.getServletContext().getRequestDispatcher("/login");
-
-                dispatcher.forward(request, response);
+                request.getSession().setAttribute("registeredMessage", "Successfully registered");
+                response.sendRedirect("/login");
             } else {
                 action_default_student(request, response);
             }
@@ -146,12 +140,9 @@ public class registerServlet extends HttpServlet {
                     provincia);
 
             if (regOK) {
-                registeredMessage = "Registered successfully";
+                request.getSession().setAttribute("registeredMessage", "Request waiting to be approved by the administrator");
+                response.sendRedirect("/login");
 
-                RequestDispatcher dispatcher
-                        = request.getServletContext().getRequestDispatcher("/login");
-
-                dispatcher.forward(request, response);
             } else {
                 action_default_company(request, response);
             }

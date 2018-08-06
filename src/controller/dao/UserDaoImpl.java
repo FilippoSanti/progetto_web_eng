@@ -651,4 +651,39 @@ public class UserDaoImpl implements UserDao {
         dbConnection.close();
         return result;
     }
+
+    /* User authentication */
+    public boolean userAuth(String email, String password, String loginType) throws SQLException,PropertyVetoException, IOException {
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        companyDao cDao = new companyDaoImpl();
+        PreparedStatement pst = null;
+        boolean result = false;
+
+        try {
+            // Login as a student
+            if (loginType.equals("studente")) {
+                pst = dbConnection.prepareStatement("SELECT password FROM studente WHERE email = ?");
+            }
+
+            if (loginType.equals("azienda")) {
+                pst = dbConnection.prepareStatement("SELECT password FROM azienda WHERE email_login = ?");
+            }
+
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                //Check if the provided password and the hashed one are equal
+                if (Utils.checkPassword(password, rs.getString("password")))
+                    result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        dbConnection.close();
+        return result;
+    }
 }
