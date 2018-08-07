@@ -129,8 +129,6 @@ public class loginServlet extends HttpServlet {
         request.setAttribute("email", staticEmail);
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
 
-        request.getSession().removeAttribute("Message");
-        request.getSession().removeAttribute("registeredMessage");
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

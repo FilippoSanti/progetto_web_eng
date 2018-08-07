@@ -54,11 +54,19 @@ public class userListServlet extends HttpServlet {
 
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/students_list_admin.ftl");
+        // Remove the session attributes
+
         dispatcher.forward(request, response);
 
-        // Remove the session attributes
-        request.getSession().removeAttribute("errorMessage");
-        request.getSession().removeAttribute("Message");
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
+
     }
 
     private void action_delete_user (HttpServletRequest request, HttpServletResponse response, String strID) throws IOException, PropertyVetoException, SQLException, ServletException {

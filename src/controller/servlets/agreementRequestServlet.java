@@ -3,6 +3,7 @@ package controller.servlets;
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.utilities.SecurityFilter;
+import controller.utilities.Utils;
 import model.Company;
 import model.Security;
 import model.User;
@@ -23,6 +24,7 @@ public class agreementRequestServlet extends HttpServlet {
             throws ServletException, IOException, PropertyVetoException, SQLException, ClassNotFoundException {
 
         response.setContentType("text/html;charset=UTF-8");
+        Security securityModel = SecurityFilter.checkUsers(request);
 
         // URL Parameters
         String action = "action";
@@ -30,9 +32,6 @@ public class agreementRequestServlet extends HttpServlet {
 
         String action_value = request.getParameter(action);
         String id_value = request.getParameter(id);
-
-
-        Security securityModel = SecurityFilter.checkUsers(request);
 
         // Check that the user has the right permissions
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
@@ -42,17 +41,19 @@ public class agreementRequestServlet extends HttpServlet {
 
                 int id_real = Integer.parseInt(id_value);
                 action_approve_company(request, response, id_real);
+                return;
 
             }
 
             if (action_value != null && id_value != null &&
                     action_value.equals("delete") && id_value.matches("[0-9]+")) {
-
                 int id_real = Integer.parseInt(id_value);
                 action_refuse_company(request, response, id_real);
+                return;
+
             }
 
-            else action_default(request, response);
+            action_default(request, response);
 
         } else {
             // Redirect to the home page
@@ -60,7 +61,7 @@ public class agreementRequestServlet extends HttpServlet {
         }
     }
 
-    protected void action_approve_company(HttpServletRequest request, HttpServletResponse response, int id) throws PropertyVetoException, SQLException, IOException, ClassNotFoundException {
+    private void action_approve_company(HttpServletRequest request, HttpServletResponse response, int id) throws PropertyVetoException, SQLException, IOException, ClassNotFoundException {
 
         // Check that the userID exists
         companyDao cDao = new companyDaoImpl();
@@ -82,7 +83,7 @@ public class agreementRequestServlet extends HttpServlet {
 
     }
 
-    protected void action_refuse_company(HttpServletRequest request, HttpServletResponse response, int id) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
+    private void action_refuse_company(HttpServletRequest request, HttpServletResponse response, int id) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
 
         // Check that the userID exists
         companyDao cDao = new companyDaoImpl();
@@ -99,12 +100,13 @@ public class agreementRequestServlet extends HttpServlet {
 
         } else {
             request.getSession().setAttribute("errorMessage", "The userID doesn't exist");
+
             response.sendRedirect("/agreementRequests");
         }
 
     }
 
-    protected void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         companyDao cDao = new companyDaoImpl();
 
@@ -115,8 +117,14 @@ public class agreementRequestServlet extends HttpServlet {
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/agreements_requests.ftl");
         dispatcher.forward(request, response);
 
-        request.getSession().removeAttribute("Message");
-        request.getSession().removeAttribute("errorMessage");
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
     }
 
     /**

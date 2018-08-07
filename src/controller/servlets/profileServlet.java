@@ -56,7 +56,6 @@ public class profileServlet extends HttpServlet {
             action_company(request, response, homeServlet.loggedUserEmail);
         } else {
             action_load_home(request, response);
-            return;
         }
     }
 
