@@ -890,6 +890,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(98, 103, 115, 0.2);
   padding: 20px;
   margin-bottom: 20px;
+  -webkit-box-shadow: 2px 6px 21px -2px rgba(0, 0, 0, 0.19);
 }
 
 .header-title {
@@ -953,7 +954,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font-15{
-font-size: -15px;
+font-size: 15px;
 }
 
 .thumb-sm {
@@ -3508,4 +3509,78 @@ font-size: 12px;
 
 .mrgnlft15px{
   margin-left: 15px;
+}
+
+.yes{
+  position: absolute !important;
+}
+
+.btnsearchposition{
+  margin-left: -70px;
+  z-index: 10000 !important;
+}
+
+.borderradius{
+  border-top-right-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.stylesearchbtn{
+  background-color: transparent !important;
+  color: white !important;
+  border: 0px !important;
+  margin-top: 3px;
+  padding-right: 0px !important;
+  padding-left: 8px !important;
+}
+
+.stylesearchbtn2{
+  background-color: transparent !important;
+  color: white !important;
+  border: 0px !important;
+}
+
+.stylesearchbtn3{
+  background-color: transparent !important;
+  color: #909090 !important;
+  border: 0px !important;
+}
+
+.postotasti{
+  padding-right: 71px !important;
+}
+
+.customdrop{
+  overflow: visible !important;
+  left: 0px !important;
+  top: 0px !important;
+  will-change: transform;
+  transform: translate3d(-48px, 52px, 0px) !important;
+  padding: 18px !important;
+  color: rgb(125, 125, 125) !important;
+  width: 280px !important;
+  background-color: rgba(255, 255, 255, 0.93);
+}
+
+.customdrop:hover{
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.customitem{
+  color: #909090 !important;
+  border-color: #90909085 !important;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  width: 100% !important;
+}
+
+.noprofdropdownvertal{
+  vertical-align: initial !important;
+}
+
+.btn.focus, .btn:focus {
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
