@@ -42,10 +42,12 @@ public class profileServlet extends HttpServlet {
 
             if (typeValue.equals("student") && idValue.matches("[0-9]+")) {
                 action_view_userid(request, response, idValue, "student");
+                return;
             }
 
             if (typeValue.equals("company") && idValue.matches("[0-9]+")) {
                 action_view_userid(request, response, idValue, "company");
+                return;
             }
         }
 

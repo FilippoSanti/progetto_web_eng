@@ -41,8 +41,7 @@ public class loginServlet extends HttpServlet {
         boolean companyLogged = uDao.userAuth(email, pass, "azienda");
         HttpSession session   = null;
 
-        // TODO: Utente e Azienda possono avere le stesse mail, dato che appartenono a tabelle separate
-        // TODO: Checkare tutto a dovere
+        // TODO: checkare che l'email nelle due tabelle sia unica
 
         if (userLogged) {
 
@@ -108,6 +107,13 @@ public class loginServlet extends HttpServlet {
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        // Get the attributes into a string
+        // session attributes will be removed and set again (locally)
+        // this is done to avoid problems with chrome, pt. 1
+
+        String reg_mes = (String) request.getSession().getAttribute("registeredMessage");
+        String mes = (String) request.getSession().getAttribute("Message");
+
         Cookie[] cookies  = null;
         cookies = request.getCookies();
 
@@ -127,6 +133,19 @@ public class loginServlet extends HttpServlet {
             }
         }
         request.setAttribute("email", staticEmail);
+        request.getSession().removeAttribute("registeredMessage");
+        request.getSession().removeAttribute("Message");
+
+        // Set the string attributes (again)
+        // pt. 2 of the chrome hack
+        if (reg_mes != null) {
+            request.setAttribute("registeredMessage", reg_mes);
+        }
+
+        if (mes != null) {
+            request.setAttribute("Message", mes);
+        }
+
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);
 
     }
