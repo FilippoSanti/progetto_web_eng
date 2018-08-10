@@ -1,5 +1,9 @@
 package controller.servlets;
 
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
+import controller.dao.internshipDao;
+import controller.dao.internshipDaoImpl;
 import model.InternshipRequest;
 
 import javax.servlet.ServletException;
@@ -11,12 +15,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class listaCandidatiServlet extends HttpServlet {
+public class candidates_listServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
 
-        request.setAttribute("listaCandidati", null);
+        request.setAttribute("candidates_list", null);
 
         // URL Parameters
         String paramName    = "view";
@@ -37,7 +41,7 @@ public class listaCandidatiServlet extends HttpServlet {
 
             // View a specific internship
             if (paramValue.matches("[0-9]+")) {
-                action_view_listaCandidati(request, response);
+                action_view_candidates_list(request, response, paramValue);
                 return;
             }
 
@@ -51,26 +55,34 @@ public class listaCandidatiServlet extends HttpServlet {
         }
     }
 
-    protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_candidates_list(HttpServletRequest request, HttpServletResponse response, String tir_id) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-      //  String email_azie = homeServlet.loggedUserEmail;
-        //int az_id = controller.core.companyDAO.getCompanyIDbyEmail(email_azie);
 
-       //int tir_id = 13;
-       // ArrayList<InternshipRequest> internshipsArray = internship_requestDAO.getListaCandidatibyTirocinioId(tir_id, az_id);
-       // request.setAttribute("listaCandidati", internshipsArray);
-       // request.getRequestDispatcher("/WEB-INF/views/listaCandidati.ftl").forward(request, response);
+        companyDao comDao = new companyDaoImpl();
+        String email_azie = homeServlet.loggedUserEmail;
+        int az_id = comDao.getCompanyIdbyEmail(email_azie);
+
+
+        internshipDao intDao = new internshipDaoImpl();
+        int tir_id1 = Integer.parseInt(tir_id);
+        System.out.println(tir_id);
+        System.out.println(tir_id1);
+        ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_listbyTirocinioId(tir_id1, az_id);
+        request.setAttribute("candidates_list", internshipsArray);
+        request.getRequestDispatcher("/WEB-INF/views/candidates_list.ftl").forward(request, response);
 
     }
 
-    protected void action_view_listaCandidati(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        request.getRequestDispatcher("/WEB-INF/views/listaCandidati.ftl").forward(request, response);
+
+
+        request.getRequestDispatcher("/WEB-INF/views/candidates_list.ftl").forward(request, response);
 
     }
 
     protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/listaCandidati.ftl").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/candidates_list.ftl").forward(request, response);
     }
 
     /**

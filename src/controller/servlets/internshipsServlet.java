@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static java.lang.reflect.Modifier.STATIC;
@@ -79,7 +80,7 @@ public class internshipsServlet extends HttpServlet {
 
             if (paramValue.equals("candidate") && submit_string.matches("[0-9]+")) {
 
-                action_candidate(request, response);
+                action_candidate(request, response, submit_string);
                 return;
             }
 
@@ -91,6 +92,8 @@ public class internshipsServlet extends HttpServlet {
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -192,13 +195,17 @@ public class internshipsServlet extends HttpServlet {
     }
 
 
-    protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException,  PropertyVetoException {
+    protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response, String int_id)
+            throws ServletException, IOException, SQLException, PropertyVetoException, ParseException {
 
 
+        String userMail =   homeServlet.loggedUserEmail;
 
-        internshipDao internshipDao = new internshipDaoImpl();
-        boolean candidateOK = internshipDao.request_internship(1);
+
+        UserDao UserDao = new UserDaoImpl();
+        int userId = UserDao.getIDbyEmail(userMail);
+        int int_id1 = Integer.parseInt(int_id);
+        boolean candidateOK = ((UserDaoImpl) UserDao).candidate(2, int_id1, userId);
 
         if (candidateOK) {
 

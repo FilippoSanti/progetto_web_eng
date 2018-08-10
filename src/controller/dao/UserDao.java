@@ -36,5 +36,6 @@ public interface UserDao {
     public boolean checkUser(String email) throws IOException, PropertyVetoException;
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
+    public int getIDbyEmail(String email);
 
 }

@@ -36,6 +36,7 @@ public class companyDaoImpl implements companyDao {
     private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
     private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
 
+
     /**
      * Get a company object by its login_email
      */

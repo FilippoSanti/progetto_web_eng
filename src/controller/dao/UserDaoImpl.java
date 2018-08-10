@@ -35,10 +35,57 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECK_ADMIN = "SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'";
     private static final String UPDATE_USER_EMAIL = "UPDATE studente SET email = ? WHERE studente.email = ?";
     private static final String DELETE_USER = "DELETE FROM studente WHERE studente.studente_id = ?";
+    private static final String CANDIDATE = "insert into richieste_tirocinio values(?,?,?,?,?)";
+    private static final String GET_EMAIL_BY_ID = "SELECT studente_id FROM studente WHERE email = ?";
+
+
 
     /**
      * Get a user object by an email
      */
+    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id) throws ParseException {
+
+        Connection conn = null;
+        PreparedStatement pst = null;
+        boolean result = false;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(CANDIDATE);
+
+            pst.setNull(1, Types.INTEGER);
+            pst.setInt(2, azienda_id);
+            pst.setInt(3, offerta_tirocinio_id);
+            pst.setInt(4, studente_id);
+            pst.setInt(5,0);
+
+
+            int i = pst.executeUpdate();
+
+            // Registration ok
+            if (i > 0) {
+                result = true;
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+
     public User getUser(String userEmail) {
 
         User usr = new User();
@@ -556,6 +603,46 @@ public class UserDaoImpl implements UserDao {
             if (rs.next() && rs != null) {
 
                 result = rs.getString("email");
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public int getIDbyEmail(String email) {
+
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_EMAIL_BY_ID);
+
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs != null) {
+
+                result = rs.getInt("studente_id");
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {

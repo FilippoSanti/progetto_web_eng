@@ -105,8 +105,8 @@ public class internshipDaoImpl implements internshipDao {
         return internshipsList;
     }
 
-    public ArrayList<InternshipRequest> getListaCandidatibyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
-        ArrayList<InternshipRequest> listaCandidati = new ArrayList<>();
+    public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
+        ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(GET_LISTA_CAND);
@@ -123,11 +123,11 @@ public class internshipDaoImpl implements internshipDao {
                     rs.getBoolean("accettata")
             );
 
-            listaCandidati.add(internship_request);
+            candidates_list.add(internship_request);
 
         }
 
-        return listaCandidati;
+        return candidates_list;
     }
 
     /**

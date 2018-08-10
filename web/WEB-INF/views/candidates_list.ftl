@@ -307,17 +307,17 @@
                                         <thead>
                                         <tr>
                                             <th>id_tirocinio</th>
-                                            <th>azienda</th>
-                                            <th>Candidato</th>
-                                            <th>Accetta</th>
-                                            <th>Cancella offerta</th>
+                                            <th>company</th>
+                                            <th>Candidate</th>
+                                            <th>Accept</th>
+                                            <th>Delete Offer</th>
                                         </tr>
                                         </thead>
 
 
                                         <tbody>
-                                           <#if listaCandidati?has_content>
-                                               <#list listaCandidati as val>
+                                           <#if candidates_list?has_content>
+                                               <#list candidates_list as val>
                                           <tr>
                                               <td>${val.getInternship_id()}</td>
                                               <td>${val.getAzienda_id()}</td>
