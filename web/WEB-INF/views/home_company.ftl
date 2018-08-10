@@ -192,7 +192,7 @@
                         </li>
 
                         <li>
-                            <a href="internships_list.html"><i class="ti-menu-alt"></i> <span> Internship List </span>
+                            <a href="/internships?view=all"><i class="ti-menu-alt"></i> <span> Internship List </span>
                             </a>
                         </li>
 
@@ -269,7 +269,7 @@
                                         <h5 class="m-b-5 mt-2">Add Internship</h5>
 
                                         <div class="container containeradd_dim">
-                                        	<button type="button" class="btn btnadd"><img class="imgadddim" src="assets/images/users/add3.1.png"></button>
+                                            <td><a href="/internships?view=add"><button type="button" class="btn btnadd"><img class="imgadddim" src="assets/images/users/add3.1.png"></button></a></td>
                                         
                                         </div>                                        
 
