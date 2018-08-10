@@ -134,10 +134,11 @@ public class internshipDaoImpl implements internshipDao {
      * Add a tirocinio
      */
     public boolean addInternship(int companyId, String nome, String dettagli, String luogo, String mesi,
-                                 String orari, String ore, String meseIniziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws SQLException, IOException, PropertyVetoException {
+                                 String orari, String ore, String meseIniziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste,
+                                 boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing) throws SQLException, IOException, PropertyVetoException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 
 
@@ -154,6 +155,12 @@ public class internshipDaoImpl implements internshipDao {
         ps.setString(11, obiettivi);
         ps.setString(12, modalita);
         ps.setString(13, rimborsi_spese_facilitazioni_previste);
+        ps.setBoolean(14, company_headquarters);
+        ps.setBoolean(15, remote_connection);
+        ps.setBoolean(16, refound_of_expenses);
+        ps.setBoolean(17, company_refactory);
+        ps.setBoolean(18, training_aid);
+        ps.setBoolean(19, nothing);
 
         int i = ps.executeUpdate();
 

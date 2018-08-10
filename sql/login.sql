@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 10, 2018 alle 18:23
+-- Creato il: Ago 10, 2018 alle 18:30
 -- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.7
 
@@ -57,31 +57,7 @@ INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale
 (5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1, ''),
 (6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0, ''),
 (7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 1, ''),
-(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample'),
-(9, 'lollo@lo..lol', '$2a$12$q/Yv9s1ApSGpmsFXqkvll.KsTYDlDHG8a3LqIgT2JgFVJBhaX2eLm', 'asdadasd', 'sadasdasdada', 'dsadada', 'asdadad', 'asdasdasdasd', 'asdadasd', 'asdasdasd', 'asdadad@asd.asd', 'asdasdasdasd', 'AL', 0, 'Description Sample'),
-(10, 'asd@asdsd.asd', '$2a$12$Pc9juuODyvBgCiPMmG149.DqJIvlyPugHpGsOgjZnzJjyHhwpLsP.', 'asdasdasda', 'asdasdas', 'asdasdasd', 'asdsadad', 'dasdasdasda', 'asdsadas', 'asdasdasdasd', 'dasdad', 'asdasdasdas', 'AL', 0, 'Description Sample');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `notifica`
---
-
-CREATE TABLE `notifica` (
-  `id_notifica` int(11) NOT NULL,
-  `id_utente` int(11) NOT NULL,
-  `id_azienda` int(11) DEFAULT NULL,
-  `testo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `notifica`
---
-
-INSERT INTO `notifica` (`id_notifica`, `id_utente`, `id_azienda`, `testo`) VALUES
-(1, 1, NULL, 'asdasdad'),
-(3, 0, 9, 'asdadasd wants to join'),
-(4, 0, 10, 'asdasdasda wants to join');
+(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample');
 
 -- --------------------------------------------------------
 
@@ -102,25 +78,41 @@ CREATE TABLE `offerta_tirocinio` (
   `mese_finale` varchar(60) NOT NULL,
   `obiettivi` varchar(300) NOT NULL,
   `modalita` varchar(30) NOT NULL,
-  `rimborsi_spese_facilitazioni_previste` varchar(600) NOT NULL
+  `rimborsi_spese_facilitazioni_previste` varchar(600) NOT NULL,
+  `company_headquarters` tinyint(4) NOT NULL,
+  `remote_connection` tinyint(4) NOT NULL,
+  `refound_of_expenses` tinyint(4) NOT NULL,
+  `company_refactory` tinyint(4) NOT NULL,
+  `training_aid` tinyint(4) NOT NULL,
+  `nothing` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `offerta_tirocinio`
 --
 
-INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`) VALUES
-(1, 3, '', '', 'casamuraglia', '0', '14 settembrice', '12', '', '', 'cacca', 'di merda', 'mai'),
-(2, 4, '', '', 'stoa', '0', 'giovanni', '12', '', '', '66', '123123', 'certo che no'),
-(9, 7, 'asdasads', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasads', 'adsadsads', 'asdsdaads'),
-(10, 7, 'scaccomaggio', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasdasdsda', 'dffff', 'ccc'),
-(11, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo'),
-(12, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo'),
-(13, 7, 'sccccc', '', 'scccaaaa', '0', '08:00 - 12:00', '10', '', '', 'ccccc', 'r44444', 'faffaaf'),
-(34, 7, 'schiappozz', '', 'casamurana', '0', '08:00 - 12:00', '10', '', '', 'sdadd', 'ccacc', 'STO CAZ'),
-(35, 7, 'cazziemazzi', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asfaff', 'sfasfd', 'ffff'),
-(36, 7, 'AAAAAAAAAAA', 'SSSSSSSSS', 'DDDDDDDDDD', '1', '08:00 - 12:00', '10', 'January', 'January', 'FFFFFFFFF', 'AAAAAAAAAAAA', 'DDDDDDDDDDD'),
-(37, 7, 'GGGGGG', 'GGGGGGG', 'GGGGGG', '1', '08:00 - 12:00', '10', 'January', 'January', 'GGGGG', 'GGGGGGGG', 'GGGGGGGG');
+INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`, `company_headquarters`, `remote_connection`, `refound_of_expenses`, `company_refactory`, `training_aid`, `nothing`) VALUES
+(1, 3, '', '', 'casamuraglia', '0', '14 settembrice', '12', '', '', 'cacca', 'di merda', 'mai', 0, 0, 0, 0, 0, 0),
+(2, 4, '', '', 'stoa', '0', 'giovanni', '12', '', '', '66', '123123', 'certo che no', 0, 0, 0, 0, 0, 0),
+(9, 7, 'asdasads', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasads', 'adsadsads', 'asdsdaads', 0, 0, 0, 0, 0, 0),
+(10, 7, 'scaccomaggio', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asdasdasdsda', 'dffff', 'ccc', 0, 0, 0, 0, 0, 0),
+(11, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo', 0, 0, 0, 0, 0, 0),
+(12, 7, 'asfsaf', '', 'asfsfa', '0', '08:00 - 12:00', '10', '', '', 'asfasffaf', 'asfasfass', 'nessuna stronzo', 0, 0, 0, 0, 0, 0),
+(13, 7, 'sccccc', '', 'scccaaaa', '0', '08:00 - 12:00', '10', '', '', 'ccccc', 'r44444', 'faffaaf', 0, 0, 0, 0, 0, 0),
+(34, 7, 'schiappozz', '', 'casamurana', '0', '08:00 - 12:00', '10', '', '', 'sdadd', 'ccacc', 'STO CAZ', 0, 0, 0, 0, 0, 0),
+(35, 7, 'cazziemazzi', '', 'asdasdasd', '0', '08:00 - 12:00', '10', '', '', 'asfaff', 'sfasfd', 'ffff', 0, 0, 0, 0, 0, 0),
+(36, 7, 'AAAAAAAAAAA', 'SSSSSSSSS', 'DDDDDDDDDD', '1', '08:00 - 12:00', '10', 'January', 'January', 'FFFFFFFFF', 'AAAAAAAAAAAA', 'DDDDDDDDDDD', 0, 0, 0, 0, 0, 0),
+(37, 7, 'GGGGGG', 'GGGGGGG', 'GGGGGG', '1', '08:00 - 12:00', '10', 'January', 'January', 'GGGGG', 'GGGGGGGG', 'GGGGGGGG', 0, 0, 0, 0, 0, 0),
+(38, 7, 'cazzzzzzooooooooooo', 'dddddddddddddddddddddddddddddd', 'oh che palle', '1', '08:00 - 12:00', '10', 'January', 'January', 'ddddddddddssssss', 'dddddddddsssssssssssss', 'ccccccccccccccccccccc', 0, 0, 0, 0, 0, 0),
+(39, 7, 'cazzzzzzooooooooooo', 'DIOCA', 'CAAAZZZZ', '1', '08:00 - 12:00', '10', 'January', 'January', 'CAZZZZZZ', 'CAZZ', 'NA MARDA', 0, 0, 0, 0, 0, 0),
+(40, 7, 'ohmerdsccccccccccc', 'aaaaaaaaaaaaaaaa', 'AAAAAAAAAAAAAAAAAAAAAAA', '1', '08:00 - 12:00', '10', 'January', 'January', 'AAAAAAAAAAAA', 'AAAAAAAAAAA', 'AAAAAAAAA', 0, 0, 0, 0, 0, 0),
+(41, 7, 'carloaaaaaaaaaaaaaadddddd', 'ddddddddddddddddddd', 'hhhhhhh', '1', '08:00 - 12:00', '10', 'January', 'January', 'aaaaaaaaaa', 'aadddddddddddddd', 'fffffffffffff', 0, 0, 0, 0, 0, 0),
+(42, 7, 'cazzzzzzooooooooooo', 'cccccccccccccccccccccccccccccccccccccccccccccc', 'oh che palle', '1', '08:00 - 12:00', '10', 'January', 'January', 'ccccccssssssss', 'sddddddddaaaaaaaa', 'ccccccccccccc', 0, 0, 0, 0, 0, 0),
+(43, 7, 'cazzzzzzooooooooooo', 'cccccccc', 'hhhhhhh', '1', '08:00 - 12:00', '10', 'January', 'January', 'ccccc', 'ccccccc', 'ccccc', 0, 0, 0, 0, 0, 0),
+(44, 7, 'carloaaaaaaaaaaaaaadddddd', 'ccccccccc', 'ccccccccccccccc', '1', '08:00 - 12:00', '10', 'January', 'January', 'ssssssssssssss', 'cccccccccccc', '', 0, 0, 0, 0, 0, 0),
+(45, 7, 'cazzzzzzooooooooooo', 'cccccc', 'ccccccc', '1', '08:00 - 12:00', '10', 'January', 'January', 'cccccc', 'ssssssss', '', 0, 0, 0, 0, 0, 0),
+(46, 7, 'cazzzzzzooooooooooo', 'dddddddddddddddd', 'CAAAZZZZ', '1', '08:00 - 12:00', '10', 'January', 'January', 'ddddddddddd', 'ssssssssss', '', 0, 0, 0, 0, 0, 0),
+(47, 7, 'carloaaaaaaaaaaaaaadddddd', 'ccccccccccc', 'ccccccccccc', '1', '08:00 - 12:00', '10', 'February', 'January', 'cccccc', 'cccc', 'cccccccc', 1, 0, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -216,12 +208,6 @@ ALTER TABLE `azienda`
   ADD PRIMARY KEY (`azienda_id`);
 
 --
--- Indici per le tabelle `notifica`
---
-ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`id_notifica`);
-
---
 -- Indici per le tabelle `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
@@ -251,19 +237,13 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT per la tabella `notifica`
---
-ALTER TABLE `notifica`
-  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`

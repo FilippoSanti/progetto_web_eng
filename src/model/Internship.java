@@ -3,7 +3,12 @@ package model;
 public class Internship {
 
     private int iternship_id, azienda_id;
+
+    private boolean  Company_headquarters, Remote_connection , refound_of_expenses, company_refactory, training_aid, nothing;
+
     private String nome,  dettagli, luogo,mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste;
+
+
 
     public String getDettagli() {
         return dettagli;
@@ -122,5 +127,53 @@ public class Internship {
         this.obiettivi = obiettivi;
         this.modalita = modalita;
         this.rimborsi_spese_facilitazioni_previste = rimborsi_spese_facilitazioni_previste;
+    }
+
+    public boolean isCompany_headquarters() {
+        return Company_headquarters;
+    }
+
+    public void setCompany_headquarters(boolean company_headquarters) {
+        Company_headquarters = company_headquarters;
+    }
+
+    public boolean isRemote_connection() {
+        return Remote_connection;
+    }
+
+    public void setRemote_connection(boolean remote_connection) {
+        Remote_connection = remote_connection;
+    }
+
+    public boolean isRefound_of_expenses() {
+        return refound_of_expenses;
+    }
+
+    public void setRefound_of_expenses(boolean refound_of_expenses) {
+        this.refound_of_expenses = refound_of_expenses;
+    }
+
+    public boolean isCompany_refactory() {
+        return company_refactory;
+    }
+
+    public void setCompany_refactory(boolean company_refactory) {
+        this.company_refactory = company_refactory;
+    }
+
+    public boolean isTraining_aid() {
+        return training_aid;
+    }
+
+    public void setTraining_aid(boolean training_aid) {
+        this.training_aid = training_aid;
+    }
+
+    public boolean isNothing() {
+        return nothing;
+    }
+
+    public void setNothing(boolean nothing) {
+        this.nothing = nothing;
     }
 }

@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label for ="nome" class="col-md-2 col-form-label">Internship Name</label>
                                     <div class="col-md-10">
-                                        <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
+                                        <input type="text"  name="nome" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
 <br>
@@ -93,22 +93,25 @@
                             
 
                             <div class="form-group">
-                                <label for="luogo" class="col-md-12 col-form-label">Place</label>
+                                <label class="col-md-12 col-form-label">Place</label>
                                 <div class="checkbox form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label for="inlineCheckbox1"> Company Headquarters </label>
+                                    <input type="checkbox" name="company_headquarters" checked="unchecked" value="true">
+                                    <label for="company_headquarters"> Company Headquarters </label>
+
                                 </div>
                                 <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox2" value="option1" checked>
-                                    <label for="inlineCheckbox2"> Remote Connection (from home) </label>
+                                    <input type="checkbox" name="remote_connection" checked="unchecked" value="true">
+                                    <label for="remote_connection"> Remote Connection (from home) </label>
+
                                 </div>
-                                <div class="checkbox checkbox-pink form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox3" value="option1">
-                                    <label for="inlineCheckbox3"> Other </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" placeholder="Some text value..." value="">
+
+                                <div class="form-group">
+                                    <label for ="luogo" class="col-md-2 col-form-label">Altro...</label>
+                                    <div class="col-md-10">
+                                        <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
+
                             </div>
 <br>
 
@@ -252,29 +255,33 @@
 <br>
 
                             <div class="form-group">
-                                <label for="rimborsi_spese_facilitazioni_previste"class="col-md-12 col-form-label">Refunds and/or Facilitations</label>
+                                <label class="col-md-12 col-form-label">Refunds and/or Facilitations</label>
                                 <div class="checkbox form-check-inline mrgnlftcheckboxadd123">
-                                    <input type="checkbox" id="inlineCheckbox1" value="option10">
-                                    <label for="inlineCheckbox1"> Refound of Expenses </label>
+                                    <input type="checkbox" name="refound_of_expenses" checked="unchecked" value="true">
+                                    <label for="refound_of_expenses"> Refound of Expenses </label>
+
                                 </div>
                                 <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd123">
-                                    <input type="checkbox" id="inlineCheckbox2" value="option11" checked>
-                                    <label for="inlineCheckbox2"> Company Refectory </label>
+                                    <input type="checkbox" name="company_refactory" checked="unchecked" value="true">
+                                    <label for="company_refactory"> Company Refectory </label>
+
                                 </div>
                                 <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd123">
-                                    <input type="checkbox" id="inlineCheckbox2" value="option12" checked>
-                                    <label for="inlineCheckbox2"> Training Aid </label>
+                                    <input type="checkbox" name="training_aid" checked="unchecked" value="true">
+                                    <label for="training_aid"> Training Aid </label>
+
                                 </div>
                                 <div class="checkbox checkbox-success form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox2" value="option13" checked>
-                                    <label for="inlineCheckbox2">Nothing </label>
+                                    <input type="checkbox" name="nothing" checked="unchecked" value="true">
+                                    <label for="nothing">Nothing </label>
+
                                 </div>
-                                <div class="checkbox checkbox-pink form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox3" value="option14">
-                                    <label for="inlineCheckbox3"> Other... </label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" placeholder="Some text value..." value="">
+                                <div class="form-group">
+                                    <label for ="rimborsi_spese_facilitazioni_previste" class="col-md-2 col-form-label">Altro...</label>
+                                    <div class="col-md-10">
+                                        <input type="text"  name="rimborsi_spese_facilitazioni_previste" class="form-control" placeholder="Some text value..." value="">
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

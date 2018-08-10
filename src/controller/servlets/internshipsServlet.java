@@ -132,6 +132,8 @@ public class internshipsServlet extends HttpServlet {
         // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
         String nome, mesi, dettagli, luogo, orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, meseIniziale, meseFinale;
         String companyMail = null; int companyId = 0;
+        boolean company_headquarters,remote_connection,refound_of_expenses,  company_refactory, training_aid,  nothing;
+        company_headquarters = remote_connection = refound_of_expenses = company_refactory = training_aid=  nothing = false;
         dettagli = nome = mesi = luogo = orari = ore = meseIniziale = meseFinale = obiettivi = modalita = rimborsi_spese_facilitazioni_previste = null;
 
         // Get the parameter values
@@ -149,6 +151,20 @@ public class internshipsServlet extends HttpServlet {
         obiettivi       = request.getParameter("obiettivi");
         modalita        = request.getParameter("modalita");
         rimborsi_spese_facilitazioni_previste       = request.getParameter("rimborsi_spese_facilitazioni_previste");
+        company_headquarters = Boolean.parseBoolean(request.getParameter("company_headquarters"));
+        remote_connection = Boolean.parseBoolean(request.getParameter("remote_connection"));
+        refound_of_expenses = Boolean.parseBoolean(request.getParameter("refound_of_expenses"));
+        company_refactory = Boolean.parseBoolean(request.getParameter("company_refactory"));
+        training_aid = Boolean.parseBoolean(request.getParameter("training_aid"));
+        nothing = Boolean.parseBoolean(request.getParameter("nothing"));
+        System.out.println(request.getParameter("company_headquarters"));
+        System.out.println(request.getParameter("remote_connection"));
+        System.out.println(request.getParameter("refound_of_expenses"));
+        System.out.println(request.getParameter("company_refactory"));
+        System.out.println(request.getParameter("training_aid"));
+        System.out.println(request.getParameter("nothing"));
+
+
 
         System.out.println(companyId);
 
@@ -160,15 +176,16 @@ public class internshipsServlet extends HttpServlet {
             return false;
         }
 
-      boolean checkOk = userController.checkAddInternships(request, nome, dettagli, luogo,
-               orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste);
-        System.out.println(checkOk);
+     // boolean checkOk = userController.checkAddInternships(request, nome, dettagli, luogo,
+          //     orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste);
+      //  System.out.println(checkOk);
 
-       if (checkOk) {
+     //  if (checkOk) {
 
             internshipDao internshipDao = new internshipDaoImpl();
+
             boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, meseIniziale, meseFinale, obiettivi,
-                    modalita, rimborsi_spese_facilitazioni_previste);
+                    modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing);
 
             if (addOK) {
                 addedMessage = "Registered successfully";
@@ -188,7 +205,7 @@ public class internshipsServlet extends HttpServlet {
                 userController.errorsList.clear();
             }
 
-        }
+     //   }
 
 
         return false;
@@ -205,7 +222,7 @@ public class internshipsServlet extends HttpServlet {
         UserDao UserDao = new UserDaoImpl();
         int userId = UserDao.getIDbyEmail(userMail);
         int int_id1 = Integer.parseInt(int_id);
-        boolean candidateOK = ((UserDaoImpl) UserDao).candidate(2, int_id1, userId);
+        boolean candidateOK = UserDao.candidate(2, int_id1, userId);
 
         if (candidateOK) {
 
