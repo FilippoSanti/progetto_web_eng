@@ -7,6 +7,8 @@ import controller.dao.companyDaoImpl;
 import controller.dao.config.DataSource;
 import controller.userController;
 import controller.utilities.Utils;
+import model.Company;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +22,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class registerServlet extends HttpServlet {
 
@@ -140,6 +144,8 @@ public class registerServlet extends HttpServlet {
                     provincia);
 
             if (regOK) {
+                notifyAdmins(email_login);
+
                 request.getSession().setAttribute("registeredMessage", "Request waiting to be approved by the administrator");
                 response.sendRedirect("/login");
 
@@ -149,6 +155,29 @@ public class registerServlet extends HttpServlet {
 
     } userController.errorsList.clear();
         return false;
+    }
+
+    // send notifications to all the admins
+    private boolean notifyAdmins(String email) throws PropertyVetoException, SQLException, IOException {
+
+        boolean notified = false;
+        // Get the admins list and add an entry for arch user
+        UserDao uDao = new UserDaoImpl();
+        ArrayList<User> adminList = uDao.getAdminList();
+
+        // Get to company id to associate with the user id
+        // This is done to make the deletion process easier
+        // when we have to clear multiple entries
+
+        companyDao cDao = new companyDaoImpl();
+        Company comp = cDao.getCompanyDataByEmail(email);
+
+        // send a notification for every administrator in the system
+        for (int i = 0; i < adminList.size(); i++) {
+            notified = uDao.addNotification(adminList.get(i).getId(), comp.getCompany_id(),
+                            ""+comp.getRagione_sociale()+ " wants to join");
+        }
+        return notified;
     }
 
     // Loads the default page

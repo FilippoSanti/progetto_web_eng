@@ -18,6 +18,8 @@ public class UserDaoImpl implements UserDao {
      * User queries
      */
     private static final String ADD_USER = "insert into studente values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String ADD_NOTIFICATION = "insert into notifica values(?,?,?,?)";
+
     private static final String GET_USER_INFO = "SELECT * FROM studente WHERE email = ?";
     private static final String UPDATE_USER_INFO = "UPDATE studente SET nome = ?, date = ?, provincia = ?, provincia_nascita = ?, residenza = ?, citta = ?, CAP = ?, " +
             "telefono = ?, corso = ?, cognome = ?, cod_fiscale = ?, luogo_nascita = ? " +
@@ -37,8 +39,7 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE_USER = "DELETE FROM studente WHERE studente.studente_id = ?";
     private static final String CANDIDATE = "insert into richieste_tirocinio values(?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT studente_id FROM studente WHERE email = ?";
-
-
+    private static final String GET_ADMIN_LIST = "SELECT * FROM studente WHERE ruolo = 'admin'";
 
     /**
      * Get a user object by an email
@@ -771,6 +772,100 @@ public class UserDaoImpl implements UserDao {
         }
 
         dbConnection.close();
+        return result;
+    }
+
+    public ArrayList<User> getAdminList() {
+
+        ArrayList<User> result = new ArrayList<User>();
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_ADMIN_LIST);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User usr = new User();
+
+                usr.setNome(rs.getString("nome"));
+                usr.setCognome(rs.getString("cognome"));
+                usr.setDate(rs.getString("date"));
+                usr.setProvincia(rs.getString("provincia"));
+                usr.setProvincia_n(rs.getString("provincia_nascita"));
+                usr.setResidenza(rs.getString("residenza"));
+                usr.setCitta(rs.getString("citta"));
+                usr.setCorso(rs.getString("corso"));
+                usr.setEmail(rs.getString("email"));
+                usr.setHandicap(rs.getBoolean("handicap"));
+                usr.setTel(rs.getString("telefono"));
+                usr.setNome(rs.getString("nome"));
+                usr.setCap(rs.getInt("cap"));
+                usr.setCod_fiscale(rs.getString("cod_fiscale"));
+                usr.setLuogo_nascita(rs.getString("luogo_nascita"));
+                usr.setId(rs.getInt("studente_id"));
+
+                result.add(usr);
+            }
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public boolean addNotification (int userID, int companyID, String text) {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        boolean result = false;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(ADD_NOTIFICATION);
+
+            pst.setNull(1, Types.INTEGER);
+            pst.setInt(2, userID);
+            pst.setInt(3, companyID);
+            pst.setString(4, text);
+
+            int i = pst.executeUpdate();
+
+            // Registration ok
+            if (i > 0) {
+                result = true;
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
         return result;
     }
 }

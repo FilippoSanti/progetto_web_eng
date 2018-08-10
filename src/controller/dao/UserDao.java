@@ -23,6 +23,7 @@ public interface UserDao {
     public void deleteResetRequest(String token) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteUser(int userID) throws SQLException, IOException, PropertyVetoException;
     public boolean userAuth(String email, String password, String loginType) throws SQLException,PropertyVetoException, IOException;
+    public boolean addNotification (int userID, int companyID, String text);
 
     /** Get functions */
     public User getUser(String userEmail);
@@ -30,6 +31,7 @@ public interface UserDao {
     public String getEmailByID(int id);
     public java.util.Date getExpirationDate(String token);
     public ArrayList<User> getUserList() throws SQLException, IOException, PropertyVetoException;
+    public ArrayList<User> getAdminList();
 
     /** Check functions */
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException;

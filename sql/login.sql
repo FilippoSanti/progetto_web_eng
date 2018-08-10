@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 10, 2018 alle 16:24
+-- Creato il: Ago 10, 2018 alle 18:23
 -- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.7
 
@@ -57,7 +57,31 @@ INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale
 (5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1, ''),
 (6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0, ''),
 (7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 1, ''),
-(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample');
+(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample'),
+(9, 'lollo@lo..lol', '$2a$12$q/Yv9s1ApSGpmsFXqkvll.KsTYDlDHG8a3LqIgT2JgFVJBhaX2eLm', 'asdadasd', 'sadasdasdada', 'dsadada', 'asdadad', 'asdasdasdasd', 'asdadasd', 'asdasdasd', 'asdadad@asd.asd', 'asdasdasdasd', 'AL', 0, 'Description Sample'),
+(10, 'asd@asdsd.asd', '$2a$12$Pc9juuODyvBgCiPMmG149.DqJIvlyPugHpGsOgjZnzJjyHhwpLsP.', 'asdasdasda', 'asdasdas', 'asdasdasd', 'asdsadad', 'dasdasdasda', 'asdsadas', 'asdasdasdasd', 'dasdad', 'asdasdasdas', 'AL', 0, 'Description Sample');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `notifica`
+--
+
+CREATE TABLE `notifica` (
+  `id_notifica` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `id_azienda` int(11) DEFAULT NULL,
+  `testo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `notifica`
+--
+
+INSERT INTO `notifica` (`id_notifica`, `id_utente`, `id_azienda`, `testo`) VALUES
+(1, 1, NULL, 'asdasdad'),
+(3, 0, 9, 'asdadasd wants to join'),
+(4, 0, 10, 'asdasdasda wants to join');
 
 -- --------------------------------------------------------
 
@@ -192,6 +216,12 @@ ALTER TABLE `azienda`
   ADD PRIMARY KEY (`azienda_id`);
 
 --
+-- Indici per le tabelle `notifica`
+--
+ALTER TABLE `notifica`
+  ADD PRIMARY KEY (`id_notifica`);
+
+--
 -- Indici per le tabelle `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
@@ -221,7 +251,13 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT per la tabella `notifica`
+--
+ALTER TABLE `notifica`
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
