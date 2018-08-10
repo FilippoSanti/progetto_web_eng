@@ -37,5 +37,6 @@ public interface UserDao {
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
     public int getIDbyEmail(String email);
+    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id) throws ParseException;
 
 }
