@@ -217,6 +217,26 @@
         <url-pattern>/agreementRequests</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>notifications</servlet-name>
+        <servlet-class>ajax_notifications_test.viewPageservlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>notifications</servlet-name>
+        <url-pattern>/notifications</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>notify.do</servlet-name>
+        <servlet-class>ajax_notifications_test.notifyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>notify.do</servlet-name>
+        <url-pattern>/notify.do</url-pattern>
+    </servlet-mapping>
+
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
         RequestDispatcher.forward/include should and will still work. Removing

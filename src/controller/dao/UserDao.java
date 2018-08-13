@@ -1,6 +1,7 @@
 package controller.dao;
 
 import model.Company;
+import model.Notification;
 import model.User;
 
 import java.beans.PropertyVetoException;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface UserDao {
 
@@ -31,14 +33,15 @@ public interface UserDao {
     public String getEmailByID(int id);
     public java.util.Date getExpirationDate(String token);
     public ArrayList<User> getUserList() throws SQLException, IOException, PropertyVetoException;
+    public List<Notification> getNotificationList(int userID);
     public ArrayList<User> getAdminList();
+    public int getIDbyEmail(String email);
 
     /** Check functions */
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException;
     public boolean checkUser(String email) throws IOException, PropertyVetoException;
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
-    public int getIDbyEmail(String email);
     public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id) throws ParseException;
 
 }

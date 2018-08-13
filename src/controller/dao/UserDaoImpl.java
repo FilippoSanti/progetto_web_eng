@@ -4,6 +4,7 @@ package controller.dao;
 import controller.dao.config.DataSource;
 import controller.utilities.Utils;
 import model.Company;
+import model.Notification;
 import model.User;
 
 import java.beans.PropertyVetoException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
@@ -40,6 +42,7 @@ public class UserDaoImpl implements UserDao {
     private static final String CANDIDATE = "insert into richieste_tirocinio values(?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT studente_id FROM studente WHERE email = ?";
     private static final String GET_ADMIN_LIST = "SELECT * FROM studente WHERE ruolo = 'admin'";
+    private static final String GET_NOTIFICATIONS_LIST = "SELECT * FROM notifica WHERE id_utente = ?";
 
     /**
      * Get a user object by an email
@@ -868,4 +871,51 @@ public class UserDaoImpl implements UserDao {
         }
         return result;
     }
+
+    public List<Notification> getNotificationList(int userID) {
+
+        List<Notification> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_NOTIFICATIONS_LIST);
+
+            pst.setInt(1, userID);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Notification notif = new Notification();
+
+                notif.setId_notifica(rs.getInt("id_notifica"));
+                notif.setId_utente(rs.getInt("id_utente"));
+                notif.setId_azienda(rs.getInt("id_azienda"));
+                notif.setTesto(rs.getString("testo"));
+
+                list.add(notif);
+            }
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return list;
+    }
+
 }
