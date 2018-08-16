@@ -1,9 +1,9 @@
 package controller.servlets;
 
-import controller.dao.UserDao;
-import controller.dao.UserDaoImpl;
+import controller.dao.*;
 import controller.utilities.SecurityFilter;
 import model.Company;
+import model.Internship;
 import model.Security;
 import model.User;
 
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class homeServlet extends HttpServlet {
 
@@ -61,13 +62,26 @@ public class homeServlet extends HttpServlet {
         }
     }
 
-    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         HttpSession session = request.getSession();
 
         // Get the user object attribute containing the user email
         Company companyModel = (Company) session.getAttribute("loggedInCompany");
         loggedUserEmail = companyModel.getEmail_login();
+
+
+
+        companyDao compDao = new companyDaoImpl();
+
+        String email_azie = homeServlet.loggedUserEmail;
+        int az_id = compDao.getCompanyIdbyEmail(email_azie);
+
+        internshipDao intDao = new internshipDaoImpl();
+        ArrayList<Internship> internshipsArray = intDao.getInternshipListbyId(az_id);
+        request.setAttribute("internships_list_company", internshipsArray);
+
+
         action_default_company(request, response);
     }
 

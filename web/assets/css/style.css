@@ -3584,21 +3584,3 @@ font-size: 12px;
     -webkit-box-shadow: none!important;
     box-shadow: none!important;
 }
-
-.scrollnotification{
-  max-height: 220px;
-}
-
-.dropdown-lglg{
-  width: 300px;
-}
-
-.dltbtnhead{
-  background-color: transparent !important;
-  margin-left: -30px;
-  margin-top: -22px;
-}
-
-.dltheadwidth{
-  width: 15px;
-}

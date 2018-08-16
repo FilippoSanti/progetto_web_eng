@@ -278,19 +278,19 @@
                                 </div>
 
                             </div> <!-- end col -->
-
-<!--Internship 1-->
+                             <#if internships_list_company?has_content>
+<!--Internship 1-->         <#list internships_list_company as val>
                             <div class="col-md-4">
                                 <div class="text-center card-box">
                                     <div class="member-card mt-1">
 
-                                        <h5 class="m-b-5 mt-2">Internship n° 01</h5>
+                                        <h5 class="m-b-5 mt-2">${val.getNome()}</h5>
 
                                          <div class="container container_dim">
                                            <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
+                                           <div class="legspace"><row class="col-xs-6"> <i>Start Month: </i><br> ${val.getMeseInziale()} </row></div> <br>
 
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 15  </row></div>
+                                           <div class="legspace"><row class="col-xs-6"> <i>End Month: </i><br> ${val.getMeseFinale()} </row></div>
                                         </p>
                                         </div>
 
@@ -302,172 +302,11 @@
 
                             </div> <!-- end col -->
 
-<!--Internship 2-->
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-                                        <h5 class="m-b-5 mt-2">Internship n° 02</h5>
-
-                                         <div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 25  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-
-                                    </div>
-
-                                </div>
-
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-<!--Internship 3-->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-
-                                        <h5 class="m-b-5 mt-2">Internship n° 03</h5>
-
-                                         <div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 05  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-      
-                                    </div>
-                                </div>
-
-                            </div> <!-- end col -->
-
-<!--Internship 4-->
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-
-                                        <h5 class="m-b-5 mt-2">Internship n° 04</h5>
-
-                                         <div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 19  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-                                        
-                                    </div>
-
-                                </div>
-
-                            </div> <!-- end col -->
 
 
-<!--Internship 5-->
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
 
-                                        <h5 class="m-b-5 mt-2">Internship n° 05</h5>
-                                        
- 										<div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 27  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-                                    </div>
-                                </div>
-
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-<!--Internship 6-->
-                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-
-                                        <h5 class="m-b-5 mt-2">Internship n° 06</h5>
-
-                                         <div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 13  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-      
-                                    </div>
-                                </div>
-
-                            </div> <!-- end col -->
-
-<!--Internship 7-->
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-
-                                        <h5 class="m-b-5 mt-2">Internship n° 07</h5>
-
-                                         <div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 52  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-                                        
-                                    </div>
-
-                                </div>
-
-                            </div> <!-- end col -->
-
-
-<!--Internship 8-->
-                            <div class="col-md-4">
-                                <div class="text-center card-box">
-                                    <div class="member-card mt-1">
-
-                                        <h5 class="m-b-5 mt-2">Internship n° 08</h5>
-                                        
- 										<div class="container container_dim">
-                                           <p class="text-muted font-13">
-                                           <div class="legspace"><row class="col-xs-6"> <i>Online Since: </i><br> dd/mm/yyyy  </row></div> <br>
-
-                                           <div class="legspace"><row class="col-xs-6"> <i>N° Requests: </i><br> 64  </row></div>
-                                        </p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
-                                        
-                                    </div>
-                                </div>
-
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-
+                    </#list>
+                             </#if>
 <br><br>
 
                     </div> <!-- container -->

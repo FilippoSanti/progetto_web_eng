@@ -7,6 +7,7 @@ public class User {
     String date;
     int cap;
     int id;
+    int userID;
     boolean handicap;
 
 
@@ -23,6 +24,7 @@ public class User {
         this.email = "";
         this.handicap = false;
         this.tel = "";
+        this.userID = 0;
         this.cap = 0;
         this.id = 0;
         this.cod_fiscale = null;
@@ -44,6 +46,7 @@ public class User {
         this.email = em;
         this.handicap = hc;
         this.tel = tel;
+        this.userID = userID;
         this.cap = cap;
         this.id = id;
         this.cod_fiscale = cod_fiscale;
@@ -158,6 +161,14 @@ public class User {
 
     public void setCap(int cap) {
         this.cap = cap;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getCod_fiscale() {
