@@ -1,6 +1,9 @@
 package controller.servlets;
 
-import controller.dao.*;
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
+import controller.dao.companyDao;
+import controller.dao.companyDaoImpl;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -57,12 +60,13 @@ public class internshipsCompanyServlet extends HttpServlet {
         companyDao compDao = new companyDaoImpl();
 
         String email_azie = homeServlet.loggedUserEmail;
-         int az_id = compDao.getCompanyIdbyEmail(email_azie);
+       // int az_id = compDao.getCompanyDataByEmail(email_azie);
 
-        internshipDao intDao = new internshipDaoImpl();
-        ArrayList<Internship>internshipsArray = intDao.getInternshipListbyId(az_id);
-        request.setAttribute("internships_list_company", internshipsArray);
-        request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
+        //System.out.println(email_azie);
+        //System.out.println(az_id);
+        //ArrayList<Internship>internshipsArray = internshipDAO.getInternshipListbyId(az_id);
+        //request.setAttribute("internships_list_company", internshipsArray);
+        //request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
 
     }
 

@@ -98,17 +98,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>candidates_list</servlet-name>
-        <servlet-class>controller.servlets.candidates_listServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>candidates_list</servlet-name>
-        <url-pattern>/candidates_list</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
         <servlet-name>viewProfile</servlet-name>
         <servlet-class>controller.servlets.profileServlet</servlet-class>
     </servlet>
@@ -190,7 +179,7 @@
 
     <servlet>
         <servlet-name>lista_candidati</servlet-name>
-        <servlet-class>controller.servlets.candidates_listServlet</servlet-class>
+        <servlet-class>controller.servlets.listaCandidatiServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -226,6 +215,26 @@
     <servlet-mapping>
         <servlet-name>agreementRequests</servlet-name>
         <url-pattern>/agreementRequests</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>notifications</servlet-name>
+        <servlet-class>ajax_notifications_test.viewPageservlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>notifications</servlet-name>
+        <url-pattern>/notifications</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>notify.do</servlet-name>
+        <servlet-class>ajax_notifications_test.notifyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>notify.do</servlet-name>
+        <url-pattern>/notify.do</url-pattern>
     </servlet-mapping>
 
     <!--
