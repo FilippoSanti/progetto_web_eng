@@ -44,6 +44,13 @@
             });
         });
 
+        $(document).on("click", "#somebutton2", function() {
+            $.get("notify.do?action=delete&id=all", function(responseText) {
+                getNotificationCount();
+                refreshNotifications();
+            });
+        });
+
 
     </script>
 
@@ -51,6 +58,8 @@
 <body>
 
 <button id="somebutton">press here</button>
+
+<button id="somebutton2">clear all</button>
 <div id="somediv"></div>
 <div id="countdiv"></div>
 

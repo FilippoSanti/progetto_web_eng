@@ -199,7 +199,7 @@
 
     <servlet>
         <servlet-name>userList</servlet-name>
-        <servlet-class>controller.servlets.userListServlet</servlet-class>
+        <servlet-class>controller.servlets.administrator.userListServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -209,7 +209,7 @@
 
     <servlet>
         <servlet-name>agreementRequests</servlet-name>
-        <servlet-class>controller.servlets.agreementRequestServlet</servlet-class>
+        <servlet-class>controller.servlets.administrator.agreementRequestServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -219,7 +219,7 @@
 
     <servlet>
         <servlet-name>notifications</servlet-name>
-        <servlet-class>ajax_notifications_test.viewPageservlet</servlet-class>
+        <servlet-class>controller.servlets.administrator.viewPageservlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -229,7 +229,7 @@
 
     <servlet>
         <servlet-name>notify.do</servlet-name>
-        <servlet-class>ajax_notifications_test.notifyServlet</servlet-class>
+        <servlet-class>controller.servlets.administrator.notifyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

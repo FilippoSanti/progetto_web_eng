@@ -1,4 +1,4 @@
-package ajax_notifications_test;
+package controller.servlets.administrator;
 
 import com.google.gson.Gson;
 import controller.utilities.SecurityFilter;
@@ -37,9 +37,14 @@ public class notifyServlet extends HttpServlet {
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
-        if (securityModel.getUser().equals("anonymous")) {
-            response.sendRedirect("/home");
+        if (securityModel.getUser().equals("anonymous") || securityModel.getUser().equals("azienda")) {
             return;
+        }
+
+        // Clear every notification
+        if (action_value != null && id_value != null
+                && action_value.equals("delete") && id_value.equals("all")) {
+            action_delete_all_notifications();
         }
 
         // Notification delete
@@ -89,6 +94,16 @@ public class notifyServlet extends HttpServlet {
         uDao.deleteNotification(notifID);
     }
 
+    /* Delete a notification */
+    private void action_delete_all_notifications () throws PropertyVetoException, SQLException, IOException {
+        UserDao uDao = new UserDaoImpl();
+
+        // Get the logged user notifications
+        int id = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
+
+        uDao.clearNotifications(id);
+    }
+
     /* Notification count */
     private void action_get_notifications_count (HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException {
 
@@ -104,6 +119,8 @@ public class notifyServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(countStr);
     }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
     private static final String RESET_PASSWORD_REQ = "INSERT INTO password_reset VALUES (?,?,?)";
     private static final String CHECK_EMAIl_RESET = "SELECT * FROM password_reset WHERE email = ?";
     private static final String GET_EXPIRATION_DATE = "SELECT expiration_date FROM password_reset WHERE token = ?";
-    private static final String DELETE_RESET_REQUEST = "DELETE FROM password_reset WHERE token = ? ";
+    private static final String DELETE_RESET_REQUEST = "DELETE FROM password_reset WHERE token = ?";
     private static final String CHECK_FOR_TOKEN = "SELECT * FROM password_reset WHERE token = ?";
     private static final String CHECK_EMAIL_USER = "SELECT * FROM studente WHERE email=?";
     private static final String GET_EMAIL_BY_TOKEN = "SELECT email FROM password_reset WHERE token = ?";
@@ -45,6 +45,7 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_NOTIFICATIONS_LIST = "SELECT * FROM notifica WHERE id_utente = ?";
     private static final String DELETE_NOTIFICATION_REQUEST = "DELETE FROM notifica WHERE notifica.id_notifica = ?";
     private static final String COUNT_NOTIFICATIONS = "SELECT count(*) FROM notifica WHERE id_utente = ?";
+    private static final String CLEAR_NOTIFICATIONS = "DELETE FROM notifica WHERE notifica.id_utente = ?";
 
     /**
      * Get a user object by an email
@@ -540,6 +541,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
+     * Delete every notification of a user (clear all notifications button)
+     */
+    public boolean clearNotifications(int userID) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(CLEAR_NOTIFICATIONS);
+
+        pst.setInt(1, userID);
+        int rs = pst.executeUpdate();
+
+        if (rs > 0) {
+            result = true;
+        }
+
+        dbConnection.close();
+        return result;
+    }
+
+    /**
      * Find a user provided toke in the DB
      */
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException {
@@ -975,7 +996,5 @@ public class UserDaoImpl implements UserDao {
         }
         return list;
     }
-
-
 
 }

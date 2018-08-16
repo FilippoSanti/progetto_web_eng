@@ -30,122 +30,7 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            <!-- Top Bar Start -->
-            <div class="topbar">
-
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <a href="index.html" class="logo">
-                        <span>
-                            <img src="assets/images/logo.png" alt="">
-                        </span>
-                        <i>
-                            <img src="assets/images/logo_sm.png" alt="">
-                        </i>
-                    </a>
-                </div>
-
-                <nav class="navbar-custom">
-
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-bell noti-icon"></i>
-                                <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-lg">
-
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h6 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h6>
-                                </div>
-
-                                <div class="slimscroll" style="max-height: 190px;">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
-                                    </a>
-                                </div>
-
-                                <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                    View all <i class="fi-arrow-right"></i>
-                                </a>
-
-                            </div>
-                        </li>
-
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Anderson <i class="mdi mdi-chevron-down"></i> </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h6 class="text-overflow m-0">Welcome !</h6>
-                                </div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-user"></i> <span>My Account</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-settings"></i> <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-power-off"></i> <span>Logout</span>
-                                </a>
-
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <ul class="list-inline menu-left mb-0">
-                        <li class="float-left">
-                            <button class="button-menu-mobile open-left waves-light waves-effect">
-                                <i class="mdi mdi-menu"></i>
-                            </button>
-                        </li>
-                    </ul>
-
-                </nav>
-
-            </div>
-            <!-- Top Bar End -->
-
+            <#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left side-menu">
@@ -478,6 +363,56 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+
+        <!-- Notifications -->
+        <script>
+
+            $(document).ready(function () {
+
+                // Fetch the initial data
+                refreshNotifications();
+
+                // Fetch every 5 seconds
+                setInterval(refreshNotifications, 5000);
+            });
+
+            function refreshNotifications() {
+                getNotificationCount();
+                $.get("notify.do?action=update", function (responseJson) {
+                    var table = '';
+                    $.each(responseJson, function (index, product) {
+
+                        table += '<a href="viewProfile?type=company&id=' + product.id_azienda + '" class="dropdown-item notify-item">';
+                        table += '<div class="notify-icon bg-custom"><i class="mdi mdi-account-plus"></i></div>';
+                        table += '<p class="notify-details">' + product.testo + '</p>';
+                        table += '</a>';
+                    });
+                    $('#notifications_show').html(table);
+                });
+            }
+
+            function getNotificationCount() {
+                $.get("notify.do?action=getCount", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+                    $("#notifications_count").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+                });
+            }
+
+            $(document).on("click", ".notification_delete", function(){
+                var answerid;
+                answerid = $(this).attr("data-answerid");
+                $.get('notify.do?action=delete&id=6', {answer_id: answerid}, function(data){
+                    getNotificationCount();
+                    refreshNotifications();
+                });
+            });
+
+            $(document).on("click", "#notifications_delete_all", function() {
+                $.get("notify.do?action=delete&id=all", function(responseText) {
+                    getNotificationCount();
+                    refreshNotifications();
+                });
+            });
+        </script>
 
     </body>
 </html>

@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.administrator;
 
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
