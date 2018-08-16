@@ -43,6 +43,8 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_EMAIL_BY_ID = "SELECT studente_id FROM studente WHERE email = ?";
     private static final String GET_ADMIN_LIST = "SELECT * FROM studente WHERE ruolo = 'admin'";
     private static final String GET_NOTIFICATIONS_LIST = "SELECT * FROM notifica WHERE id_utente = ?";
+    private static final String DELETE_NOTIFICATION_REQUEST = "DELETE FROM notifica WHERE notifica.id_notifica = ?";
+    private static final String COUNT_NOTIFICATIONS = "SELECT count(*) FROM notifica WHERE id_utente = ?";
 
     /**
      * Get a user object by an email
@@ -293,6 +295,42 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
+     * Check if the user is admin
+     */
+    public int getNotificationsCount(int userID) throws IOException, PropertyVetoException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int result = 0;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(COUNT_NOTIFICATIONS);
+
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
+        }
+        return result;
+    }
+
+    /**
      * Query to register a user
      */
     public boolean addUser(String nome, String pass, String dateString, String provincia, String provincia_n, String residenza,
@@ -479,6 +517,26 @@ public class UserDaoImpl implements UserDao {
         pst.setString(1, token);
         pst.executeUpdate();
         dbConnection.close();
+    }
+
+    /**
+     * Delete a notification
+     */
+    public boolean deleteNotification(int notification_id) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(DELETE_NOTIFICATION_REQUEST);
+
+        pst.setInt(1, notification_id);
+        int rs = pst.executeUpdate();
+
+        if (rs > 0) {
+            result = true;
+        }
+
+        dbConnection.close();
+        return result;
     }
 
     /**
@@ -917,5 +975,7 @@ public class UserDaoImpl implements UserDao {
         }
         return list;
     }
+
+
 
 }

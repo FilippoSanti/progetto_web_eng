@@ -26,6 +26,7 @@ public interface UserDao {
     public boolean deleteUser(int userID) throws SQLException, IOException, PropertyVetoException;
     public boolean userAuth(String email, String password, String loginType) throws SQLException,PropertyVetoException, IOException;
     public boolean addNotification (int userID, int companyID, String text);
+    public boolean deleteNotification(int notification_id) throws SQLException, IOException, PropertyVetoException;
 
     /** Get functions */
     public User getUser(String userEmail);
@@ -36,6 +37,7 @@ public interface UserDao {
     public List<Notification> getNotificationList(int userID);
     public ArrayList<User> getAdminList();
     public int getIDbyEmail(String email);
+    public int getNotificationsCount(int userID) throws IOException, PropertyVetoException;
 
     /** Check functions */
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException;

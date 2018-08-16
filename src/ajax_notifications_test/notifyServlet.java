@@ -1,16 +1,20 @@
 package ajax_notifications_test;
 
 import com.google.gson.Gson;
+import controller.utilities.SecurityFilter;
 import model.Notification;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import controller.dao.*;
 import controller.servlets.homeServlet;
+import model.Security;
 
 public class notifyServlet extends HttpServlet {
 
@@ -23,7 +27,7 @@ public class notifyServlet extends HttpServlet {
      */
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, PropertyVetoException, SQLException {
 
         // URL Parameters
         String action = "action";
@@ -31,18 +35,35 @@ public class notifyServlet extends HttpServlet {
         String action_value = request.getParameter(action);
         String id_value = request.getParameter(id);
 
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("anonymous")) {
+            response.sendRedirect("/home");
+            return;
+        }
+
         // Notification delete
         if (action_value != null && id_value != null
                 && action_value.equals("delete") && id_value.matches("[0-9]+")) {
-            action_delete_notification(request, response);
+            int real_value = Integer.parseInt(id_value);
+            action_delete_notification(real_value);
         }
 
-        // If no parameters are set, we are trying to update our notifications
-        action_update_notifications(request, response);
+        // Notifications update
+        if (action_value != null && id_value == null
+                && action_value.equals("update")) {
+            action_update_notifications(request, response);
+        }
+
+        // Notification count
+        if (action_value != null && id_value == null
+                && action_value.equals("getCount")) {
+            action_get_notifications_count(request, response);
+        }
 
     }
 
-    /* Delete a seen notification */
+    /* Update notifications list */
     private void action_update_notifications (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         UserDao uDao = new UserDaoImpl();
@@ -51,6 +72,10 @@ public class notifyServlet extends HttpServlet {
         int userID = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
         List<Notification> notifList = uDao.getNotificationList(userID);
 
+        // Every time we update the notifications,
+        // we also update the notification count
+
+
         String json = new Gson().toJson(notifList);
 
         response.setContentType("application/json");
@@ -58,9 +83,26 @@ public class notifyServlet extends HttpServlet {
         response.getWriter().write(json);
     }
 
-    /* Delete a seen notification */
-    private void action_delete_notification (HttpServletRequest request, HttpServletResponse response) {
-        // code
+    /* Delete a notification */
+    private void action_delete_notification (int notifID) throws PropertyVetoException, SQLException, IOException {
+        UserDao uDao = new UserDaoImpl();
+        uDao.deleteNotification(notifID);
+    }
+
+    /* Notification count */
+    private void action_get_notifications_count (HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException {
+
+        UserDao uDao = new UserDaoImpl();
+        int userID = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
+
+        // Get the count
+        int count = uDao.getNotificationsCount(userID);
+
+        // Cast the int to a string and write the response to ajax
+        String countStr = String.valueOf(count);
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(countStr);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +116,13 @@ public class notifyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -87,7 +135,12 @@ public class notifyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
+        try {
+            processRequest(request, response);
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
