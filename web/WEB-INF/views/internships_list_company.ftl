@@ -66,8 +66,8 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Azienda</th>
-                                            <th>Sede Legale</th>
+                                            <th>Nome</th>
+                                            <th>Luogo</th>
                                             <th>Data</th>
                                             <th>Lista Candidati</th>
                                             <th>Cancella offerta</th>
@@ -80,8 +80,8 @@
                                                <#list internships_list_company as val>
                                           <tr>
                                               <td>${val.getNome()}</td>
-                                              <td>${val.getOrari()}</td>
-                                              <td>${val.getDescrizione()}</td>
+                                              <td>${val.getLuogo()}</td>
+                                              <td>${val.getDettagli()}</td>
                                               <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></td>
                                               <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
                                               </td>

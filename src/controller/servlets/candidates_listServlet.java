@@ -75,6 +75,16 @@ public class candidates_listServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        companyDao comDao = new companyDaoImpl();
+        String email_azie = homeServlet.loggedUserEmail;
+        int az_id = comDao.getCompanyIdbyEmail(email_azie);
+
+
+        internshipDao intDao = new internshipDaoImpl();
+
+
+        ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_list(az_id);
+        request.setAttribute("candidates_list", internshipsArray);
 
 
         request.getRequestDispatcher("/WEB-INF/views/candidates_list.ftl").forward(request, response);

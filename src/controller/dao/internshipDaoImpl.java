@@ -18,7 +18,7 @@ public class internshipDaoImpl implements internshipDao {
     private static final String GET_INTERN_LIST_BY_ID = "SELECT * FROM offerta_tirocinio WHERE azienda_id = ? ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
     private static final String GET_LISTA_CAND = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && azienda_id = ? && accettata = 0 ";
     private static final String REQUEST_INTERN = "UPDATE richieste_tirocinio SET accettata = '1' WHERE offerta_tirocinio_id = ?";
-
+    private static final String GET_LISTA_CAND2 = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 0 ";
     /**
      * Get the internship list
      */
@@ -104,6 +104,33 @@ public class internshipDaoImpl implements internshipDao {
 
         return internshipsList;
     }
+
+    public ArrayList<InternshipRequest> getCandidates_list(int az_id) throws SQLException, IOException, PropertyVetoException{
+
+            ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
+
+            Connection dbConnection = DataSource.getInstance().getConnection();
+            PreparedStatement pst = dbConnection.prepareStatement(GET_LISTA_CAND2);
+            pst.setInt(1, az_id);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                InternshipRequest internship_request = new InternshipRequest(
+                        rs.getInt("richiesta_tirocinio_id"),
+                        rs.getInt("azienda_id"),
+                        rs.getInt("offerta_tirocinio_id"),
+                        rs.getInt("studente_id"),
+                        rs.getBoolean("accettata")
+                );
+
+                candidates_list.add(internship_request);
+
+            }
+
+            return candidates_list;
+        }
+
+
 
     public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
         ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
