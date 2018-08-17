@@ -28,7 +28,7 @@
 
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h6 class="m-0"><span class="float-right"><a href="#" class="text-dark"><small>Clear All</small></a></span>Notification</h6>
+                                    <h6 class="m-0"><span class="float-right float-right-custom"><a href="#" class="text-dark"><small>Clear All</small></a></span>Notification</h6>
                                 </div>
 
                                 <div class="slimscroll scrollnotification" id="notifications_show"><br><br><br><br></div>

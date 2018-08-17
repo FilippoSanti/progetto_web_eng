@@ -417,7 +417,7 @@
 
 
             /*onclick event*/
-            $(document).on("click", ".float-right", function(){
+            $(document).on("click", "float-right-custom", function(){
                 $.get("notify.do?action=delete&id=all", function(responseText) {
                     getNotificationCount();
                     refreshNotifications();
