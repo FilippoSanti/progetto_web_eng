@@ -1,4 +1,4 @@
- <!-- Top Bar Start -->
+<!-- Top Bar Start -->
             <div class="topbar">
 
                 <!-- LOGO -->
@@ -24,42 +24,83 @@
                                 <i class="mdi mdi-bell noti-icon"></i>
                                 <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-lglg">
 
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
                                     <h6 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h6>
                                 </div>
 
-                                <div class="slimscroll" style="max-height: 200px;">
-                                    <!-- item-->
+                                <div class="slimscroll scrollnotification">
+
+                                    <!-- item-->                                    
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
+                                                <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>      
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
+                                            </div>
+                                        </div>                 
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
+                                                <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
+                                            </div>
+                                        </div>            
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
+                                                <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>      
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
+                                            </div>
+                                        </div>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
+                                                <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>     
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
+                                            </div>
+                                        </div>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
+                                                <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>     
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
 

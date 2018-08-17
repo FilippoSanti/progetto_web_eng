@@ -33,6 +33,11 @@
                                 <li><a href="*.html">Edit Informations</a></li>
                                 <li><a href="*.html">Documents</a></li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="*"><i class="ti-plus"></i> <span> Add Internship </span>
+                            </a>
                         </li>                        
 
                          <li>
