@@ -36,7 +36,7 @@
                         </li>
 
                         <li>
-                            <a href="*"><i class="ti-plus"></i> <span> Add Internship </span>
+                            <a href="/internships?view=add"><i class="ti-plus"></i> <span> Add Internship </span>
                             </a>
                         </li>                        
 

@@ -30,9 +30,12 @@
         <!-- Begin page -->
         <div id="wrapper">
 
+
             <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">
 
             <#include "/WEB-INF/views/FreeMarker/sidebar_visitor.ftl">
+
+
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->

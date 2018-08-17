@@ -87,18 +87,6 @@
 
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
-
                                     </div>
 
                                 </div>
@@ -124,18 +112,6 @@
 
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
-
                                     </div>
 
                                 </div>
@@ -159,18 +135,6 @@
                                         </div>
 
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
-
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
 
                                     </div>
 
@@ -202,18 +166,6 @@
                                         </div>
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
-
                                     </div>
 
                                 </div>
@@ -239,18 +191,6 @@
                                         </p>
                                         </div>
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
-
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
 
                                     </div>
 
@@ -279,18 +219,6 @@
                                         </div>
                                         <button type="button" class="btn btn-default btn-sm m-t-10">View Company</button>
 
-                                        <ul class="social-links list-inline m-t-30">
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                                            </li>
-                                        </ul>
-
                                     </div>
 
                                 </div>
@@ -298,6 +226,7 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
+<br><br>
 
                         <div class="row">
 <!--TODO   Spegnere Prev. Page se ci si trova all prima pagina-->

@@ -285,7 +285,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                           
 
                 <div class="form-group formspace">             
@@ -302,11 +301,11 @@
                 </div>
                 
 <br><br><br><br>
-
+                </form>
                     <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
-    </form>
+
             </div>
 
 

@@ -495,14 +495,7 @@
                     </div> <!-- container -->
 
 
-                    <div class="footer">
-                        <div class="pull-right hide-phone">
-                            Project Completed <strong class="text-custom">57%</strong>.
-                        </div>
-                        <div>
-                            <strong>Simple Admin</strong> - Copyright © 2017 - 2018
-                        </div>
-                    </div>
+                    <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
 

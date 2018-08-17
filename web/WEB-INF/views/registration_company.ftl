@@ -49,7 +49,7 @@
 
                         <div class="row">
                             <div class="col-md-3"></div> 
-                            <div class="col-md-6"><h4 class="header-title centra">Company Registation Form  2/2</h4></div> 
+                            <div class="col-md-6"><h4 class="header-title centra">Company Registration Form  2/2</h4></div>
                             <div class="col-lg-3"></div>
                             <p class="text-muted font-13 ">
                             Make sure you fill each field on the form correctly!
@@ -106,7 +106,7 @@
                             Log In information:
                             </p>
                                 <div class="form-group">
-                                  <label for="username">Email login<span class="text-danger">*</span></label>
+                                  <label for="username">Email Login<span class="text-danger">*</span></label>
                                   <input type="text" name="email_login" parsley-trigger="change" required
                                     placeholder="Enter User Name" class="form-control" id="username">
                                 </div>

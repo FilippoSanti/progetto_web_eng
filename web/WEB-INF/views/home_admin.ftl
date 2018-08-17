@@ -30,84 +30,9 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            <#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
+        <#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
 
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-                <div class="user-details">
-                    <div class="pull-left">
-                        <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
-                    </div>
-                    <div class="user-info">
-                        <a href="#">Admin Name</a>
-                        <p class="text-muted m-0">Administrator</p>
-                    </div>
-                </div>
-
-                <!--- Sidemenu -->
-                <div id="sidebar-menu">
-                    <!-- Left Menu Start -->
-                    <ul class="metismenu" id="side-menu">
-                        <li class="menu-title">Navigation</li>
-                        <li>
-                            <a href="index.html">
-                                <i class="ti-home"></i><span> Dashboard </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="companies_list.html">
-                                <i class="ti-briefcase"></i><span> Companies List </span>
-                            </a>
-                        </li>
-
-                         <li>
-                            <a href="*.html">
-                                <i class="ti-user"></i><span> Students List </span>
-                            </a>
-                        </li>
-
-						<li>
-                            <a href="Internships_list.html">
-                                <i class="ti-menu-alt"></i><span> Internships List </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="*.html">
-                            	<i class="ti-files"></i><span> Documentation </span>
-                             </a>
-                        </li>
-
-                        <li>
-                            <a href="*.html">
-                            	<i class="ti-stats-up"></i><span> View Statistics </span>
-                             </a>
-                        </li>
-
-
-                        <li>
-                            <a href="*.html">
-                            	<i class="ti-check"></i><span> Agreements Requests </span>
-                             </a>
-                        </li> 
-
-                        <li>
-                            <a href="notification.html"><i class="ti-bell"></i> 
-                                <span class="badge badge-custom pull-right">11</span> <span> Notifications </span>
-                            </a>
-                        </li>             
-
-                       
-                    </ul>
-
-                </div>
-                <!-- Sidebar -->
-                <div class="clearfix"></div>
-
-            </div>
-            <!-- Left Sidebar End -->
-
+        <#include "/WEB-INF/views/FreeMarker/sidebar_admin.ftl">
 
 
             <!-- ============================================================== -->
@@ -319,16 +244,7 @@
 
 <br><br><br><br><br>
 
-                     <div class="footer">
-                        <div class="pull-right hide-phone">
-                            Web Engineering Project 
-                        </div>
-                        <div>
-                             Copyright © 2018 - <a class="ti-infinite infindim"></a>
-                        </div>
-                        
-                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
-                    </div>
+                     <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
 
@@ -364,8 +280,28 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
+
         <!-- Notifications -->
         <script>
+
+
+/*
+             MODIFICHE DA APPORTARE NELLO SCRIPT: NUOVO SCHEMA RAPPRESENTAZIONE NOTIFICA + DELETE_BUTTON:
+
+            <div class="row">
+                    <div class="col-md-11">
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
+                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>
+                    </div>
+             </div>
+
+*/
 
             $(document).ready(function () {
 
@@ -425,9 +361,6 @@
             });
 
         </script>
-
-
-
 
     </body>
 </html>
