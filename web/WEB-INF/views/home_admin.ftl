@@ -380,39 +380,54 @@
                 getNotificationCount();
                 $.get("notify.do?action=update", function (responseJson) {
                     var table = '';
+
                     $.each(responseJson, function (index, product) {
 
-                        table += '<a href="viewProfile?type=company&id=' + product.id_azienda + '" class="dropdown-item notify-item">';
-                        table += '<div class="notify-icon bg-custom"><i class="mdi mdi-account-plus"></i></div>';
+                        table += '<a href="viewProfile?type=company&id='+product.id_azienda+'"'+'class="dropdown-item notify-item">';
+                        table += '<div class="row">';
+                        table += '<div class="col-md-11">';
+                        table += '<div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>';
                         table += '<p class="notify-details">' + product.testo + '</p>';
+                        table += '</div>';
+                        table += '<div class="col-md-1">';
+                        table += '<button class="btn dltbtnhead" data-target="#" title="Delete" onclick="delete_notification()" data-answerid= "'+ product.id_notifica +'" ><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>';
+                        table += '</div>';
+                        table += '</div>';
                         table += '</a>';
                     });
+
                     $('#notifications_show').html(table);
                 });
             }
 
             function getNotificationCount() {
-                $.get("notify.do?action=getCount", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-                    $("#notifications_count").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+                $.get("notify.do?action=getCount", function(responseText) {  // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+                    $("#notifications_count").text(responseText);            // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
                 });
             }
 
-            $(document).on("click", ".notification_delete", function(){
+            function delete_notification() {
                 var answerid;
                 answerid = $(this).attr("data-answerid");
-                $.get('notify.do?action=delete&id=6', {answer_id: answerid}, function(data){
+                $.get('notify.do?action=delete&id=' + answerid, function (data) {
                     getNotificationCount();
                     refreshNotifications();
                 });
-            });
+            }
 
-            $(document).on("click", "#notifications_delete_all", function() {
+
+            /*onclick event*/
+            $(document).on("click", ".float-right", function(){
                 $.get("notify.do?action=delete&id=all", function(responseText) {
                     getNotificationCount();
                     refreshNotifications();
                 });
             });
+
         </script>
+
+
+
 
     </body>
 </html>
