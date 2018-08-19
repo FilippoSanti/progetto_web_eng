@@ -3,6 +3,7 @@ package controller.servlets;
 import controller.dao.*;
 import controller.userController;
 import model.Internship;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,7 +53,7 @@ public class internshipsServlet extends HttpServlet {
 
             // View a specific internship
             if (paramValue.matches("[0-9]+")) {
-                action_view_internship(request, response);
+                action_view_internship(request, response, paramValue);
                 return;
             }
 
@@ -110,9 +111,21 @@ public class internshipsServlet extends HttpServlet {
 
     }
 
-    protected void action_view_internship(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_internship(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
+          internshipDao iDao = new internshipDaoImpl();
+
+           int newID = Integer.parseInt(id);
+
+
+
+
+            Internship i = iDao.getInternshipDataById(newID);
+
+            // Load the default user page with the right info
+            request.setAttribute("internshipData", i);
+
+            request.getRequestDispatcher("/WEB-INF/views/internship_details_student.ftl").forward(request, response);
 
     }
 

@@ -1,9 +1,6 @@
 package controller.servlets;
 
-import controller.dao.UserDao;
-import controller.dao.UserDaoImpl;
-import controller.dao.internshipDao;
-import controller.dao.internshipDaoImpl;
+import controller.dao.*;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -41,7 +38,7 @@ public class internshipsListServlet extends HttpServlet {
 
             // View a specific internship
             if (paramValue.matches("[0-9]+")) {
-                action_view_internship(request, response);
+                action_view_internship_azienda(request, response, paramValue);
                 return;
             }
 
@@ -66,7 +63,12 @@ public class internshipsListServlet extends HttpServlet {
 
     }
 
-    protected void action_view_internship(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_internship_azienda(HttpServletRequest request, HttpServletResponse response, String az_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        internshipDao intDao = new internshipDaoImpl();
+        ArrayList<Internship>internshipsArray = intDao.getInternshipListbyId(Integer.parseInt(az_id));
+        request.setAttribute("internships_list", internshipsArray);
+
 
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
 

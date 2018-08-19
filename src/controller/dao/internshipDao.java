@@ -19,5 +19,6 @@ public interface internshipDao {
                                  boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing) throws SQLException, IOException, PropertyVetoException;
     public ArrayList<InternshipRequest> getCandidates_list(int az_id) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteInternshipRequest(int studente_id) throws SQLException, IOException, PropertyVetoException;
+    public Internship getInternshipDataById(int int_id) throws SQLException, IOException, PropertyVetoException;
 
 }

@@ -36,7 +36,7 @@
                         </li>
 
                         <li>
-                            <a href="internships?view=all"><i class="ti-menu-alt"></i> <span> Internships List </span>
+                            <a href="internships_list?view=all"><i class="ti-menu-alt"></i> <span> Internships List </span>
                             </a>
                         </li>
 

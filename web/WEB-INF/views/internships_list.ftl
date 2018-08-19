@@ -342,15 +342,15 @@
                                         <tr>
                                             <th>Internship name</th>
                                             <th>Company ID</th>
-                                            <th>Details</th>
+                                            <th>Description</th>
                                             <th>Details</th>
                                         </tr>
                                         </thead>
 
 
                                         <tbody>
-                                           <#if internships?has_content>
-                                               <#list internships as val>
+                                           <#if internships_list?has_content>
+                                               <#list internships_list as val>
                                           <tr>
                                               <td>${val.getNome()}</td>
                                               <td>${val.getAzienda_id()}</td>

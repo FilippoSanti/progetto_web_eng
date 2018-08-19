@@ -113,6 +113,23 @@ public class Internship {
         this.rimborsi_spese_facilitazioni_previste = rimborsi_spese_facilitazioni_previste;
     }
 
+    public Internship()
+    {
+        this.iternship_id = 0;
+        this.azienda_id = 0;
+        this.nome = "";
+        this.dettagli = "";
+        this.luogo = "";
+        this.mesi = "";
+        this.orari = "";
+        this.ore = ore;
+        this.meseInziale = "";
+        this.meseFinale = "";
+        this.obiettivi = "";
+        this.modalita = "";
+        this.rimborsi_spese_facilitazioni_previste = "";
+    }
+
     public Internship(int iternship_id, int azienda_id,String  nome, String dettagli, String luogo, String mesi, String orari, String ore, String meseInziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) {
         this.iternship_id = iternship_id;
         this.azienda_id = azienda_id;
