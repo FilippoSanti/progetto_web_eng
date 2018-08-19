@@ -322,8 +322,8 @@
                                               <td>${val.getInternship_id()}</td>
                                               <td>${val.getAzienda_id()}</td>
                                               <td>${val.getStudent_id()}</td>
-                                              <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accetta...</button></td>
-                                              <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td>
+                                              <td><a href="/candidates_list?approve=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accetta...</button></td></a>
+                                              <td><a href="/candidates_list?delete=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td></a>
                                               </td>
                                           </tr>
                                                </#list>

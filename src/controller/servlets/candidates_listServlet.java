@@ -25,24 +25,44 @@ public class candidates_listServlet extends HttpServlet {
         // URL Parameters
         String paramName    = "view";
         String paramValue = request.getParameter(paramName);
+        String paramName1    = "delete";
+        String paramValue1 = request.getParameter(paramName1);
+        String paramName2    = "approve";
+        String paramValue2 = request.getParameter(paramName2);
+
 
         try {
             // Check if the user has given the right parameters
-            if (paramValue == null) {
+            if (paramValue == null && paramValue1 == null && paramName2 == null) {
                 action_default(request, response);
                 return;
             }
+            if (paramValue != null) {
+                // View the internships list
+                if (paramValue.equals("all")) {
+                    action_view_all(request, response);
+                    return;
+                }
 
-            // View the internships list
-            if (paramValue.equals("all")) {
-                action_view_all(request, response);
-                return;
+                // View a specific internship
+                if (paramValue.matches("[0-9]+")) {
+                    action_view_candidates_list(request, response, paramValue);
+                    return;
+                }
             }
 
-            // View a specific internship
-            if (paramValue.matches("[0-9]+")) {
-                action_view_candidates_list(request, response, paramValue);
-                return;
+            if (paramValue1 != null) {
+                if (paramValue1.matches("[0-9]+")) {
+                    action_delete(request, response, paramValue1);
+                    return;
+                }
+            }
+
+            if (paramValue2 != null) {
+                if (paramValue2.matches("[0-9]+")) {
+                    action_approve(request, response, paramValue2);
+                    return;
+                }
             }
 
             // Default action if no parameter is set properly
@@ -65,12 +85,30 @@ public class candidates_listServlet extends HttpServlet {
 
         internshipDao intDao = new internshipDaoImpl();
         int tir_id1 = Integer.parseInt(tir_id);
-        System.out.println(tir_id);
-        System.out.println(tir_id1);
+
         ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_listbyTirocinioId(tir_id1, az_id);
         request.setAttribute("candidates_list", internshipsArray);
         request.getRequestDispatcher("/WEB-INF/views/candidates_list.ftl").forward(request, response);
 
+    }
+
+    protected void action_approve(HttpServletRequest request, HttpServletResponse response, String user_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+        internshipDao intDao = new internshipDaoImpl();
+        int user_id1 = Integer.parseInt(user_id);
+        intDao.enableInternshipRequest(user_id1);
+        System.out.println(user_id1);
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
+
+    }
+
+    protected void action_delete(HttpServletRequest request, HttpServletResponse response, String user_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+        internshipDao intDao = new internshipDaoImpl();
+        int user_id2 = Integer.parseInt(user_id);
+        intDao.deleteInternshipRequest(user_id2);
+
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
     }
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
