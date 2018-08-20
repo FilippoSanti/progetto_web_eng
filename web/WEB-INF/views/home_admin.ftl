@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>SimpleAdmin - Responsive Admin Dashboard Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="utf-8" />
+    <title>SimpleAdmin - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 
-        <!--Morris Chart CSS -->
-        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+    <!-- DataTables -->
+    <link href="../../assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="../../assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-        <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Multi Item Selection examples -->
+    <link href="../../assets/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-        <script src="assets/js/modernizr.min.js"></script>
+    <!-- App css -->
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
 
-    </head>
+    <script src="../../assets/js/modernizr.min.js"></script>
+
+</head>
 
 
     <body>
@@ -86,159 +92,249 @@
 <br><br>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-12">
                                 <div class="card-box">
-                                    <h6 class="m-t-0">Notifications</h6>
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
+                                        <br>
+                                        <table id="datatable" class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th><div class="height15"></div></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+
+
                                             <tbody>
-
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	 <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-1.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-1.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	 <div class="centra ti-close red"></div> <a href="tables-advanced.html" class=" text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-3.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-3.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	<div class="centra ti-close red"></div> <a href="tables-advanced.html" class=" text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-4.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-4.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	 <div class="centra ti-close red"></div><a href="tables-advanced.html" class="text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-5.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-5.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	 <div class="centra ti-close red"></div><a href="tables-advanced.html" class=" text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
                                                 <td>
-                                                    <div class="notbell ti-bell"></div>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-6.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
                                                 </td>
 
-                                                <td>
-
-                                                    <div class="centra"><img src="assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
-                                                    <br>
-                                                    Company / Student Name 
-                                                </div></td>
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
 
                                                 <td>
-                                                    Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
                                                 </td>
-
-                                                <td>
-                                                	 <div class="centra ti-close red"></div><a href="tables-advanced.html" class="text-muted"> Delete</a>
-                                                </td>
-
                                             </tr>
 
                                             <tr>
-                                            	<td></td>
-                                            	<td></td>
-                                            	<td></div><a href="notification.html" class="centa text-muted"> Vedi Tutte...</a></td>
-                                            	<td></td>
-                                            	<td></td>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
                                             </tr>
 
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-4.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-6.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><div class="notbell ti-bell"></div></td>
+
+                                                <td>
+                                                    <div class="centra"><img src="../../assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                        <br>
+                                                        Company / Student Name
+                                                    </div>
+                                                </td>
+
+                                                <td>Aaaaaaa aaaaaa aaaaa aaaaaaaa  aa aaa aaaa aaaaa a aaaaaaaaa a aaaaaaaa a aaa aaaamm mm mmm mmmmmmm mmm mm mm mmmm mm mmm mm m mm m mm m m  m m m mmmmm mmm mmm mmmmm mmmmm ...</td>
+
+                                                <td>
+                                                    <div class="centra ti-close red"></div> <a href="tables-advanced.html" class="text-muted"> Delete</a>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> <!-- end row -->
+
 
                     </div> <!-- container -->
 
@@ -262,24 +358,72 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="../../assets/js/jquery.min.js"></script>
+        <script src="../../assets/js/popper.min.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/metisMenu.min.js"></script>
+        <script src="../../assets/js/waves.js"></script>
+        <script src="../../assets/js/jquery.slimscroll.js"></script>
 
-        <!--Morris Chart-->
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/plugins/raphael/raphael-min.js"></script>
+        <!-- Required datatable js -->
+        <script src="../../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="../../assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="../../assets/plugins/datatables/jszip.min.js"></script>
+        <script src="../../assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="../../assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.print.min.js"></script>
 
-        <!-- Dashboard init -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+        <!-- Key Tables -->
+        <script src="../../assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+
+        <!-- Responsive examples -->
+        <script src="../../assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="../../assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- Selection table -->
+        <script src="../../assets/plugins/datatables/dataTables.select.min.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="../../assets/js/jquery.core.js"></script>
+        <script src="../../assets/js/jquery.app.js"></script>
 
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                // Default Datatable
+                $('#datatable').DataTable();
+
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf']
+                });
+
+                // Key Tables
+
+                $('#key-table').DataTable({
+                    keys: true
+                });
+
+                // Responsive Datatable
+                $('#responsive-datatable').DataTable();
+
+                // Multi Selection Datatable
+                $('#selection-datatable').DataTable({
+                    select: {
+                        style: 'multi'
+                    }
+                });
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
+
+        </script>
 
         <!-- Notifications -->
         <script>
