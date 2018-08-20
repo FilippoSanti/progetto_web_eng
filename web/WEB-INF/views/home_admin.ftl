@@ -377,6 +377,7 @@
         <script src="../../assets/plugins/datatables/buttons.html5.min.js"></script>
         <script src="../../assets/plugins/datatables/buttons.print.min.js"></script>
 
+
         <!-- Key Tables -->
         <script src="../../assets/plugins/datatables/dataTables.keyTable.min.js"></script>
 
@@ -390,6 +391,8 @@
         <!-- App js -->
         <script src="../../assets/js/jquery.core.js"></script>
         <script src="../../assets/js/jquery.app.js"></script>
+
+        <script src="../../assets/js/notifications.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -427,84 +430,6 @@
 
         <!-- Notifications -->
         <script>
-
-
-/*
-             MODIFICHE DA APPORTARE NELLO SCRIPT: NUOVO SCHEMA RAPPRESENTAZIONE NOTIFICA + DELETE_BUTTON:
-
-            <div class="row">
-                    <div class="col-md-11">
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
-                        </a>
-                    </div>
-
-                    <div class="col-md-1">
-                        <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>
-                    </div>
-             </div>
-
-*/
-
-            $(document).ready(function () {
-
-                // Fetch the initial data
-                refreshNotifications();
-
-                // Fetch every 5 seconds
-                setInterval(refreshNotifications, 5000);
-            });
-
-            function refreshNotifications() {
-                getNotificationCount();
-                $.get("notify.do?action=update", function (responseJson) {
-                    var table = '';
-
-                    $.each(responseJson, function (index, product) {
-
-                        table += '<a href="viewProfile?type=company&id='+product.id_azienda+'"'+'class="dropdown-item notify-item">';
-                        table += '<div class="row">';
-                        table += '<div class="col-md-11">';
-                        table += '<div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>';
-                        table += '<p class="notify-details">' + product.testo + '</p>';
-                        table += '</div>';
-                        table += '<div class="col-md-1">';
-                        table += '<button class="btn dltbtnhead" data-target="#" title="Delete" onclick="delete_notification()" data-answerid= "'+ product.id_notifica +'" ><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>';
-                        table += '</div>';
-                        table += '</div>';
-                        table += '</a>';
-                    });
-
-                    $('#notifications_show').html(table);
-                });
-            }
-
-            function getNotificationCount() {
-                $.get("notify.do?action=getCount", function(responseText) {  // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-                    $("#notifications_count").text(responseText);            // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-                });
-            }
-
-            function delete_notification() {
-                var answerid;
-                answerid = $(this).attr("data-answerid");
-                $.get('notify.do?action=delete&id=' + answerid, function (data) {
-                    getNotificationCount();
-                    refreshNotifications();
-                });
-            }
-
-
-            /*onclick event*/
-            $(document).on("click", "float-right-custom", function(){
-                $.get("notify.do?action=delete&id=all", function(responseText) {
-                    getNotificationCount();
-                    refreshNotifications();
-                });
-            });
-
-        </script>
 
     </body>
 </html>
