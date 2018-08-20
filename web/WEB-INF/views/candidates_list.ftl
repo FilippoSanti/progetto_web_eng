@@ -306,11 +306,13 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>id_tirocinio</th>
-                                            <th>company</th>
-                                            <th>Candidate</th>
+                                            <th>Full Name</th>
+                                            <th>Birth Date</th>
+                                            <th>Prov. (Residence)</th>
+                                            <th>Degree Course</th>
+                                            <th>See Profile</th>
                                             <th>Accept</th>
-                                            <th>Delete Offer</th>
+                                            <th>Reject</th>
                                         </tr>
                                         </thead>
 
@@ -319,12 +321,26 @@
                                            <#if candidates_list?has_content>
                                                <#list candidates_list as val>
                                           <tr>
-                                              <td>${val.getInternship_id()}</td>
-                                              <td>${val.getAzienda_id()}</td>
-                                              <td>${val.getStudent_id()}</td>
-                                              <td><a href="/candidates_list?approve=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accetta...</button></td></a>
-                                              <td><a href="/candidates_list?delete=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td></a>
+                                              <td>${val.getInternship_id()}</td> <!-- CAMBIARE CON NOME + COGNOME -->
+
+                                              <td>${val.getAzienda_id()}</td> <!-- CAMBIARE CON DATA DI NASCITA -->
+
+                                              <td>${val.getStudent_id()}</td> <!-- CAMBIARE CON PROV DI RESIDENZA -->
+
+                                              <td>${val.getStudent_id()}</td> <!-- CAMBIARE CON CORSO DI LAUREA -->
+
+                                              <td>
+                                                <a href=" "><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Profile</button></a>
+                                              </td> <!-- BUTTON CHE DEVE MOSTRARE IL PROFILO DELLO STUD IN QUESTIONE -->
+
+                                              <td>
+                                                <a href="/candidates_list?approve=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accept</button></a>
                                               </td>
+
+                                              <td>
+                                                <a href="/candidates_list?delete=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td></a>
+                                              </td>
+
                                           </tr>
                                                </#list>
                                            </#if>
