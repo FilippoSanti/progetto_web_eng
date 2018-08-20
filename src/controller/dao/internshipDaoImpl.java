@@ -26,8 +26,6 @@ public class internshipDaoImpl implements internshipDao {
      */
     public Internship getInternshipDataById(int int_id) throws SQLException, IOException, PropertyVetoException{
 
-
-
             Connection dbConnection = null;
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -65,8 +63,6 @@ public class internshipDaoImpl implements internshipDao {
             dbConnection.close();
             return internshipModel;
 
-
-
     }
 
 
@@ -79,24 +75,25 @@ public class internshipDaoImpl implements internshipDao {
         pst.executeUpdate();
 
         dbConnection.close();
-            return true;
-
-
-
+        return true;
     }
 
     public boolean deleteInternshipRequest(int studente_id) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(DELETE_USER_INTERNSHIP_REQ);
 
         pst.setInt(1, studente_id);
-        pst.executeUpdate();
+        int i = pst.executeUpdate();
+
+        if(i > 0) {
+            result = true;
+        }
 
         dbConnection.close();
-        return true;
-
-
+        return result;
 
     }
 
@@ -130,7 +127,7 @@ public class internshipDaoImpl implements internshipDao {
             internshipsList.add(internship);
 
         }
-
+        dbConnection.close();
         return internshipsList;
     }
 
@@ -165,7 +162,7 @@ public class internshipDaoImpl implements internshipDao {
             internshipsList.add(internship);
 
         }
-
+        dbConnection.close();
         return internshipsList;
     }
 
@@ -191,6 +188,7 @@ public class internshipDaoImpl implements internshipDao {
 
             }
 
+            dbConnection.close();
             return candidates_list;
         }
 
@@ -218,6 +216,7 @@ public class internshipDaoImpl implements internshipDao {
 
         }
 
+        dbConnection.close();
         return candidates_list;
     }
 
@@ -227,10 +226,10 @@ public class internshipDaoImpl implements internshipDao {
     public boolean addInternship(int companyId, String nome, String dettagli, String luogo, String mesi,
                                  String orari, String ore, String meseIniziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste,
                                  boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing) throws SQLException, IOException, PropertyVetoException {
+        boolean result = false;
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
 
 
         ps.setNull(1, Types.INTEGER);
@@ -257,8 +256,11 @@ public class internshipDaoImpl implements internshipDao {
 
         // Registration ok
         if (i > 0) {
-            return true;
-        } else return false;
+            result = true;
+        } else result = false;
 
+        dbConnection.close();
+
+        return result;
     }
 }
