@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 10, 2018 alle 18:30
+-- Creato il: Ago 20, 2018 alle 14:43
 -- Versione del server: 10.1.34-MariaDB
--- Versione PHP: 7.2.7
+-- Versione PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,6 +58,29 @@ INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale
 (6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0, ''),
 (7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 1, ''),
 (8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `notifica`
+--
+
+CREATE TABLE `notifica` (
+  `id_notifica` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `id_azienda` int(11) DEFAULT NULL,
+  `testo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `notifica`
+--
+
+INSERT INTO `notifica` (`id_notifica`, `id_utente`, `id_azienda`, `testo`) VALUES
+(1, 1, NULL, 'asdasdad'),
+(3, 0, 9, 'asdadasd wants to join'),
+(4, 0, 10, 'asdasdasda wants to join'),
+(5, 20, 1, 'sadfasdasd');
 
 -- --------------------------------------------------------
 
@@ -152,11 +175,11 @@ CREATE TABLE `richieste_tirocinio` (
 --
 
 INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`) VALUES
-(1, 7, 1, 23, 0),
-(2, 7, 13, 20, 0),
-(3, 7, 13, 23, 0),
-(4, 7, 13, 22, 1),
-(10, 2, 34, 56, 0);
+(4, 7, 13, 22, 0),
+(13, 7, 12, 23, 1),
+(15, 7, 12, 23, 1),
+(17, 2, 34, 56, 0),
+(18, 2, 44, 56, 0);
 
 -- --------------------------------------------------------
 
@@ -208,6 +231,12 @@ ALTER TABLE `azienda`
   ADD PRIMARY KEY (`azienda_id`);
 
 --
+-- Indici per le tabelle `notifica`
+--
+ALTER TABLE `notifica`
+  ADD PRIMARY KEY (`id_notifica`);
+
+--
 -- Indici per le tabelle `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
@@ -240,6 +269,12 @@ ALTER TABLE `azienda`
   MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT per la tabella `notifica`
+--
+ALTER TABLE `notifica`
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
@@ -249,7 +284,7 @@ ALTER TABLE `offerta_tirocinio`
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
