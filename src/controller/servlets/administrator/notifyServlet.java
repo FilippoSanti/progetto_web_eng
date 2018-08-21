@@ -66,6 +66,29 @@ public class notifyServlet extends HttpServlet {
             action_get_notifications_count(request, response);
         }
 
+        // plain text for a table
+        if (action_value != null && id_value == null
+                && action_value.equals("getPlainText")) {
+            action_get_plain_text(request, response);
+        }
+
+    }
+
+    private void action_get_plain_text(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        UserDao uDao = new UserDaoImpl();
+
+        // Get the logged user ID and his notifications
+        int userID = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
+        List<Notification> notifList = uDao.getNotificationList(userID);
+
+        // Every time we update the notifications,
+        // we also update the notification count
+        String json = new Gson().toJson(notifList);
+
+        response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+        response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+        response.getWriter().write(json);       // Write response body.
+
     }
 
     /* Update notifications list */
@@ -79,8 +102,6 @@ public class notifyServlet extends HttpServlet {
 
         // Every time we update the notifications,
         // we also update the notification count
-
-
         String json = new Gson().toJson(notifList);
 
         response.setContentType("application/json");
@@ -119,6 +140,8 @@ public class notifyServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(countStr);
     }
+
+
 
 
 

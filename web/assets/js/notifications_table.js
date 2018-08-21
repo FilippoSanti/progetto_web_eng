@@ -1,23 +1,26 @@
-$(document).on("click", ".vote", function () {
+$(document).on("click", ".vote", function() {
     var answerid;
     answerid = $(this).attr("data-answerid");
-    $.get('notify.do?action=delete&id=' + answerid + '', function (data) {
+    $.get('notify.do?action=delete&id=' + answerid + '', function(data) {
         getNotificationCount();
         refreshNotifications();
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Fetch the initial data
     refreshNotifications();
+
+    // Update the table
+    updateTable();
 
     // Fetch every 5 seconds
     setInterval(refreshNotifications, 5000);
 
     /*onclick event*/
-    $(".float-right-custom").click(function () {
-        $.get("notify.do?action=delete&id=all", function (responseText) {
+    $(".float-right-custom").click(function() {
+        $.get("notify.do?action=delete&id=all", function(responseText) {
             getNotificationCount();
             refreshNotifications();
         });
@@ -26,11 +29,9 @@ $(document).ready(function () {
 
 function refreshNotifications() {
     getNotificationCount();
-    $.get("notify.do?action=update", function (responseJson) {
+    $.get("notify.do?action=update", function(responseJson) {
         var table = '';
-
-        $.each(responseJson, function (index, product) {
-
+        $.each(responseJson, function(index, product) {
             table += '<div class="row">';
             table += '<div class="col-md-11">';
             table += '<a href="viewProfile?type=company&id=' + product.id_azienda + '"' + 'class="dropdown-item notify-item">';
@@ -46,25 +47,30 @@ function refreshNotifications() {
         });
 
         $('#notifications_show').html(table);
+
+        // Clean the table and update it
+        $('#table').bootstrapTable("destroy");
+        updateTable();
     });
-
-    // Update the table
-    $.get("notify.do?action=update", function (responseJson) {
-        var table = '';
-        $.each(responseJson, function (index, product) {
-            table += '<tr><td><div class="notbell ti-bell"></div></td>';
-            table += '<td>'+product.testo+'</td>';
-            table += '<td><a href="#" class="vote text-muted" data-answerid="'+product.id_notifica+'"><button type="button" class="btn btn-danger">Delete</button></a></td></tr>'
-        });
-
-        $('#notifications_table_custom').html(table);
-    });
-
 }
 
-
 function getNotificationCount() {
-    $.get("notify.do?action=getCount", function (responseText) {  // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-        $("#notifications_count").text(responseText);            // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+    $.get("notify.do?action=getCount", function(responseText) { // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+        $("#notifications_count").text(responseText); // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+    });
+}
+
+function updateTable() {
+
+    // Update the table
+    $.get("notify.do?action=getPlainText", function(responseText) {
+        var obj = JSON.parse(responseText);
+        var $table = $('#table');
+
+        $(function() {
+            $table.bootstrapTable({
+                data: obj
+            });
+        });
     });
 }
