@@ -1,9 +1,10 @@
-package controller.servlets;
+package controller.servlets.company;
 
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.dao.internshipDao;
 import controller.dao.internshipDaoImpl;
+import controller.servlets.general.homeServlet;
 import model.InternshipRequest;
 
 import javax.servlet.ServletException;

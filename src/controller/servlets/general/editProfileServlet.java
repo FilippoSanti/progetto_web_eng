@@ -1,10 +1,9 @@
-package controller.servlets;
+package controller.servlets.general;
 
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
-import controller.userController;
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
 import model.Company;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -28,7 +26,6 @@ public class editProfileServlet extends HttpServlet {
             throws ServletException, IOException, PropertyVetoException, SQLException {
 
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("errorMessage", "");
 
         String paramValue = "";
 
@@ -145,6 +142,15 @@ public class editProfileServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
 
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
+
     }
 
     /** Company */
@@ -200,9 +206,8 @@ public class editProfileServlet extends HttpServlet {
                 cf_rapp.isEmpty() || partita_iva.isEmpty() || provincia.isEmpty() || email_tirocini.isEmpty() || descrizione.isEmpty()) {
 
             // Signal that an error has occurred
-            request.setAttribute("errorMessage", "Fields cannot be empty");
-
-            action_company(request, response);
+            request.getSession().setAttribute("errorMessage", "Fields cannot be empty");
+            response.sendRedirect("/editProfile");
 
         } else {
 
@@ -225,8 +230,8 @@ public class editProfileServlet extends HttpServlet {
 
         if (password.isEmpty() && ripeti_pass.isEmpty() && email_login.isEmpty()) {
             // Signal that an error has occurred
-            request.setAttribute("errorMessage", "Fields cannot be empty");
-            action_company(request, response);
+            request.getSession().setAttribute("errorMessage", "Fields cannot be empty");
+            response.sendRedirect("/editProfile");
             return;
         }
 
@@ -238,14 +243,14 @@ public class editProfileServlet extends HttpServlet {
             return;
 
         } else if (email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
-            request.setAttribute("errorMessage", "Coose a different email");
-            action_company(request, response);
+            request.getSession().setAttribute("errorMessage", "Coose a different email");
+            response.sendRedirect("/editProfile");
             return;
         }
 
         if (!password.equals(ripeti_pass)) {
-            request.setAttribute("errorMessage", "Passwords don't match");
-            action_company(request, response);
+            request.getSession().setAttribute("errorMessage", "Passwords don't match");
+            response.sendRedirect("/editProfile");
         }
 
         // If we are trying to update only the password
@@ -321,23 +326,22 @@ public class editProfileServlet extends HttpServlet {
             return;
 
         } else if (email_login.equals(homeServlet.loggedUserEmail) && password.isEmpty() && ripeti_pass.isEmpty()) {
-            request.setAttribute("errorMessage", "Coose a different email");
-            action_student(request, response);
+            request.getSession().setAttribute("errorMessage", "- Choose a different email");
+            response.sendRedirect("/editProfile");
             return;
         }
 
         if (!password.equals(ripeti_pass)) {
-            request.setAttribute("errorMessage", "Passwords don't match");
-            action_student(request, response);
+            request.getSession().setAttribute("errorMessage", "Passwords don't match");
+            response.sendRedirect("/editProfile");
+            return;
         }
 
         // If we are trying to update only the password
         if (!password.isEmpty() && !ripeti_pass.isEmpty() && email_login.isEmpty()) {
             uDao.updateUserData(password, homeServlet.loggedUserEmail, homeServlet.loggedUserEmail);
             response.sendRedirect("/logout");
-            return;
-
-        } else {
+        } else  {
             uDao.updateUserData(password, email_login, email_login);
             response.sendRedirect("/logout");
         }

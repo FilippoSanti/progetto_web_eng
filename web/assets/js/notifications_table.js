@@ -1,3 +1,4 @@
+
 $(document).on("click", ".vote", function() {
     var answerid;
     answerid = $(this).attr("data-answerid");
@@ -47,10 +48,6 @@ function refreshNotifications() {
         });
 
         $('#notifications_show').html(table);
-
-        // Clean the table and update it
-        $('#table').bootstrapTable("destroy");
-        updateTable();
     });
 }
 
@@ -73,4 +70,11 @@ function updateTable() {
             });
         });
     });
+}
+
+function refreshTable() {
+    var $table = $('#table');
+    $table.bootstrapTable('destroy');
+    updateTable();
+    console.log("diocane");
 }

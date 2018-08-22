@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import controller.dao.*;
-import controller.servlets.homeServlet;
+import controller.servlets.general.homeServlet;
 import model.Security;
 
 public class notifyServlet extends HttpServlet {

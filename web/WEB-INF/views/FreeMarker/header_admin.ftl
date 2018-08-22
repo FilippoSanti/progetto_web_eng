@@ -3,7 +3,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index.html" class="logo">
+                    <a href="/home" class="logo">
                         <span>
                             <img src="assets/images/logo.png" alt="">
                         </span>
@@ -28,14 +28,14 @@
 
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h6 class="m-0"><span class="float-right float-right-custom"><a href="#" class="text-dark"><small>Clear All</small></a></span>Notification</h6>
+                                    <h6 class="m-0"><span class="float-right float-right-custom"><a href="#" class="text-dark"><small>Clear All</small></a></span>Notifications List</h6>
                                 </div>
 
                                 <div class="slimscroll scrollnotification" id="notifications_show"><br><br><br><br></div>
 
                                 <!-- All-->
                                 <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                                    View all <i class="fi-arrow-right"></i>
+                                    View agreement requests <i class="fi-arrow-right"></i>
                                 </a>
 
                             </div>
@@ -44,7 +44,7 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1"> Name <i class="mdi mdi-chevron-down"></i> </span>
+                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1"><#if username?has_content>${username}</#if><i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->

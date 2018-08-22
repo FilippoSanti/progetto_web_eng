@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.general;
 
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;
@@ -134,6 +134,7 @@ public class profileServlet extends HttpServlet {
         Security securityModel = SecurityFilter.checkUsers(request);
 
         if (userType.equals("student")) {
+
             // Get the user object from the DB
             UserDao uDao = new UserDaoImpl();
 
@@ -143,6 +144,8 @@ public class profileServlet extends HttpServlet {
             // If the email is an empty string, the user id doesn't exist
             if (email != null && !email.isEmpty()) {
                 User u = uDao.getUser(email);
+
+                request.setAttribute("edit_profile", "content");
 
                 // Load the default user page with the right info
                 request.setAttribute("userData", u);
@@ -170,6 +173,9 @@ public class profileServlet extends HttpServlet {
             // If the email is an empty string, the user id doesn't exist
             if (email != null && !email.isEmpty()) {
                 Company c = cDao.getCompanyDataByEmail(email);
+
+                // Set a boolean variable to false to hide the view profile button
+                request.setAttribute("edit_profile", "content");
 
                 // Load the default user page with the right info
                 request.setAttribute("companyData", c);

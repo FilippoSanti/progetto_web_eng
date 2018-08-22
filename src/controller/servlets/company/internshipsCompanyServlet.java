@@ -1,6 +1,7 @@
-package controller.servlets;
+package controller.servlets.company;
 
 import controller.dao.*;
+import controller.servlets.general.homeServlet;
 import model.Internship;
 
 import javax.servlet.ServletException;

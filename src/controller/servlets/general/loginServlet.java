@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.general;
 
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;

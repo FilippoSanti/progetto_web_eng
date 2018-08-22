@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.general;
 
 import controller.dao.*;
 import controller.utilities.SecurityFilter;
@@ -46,7 +46,6 @@ public class homeServlet extends HttpServlet {
     protected void action_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         HttpSession session = request.getSession();
-        UserDao userDao = new UserDaoImpl();
 
         // Get the user object attribute containing the user email
         User userModel = (User) session.getAttribute("loggedInUser");
@@ -70,8 +69,6 @@ public class homeServlet extends HttpServlet {
         Company companyModel = (Company) session.getAttribute("loggedInCompany");
         loggedUserEmail = companyModel.getEmail_login();
 
-
-
         companyDao compDao = new companyDaoImpl();
 
         String email_azie = homeServlet.loggedUserEmail;
@@ -85,29 +82,38 @@ public class homeServlet extends HttpServlet {
         action_default_company(request, response);
     }
 
-    protected void action_admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        action_default_admin(request, response);
-
-    }
-
     /** Default actions **/
 
-    public void action_default_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void action_default_student(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("username", tempName);
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
 
         dispatcher.forward(request, response);
     }
 
-    public void action_default_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void action_default_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_company.ftl");
 
         dispatcher.forward(request, response);
     }
 
-    public void action_default_admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void action_default_admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_admin.ftl");
 

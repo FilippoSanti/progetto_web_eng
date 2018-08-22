@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.general;
 
 import model.Security;
 

@@ -59,7 +59,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>controller.servlets.loginServlet</servlet-class>
+        <servlet-class>controller.servlets.general.loginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -69,7 +69,7 @@
 
     <servlet>
         <servlet-name>home</servlet-name>
-        <servlet-class>controller.servlets.homeServlet</servlet-class>
+        <servlet-class>controller.servlets.general.homeServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -79,7 +79,7 @@
 
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>controller.servlets.logoutServlet</servlet-class>
+        <servlet-class>controller.servlets.general.logoutServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -89,7 +89,7 @@
 
     <servlet>
         <servlet-name>register</servlet-name>
-        <servlet-class>controller.servlets.registerServlet</servlet-class>
+        <servlet-class>controller.servlets.general.registerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -99,7 +99,7 @@
 
     <servlet>
         <servlet-name>viewProfile</servlet-name>
-        <servlet-class>controller.servlets.profileServlet</servlet-class>
+        <servlet-class>controller.servlets.general.profileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -109,7 +109,7 @@
 
     <servlet>
         <servlet-name>document</servlet-name>
-        <servlet-class>controller.servlets.pdfServlet</servlet-class>
+        <servlet-class>controller.servlets.general.pdfServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -119,7 +119,7 @@
 
     <servlet>
         <servlet-name>companiesList</servlet-name>
-        <servlet-class>controller.servlets.companyServlet</servlet-class>
+        <servlet-class>controller.servlets.company.companyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -129,7 +129,7 @@
 
     <servlet>
         <servlet-name>editProfile</servlet-name>
-        <servlet-class>controller.servlets.editProfileServlet</servlet-class>
+        <servlet-class>controller.servlets.general.editProfileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -139,7 +139,7 @@
 
     <servlet>
         <servlet-name>document_2</servlet-name>
-        <servlet-class>controller.servlets.document2Servlet</servlet-class>
+        <servlet-class>controller.servlets.general.document2Servlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -149,7 +149,7 @@
 
     <servlet>
         <servlet-name>document_3</servlet-name>
-        <servlet-class>controller.servlets.document3Servlet</servlet-class>
+        <servlet-class>controller.servlets.general.document3Servlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -159,7 +159,7 @@
 
     <servlet>
         <servlet-name>internships</servlet-name>
-        <servlet-class>controller.servlets.internshipsServlet</servlet-class>
+        <servlet-class>controller.servlets.company.internshipsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -169,7 +169,7 @@
 
     <servlet>
         <servlet-name>company_internships</servlet-name>
-        <servlet-class>controller.servlets.internshipsCompanyServlet</servlet-class>
+        <servlet-class>controller.servlets.company.internshipsCompanyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -189,7 +189,7 @@
 
     <servlet>
         <servlet-name>resetPassword</servlet-name>
-        <servlet-class>controller.servlets.resetPasswordServlet</servlet-class>
+        <servlet-class>controller.servlets.general.resetPasswordServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -239,7 +239,7 @@
 
     <servlet>
         <servlet-name>candidates_list</servlet-name>
-        <servlet-class>controller.servlets.candidates_listServlet</servlet-class>
+        <servlet-class>controller.servlets.company.candidates_listServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -249,7 +249,7 @@
 
     <servlet>
         <servlet-name>internships_list_company</servlet-name>
-        <servlet-class>controller.servlets.internshipsCompanyServlet</servlet-class>
+        <servlet-class>controller.servlets.company.internshipsCompanyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -259,7 +259,7 @@
 
     <servlet>
         <servlet-name>internships_list</servlet-name>
-        <servlet-class>controller.servlets.internshipsListServlet</servlet-class>
+        <servlet-class>controller.servlets.company.internshipsListServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

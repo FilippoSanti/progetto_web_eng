@@ -1,9 +1,9 @@
-package controller.servlets;
+package controller.servlets.company;
 
 import controller.dao.*;
+import controller.servlets.general.homeServlet;
 import controller.userController;
 import model.Internship;
-import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-
-import static java.lang.reflect.Modifier.STATIC;
 
 public class internshipsServlet extends HttpServlet {
 

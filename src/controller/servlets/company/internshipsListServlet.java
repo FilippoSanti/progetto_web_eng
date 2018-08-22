@@ -1,4 +1,4 @@
-package controller.servlets;
+package controller.servlets.company;
 
 import controller.dao.*;
 import model.Internship;

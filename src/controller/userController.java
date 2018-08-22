@@ -6,6 +6,8 @@ import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.dao.config.DataSource;
 import controller.utilities.Utils;
+import model.Company;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -416,6 +418,30 @@ public class userController {
         }
 
         return result;
+    }
 
+         /** Get the username of a logges user,
+         * this is done to display the name of the user in a sidebar **/
+
+        public static String getUsername(String userEmail) throws IOException, PropertyVetoException, SQLException {
+
+            // Test if the logged user is a company or a student
+            companyDao cDao   = new companyDaoImpl();
+            UserDao    uDao   = new UserDaoImpl();
+            String     result = null;
+
+            boolean isStudent = uDao.checkUser(userEmail);
+            boolean isAdmin   = uDao.checkAdmin(userEmail);
+            boolean isCompany = cDao.checkCompany(userEmail);
+
+            if (isStudent || isAdmin) {
+                User usr = uDao.getUser(userEmail);
+                result = usr.getNome();
+
+            } else if (isCompany){
+                Company comp = cDao.getCompanyDataByEmail(userEmail);
+                result = comp.getRagione_sociale();
+            }
+        return result;
     }
 }

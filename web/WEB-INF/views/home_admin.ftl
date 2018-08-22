@@ -107,6 +107,10 @@
                                     <div class="table-responsive">
                                         <br>
 
+                                        <div id="toolbar">
+                                            <button type="button" class="btn btn-light" onclick="refreshTable()">Refresh Notifications</button>
+                                        </div>
+
                                         <table id="table" data-pagination="true" data-search="true">
                                             <thead>
                                             <tr>

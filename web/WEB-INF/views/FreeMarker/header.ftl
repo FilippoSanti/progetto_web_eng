@@ -87,7 +87,7 @@
                                                 <button class="btn dltbtnhead" data-target="#" title="Delete"><img class="dltheadwidth" src="../../assets/images/dlt_ico2.png"></button>  
                                             </div>
                                         </div>
-                                    </a>
+                                    </a>F
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">

@@ -2,7 +2,7 @@ package controller.utilities;
 
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;
-import controller.servlets.homeServlet;
+import controller.servlets.general.homeServlet;
 import controller.userController;
 import model.Security;
 
