@@ -64,7 +64,7 @@
                             <div class=" col-sm-4 centra">
                                  <h4 class="header-title m-t-0 m-b-20">Edit Informations</h4>
                             </div>
-<br><br><br><br>
+                            <br><br><br><br>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
 
@@ -80,7 +80,7 @@
                                         </#if>
 
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="/displayImage" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
                                         <br>
                                         <form action="upload" method ="post" enctype="multipart/form-data">

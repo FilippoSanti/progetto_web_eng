@@ -128,10 +128,6 @@ public class editProfileServlet extends HttpServlet {
 
         UserDao userDao = new UserDaoImpl();
 
-        ServletContext context = getServletContext();
-        String result = Utils.display_user_image(context, request, homeServlet.loggedUserEmail);
-        request.setAttribute("image_path", result);
-
         // Get the user object and set the attribute
         User user = userDao.getUser(homeServlet.loggedUserEmail);
 
@@ -157,10 +153,6 @@ public class editProfileServlet extends HttpServlet {
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         companyDao compDao = new companyDaoImpl();
-
-        ServletContext context = getServletContext();
-        String result = Utils.display_user_image(context, request, homeServlet.loggedUserEmail);
-        request.setAttribute("image_path", result);
 
         Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
 

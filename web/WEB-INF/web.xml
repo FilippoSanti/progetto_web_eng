@@ -267,6 +267,16 @@
         <url-pattern>/internships_list</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>displayImage</servlet-name>
+        <servlet-class>controller.servlets.general.displayImageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>displayImage</servlet-name>
+        <url-pattern>/displayImage</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.

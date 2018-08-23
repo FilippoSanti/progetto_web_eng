@@ -210,9 +210,9 @@ public class Utils {
 
             File f = new File(pathname);
             if (f.exists() && !f.isDirectory()) {
-                result = "../../assets/images/users/" + "user_" + userID + ".png";
+                result = pathname;
             } else {
-                result = "../../assets/images/users/default_user.png";
+                result = pathname;
             }
 
         } else if (isCompany) {
@@ -227,9 +227,9 @@ public class Utils {
             File f = new File(pathname);
             if (f.exists() && !f.isDirectory()) {
                 // Set the page attribute
-                result = "../../assets/images/users/" + "company_" + userID + ".png";
+                result = pathname;
             } else {
-                result = "../../assets/images/users/default_company.png";
+                result = pathname;
             }
         }
         return result;
