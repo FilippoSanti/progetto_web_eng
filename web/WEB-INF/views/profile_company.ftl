@@ -330,7 +330,11 @@
                                 <div class="p-0 text-center">
                                     <div class="member-card">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <#if user_type?has_content>
+                                                <img src="/displayImage?type=${user_type}&id=${user_id}" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <#else>
+                                                <img src="/displayImage" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            </#if>
                                         </div>
 
                                         <div class="">

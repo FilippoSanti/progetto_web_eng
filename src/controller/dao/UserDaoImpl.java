@@ -46,6 +46,7 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE_NOTIFICATION_REQUEST = "DELETE FROM notifica WHERE notifica.id_notifica = ?";
     private static final String COUNT_NOTIFICATIONS = "SELECT count(*) FROM notifica WHERE id_utente = ?";
     private static final String CLEAR_NOTIFICATIONS = "DELETE FROM notifica WHERE notifica.id_utente = ?";
+    private static final String DELETE_COMPANY_NOTIFICATIONS = "DELETE FROM notifica WHERE id_azienda = ?";
 
     /**
      * Get a user object by an email
@@ -995,6 +996,23 @@ public class UserDaoImpl implements UserDao {
             }
         }
         return list;
+    }
+
+    public boolean deleteCompanyNotifications(int id_company) throws SQLException, IOException, PropertyVetoException {
+
+        boolean result = false;
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(DELETE_COMPANY_NOTIFICATIONS);
+
+        pst.setInt(1, id_company);
+        int r = pst.executeUpdate();
+
+        if (r > 0) {
+            result = true;
+        }
+
+        dbConnection.close();
+        return result;
     }
 
 }

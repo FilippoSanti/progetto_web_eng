@@ -96,7 +96,11 @@ public class registerServlet extends HttpServlet {
             } else {
                 action_default_student(request, response);
             }
-        } else userController.errorsList.clear();
+        } else {
+            request.setAttribute("errorsList", userController.errorsList);
+            action_default_student(request, response);
+            userController.errorsList.clear();
+        }
 
         return false;
     }
@@ -153,7 +157,12 @@ public class registerServlet extends HttpServlet {
                 action_default_company(request, response);
             }
 
-    } userController.errorsList.clear();
+        } else {
+            request.setAttribute("errorsList", userController.errorsList);
+            action_default_company(request, response);
+            userController.errorsList.clear();
+        }
+
         return false;
     }
 

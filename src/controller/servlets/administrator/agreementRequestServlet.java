@@ -1,5 +1,7 @@
 package controller.servlets.administrator;
 
+import controller.dao.UserDao;
+import controller.dao.UserDaoImpl;
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
 import controller.utilities.SecurityFilter;
@@ -65,6 +67,7 @@ public class agreementRequestServlet extends HttpServlet {
 
         // Check that the userID exists
         companyDao cDao = new companyDaoImpl();
+        UserDao uDao = new UserDaoImpl();
 
         String email = cDao.getEmailByID(id);
 
@@ -72,6 +75,8 @@ public class agreementRequestServlet extends HttpServlet {
 
             // Enable the company
             if (cDao.enableCompany(email)) {
+
+                uDao.deleteCompanyNotifications(id);
                 request.getSession().setAttribute("Message", "The company has been approved");
                 response.sendRedirect("/agreementRequests");
             }

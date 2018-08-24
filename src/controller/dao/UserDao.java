@@ -28,6 +28,7 @@ public interface UserDao {
     public boolean addNotification (int userID, int companyID, String text);
     public boolean deleteNotification(int notification_id) throws SQLException, IOException, PropertyVetoException;
     public boolean clearNotifications(int userID) throws SQLException, IOException, PropertyVetoException;
+    public boolean deleteCompanyNotifications(int id_company) throws SQLException, IOException, PropertyVetoException;
 
     /** Get functions */
     public User getUser(String userEmail);
