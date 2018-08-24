@@ -122,7 +122,7 @@ public class profileServlet extends HttpServlet {
             action_student(request, response, homeServlet.loggedUserEmail);
         }
 
-        // If everything is ok, we load the user profile
+        // If everything is ok, we load the user profile code
         action_view_target_user(request, response, userType, id);
     }
 
@@ -144,6 +144,10 @@ public class profileServlet extends HttpServlet {
             // If the email is an empty string, the user id doesn't exist
             if (email != null && !email.isEmpty()) {
                 User u = uDao.getUser(email);
+
+                // Here we set the attributes needed to show the profile image of a user
+                request.setAttribute("user_type", "student");
+                request.setAttribute("user_id", u.getId());
 
                 request.setAttribute("edit_profile", "content");
 
@@ -173,6 +177,10 @@ public class profileServlet extends HttpServlet {
             // If the email is an empty string, the user id doesn't exist
             if (email != null && !email.isEmpty()) {
                 Company c = cDao.getCompanyDataByEmail(email);
+
+                // Here we set the attributes needed to show the profile image of a user
+                request.setAttribute("user_type", "company");
+                request.setAttribute("user_id", c.getCompany_id());
 
                 // Set a boolean variable to false to hide the view profile button
                 request.setAttribute("edit_profile", "content");

@@ -212,7 +212,7 @@ public class Utils {
             if (f.exists() && !f.isDirectory()) {
                 result = pathname;
             } else {
-                result = pathname;
+                result = context.getRealPath("/assets/images/users/default_user.png");
             }
 
         } else if (isCompany) {
@@ -229,7 +229,7 @@ public class Utils {
                 // Set the page attribute
                 result = pathname;
             } else {
-                result = pathname;
+                result = context.getRealPath("/assets/images/users/default_company.png");
             }
         }
         return result;
