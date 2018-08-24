@@ -27,6 +27,7 @@
                                 <li><a href="/viewProfile">My Account</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
                                 <li><a href="*.html">My Internships</a></li>
+                                <li><a href="*.html">My Documents</a></li>
                             </ul>
                         </li>
 
