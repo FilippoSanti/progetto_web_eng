@@ -99,7 +99,7 @@
                                         </p>
                                         </div>
 
-                                        <button type="button" class="btn btn-default btn-sm m-t-10">See Details</button>
+                                        <td><a href="/internships?view=${val.getIternship_id()}"><button type="button" class="btn btn-default btn-sm m-t-10">See Details</button></a></td>
 
                                     </div>
 

@@ -318,27 +318,27 @@
 
 
                                         <tbody>
-                                           <#if candidates_list?has_content>
-                                               <#list candidates_list as val>
+                                           <#if userList?has_content>
+                                               <#list userList as val>
                                           <tr>
-                                              <td>${val.getInternship_id()}</td> <!-- CAMBIARE CON NOME + COGNOME -->
+                                              <td>${val.getNome()}  ${val.getCognome()}</td> <!-- CAMBIARE CON NOME + COGNOME -->
 
-                                              <td>${val.getAzienda_id()}</td> <!-- CAMBIARE CON DATA DI NASCITA -->
+                                              <td>${val.getDate()}</td> <!-- CAMBIARE CON DATA DI NASCITA -->
 
-                                              <td>${val.getStudent_id()}</td> <!-- CAMBIARE CON PROV DI RESIDENZA -->
+                                              <td>${val.getProvincia()}</td> <!-- CAMBIARE CON PROV DI RESIDENZA -->
 
-                                              <td>${val.getStudent_id()}</td> <!-- CAMBIARE CON CORSO DI LAUREA -->
+                                              <td>${val.getCorso()}</td> <!-- CAMBIARE CON CORSO DI LAUREA -->
 
                                               <td>
-                                                <a href=" "><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Profile</button></a>
+                                                  <a href="viewProfile?type=student&id=${val.getId()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Profile</button></a>
                                               </td> <!-- BUTTON CHE DEVE MOSTRARE IL PROFILO DELLO STUD IN QUESTIONE -->
 
                                               <td>
-                                                <a href="/candidates_list?approve=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accept</button></a>
+                                                <a href="/candidates_list?approve=${val.getId()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Accept</button></a>
                                               </td>
 
                                               <td>
-                                                <a href="/candidates_list?delete=${val.getStudent_id()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td></a>
+                                                <a href="/candidates_list?delete=${val.getId()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../../../assets/images/delete_icon.png"></button></td></a>
                                               </td>
 
                                           </tr>

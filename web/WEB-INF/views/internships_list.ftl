@@ -355,7 +355,7 @@
                                               <td>${val.getNome()}</td>
                                               <td>${val.getAzienda_id()}</td>
                                               <td>${val.getDettagli()}</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></td>
+                                            <td><a href="/internships?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></a></td>
                                               </td>
                                           </tr>
                                                </#list>
