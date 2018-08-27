@@ -5,7 +5,7 @@
                         <img src="/displayImage" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="user-info">
-                        <a href="#">Student Name</a>
+                        <a href="#">${username}</a>
                         <p class="text-muted m-0">Student</p>
                     </div>
                 </div>
@@ -26,8 +26,7 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="/viewProfile">My Account</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
-                                <li><a href="*.html">My Internships</a></li>
-                                <li><a href="*.html">My Documents</a></li>
+                                <li><a href="/internships?view=myInternships">My Internships</a></li>
                             </ul>
                         </li>
 

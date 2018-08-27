@@ -83,7 +83,7 @@
                                         <div class="row">
 
                                             <div class="input-group app-search" id="adv-search">
-                                                <input type="text" class="form-control borderradius postotasti" placeholder="Enter Keywords..." />
+                                                <input type="text" class="form-control borderradius postotasti" placeholder="Search for internships..." />
                                                 <div class="input-group-btn ">
                                                     <div class="btn-group btnsearchposition" role="group">
                                                         <div class="dropdown">
@@ -138,7 +138,6 @@
                                                                                 </div>
                                                                         </div>
                                                                     </div>
-                                                                    <button type="submit" class="btn stylesearchbtn3"><span class="fa fa-search noprofdropdownvertal" aria-hidden="true"></span> Apply Filters </button>
                                                                 </form>
                                                             </div>
                                                         </div>

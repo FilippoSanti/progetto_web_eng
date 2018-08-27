@@ -3,7 +3,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index.html" class="logo">
+                    <a href="/home" class="logo">
                         <span>
                             <img src="assets/images/logo.png" alt="">
                         </span>
@@ -115,7 +115,7 @@
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1"> Name <i class="mdi mdi-chevron-down"></i> </span>
+                                <img src="/displayImage" alt="user" class="rounded-circle"> <span class="ml-1">${username}<i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                 <!-- item-->
@@ -124,7 +124,7 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="/userProfile" class="dropdown-item notify-item">
+                                <a href="/viewProfile" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 

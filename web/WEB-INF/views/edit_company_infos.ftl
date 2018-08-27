@@ -69,7 +69,7 @@
                                         </#if>
 
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="${image_path}" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="/displayImage" class="rounded-circle img-thumbnail" alt="profile-image">
                                         </div>
                                         <br>
                                         <form action="upload" method ="post" enctype="multipart/form-data">
