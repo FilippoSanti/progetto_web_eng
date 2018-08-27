@@ -90,6 +90,12 @@ public class homeServlet extends HttpServlet {
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
 
         request.setAttribute("username", tempName);
+        companyDao compDao = new companyDaoImpl();
+
+        // Get the company list
+        ArrayList<Company> companiesArray = compDao.getCompaniesList();
+
+        request.setAttribute("companiesList", companiesArray);
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
 
