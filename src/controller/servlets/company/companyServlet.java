@@ -2,6 +2,7 @@ package controller.servlets.company;
 
 import controller.dao.companyDao;
 import controller.dao.companyDaoImpl;
+import controller.servlets.general.homeServlet;
 import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Security;
@@ -56,6 +57,9 @@ public class companyServlet extends HttpServlet {
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         companyDao compDao = new companyDaoImpl();
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         // Get the company list
         ArrayList<Company> companiesArray = compDao.getCompaniesList();

@@ -445,13 +445,6 @@
                                         <div class="col-md-1"></div>
 
                                     </div>
-                                <div class="row">
-                                    <div class="col-md-5"></div>
-                                    <div class="col-md-2 text-center">
-                                        <a href="/editProfile"><button class="btn btn-primary btn-rounded btn-lg" data-toggle="modal" data-target="#add-contact">Edit Informations</button></a>
-                                    <div class="col-md-5"></div>
-                                    </div><!-- end col -->
-                                </div>
                                 </div>
                             </div>
                         </div>

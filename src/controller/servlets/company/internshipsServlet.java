@@ -20,7 +20,11 @@ public class internshipsServlet extends HttpServlet {
 
     public static String addedMessage = "";
 
-    protected static void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected static void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
     }
 
@@ -120,6 +124,10 @@ public class internshipsServlet extends HttpServlet {
 
         internshipDao intDao = new internshipDaoImpl();
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         // Get the internships list
 
         ArrayList<Internship> internshipsArray = intDao.getInternshipList();
@@ -132,6 +140,10 @@ public class internshipsServlet extends HttpServlet {
 
         internshipDao iDao = new internshipDaoImpl();
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         int newID = Integer.parseInt(id);
         Internship i = iDao.getInternshipDataById(newID);
         // Load the default user page with the right info
@@ -142,6 +154,11 @@ public class internshipsServlet extends HttpServlet {
     }
 
     protected void action_default_add_internships(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/add_internship.ftl");
 

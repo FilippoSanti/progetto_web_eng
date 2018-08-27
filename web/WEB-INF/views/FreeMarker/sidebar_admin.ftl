@@ -54,7 +54,7 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="/documents?action=companies">
                                 <i class="ti-files"></i><span> Documentation </span>
                              </a>
                         </li>

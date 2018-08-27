@@ -115,7 +115,11 @@ public class editProfileServlet extends HttpServlet {
         }
     }
 
-    public void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/login.ftl");
@@ -128,9 +132,11 @@ public class editProfileServlet extends HttpServlet {
 
         UserDao userDao = new UserDaoImpl();
 
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         // Get the user object and set the attribute
         User user = userDao.getUser(homeServlet.loggedUserEmail);
-
         request.setAttribute("userData", user);
 
         RequestDispatcher dispatcher
@@ -152,6 +158,10 @@ public class editProfileServlet extends HttpServlet {
     /** Company */
     protected void action_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         companyDao compDao = new companyDaoImpl();
 
         Company company = compDao.getCompanyDataByEmail(homeServlet.loggedUserEmail);
@@ -167,7 +177,7 @@ public class editProfileServlet extends HttpServlet {
     }
 
     /** Anon */
-    protected void action_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void action_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
         action_default(request, response);
     }
 

@@ -53,7 +53,7 @@
                                 </div>
 
                                 <!-- item-->
-                                <a href="/userProfile" class="dropdown-item notify-item">
+                                <a href="/viewProfile" class="dropdown-item notify-item">
                                     <i class="ti-user"></i> <span>My Account</span>
                                 </a>
 

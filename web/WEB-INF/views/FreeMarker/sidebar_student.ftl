@@ -40,22 +40,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="../../extras-timeline.jsp"><i class="ti-bell"></i>
-                                <span class="badge badge-custom pull-right">11</span> <span> Notifications </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="../../extras-contacts.jsp"><i class="ti-info"></i> <span> Contacts </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="../../extras-faqs.jsp"><i class="ti-light-bulb"></i> <span> FAQs </span>
-                            </a>
-                        </li>
-
                     </ul>
 
                 </div>

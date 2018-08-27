@@ -52,7 +52,29 @@ public class documentsServlet extends HttpServlet {
             }
         }
 
+        // Check if the user is admin
+        if (securityModel.getUser().equals("student") &&
+                securityModel.getRole().equals("admin")) {
+
+            if (action_value != null && action_value.equals("companies")) {
+                action_view_companies(request, response);
+            }
+        }
+
     }
+
+    /** Admin **/
+    private void action_view_companies(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_admin.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
     /** Student **/
     private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
 

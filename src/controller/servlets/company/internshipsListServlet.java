@@ -1,6 +1,7 @@
 package controller.servlets.company;
 
 import controller.dao.*;
+import controller.servlets.general.homeServlet;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -54,6 +55,11 @@ public class internshipsListServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("username", tempName);
+
         internshipDao intDao = new internshipDaoImpl();
 
         // Get the internships list
@@ -64,6 +70,10 @@ public class internshipsListServlet extends HttpServlet {
     }
 
     protected void action_view_internship_azienda(HttpServletRequest request, HttpServletResponse response, String az_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("username", tempName);
 
         internshipDao intDao = new internshipDaoImpl();
         ArrayList<Internship>internshipsArray = intDao.getInternshipListbyId(Integer.parseInt(az_id));

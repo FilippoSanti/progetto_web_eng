@@ -55,6 +55,10 @@ public class internshipsCompanyServlet extends HttpServlet {
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         companyDao compDao = new companyDaoImpl();
 
         String email_azie = homeServlet.loggedUserEmail;
@@ -69,11 +73,20 @@ public class internshipsCompanyServlet extends HttpServlet {
 
     protected void action_view_internship_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("username", tempName);
         request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
 
     }
 
-    protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("username", tempName);
         request.getRequestDispatcher("/WEB-INF/views/internships_list_company.ftl").forward(request, response);
     }
 
