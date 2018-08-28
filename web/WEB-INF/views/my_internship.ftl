@@ -304,7 +304,7 @@
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
-<br><br><br>
+<br><br>
 
                          <div class="m-b-20 centra text-center">                        
 
@@ -321,7 +321,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <td>Internship Name</td>
-                                                    <td><b>Company name here</b></td>
+                                                    <td>Company name here</td>
                                                     <td><i class="interstatus1">Not Started</i></td>
                                                     <td><a href="manage_internship.html">Manage</a></td>
                                                 </tr>

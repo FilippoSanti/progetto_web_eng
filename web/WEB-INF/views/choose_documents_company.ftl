@@ -38,7 +38,7 @@
                                             <span><img src="../../assets/images/logo_dark.png" alt="" height="30"></span>
                                         </a>
                                     </h2>
-                                    <h6 class=" font-bold">Which Documentation Are You Interested in?</h6>
+                                    <h6 class=" font-bold">Which Documentation Are You Interested In?</h6>
                                     <br>
                                 </div>
                                 <div class="account-content">

@@ -341,7 +341,7 @@
                                         <thead>
                                         <tr>
                                             <th>Internship name</th>
-                                            <th>Company ID</th>
+                                            <th>Company Name</th>
                                             <th>Description</th>
                                             <th>Details</th>
                                         </tr>

@@ -3626,3 +3626,7 @@ margin-left: 25%;
 .nominheight{
   min-height: unset !important;
 }
+
+.ffww100{
+  font-weight: 100;
+}

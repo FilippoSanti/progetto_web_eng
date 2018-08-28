@@ -55,6 +55,7 @@
                         <div class="row">
                         	<div class="col-sm-4"></div>
                             <div class="col-sm-4 centra">
+<br>
                                 <h4 class="header-title m-t-0 m-b-20">Administrator's Homepage</h4>
                             </div>
                             <div class="col-md-4"></div>

@@ -443,6 +443,11 @@
                                         </div>
 
                                     </div>
+<br> <br>
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-primary btn-rounded btn-lg m-b-30">See Internship Offers</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

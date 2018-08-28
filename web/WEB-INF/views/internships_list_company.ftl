@@ -66,11 +66,11 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Luogo</th>
-                                            <th>Data</th>
-                                            <th>Lista Candidati</th>
-                                            <th>Cancella offerta</th>
+                                            <th>Internship Name</th>
+                                            <th>Place</th>
+                                            <th>Start Date</th>
+                                            <th>Candidates List</th>
+                                            <th>Delete Offer</th>
                                         </tr>
                                         </thead>
 
@@ -82,7 +82,7 @@
                                               <td>${val.getNome()}</td>
                                               <td>${val.getLuogo()}</td>
                                               <td>${val.getDettagli()}</td>
-                                              <td><a href="/candidates_list?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></a></td>
+                                              <td><a href="/candidates_list?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Candidates</button></a></td>
                                               <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
                                               </td>
                                           </tr>

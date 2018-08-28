@@ -48,20 +48,14 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
+<br>
                                  <h4 class="header-title m-t-0 m-b-20">Visitor's Homepage</h4>
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
-
-
-
-
-
+<br><br>
 
 <!--TODO  GESTIRE LA LUNGHEZZA DEI CARATTERI NEL DB DELLA SEDE LEGALE E NUMERO DEI TIROCINI PE RLA GRANDEZZA DELLE FINESTRE HOME -->
-
-
-
 
 
 

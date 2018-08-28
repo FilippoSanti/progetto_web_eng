@@ -107,8 +107,8 @@
 
                                 <div class="form-group">
                                     <div class="row">
-                                    <label for ="luogo" class="col-md-2 col-form-label">Other...</label>
-                                    <div class="col-md-8">
+                                    <label for ="luogo" class="col-md-1 col-form-label mrglbladdint ffww100">Other...</label>
+                                    <div class="col-md-7">
                                         <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
                                     </div>
                                 </div>
@@ -265,9 +265,11 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for ="rimborsi_spese_facilitazioni_previste" class="col-md-2 ">Other...</label>
-                                    <div class="col-md-10">
+                                    <div class="row">
+                                    <label for ="rimborsi_spese_facilitazioni_previste" class="col-md-1 mrglbladdint ffww100">Other...</label>
+                                    <div class="col-md-7">
                                         <input type="text"  name="rimborsi_spese_facilitazioni_previste" class="form-control" placeholder="Some text value..." value="">
+                                    </div>
                                     </div>
                                 </div>
                                 </div>

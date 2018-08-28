@@ -48,21 +48,15 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
+<br>
                                  <h4 class="header-title m-t-0 m-b-20">Company's Homepage</h4>
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
-
-
-
-
+<br><br>
 
 
 <!--TODO  GESTIRE LA LUNGHEZZA DEI CARATTERI NEL DB DELLA SEDE LEGALE E NUMERO DEI TIROCINI PE RLA GRANDEZZA DELLE FINESTRE HOME -->
-
-
-
-
 
 
 <!--Add Internship-->
@@ -108,14 +102,26 @@
                             </div> <!-- end col -->
 
 
-
-
                     </#list>
                              </#if>
-<br><br>
+
+
 
                     </div> <!-- container -->
+<br><br>
+                        <div class="row">
+                            <!--TODO   Spegnere Prev. Page se ci si trova all prima pagina-->
+                            <div class="col-md-6 text-center">
+                                <button class="btn btn-primary btn-rounded btn-lg m-b-30">Prev. Page</button>
+                            </div><!-- end col -->
 
+                            <div class="col-sm-6 text-center">
+                                <button class="btn btn-primary btn-rounded btn-lg m-b-30">Next Page</button>
+                            </div><!-- end col -->
+
+
+                        </div>
+                        <!-- end row -->
 
                      <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
