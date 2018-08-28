@@ -192,49 +192,35 @@
                             </div>
 <br>
                             <div class="row">
-                                <div class="col-md-3 mrglbladdint">
+                                <div class="col-md-12 ">
                                     <div class="form-group">
-                                        <label for="meseIniziale"class="col-md-8 col-form-label">Start Month</label>
-                                        <select name="mese_iniziale" class="form-control">
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                            <option>May</option>
-                                            <option>June</option>
-                                            <option>July</option>
-                                            <option>August</option>
-                                            <option>September</option>
-                                            <option>October</option>
-                                            <option>November</option>
-                                            <option>December</option>
-                                        </select>
+                                        <div class="row">
+                                        <div class="col-md-3 mrglbladdint">
+                                            <label>Start Date</label>                                           
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-3">
+                                            <label>End Date</label>
+                                        </div>
+
+                                        </div>                                       
+                                        
+                                        <div>
+                                            <div class="input-daterange input-group" data-date-format="dd/mm/yyyy" id="date-range">
+                                                <div class="col-md-3 ">
+                                                    <input type="text" class="form-control" name="start date" />
+                                                </div>
+
+                                                <div class="col-md-1"></div>
+
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" name="end date" />
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-1"></div>
-
-                                <div class="col-md-3 mrglbladdint1">
-                                    <div class="form-group">
-                                        <label for="meseFinale"class="col-md-8 col-form-label">End Month</label>
-                                        <select name="mese_finale" class="form-control">
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                            <option>May</option>
-                                            <option>June</option>
-                                            <option>July</option>
-                                            <option>August</option>
-                                            <option>September</option>
-                                            <option>October</option>
-                                            <option>November</option>
-                                            <option>December</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4"></div>
 
                             </div>
 <br>
