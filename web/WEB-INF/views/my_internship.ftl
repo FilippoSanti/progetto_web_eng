@@ -312,7 +312,7 @@
 
                                                 <thead>
                                                 <tr>
-                                                    <th>Internship</th>
+                                                    <th>Internship Name</th>
                                                     <th>Company</th>
                                                     <th>Internship Status</th>
                                                     <th>Manage Internship</th>
@@ -320,19 +320,19 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td># 1234</td>
+                                                    <td>Internship Name</td>
                                                     <td><b>Company name here</b></td>
                                                     <td><i class="interstatus1">Not Started</i></td>
                                                     <td><a href="manage_internship.html">Manage</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td># 2134</td>
+                                                    <td>Internship Name</td>
                                                     <td>Company name here</td>
                                                     <td><i class="interstatus2">In Progress</i></td>
                                                     <td><a href="manage_internship.html">Manage</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>#3412</td>
+                                                    <td>Internship Name</td>
                                                     <td>Company name here</td>
                                                     <td><i class="interstatus3">Completed</i></td>
                                                     <td><a href="manage_internship.html">Manage</a></td>

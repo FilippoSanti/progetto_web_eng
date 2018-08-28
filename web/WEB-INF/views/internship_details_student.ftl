@@ -401,7 +401,7 @@
                                     <label for="inlineCheckbox2">Nothing </label>
                                 </div>
                                 <div class="checkbox checkbox-pink form-check-inline mrgnlftcheckboxadd">
-                                    <input type="checkbox" id="inlineCheckbox3" value="option14">
+                                    <input type="checkbox" id="inlineCheckbox3" value="option14" disabled>
                                     <label for="inlineCheckbox3"> Other... </label>
                                     <div class="col-md-12">
                                         <div class="row">

@@ -3607,9 +3607,13 @@ font-size: 12px;
   height: 15px;
 }
 
-.width65perc{
-  width: 65%;
+.width40perc{
+  width: 40%;
 }
+
+.width30perc{
+   width: 30%;
+ }
 
 .datarangelblsapce{
 margin-left: 25%;
@@ -3617,4 +3621,8 @@ margin-left: 25%;
 
 .datarangedataspace{
   margin-left: 17%;
+}
+
+.nominheight{
+  min-height: unset !important;
 }

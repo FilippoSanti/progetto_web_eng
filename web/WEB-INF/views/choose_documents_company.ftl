@@ -55,7 +55,7 @@
 
                                         <div class="form-group metismenu styleregchoose">
                                             <li class="container">
-                            <a href="/documents?action=students"><i class="sceltaregistrazione1 ti-files"></i><span class="sceltaregistrazione"> Documents Relating to Traineeships </span>
+                            <a href="/documents?action=students"><i class="sceltaregistrazione1 ti-files"></i><span class="sceltaregistrazione"> Documents Relating to Internships </span>
                              </a>
                         </li>
                                         </div>

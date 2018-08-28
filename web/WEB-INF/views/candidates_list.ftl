@@ -294,7 +294,7 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
-                                 <h4 class="header-title m-t-0 m-b-20">Internships List</h4>
+                                 <h4 class="header-title m-t-0 m-b-20">Candidates List</h4>
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->

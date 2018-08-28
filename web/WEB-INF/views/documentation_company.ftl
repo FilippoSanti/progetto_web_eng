@@ -67,7 +67,8 @@
                                     <table id="datatable" class="table table-bordered centra">
                                         <thead>
                                         <tr>
-                                            <th class="width65perc">Student Name</th>
+                                            <th class="width40perc">Student Name</th>
+                                            <th class="width30perc">Internship Name</th>
                                             <th>View All the Documentation</th>
                                         </tr>
                                         </thead>
@@ -76,35 +77,43 @@
                                         <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><a href="manage_internship.ftl"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
                                         </tr>
 
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
                                         <tr>
                                             <td>Tiger Nixon</td>
+                                            <td>Internship Name</td>
                                             <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
                                         </tr>
 

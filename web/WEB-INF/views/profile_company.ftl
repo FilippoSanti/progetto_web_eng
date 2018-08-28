@@ -311,9 +311,9 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
-            <div class="content-page">
+            <div class="content-page nominheight">
                 <!-- Start content -->
-                <div class="content">
+                <div class="content nominheight">
                     <div class="container-fluid">
 
                          <div class="row">
@@ -360,7 +360,7 @@
                                             <!-- Information -->
                                             <div class="panel panel-default panel-fill">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Comapny Informations</h3>
+                                                    <h3 class="panel-title">Company Informations</h3>
                                                 </div>
 
                                                 <div class="container">
@@ -442,15 +442,13 @@
                                             <!-- Information -->
                                         </div>
 
-                                        <div class="col-md-1"></div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div> <!-- container -->
-
+<br><br>
 
                     <div class="footer">
                         <div class="pull-right hide-phone">

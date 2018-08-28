@@ -31,8 +31,12 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="/viewProfile">Account Info</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
-                                <li><a href="/documents">Documents</a></li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="/documents"><i class="ti-files"></i> <span> Documents </span>
+                            </a>
                         </li>
 
                         <li>

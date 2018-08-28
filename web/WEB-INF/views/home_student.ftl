@@ -62,13 +62,10 @@
 <!--TODO  GESTIRE LA LUNGHEZZA DEI CARATTERI NEL DB DELLA SEDE LEGALE E NUMERO DEI TIROCINI PE RLA GRANDEZZA DELLE FINESTRE HOME -->
 
 
-
+                        <div class="row">
          <#if companiesList?has_content>
              <#list companiesList as val>
 
-
-
-  <div class="row">
                             <div class="col-md-4">
                                 <div class="text-center card-box">
                                     <div class="member-card mt-1">
@@ -97,9 +94,10 @@
                             </div>
 
 
+
              </#list>
          </#if>
-                        <!-- end row -->
+                    </div>                    <!-- end row -->
 <br><br>
 
                         <div class="row">
