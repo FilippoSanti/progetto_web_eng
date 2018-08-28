@@ -325,7 +325,38 @@
                                 </div>
                             </div>
 <br>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-md-3 mrglbladdint">
+                                            <label>Start Date</label>                                           
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-3">
+                                            <label>End Date</label>
+                                        </div>
 
+                                        </div>                                       
+                                        
+                                        <div>
+                                            <div class="input-daterange input-group" data-date-format="dd/mm/yyyy" id="date-range">
+                                                <div class="col-md-3 ">
+                                                    <input type="text" class="form-control" name="start date" disabled placeholder="dd-mm-yyyy here!" />
+                                                </div>
+
+                                                <div class="col-md-1"></div>
+
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" name="end date" disabled placeholder="dd-mm-yyyy here!"> </input>
+                                                </div>
+                                                                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<br>
                             <div class="form-group">
                                 <label class="col-md-2 col-form-label">Generic Targets</label>
                                 <div class="col-md-10">
