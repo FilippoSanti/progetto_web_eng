@@ -277,6 +277,16 @@
         <url-pattern>/displayImage</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>documents</servlet-name>
+        <servlet-class>controller.servlets.company.documentsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>documents</servlet-name>
+        <url-pattern>/documents</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.

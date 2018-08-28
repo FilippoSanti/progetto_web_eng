@@ -35,7 +35,7 @@ function refreshNotifications() {
         $.each(responseJson, function(index, product) {
             table += '<div class="row">';
             table += '<div class="col-md-11">';
-            table += '<a href="viewProfile?type=company&id=' + product.id_azienda + '"' + 'class="dropdown-item notify-item hheeiigghhtt">';
+            table += '<a href="viewProfile?type=company&id=' + product.id_azienda + '"' + 'class="dropdown-item notify-item">';
             table += '<div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>';
             table += '<p class="notify-details">' + product.testo + '</p>';
             table += '</a>';
