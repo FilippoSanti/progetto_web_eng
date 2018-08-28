@@ -319,25 +319,21 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>Internship Name</td>
-                                                    <td>Company name here</td>
-                                                    <td><i class="interstatus1">Not Started</i></td>
-                                                    <td><a href="manage_internship.html">Manage</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Internship Name</td>
-                                                    <td>Company name here</td>
-                                                    <td><i class="interstatus2">In Progress</i></td>
-                                                    <td><a href="manage_internship.html">Manage</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Internship Name</td>
-                                                    <td>Company name here</td>
-                                                    <td><i class="interstatus3">Completed</i></td>
-                                                    <td><a href="manage_internship.html">Manage</a></td>
-                                                </tr>
+
+                                    <#if userList?has_content>
+                                    <#list userList as val>
+                                    <tr>
+                                        <td>${val.getInternship_id()}</td>
+                                        <td><b>${val.getCompany_name()}</b></td>
+                                        <td>
+                                            <i class="${val.getHtmlcolor()}">${val.getInternship_status()}</i>
+                                        </td>
+                                        <td><a href="#">Manage</a></td>
+                                    </tr>
+                                    </#list>
+                                    </#if>
                                                 </tbody>
+                                               
                                             </table>
                                         </div>
 
