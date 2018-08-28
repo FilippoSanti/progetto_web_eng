@@ -3,11 +3,13 @@ package controller.dao;
 import controller.dao.config.DataSource;
 import model.Internship;
 import model.InternshipRequest;
+import model.User;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class internshipDaoImpl implements internshipDao {
 
@@ -21,9 +23,9 @@ public class internshipDaoImpl implements internshipDao {
     private static final String GET_LISTA_CAND2 = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 0 ";
     private static final String ENABLE_USER_INTERNSHIP_REQ = "UPDATE richieste_tirocinio SET accettata = '1' WHERE richieste_tirocinio.studente_id = ?";
     private static final String DELETE_USER_INTERNSHIP_REQ = "DELETE FROM richieste_tirocinio WHERE richieste_tirocinio.studente_id = ?";
-    /**
-     * Get the internship list
-     */
+    private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ?";
+
+
     public Internship getInternshipDataById(int int_id) throws SQLException, IOException, PropertyVetoException{
 
             Connection dbConnection = null;
@@ -65,7 +67,6 @@ public class internshipDaoImpl implements internshipDao {
 
     }
 
-
     public boolean enableInternshipRequest(int studente_id) throws SQLException, IOException, PropertyVetoException {
 
         Connection dbConnection = DataSource.getInstance().getConnection();
@@ -96,8 +97,6 @@ public class internshipDaoImpl implements internshipDao {
         return result;
 
     }
-
-
 
     public ArrayList<Internship> getInternshipList() throws SQLException, IOException, PropertyVetoException {
         ArrayList<Internship> internshipsList = new ArrayList<>();
@@ -131,9 +130,6 @@ public class internshipDaoImpl implements internshipDao {
         return internshipsList;
     }
 
-    /**
-     * Get internlist by id
-     */
     public ArrayList<Internship> getInternshipListbyId(int az_id) throws SQLException, IOException, PropertyVetoException {
         ArrayList<Internship> internshipsList = new ArrayList<>();
 
@@ -192,8 +188,6 @@ public class internshipDaoImpl implements internshipDao {
             return candidates_list;
         }
 
-
-
     public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
         ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
 
@@ -220,11 +214,8 @@ public class internshipDaoImpl implements internshipDao {
         return candidates_list;
     }
 
-    /**
-     * Add a tirocinio
-     */
     public boolean addInternship(int companyId, String nome, String dettagli, String luogo, String mesi,
-                                 String orari, String ore, String meseIniziale, String meseFinale, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste,
+                                 String orari, String ore, String start_date, String end_date, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste,
                                  boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing) throws SQLException, IOException, PropertyVetoException {
         boolean result = false;
 
@@ -240,8 +231,8 @@ public class internshipDaoImpl implements internshipDao {
         ps.setString(6, mesi);
         ps.setString(7, orari);
         ps.setString(8, ore);
-        ps.setString(9, meseIniziale);
-        ps.setString(10, meseFinale);
+        ps.setString(9, start_date);
+        ps.setString(10, end_date);
         ps.setString(11, obiettivi);
         ps.setString(12, modalita);
         ps.setString(13, rimborsi_spese_facilitazioni_previste);
@@ -262,5 +253,92 @@ public class internshipDaoImpl implements internshipDao {
         dbConnection.close();
 
         return result;
+    }
+
+    // Get the internships of a user
+    public ArrayList<InternshipRequest> getMyInternships(int userID){
+
+        ArrayList<InternshipRequest> result = new ArrayList<InternshipRequest>();
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_MY_INTERNSHIPS);
+            pst.setInt(1, userID);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                InternshipRequest intReq = new InternshipRequest();
+
+                intReq.setInternship_request_id(rs.getInt("richiesta_tirocinio_id"));
+                intReq.setAzienda_id(rs.getInt("azienda_id"));
+                intReq.setStudent_id(rs.getInt("studente_id"));
+                intReq.setAccettata(rs.getBoolean("accettata"));
+                intReq.setInternship_id(rs.getInt("offerta_tirocinio_id"));
+
+                result.add(intReq);
+            }
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    // Get a single internship from its id
+    public Internship getInternshipByID(int internship_id) throws SQLException, IOException, PropertyVetoException {
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_INTERNSHIP_DATA);
+
+        Internship internshipModel = new Internship();
+
+        pst.setInt(1, internship_id);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            internshipModel.setIternship_id(rs.getInt("offerta_tirocinio_id"));
+            internshipModel.setAzienda_id(rs.getInt("azienda_id"));
+            internshipModel.setNome(rs.getString("nome"));
+            internshipModel.setDettagli(rs.getString("dettagli"));
+            internshipModel.setLuogo(rs.getString("luogo"));
+            internshipModel.setMesi(rs.getString("mesi"));
+            internshipModel.setOre(rs.getString("ore"));
+            internshipModel.setOrari(rs.getString("orari"));
+            internshipModel.setMeseInziale(rs.getString("mese_iniziale"));
+            internshipModel.setMeseFinale(rs.getString("mese_finale"));
+            internshipModel.setObiettivi(rs.getString("obiettivi"));
+            internshipModel.setModalita(rs.getString("modalita"));
+            internshipModel.setRimborsi_spese_facilitazioni_previste(rs.getString("rimborsi_spese_facilitazioni_previste"));
+            internshipModel.setCompany_headquarters(rs.getBoolean("company_headquarters"));
+            internshipModel.setRemote_connection(rs.getBoolean("remote_connection"));
+            internshipModel.setRefound_of_expenses(rs.getBoolean("refound_of_expenses"));
+            internshipModel.setCompany_refactory(rs.getBoolean("company_refactory"));
+            internshipModel.setTraining_aid(rs.getBoolean("training_aid"));
+            internshipModel.setNothing(rs.getBoolean("nothing"));
+        }
+
+        dbConnection.close();
+        return internshipModel;
     }
 }

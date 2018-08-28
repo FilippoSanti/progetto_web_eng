@@ -17,6 +17,8 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class searchServlet extends HttpServlet {
 
@@ -38,17 +40,40 @@ public class searchServlet extends HttpServlet {
 
         if (term_value != null && place_value != null && duration_min_value != null &&
                 duration_max_value != null) {
-            action_search(request, response);
+            action_search(request, response, term_value, place_value, duration_min_value, duration_max_value);
         }
 
     }
 
-    private void action_search(HttpServletRequest request, HttpServletResponse response) {
+    private void action_search(HttpServletRequest request, HttpServletResponse response, String term,
+                               String place, String duration_min, String duration_max) throws IOException {
 
+        // Check for special characters in the term string
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(term);
+        boolean ok = m.find();
 
+        if (!ok) {
+            response.sendRedirect("/home");
+            return;
+        }
 
+        // Check the durations
+        if (duration_min == null || duration_max == null) {
+            response.sendRedirect("/home");
+            return;
+        }
+
+        // Check if place is correct
+        if (place != null && !place.isEmpty()) {
+            if (place.equals("any") || place.equals("remote") || place.equals("home")) {
+                // execut query
+            } else {
+                response.sendRedirect("/home");
+                return;
+            }
+        }
     }
-
 
     /**
      * Handles the HTTP <code>GET</code> method.

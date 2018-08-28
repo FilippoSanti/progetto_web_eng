@@ -5,6 +5,10 @@ public class InternshipRequest {
     private int internship_request_id, azienda_id, internship_id, student_id;
     private boolean accettata;
 
+    public InternshipRequest() {
+
+    }
+
     public void setAzienda_id(int azienda_id) {
         this.azienda_id = azienda_id;
     }

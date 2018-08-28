@@ -3,7 +3,13 @@ package controller.servlets.company;
 import controller.dao.*;
 import controller.servlets.general.homeServlet;
 import controller.userController;
+import model.Company;
 import model.Internship;
+import model.InternshipRequest;
+import model.MyInternships;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,15 +39,13 @@ public class internshipsServlet extends HttpServlet {
 
         request.setAttribute("internships", null);
         request.setAttribute("errors", false);
-        // URL Parameters
 
+        // URL Parameters
         String paramName = "view";
         String submit = "submit";
 
-
         String paramValue = request.getParameter(paramName);
         String submit_string = request.getParameter(submit);
-
 
         try {
             // Check if the user has given the right parameters
@@ -63,7 +67,6 @@ public class internshipsServlet extends HttpServlet {
             }
 
             // View add internships
-
             if (paramValue.equals("add") && submit_string == null) {
                 action_default_add_internships(request, response);
                 return;
@@ -71,21 +74,18 @@ public class internshipsServlet extends HttpServlet {
 
 
             // add internships
-
             if (paramValue.equals("add") && submit_string.equals("true")) {
                 action_add_internships(request, response);
                 return;
             }
 
-            //candidate
-
+            // candidate
             if (paramValue.equals("candidate") && submit_string == null) {
                 action_default(request, response);
                 return;
             }
 
             if (paramValue.equals("candidate") && submit_string.matches("[0-9]+")) {
-
                 action_candidate(request, response, submit_string);
                 return;
             }
@@ -94,7 +94,6 @@ public class internshipsServlet extends HttpServlet {
                 action_show_my_internships(request, response);
                 return;
             }
-
 
             // Default action if no parameter is set properly
             action_default(request, response);
@@ -109,6 +108,11 @@ public class internshipsServlet extends HttpServlet {
     }
 
     private void action_show_my_internships(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        ArrayList<MyInternships> myShip = processInternshipsData();
+        System.out.println(myShip.size());
+
+        request.setAttribute("userList", myShip);
 
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
@@ -129,7 +133,6 @@ public class internshipsServlet extends HttpServlet {
         request.setAttribute("username", tempName);
 
         // Get the internships list
-
         ArrayList<Internship> internshipsArray = intDao.getInternshipList();
         request.setAttribute("internships", internshipsArray);
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
@@ -146,9 +149,9 @@ public class internshipsServlet extends HttpServlet {
 
         int newID = Integer.parseInt(id);
         Internship i = iDao.getInternshipDataById(newID);
+
         // Load the default user page with the right info
         request.setAttribute("internshipData", i);
-
         request.getRequestDispatcher("/WEB-INF/views/internship_details_student.ftl").forward(request, response);
 
     }
@@ -172,12 +175,12 @@ public class internshipsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
-        String nome, mesi, dettagli, luogo, orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, meseIniziale, meseFinale;
+        String nome, mesi, dettagli, luogo, orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, start_date, end_date;
         String companyMail = null;
         int companyId = 0;
         boolean company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing;
         company_headquarters = remote_connection = refound_of_expenses = company_refactory = training_aid = nothing = false;
-        dettagli = nome = mesi = luogo = orari = ore = meseIniziale = meseFinale = obiettivi = modalita = rimborsi_spese_facilitazioni_previste = null;
+        dettagli = nome = mesi = luogo = orari = ore = start_date = end_date = obiettivi = modalita = rimborsi_spese_facilitazioni_previste = null;
 
         // Get the parameter values
         companyDao cDao = new companyDaoImpl();
@@ -189,8 +192,8 @@ public class internshipsServlet extends HttpServlet {
         mesi = request.getParameter("mesi");
         orari = request.getParameter("orari");
         ore = request.getParameter("ore");
-        meseIniziale = request.getParameter("mese_iniziale");
-        meseFinale = request.getParameter("mese_finale");
+        start_date = request.getParameter("start_date");
+        end_date = request.getParameter("end_date");
         obiettivi = request.getParameter("obiettivi");
         modalita = request.getParameter("modalita");
         rimborsi_spese_facilitazioni_previste = request.getParameter("rimborsi_spese_facilitazioni_previste");
@@ -200,33 +203,18 @@ public class internshipsServlet extends HttpServlet {
         company_refactory = Boolean.parseBoolean(request.getParameter("company_refactory"));
         training_aid = Boolean.parseBoolean(request.getParameter("training_aid"));
         nothing = Boolean.parseBoolean(request.getParameter("nothing"));
-        System.out.println(request.getParameter("company_headquarters"));
-        System.out.println(request.getParameter("remote_connection"));
-        System.out.println(request.getParameter("refound_of_expenses"));
-        System.out.println(request.getParameter("company_refactory"));
-        System.out.println(request.getParameter("training_aid"));
-        System.out.println(request.getParameter("nothing"));
-
-
-        System.out.println(companyId);
 
         // If strings are not initalized, it means there was an empty request by the user
         //So we return false
         if (nome == null && luogo == null && orari == null && ore == null && obiettivi == null && modalita == null &&
-                rimborsi_spese_facilitazioni_previste == null && meseIniziale == null && meseFinale == null) {
+                rimborsi_spese_facilitazioni_previste == null && start_date == null && end_date == null) {
 
             return false;
         }
 
-        // boolean checkOk = userController.checkAddInternships(request, nome, dettagli, luogo,
-        //     orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste);
-        //  System.out.println(checkOk);
-
-        //  if (checkOk) {
-
         internshipDao internshipDao = new internshipDaoImpl();
 
-        boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, meseIniziale, meseFinale, obiettivi,
+        boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, start_date, end_date, obiettivi,
                 modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing);
 
         if (addOK) {
@@ -235,20 +223,15 @@ public class internshipsServlet extends HttpServlet {
             request.setAttribute("added", added);
             request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
 
-            System.out.println(addOK);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
 
             dispatcher.forward(request, response);
         } else {
-
             action_default(request, response);
 
             //Clear the errors list
             userController.errorsList.clear();
         }
-
-        //   }
-
 
         return false;
     }
@@ -256,10 +239,7 @@ public class internshipsServlet extends HttpServlet {
     protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response, String int_id)
             throws ServletException, IOException, SQLException, PropertyVetoException, ParseException {
 
-
         String userMail = homeServlet.loggedUserEmail;
-
-
         UserDao UserDao = new UserDaoImpl();
         int userId = UserDao.getIDbyEmail(userMail);
         int int_id1 = Integer.parseInt(int_id);
@@ -268,13 +248,77 @@ public class internshipsServlet extends HttpServlet {
         if (candidateOK) {
 
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
-
             dispatcher.forward(request, response);
 
             return true;
         }
 
         return false;
+    }
+
+    // Elaborate the internships of a user
+    private ArrayList<MyInternships> processInternshipsData() throws PropertyVetoException, SQLException, IOException {
+
+        UserDao uDao = new UserDaoImpl();
+        int UID = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
+
+        internshipDao iDao = new internshipDaoImpl();
+        ArrayList<InternshipRequest> myInt = iDao.getMyInternships(UID);
+
+        ArrayList<MyInternships> result = new ArrayList<>();
+
+        // Get the company informations to retrieve the name
+        companyDao cDao = new companyDaoImpl();
+
+        // Scan the user internships list and create the new data structure
+        for (int i = 0; i < myInt.size(); i++) {
+
+            MyInternships myIts = new MyInternships();
+            Internship iship = iDao.getInternshipByID(myInt.get(i).getInternship_id());
+
+            String comp_mail = cDao.getEmailByID(myInt.get(i).getAzienda_id());
+            Company company_temp = cDao.getCompanyDataByEmail(comp_mail);
+
+            String status = getInternshipStatus(iship.getMeseInziale(), iship.getMeseFinale());
+
+            if (status.equals("Not started")) { myIts.setHtmlcolor("interstatus1"); }
+            if (status.equals("In progress")) { myIts.setHtmlcolor("interstatus2"); }
+            if (status.equals("Completed"))  { myIts.setHtmlcolor("interstatus3"); }
+
+            myIts.setCompany_name(company_temp.getRagione_sociale());
+            myIts.setInternship_id(myInt.get(i).getInternship_request_id());
+            myIts.setInternship_status(status);
+
+            result.add(myIts);
+        }
+
+        return result;
+    }
+
+    // Elaborate the status of an internship
+    private String getInternshipStatus(String start_date, String end_date) {
+        String result = null;
+
+        // Execute the date operations
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+
+        DateTime date_now = new DateTime();
+        DateTime dt_start = formatter.parseDateTime(start_date);
+        DateTime dt_end   = formatter.parseDateTime(end_date);
+
+        boolean not_started = date_now.isBefore(dt_start);
+        boolean in_progress = date_now.isAfter(dt_start) && date_now.isBefore(dt_end);
+        boolean terminated  = date_now.isAfter(dt_end);
+
+        if (not_started) {
+            result = "Not started";
+        } else if (in_progress) {
+            result = "In progress";
+        } else if (terminated) {
+            result = "Completed";
+        }
+
+        return result;
     }
 
     /**
