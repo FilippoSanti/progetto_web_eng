@@ -128,9 +128,7 @@ public class candidates_listServlet extends HttpServlet {
         String email_azie = homeServlet.loggedUserEmail;
         int az_id = comDao.getCompanyIdbyEmail(email_azie);
 
-
         internshipDao intDao = new internshipDaoImpl();
-
 
         ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_list(az_id);
         request.setAttribute("candidates_list", internshipsArray);

@@ -342,13 +342,13 @@
                                         <div>
                                             <div class="input-daterange input-group" data-date-format="dd/mm/yyyy" id="date-range">
                                                 <div class="col-md-3 ">
-                                                    <input type="text" class="form-control" name="start date" disabled placeholder="dd-mm-yyyy here!" />
+                                                    <input type="text" class="form-control" name="start date" disabled placeholder="${internshipData.getMeseInziale()}" />
                                                 </div>
 
                                                 <div class="col-md-1"></div>
 
                                                 <div class="col-md-3">
-                                                    <input type="text" class="form-control" name="end date" disabled placeholder="dd-mm-yyyy here!"> </input>
+                                                    <input type="text" class="form-control" name="end date" disabled placeholder="${internshipData.getMeseFinale()}"> </input>
                                                 </div>
                                                                                                 
                                             </div>

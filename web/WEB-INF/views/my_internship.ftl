@@ -309,7 +309,6 @@
                          <div class="m-b-20 centra text-center">                        
 
                                             <table class="table m-0">
-
                                                 <thead>
                                                 <tr>
                                                     <th>Internship Name</th>
@@ -323,7 +322,7 @@
                                     <#if userList?has_content>
                                     <#list userList as val>
                                     <tr>
-                                        <td>${val.getInternship_id()}</td>
+                                        <td>${val.getInternship_name()}</td>
                                         <td><b>${val.getCompany_name()}</b></td>
                                         <td>
                                             <i class="${val.getHtmlcolor()}">${val.getInternship_status()}</i>

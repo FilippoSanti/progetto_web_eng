@@ -16,7 +16,7 @@ public class internshipDaoImpl implements internshipDao {
     /**
      * User queries
      */
-    private static final String GET_INTERN_LIST = "SELECT * FROM offerta_tirocinio ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
+    private static final String GET_INTERN_LIST = "SELECT * FROM `offerta_tirocinio` ORDER BY `offerta_tirocinio`.`offerta_tirocinio_id` DESC";
     private static final String GET_INTERN_LIST_BY_ID = "SELECT * FROM offerta_tirocinio WHERE azienda_id = ? ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
     private static final String GET_LISTA_CAND = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && azienda_id = ? && accettata = 0 ";
     private static final String GET_INTERNSHIP_DATA = "SELECT * FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";

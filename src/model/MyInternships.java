@@ -3,18 +3,29 @@ package model;
 public class MyInternships {
 
     private int internship_id;
+    private String internship_name;
     private String company_name;
     private String internship_status;
     private String manage_internships;
 
+    public String getInternship_name() {
+        return internship_name;
+    }
+
+    public void setInternship_name(String internship_name) {
+        this.internship_name = internship_name;
+    }
+
     private String htmlcolor;
 
-    public MyInternships(int internship_id, String company_name, String internship_status, String manage_internships) {
+    public MyInternships(int internship_id, String company_name, String internship_status, String manage_internships, String htmlcolor,
+                         String internship_name) {
         this.internship_id = internship_id;
         this.company_name = company_name;
         this.internship_status = internship_status;
         this.manage_internships = manage_internships;
         this.htmlcolor = htmlcolor;
+        this.internship_name = internship_name;
     }
 
     public String getHtmlcolor() {

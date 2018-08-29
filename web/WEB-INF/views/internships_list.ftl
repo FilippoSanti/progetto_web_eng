@@ -336,7 +336,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-<br>
+                                    <br>
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
@@ -346,8 +346,6 @@
                                             <th>Details</th>
                                         </tr>
                                         </thead>
-
-
                                         <tbody>
                                            <#if internships_list?has_content>
                                                <#list internships_list as val>
@@ -360,18 +358,15 @@
                                           </tr>
                                                </#list>
                                            </#if>
-
-
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div> <!-- end row -->
 
                     </div> <!-- container -->
 
-<br><br>
+                    <br><br>
                     <div class="footer">
                         <div class="pull-right hide-phone">
                             Project Completed <strong class="text-custom">57%</strong>.

@@ -288,6 +288,7 @@ public class internshipsServlet extends HttpServlet {
             myIts.setCompany_name(company_temp.getRagione_sociale());
             myIts.setInternship_id(myInt.get(i).getInternship_request_id());
             myIts.setInternship_status(status);
+            myIts.setInternship_name(iship.getNome());
 
             result.add(myIts);
         }
