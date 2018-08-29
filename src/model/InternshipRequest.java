@@ -4,6 +4,7 @@ public class InternshipRequest {
 
     private int internship_request_id, azienda_id, internship_id, student_id;
     private boolean accettata;
+    private String cfu, tutor_name, tutor_surname, tutor_email;
 
     public InternshipRequest() {
 
@@ -49,11 +50,47 @@ public class InternshipRequest {
         return student_id;
     }
 
-   public InternshipRequest(int iternship_request_id, int azienda_id, int internship_id, int student_id, boolean accettata ){
+    public String getCfu() {
+        return cfu;
+    }
+
+    public String getTutor_name() {
+        return tutor_name;
+    }
+
+    public String getTutor_email() {
+        return tutor_email;
+    }
+
+    public String getTutor_surname(){
+        return tutor_surname;
+    }
+
+    public void setCfu(String cfu) {
+        this.cfu = cfu;
+    }
+
+    public void setTutor_name(String tutor_name) {
+        this.tutor_name = tutor_name;
+    }
+
+    public void setTutor_email(String tutor_email) {
+        this.tutor_email = tutor_email;
+    }
+
+    public void setTutor_surname(String tutor_surname) {
+        this.tutor_surname = tutor_surname;
+    }
+
+    public InternshipRequest(int iternship_request_id, int azienda_id, int internship_id, int student_id, boolean accettata, String cfu, String tutor_name, String tutor_surname, String tutor_email ){
         this.accettata = accettata;
         this.azienda_id = azienda_id;
         this.internship_request_id = internship_request_id;
         this.internship_id = internship_id;
         this.student_id = student_id;
+        this.cfu = cfu;
+        this.tutor_name = tutor_name;
+        this.tutor_surname = tutor_surname;
+        this.tutor_email = tutor_email;
    }
 }

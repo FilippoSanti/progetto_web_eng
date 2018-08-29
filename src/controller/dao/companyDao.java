@@ -35,4 +35,5 @@ public interface companyDao {
     public ArrayList<Company> getCompaniesToBeApproved() throws SQLException, IOException, PropertyVetoException;
     public String getEmailByID(int id);
     public boolean deleteCompany(int userID) throws SQLException, IOException, PropertyVetoException;
+    public int getIdCompanyByIdInternship(int tir_id);
 }

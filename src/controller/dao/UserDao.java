@@ -29,6 +29,7 @@ public interface UserDao {
     public boolean deleteNotification(int notification_id) throws SQLException, IOException, PropertyVetoException;
     public boolean clearNotifications(int userID) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteCompanyNotifications(int id_company) throws SQLException, IOException, PropertyVetoException;
+    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id, String cfu, String tutor_name, String tutor_surname, String tutor_email) throws ParseException;
 
     /** Get functions */
     public User getUser(String userEmail);
@@ -46,6 +47,5 @@ public interface UserDao {
     public boolean checkUser(String email) throws IOException, PropertyVetoException;
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
-    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id) throws ParseException;
-
+    public boolean checkInternshipUser(int user_id, int internship_id) throws IOException, PropertyVetoException;
 }

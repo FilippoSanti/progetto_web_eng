@@ -3,10 +3,7 @@ package controller.servlets.company;
 import controller.dao.*;
 import controller.servlets.general.homeServlet;
 import controller.userController;
-import model.Company;
-import model.Internship;
-import model.InternshipRequest;
-import model.MyInternships;
+import model.*;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -85,6 +82,11 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
+            if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+")) {
+                action_candidatePage(request, response, submit_string);
+                return;
+            }
+
             if (paramValue.equals("candidate") && submit_string.matches("[0-9]+")) {
                 action_candidate(request, response, submit_string);
                 return;
@@ -110,7 +112,7 @@ public class internshipsServlet extends HttpServlet {
     private void action_show_my_internships(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         ArrayList<MyInternships> myShip = processInternshipsData();
-        System.out.println(myShip.size());
+
 
         request.setAttribute("userList", myShip);
 
@@ -123,6 +125,8 @@ public class internshipsServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+
+
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
@@ -236,14 +240,53 @@ public class internshipsServlet extends HttpServlet {
         return false;
     }
 
-    protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response, String int_id)
+    protected boolean action_candidatePage(HttpServletRequest request, HttpServletResponse response, String int_id)
             throws ServletException, IOException, SQLException, PropertyVetoException, ParseException {
 
         String userMail = homeServlet.loggedUserEmail;
         UserDao UserDao = new UserDaoImpl();
         int userId = UserDao.getIDbyEmail(userMail);
         int int_id1 = Integer.parseInt(int_id);
-        boolean candidateOK = UserDao.candidate(2, int_id1, userId);
+
+        System.out.println(userId);
+        System.out.println(int_id1);
+        boolean checkOk = UserDao.checkInternshipUser(userId, int_id1);
+        if (!checkOk) {
+            request.setAttribute("userId", int_id1);
+
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/accept_internship.ftl");
+            dispatcher.forward(request, response);
+
+            return true;
+        } else {
+            request.getSession().setAttribute("registeredMessage", "You are already registered to this Internship");
+            response.sendRedirect("/home");
+            return false;
+        }
+    }
+
+
+    protected boolean action_candidate(HttpServletRequest request, HttpServletResponse response, String int_id)
+            throws ServletException, IOException, SQLException, PropertyVetoException, ParseException {
+
+        response.setContentType("text/html;charset=UTF-8");
+
+        String cfu, tutor_name, tutor_surname, tutor_email = "";
+        cfu = request.getParameter("cfu");
+        tutor_name = request.getParameter("tutor_name");
+        tutor_surname = request.getParameter("tutor_surname");
+        tutor_email = request.getParameter("tutor_email");
+
+        String userMail = homeServlet.loggedUserEmail;
+        UserDao UserDao = new UserDaoImpl();
+        int userId = UserDao.getIDbyEmail(userMail);
+
+        int int_id1 = Integer.parseInt(int_id);
+
+        companyDao comDao = new companyDaoImpl();
+        int az_id = comDao.getIdCompanyByIdInternship(int_id1);
+
+        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email );
 
         if (candidateOK) {
 

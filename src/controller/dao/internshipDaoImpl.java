@@ -18,7 +18,7 @@ public class internshipDaoImpl implements internshipDao {
      */
     private static final String GET_INTERN_LIST = "SELECT * FROM `offerta_tirocinio` ORDER BY `offerta_tirocinio`.`offerta_tirocinio_id` DESC";
     private static final String GET_INTERN_LIST_BY_ID = "SELECT * FROM offerta_tirocinio WHERE azienda_id = ? ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
-    private static final String GET_LISTA_CAND = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && azienda_id = ? && accettata = 0 ";
+    private static final String GET_LISTA_CAND = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && accettata = 0 ";
     private static final String GET_INTERNSHIP_DATA = "SELECT * FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
     private static final String GET_LISTA_CAND2 = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 0 ";
     private static final String ENABLE_USER_INTERNSHIP_REQ = "UPDATE richieste_tirocinio SET accettata = '1' WHERE richieste_tirocinio.studente_id = ?";
@@ -177,7 +177,11 @@ public class internshipDaoImpl implements internshipDao {
                         rs.getInt("azienda_id"),
                         rs.getInt("offerta_tirocinio_id"),
                         rs.getInt("studente_id"),
-                        rs.getBoolean("accettata")
+                        rs.getBoolean("accettata"),
+                        rs.getString("cfu"),
+                        rs.getString("tutor_name"),
+                        rs.getString("tutor_surname"),
+                        rs.getString("tutor_email")
                 );
 
                 candidates_list.add(internship_request);
@@ -188,13 +192,12 @@ public class internshipDaoImpl implements internshipDao {
             return candidates_list;
         }
 
-    public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id, int az_id) throws SQLException, IOException, PropertyVetoException {
+    public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id) throws SQLException, IOException, PropertyVetoException {
         ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
 
         Connection dbConnection = DataSource.getInstance().getConnection();
         PreparedStatement pst = dbConnection.prepareStatement(GET_LISTA_CAND);
         pst.setInt(1, tirocinio_id);
-        pst.setInt(2, az_id);
         ResultSet rs = pst.executeQuery();
 
         while (rs.next()) {
@@ -203,7 +206,11 @@ public class internshipDaoImpl implements internshipDao {
                     rs.getInt("azienda_id"),
                     rs.getInt("offerta_tirocinio_id"),
                     rs.getInt("studente_id"),
-                    rs.getBoolean("accettata")
+                    rs.getBoolean("accettata"),
+                    rs.getString("cfu"),
+                    rs.getString("tutor_name"),
+                    rs.getString("tutor_surname"),
+                    rs.getString("tutor_email")
             );
 
             candidates_list.add(internship_request);

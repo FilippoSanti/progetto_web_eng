@@ -85,8 +85,8 @@ public class candidates_listServlet extends HttpServlet {
         internshipDao intDao = new internshipDaoImpl();
         int tir_id1 = Integer.parseInt(tir_id);
 
-        ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_listbyTirocinioId(tir_id1, az_id);
-        request.setAttribute("candidates_list", internshipsArray);
+        ArrayList<InternshipRequest> internshipsArray = intDao.getCandidates_listbyTirocinioId(tir_id1);
+
         ArrayList<User> userArray  = new ArrayList<User>();
 
         for (int i = 0; i < internshipsArray.size(); i++) {
@@ -94,6 +94,7 @@ public class candidates_listServlet extends HttpServlet {
            azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
             userArray.add(uDao.getUser(azz));
         }
+
 
 
         request.setAttribute("userList", userArray);

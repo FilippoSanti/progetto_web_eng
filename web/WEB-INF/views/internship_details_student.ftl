@@ -419,7 +419,7 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-3 centra">
-                            <td>  <a href="/internships?view=candidate&submit=${internshipData.getIternship_id()}"><button type="addinternship" class="btn btn-primary waves-effect waves-light"> Candidates for this Internship </button>  </a></td>
+                            <td>  <a href="/internships?view=candidatePage&submit=${internshipData.getIternship_id()}"><button type="addinternship" class="btn btn-primary waves-effect waves-light"> Candidates for this Internship </button>  </a></td>
                         </div>
                         <div class="col-md-3 centra">                                          
                             <button type="reset" class="btn btn-default waves-effect m-l-5"> Cancel </button>                          

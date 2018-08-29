@@ -35,7 +35,7 @@ public class companyDaoImpl implements companyDao {
     private static final String GET_EMAIL_BY_ID = "SELECT email_login FROM azienda WHERE azienda_id = ?";
     private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
     private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
-
+    private static final String GET_COMPANY_ID_BY_INTERNSHIP = "SELECT azienda_id FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
 
     /**
      * Get a company object by its login_email
@@ -424,6 +424,48 @@ public class companyDaoImpl implements companyDao {
             if (rs.next() && rs != null) {
 
                 result = rs.getString("email_login");
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+    public int getIdCompanyByIdInternship(int tir_id) {
+
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_COMPANY_ID_BY_INTERNSHIP);
+
+            pst.setInt(1, tir_id);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs != null) {
+
+                result = rs.getInt("azienda_id");
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {

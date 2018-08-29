@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserDao {
     private static final String CHECK_ADMIN = "SELECT * FROM studente WHERE email = ? AND ruolo = 'admin'";
     private static final String UPDATE_USER_EMAIL = "UPDATE studente SET email = ? WHERE studente.email = ?";
     private static final String DELETE_USER = "DELETE FROM studente WHERE studente.studente_id = ?";
-    private static final String CANDIDATE = "insert into richieste_tirocinio values(?,?,?,?,?)";
+    private static final String CANDIDATE = "insert into richieste_tirocinio values(?,?,?,?,?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT studente_id FROM studente WHERE email = ?";
     private static final String GET_ADMIN_LIST = "SELECT * FROM studente WHERE ruolo = 'admin'";
     private static final String GET_NOTIFICATIONS_LIST = "SELECT * FROM notifica WHERE id_utente = ?";
@@ -47,11 +47,11 @@ public class UserDaoImpl implements UserDao {
     private static final String COUNT_NOTIFICATIONS = "SELECT count(*) FROM notifica WHERE id_utente = ?";
     private static final String CLEAR_NOTIFICATIONS = "DELETE FROM notifica WHERE notifica.id_utente = ?";
     private static final String DELETE_COMPANY_NOTIFICATIONS = "DELETE FROM notifica WHERE id_azienda = ?";
-
+    private static final String CHECK_USER_INTERNSHIP = "SELECT * FROM richieste_tirocinio WHERE studente_id=? && offerta_tirocinio_id = ?";
     /**
      * Get a user object by an email
      */
-    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id) throws ParseException {
+    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id, String cfu, String tutor_name, String tutor_surname, String tutor_email) throws ParseException {
 
         Connection conn = null;
         PreparedStatement pst = null;
@@ -66,6 +66,10 @@ public class UserDaoImpl implements UserDao {
             pst.setInt(3, offerta_tirocinio_id);
             pst.setInt(4, studente_id);
             pst.setInt(5,0);
+            pst.setString(6, cfu);
+            pst.setString(7, tutor_name);
+            pst.setString(8, tutor_surname);
+            pst.setString(9, tutor_email);
 
 
             int i = pst.executeUpdate();
@@ -296,6 +300,44 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
+    /**
+     * Check if the user is candidated to an internship
+     */
+    public boolean checkInternshipUser(int user_id, int internship_id) throws IOException, PropertyVetoException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_USER_INTERNSHIP);
+
+            ps.setInt(1, user_id);
+            ps.setInt(2, internship_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = true;
+            }
+
+
+
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
+        }
+        return result;
+    }
     /**
      * Check if the user is admin
      */
