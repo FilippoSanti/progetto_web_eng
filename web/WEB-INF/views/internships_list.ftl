@@ -340,7 +340,7 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>Internship name</th>
+                                            <th>Internship Name</th>
                                             <th>Company Name</th>
                                             <th>Description</th>
                                             <th>Details</th>

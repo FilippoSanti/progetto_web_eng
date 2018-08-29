@@ -1868,7 +1868,7 @@
             <div class="p" id="p1797" style="top:417.85pt;left:125.316pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:23.400002pt;">sar&#224</div>
             <div class="p" id="p1798" style="top:417.85pt;left:152.052pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:31.883987pt;">quello</div>
             <div class="p" id="p1799" style="top:417.85pt;left:187.30798pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:9.395996pt;">di</div>
-            <div class="p" id="p1800" style="top:417.85pt;left:203.37598pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:90.600006pt;">___________</div>
+            <div class="p" id="p1800" style="top:417.85pt;left:203.37598pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:90.600006pt;">${foro_competente}</div>
             <div class="p" id="p1801" style="top:431.65pt;left:56.64pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:51.36pt;">L'imposta</div>
             <div class="p" id="p1802" style="top:431.65pt;left:112.728pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:9.372002pt;">di</div>
             <div class="p" id="p1803" style="top:431.65pt;left:126.864pt;line-height:13.379974pt;font-family:Arial;font-size:12.0pt;letter-spacing:0.036pt;width:25.367981pt;">bollo</div>
