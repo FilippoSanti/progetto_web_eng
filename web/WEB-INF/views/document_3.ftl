@@ -10,7 +10,7 @@
 
         body {margin-top: 0px;margin-left: 0px;}
 
-        #page_1 {position:relative; overflow: hidden;margin: 48px 0px 46px 67px;padding: 0px;border: none;width: 727px;}
+        #page_1 {position:relative; overflow: hidden;margin: 48px 0px 90px 67px;padding: 0px;border: none;width: 727px;}
 
         #page_1 #p1dimg1 {position:absolute;top:0px;left:307px;z-index:-1;width:46px;height:57px;}
         #page_1 #p1dimg1 #p1img1 {width:46px;height:57px;}
@@ -18,7 +18,7 @@
 
 
 
-        #page_2 {position:relative; overflow: hidden;margin: 48px 0px 46px 76px;padding: 0px;border: none;width: 718px;}
+        #page_2 {position:relative; overflow: hidden;margin: 48px 0px 110px 76px;padding: 0px;border: none;width: 718px;}
 
         #page_2 #p2dimg1 {position:absolute;top:0px;left:298px;z-index:-1;width:46px;height:57px;}
         #page_2 #p2dimg1 #p2img1 {width:46px;height:57px;}
@@ -26,7 +26,7 @@
 
 
 
-        #page_3 {position:relative; overflow: hidden;margin: 48px 0px 46px 76px;padding: 0px;border: none;width: 718px;}
+        #page_3 {position:relative; overflow: hidden;margin: 48px 0px 110px 76px;padding: 0px;border: none;width: 718px;}
 
         #page_3 #p3dimg1 {position:absolute;top:0px;left:298px;z-index:-1;width:46px;height:57px;}
         #page_3 #p3dimg1 #p3img1 {width:46px;height:57px;}
@@ -34,7 +34,7 @@
 
 
 
-        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 46px 0px;padding: 0px;border: none;width: 794px;}
+        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 150px 0px;padding: 0px;border: none;width: 794px;}
 
         #page_4 #p4dimg1 {position:absolute;top:0px;left:374px;z-index:-1;width:46px;height:57px;}
         #page_4 #p4dimg1 #p4img1 {width:46px;height:57px;}
@@ -42,7 +42,7 @@
 
 
 
-        #page_5 {position:relative; overflow: hidden;margin: 48px 0px 46px 0px;padding: 0px;border: none;width: 794px;}
+        #page_5 {position:relative; overflow: hidden;margin: 48px 0px 160px 0px;padding: 0px;border: none;width: 794px;}
 
         #page_5 #p5dimg1 {position:absolute;top:0px;left:374px;z-index:-1;width:46px;height:57px;}
         #page_5 #p5dimg1 #p5img1 {width:46px;height:57px;}
