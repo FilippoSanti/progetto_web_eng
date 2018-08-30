@@ -170,13 +170,10 @@
 
                                                 <div class="col-md-6 mrgntopcol">
                                                     <div class="form-group">
-                                                        <label for="Fiscal_Code">Fiscal Code</label>
-                                                        <input type="text" value="${companyData.getCf_rappresentante()}" id="Fiscal_Code" class="form-control" name="cf_rapp">
+                                                        <label for="Fiscal_Code">Fiscal Code (NIN)/Partita I.V.A. (VAT)</label>
+                                                        <input type="text" value="${companyData.get_cf_iva()}" id="Fiscal_Code" class="form-control" name="cf_rapp">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="Fiscal_Code">P.IVA</label>
-                                                        <input type="text" value="${companyData.getPartita_iva_rap()}" id="p_iva" class="form-control" name="partita_iva_rapp">
-                                                    </div>
+
                                                     <div class="form-group">
                                                         <label>Province<span class="text-danger"></span></label>
                                                         <select name="provincia" class="form-control select2">

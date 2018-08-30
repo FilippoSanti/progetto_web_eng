@@ -401,15 +401,9 @@
 
                                                         <div class="col-md-6 mrgntopcol">
                                                             <div class="m-b-20">
-                                                                <strong>Fiscal Code</strong>
+                                                                <strong>Fiscal Code (NIN)/Partita I.V.A. (VAT)</strong>
                                                                 <br>
-                                                                <p class="text-muted">${companyData.getCf_rappresentante()}</p>
-                                                            </div>
-
-                                                            <div class="m-b-20">
-                                                                <strong>P. IVA</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getPartita_iva_rap()}</p>
+                                                                <p class="text-muted">${companyData.get_cf_iva()}</p>
                                                             </div>
 
                                                             <div class="m-b-20">

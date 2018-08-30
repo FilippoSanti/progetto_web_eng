@@ -10,7 +10,7 @@
 
         body {margin-top: 0px;margin-left: 0px;}
 
-        #page_1 {position:relative; overflow: hidden;margin: 48px 0px 140px 67px;padding: 0px;border: none;width: 727px;}
+        #page_1 {position:relative; overflow: hidden;margin: 48px 0px 97px 67px;padding: 0px;border: none;width: 727px;}
 
         #page_1 #p1dimg1 {position:absolute;top:0px;left:306px;z-index:-1;width:48px;height:59px;}
         #page_1 #p1dimg1 #p1img1 {width:48px;height:59px;}
@@ -18,7 +18,7 @@
 
 
 
-        #page_2 {position:relative; overflow: hidden;margin: 48px 0px 160px 76px;padding: 0px;border: none;width: 718px;}
+        #page_2 {position:relative; overflow: hidden;margin: 48px 0px 99px 76px;padding: 0px;border: none;width: 718px;}
 
         #page_2 #p2dimg1 {position:absolute;top:0px;left:297px;z-index:-1;width:48px;height:59px;}
         #page_2 #p2dimg1 #p2img1 {width:48px;height:59px;}
@@ -26,7 +26,7 @@
 
 
 
-        #page_3 {position:relative; overflow: hidden;margin: 48px 0px 170px 76px;padding: 0px;border: none;width: 718px;}
+        #page_3 {position:relative; overflow: hidden;margin: 48px 0px 75px 76px;padding: 0px;border: none;width: 718px;}
 
         #page_3 #p3dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:345px;height:977px;}
         #page_3 #p3dimg1 #p3img1 {width:345px;height:977px;}
@@ -34,7 +34,7 @@
 
 
 
-        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 200px 0px;padding: 0px;border: none;width: 794px;}
+        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 106px 0px;padding: 0px;border: none;width: 794px;}
 
         #page_4 #p4dimg1 {position:absolute;top:0px;left:373px;z-index:-1;width:48px;height:59px;}
         #page_4 #p4dimg1 #p4img1 {width:48px;height:59px;}

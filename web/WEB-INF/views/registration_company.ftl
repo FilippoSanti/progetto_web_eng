@@ -86,19 +86,19 @@
                                                 <label for="solicitor">Solicitor's Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_rappr_legale" parsley-trigger="change" required
                                                        placeholder="Enter Solicitor's Name " class="form-control" id="solicitor">
-                                            </div>
+                                        </div>
 
                                        <div class="form-group">
                                                 <label for="managerName">Internships Manager's Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_resp_tirocini" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's Name" class="form-control" id="managerName">
-                                            </div>
+                                       </div>
 
-                                        <div class="form-group">
-                                                <label for="managerPhone">Internships Manager's Telephone Number<span class="text-danger">*</span></label>
-                                                <input type="text" name="telefono_resp" parsley-trigger="change" required
-                                                       placeholder="Enter Internships Manager's Telephone Number" class="form-control" id="managerPhone">
-                                            </div>
+                                       <div class="form-group">
+                                            <label for="jurisdiction">Competent Jurisdiction<span class="text-danger">*</span></label>
+                                            <input type="text" name="foro_comp" parsley-trigger="change" required
+                                                   placeholder="Enter Competent Jurisdiction" class="form-control" id="jurisdiction">
+                                       </div>
 
                                             <br><br>
                                         <div class="col-lg-3"></div>
@@ -126,9 +126,9 @@
 
                                     <div class="m-b-20">
                                             <div class="form-group">
-                                                <label for="compCodes">Fiscal Code (NIN)<span class="text-danger">*</span></label>
-                                                <input type="text" name="cod_fiscale" parsley-trigger="change" required
-                                                       placeholder="Enter Fiscal Code (NIN)" class="form-control uppercase" id="compCodes">
+                                                <label for="compCodes">Fiscal Code (NIN)/Partita I.V.A. (VAT)<span class="text-danger">*</span></label>
+                                                <input type="text" name="cf_iva" parsley-trigger="change" required
+                                                       placeholder="Enter Fiscal Code (NIN)/Partita I.V.A. (VAT)" class="form-control uppercase" id="compCodes">
                                             </div>
 
                                             <div class="form-group">
@@ -227,7 +227,7 @@
                                         <option value="TO">Torino</option>
                                         <option value="TP">Trapani</option>
                                         <option value="TN">Trento</option>
-                                        <option value="TV">Treviso</option>F
+                                        <option value="TV">Treviso</option>
                                         <option value="TS">Trieste</option>
                                         <option value="UD">Udine</option>
                                         <option value="VA">Varese</option>
@@ -242,24 +242,18 @@
                                     </div>
 
                                         <div class="form-group">
-                                            <label for="compCodes">Partita I.V.A. (VAT)<span class="text-danger">*</span></label>
-                                            <input type="text" name="part_iva" parsley-trigger="change" required
-                                                   placeholder="Enter P. IVA (VAT)" class="form-control uppercase" id="compCodes">
-                                        </div>
-
-                                        <div class="form-group">
                                                 <label for="managerEmail">Internships Manager's Email Address<span class="text-danger">*</span></label>
                                                 <input type="text" name="email_resp" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's E-mail Address" class="form-control" id="managerEmail">
-                                            </div>
+                                         </div>
 
                                         <div class="form-group">
-                                            <label for="jurisdiction">Competent Jurisdiction<span class="text-danger">*</span></label>
-                                            <input type="text" name="foro_comp" parsley-trigger="change" required
-                                                   placeholder="Enter Competent Jurisdiction" class="form-control" id="jurisdiction">
+                                            <label for="managerPhone">Internships Manager's Telephone Number<span class="text-danger">*</span></label>
+                                            <input type="text" name="telefono_resp" parsley-trigger="change" required
+                                                   placeholder="Enter Internships Manager's Telephone Number" class="form-control" id="managerPhone">
                                         </div>
 
-                                            <br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 
                                         <div class="form-group rippwd4">
