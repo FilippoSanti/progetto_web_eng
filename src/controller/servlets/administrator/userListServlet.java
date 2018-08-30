@@ -2,6 +2,7 @@ package controller.servlets.administrator;
 
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;
+import controller.servlets.general.homeServlet;
 import controller.utilities.SecurityFilter;
 import model.Security;
 import model.User;
@@ -47,6 +48,10 @@ public class userListServlet extends HttpServlet {
     private void action_show_all(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
 
         UserDao uDao = new UserDaoImpl();
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         // Get the user list
         ArrayList<User> userArray = uDao.getUserList();

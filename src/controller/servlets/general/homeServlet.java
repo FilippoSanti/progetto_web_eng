@@ -88,8 +88,8 @@ public class homeServlet extends HttpServlet {
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
-
         request.setAttribute("username", tempName);
+
         companyDao compDao = new companyDaoImpl();
 
         // Get the company list
