@@ -75,47 +75,19 @@
 
 
                                         <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><a href="manage_internship.ftl"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
-                                        </tr>
+                                           <#if userList?has_content>
+                                               <#list userList as val>
 
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
+                                            <td>${val.getNome()} ${val.getCognome()}</td>
+                                            <td>${internshipsList[val_index].getNome()}</td>
+                                            <td><a href="/documents?action=${internshipsList[val_index].getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>Internship Name</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
+
+
+
+                                               </#list>
+                                           </#if>
 
                                         </tbody>
                                     </table>

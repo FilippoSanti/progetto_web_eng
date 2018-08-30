@@ -24,6 +24,7 @@ public class internshipDaoImpl implements internshipDao {
     private static final String ENABLE_USER_INTERNSHIP_REQ = "UPDATE richieste_tirocinio SET accettata = '1' WHERE richieste_tirocinio.studente_id = ?";
     private static final String DELETE_USER_INTERNSHIP_REQ = "DELETE FROM richieste_tirocinio WHERE richieste_tirocinio.studente_id = ?";
     private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ?";
+    private static final String GET_LISTA_CAND_APPR = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 1 ";
 
 
     public Internship getInternshipDataById(int int_id) throws SQLException, IOException, PropertyVetoException{
@@ -191,6 +192,37 @@ public class internshipDaoImpl implements internshipDao {
             dbConnection.close();
             return candidates_list;
         }
+
+
+    public ArrayList<InternshipRequest> getInternshipsStudents(int az_id) throws SQLException, IOException, PropertyVetoException{
+
+        ArrayList<InternshipRequest> candidates_list = new ArrayList<>();
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(GET_LISTA_CAND_APPR);
+        pst.setInt(1, az_id);
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            InternshipRequest internship_request = new InternshipRequest(
+                    rs.getInt("richiesta_tirocinio_id"),
+                    rs.getInt("azienda_id"),
+                    rs.getInt("offerta_tirocinio_id"),
+                    rs.getInt("studente_id"),
+                    rs.getBoolean("accettata"),
+                    rs.getString("cfu"),
+                    rs.getString("tutor_name"),
+                    rs.getString("tutor_surname"),
+                    rs.getString("tutor_email")
+            );
+
+            candidates_list.add(internship_request);
+
+        }
+
+        dbConnection.close();
+        return candidates_list;
+    }
 
     public ArrayList<InternshipRequest> getCandidates_listbyTirocinioId(int tirocinio_id) throws SQLException, IOException, PropertyVetoException {
         ArrayList<InternshipRequest> candidates_list = new ArrayList<>();

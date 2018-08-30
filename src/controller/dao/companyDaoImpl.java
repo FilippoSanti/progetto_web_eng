@@ -36,6 +36,7 @@ public class companyDaoImpl implements companyDao {
     private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
     private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
     private static final String GET_COMPANY_ID_BY_INTERNSHIP = "SELECT azienda_id FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
+    private static final String GET_ID_BY_NAME = "SELECT azienda_id FROM azienda WHERE ragione_sociale = ?";
 
     /**
      * Get a company object by its login_email
@@ -89,6 +90,28 @@ public class companyDaoImpl implements companyDao {
         int az_id = 0;
 
         pst.setString(1, email);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_id = rs.getInt("azienda_id");
+
+        }
+        dbConnection.close();
+        return az_id;
+    }
+
+    public int getCompanyIdbyName(String name) throws PropertyVetoException, SQLException, IOException {
+
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_ID_BY_NAME);
+
+        int az_id = 0;
+
+        pst.setString(1, name);
         rs = pst.executeQuery();
 
         if (rs.next()) {

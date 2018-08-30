@@ -210,13 +210,13 @@
                                         <div>
                                             <div class="input-daterange input-group" data-date-format="dd/mm/yyyy" id="date-range">
                                                 <div class="col-md-3 ">
-                                                    <input type="text" class="form-control" name="start date" />
+                                                    <input type="text" class="form-control" name="start_date" />
                                                 </div>
 
                                                 <div class="col-md-1"></div>
 
                                                 <div class="col-md-3">
-                                                    <input type="text" class="form-control" name="end date" />
+                                                    <input type="text" class="form-control" name="end_date" />
                                                 </div>
                                                                                                 
                                             </div>

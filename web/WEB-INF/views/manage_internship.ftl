@@ -304,10 +304,10 @@
                         <div class="m-b-20">
                             <div class="row">
                                 <div class="col-md-6 centra text-center">
-                                    <b>Internship Status:</b> (<i class="interstatus1">not started</i>, <i class="interstatus2">in progress</i>, <i class="interstatus3">completed</i>)
+                                    <b>Internship Status:</b> (<i class="interstatus1">${tirocinio}</i>)
                                 </div>
                                 <div class="col-md-6 centra text-center">
-                                    <b>End Date:</b> <i> mm/yyyy</i>                                    
+                                    <b>End Date:</b> <i>${dataFinale}</i>
                                 </div>
                             </div>
 <br><br>
