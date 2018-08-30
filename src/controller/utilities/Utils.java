@@ -188,6 +188,16 @@ public class Utils {
         return uuid.toString();
     }
 
+    // Get the UG of a request
+    public static boolean checkFFUG(HttpServletRequest request) {
+        boolean result = false;
+        String ff = request.getHeader("User-Agent");
+
+        String clean_ff = ff.toLowerCase();
+        if (clean_ff.contains("firefox")) result = true;
+        return result;
+    }
+
     // Display the user image
     public static String display_user_image(ServletContext context, HttpServletRequest request, String email) throws PropertyVetoException, SQLException, IOException {
 

@@ -171,7 +171,7 @@
                                                 <div class="col-md-6 mrgntopcol">
                                                     <div class="form-group">
                                                         <label for="Fiscal_Code">Fiscal Code (NIN)/Partita I.V.A. (VAT)</label>
-                                                        <input type="text" value="${companyData.get_cf_iva()}" id="Fiscal_Code" class="form-control" name="cf_rapp">
+                                                        <input type="text" value="${companyData.get_cf_iva()}" id="Fiscal_Code" class="form-control" name="cf_iva">
                                                     </div>
 
                                                     <div class="form-group">

@@ -25,13 +25,13 @@ public class companyDaoImpl implements companyDao {
     private static final String UPDATE_COMPANY_DATA = "UPDATE azienda SET email_login = ?, password = ? WHERE azienda.email_login = ?";
     private static final String UPDATE_COMPANY_INFO = "UPDATE azienda\n" +
             "      SET `email_login` = ?, `ragione_sociale` = ?, `indirizzo_sede_legale` = ?, \n" +
-            "      `cf_rappresentante` = ?, `partita_iva_rappresentante` = ?, `nome_cognome_rappresentante`= ?,\n" +
+            "      `cf_iva` = ?, `nome_cognome_rappresentante`= ?,\n" +
             "      `nome_cognome_tirocini`= ?, `telefono_tirocini` = ?, `email_tirocini`= ?, `foro_competente`= ?,\n" +
             "      `provincia`= ?, `abilitata`= ?, `descrizione` = ?\n" +
             "WHERE `azienda`.`email_login` = ?";
     private static final String CHECK_COMPANY_EMAIL = "SELECT * FROM azienda WHERE email_login=?";
     private static final String GET_ID_MAIL = "SELECT azienda_id FROM azienda WHERE email_login = ?";
-    private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_USER = "insert into azienda values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String GET_EMAIL_BY_ID = "SELECT email_login FROM azienda WHERE azienda_id = ?";
     private final static String UPDATE_COMPANY_EMAIL = "UPDATE azienda SET email_login = ? WHERE azienda.email_login = ?";
     private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
@@ -60,8 +60,7 @@ public class companyDaoImpl implements companyDao {
             companyModel.setEmail_login(rs.getString("email_login"));
             companyModel.setRagione_sociale(rs.getString("ragione_sociale"));
             companyModel.setIndirizzo_sede_leg(rs.getString("indirizzo_sede_legale"));
-            companyModel.setCf_rappresentante(rs.getString("cf_rappresentante"));
-            companyModel.setPartita_iva_rap(rs.getString("partita_iva_rappresentante"));
+            companyModel.set_cf_iva(rs.getString("cf_iva"));
             companyModel.setNome_cognome_rap(rs.getString("nome_cognome_rappresentante"));
             companyModel.setNome_cognome_tir(rs.getString("nome_cognome_tirocini"));
             companyModel.setTelefono_tirocini(rs.getString("telefono_tirocini"));
@@ -90,28 +89,6 @@ public class companyDaoImpl implements companyDao {
         int az_id = 0;
 
         pst.setString(1, email);
-        rs = pst.executeQuery();
-
-        if (rs.next()) {
-            az_id = rs.getInt("azienda_id");
-
-        }
-        dbConnection.close();
-        return az_id;
-    }
-
-    public int getCompanyIdbyName(String name) throws PropertyVetoException, SQLException, IOException {
-
-        Connection dbConnection = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-
-        dbConnection = DataSource.getInstance().getConnection();
-        pst = dbConnection.prepareStatement(GET_ID_BY_NAME);
-
-        int az_id = 0;
-
-        pst.setString(1, name);
         rs = pst.executeQuery();
 
         if (rs.next()) {
@@ -261,8 +238,7 @@ public class companyDaoImpl implements companyDao {
                     rs.getString("nome_cognome_tirocini"),
                     rs.getString("ragione_sociale"),
                     rs.getString("indirizzo_sede_legale"),
-                    rs.getString("cf_rappresentante"),
-                    rs.getString("partita_iva_rappresentante"),
+                    rs.getString("cf_iva"),
                     rs.getString("nome_cognome_rappresentante"),
                     rs.getString("telefono_tirocini"),
                     rs.getString("email_tirocini"),
@@ -282,7 +258,7 @@ public class companyDaoImpl implements companyDao {
     /**
      * Update the company info
      */
-    public boolean updateCompanyField(String e, String r_s, String i_s_l, String cf, String p_i_r,
+    public boolean updateCompanyField(String e, String r_s, String i_s_l, String cf_iva,
                                       String n_c_rapp, String n_c_tir, String t_t, String e_t, String f_c, String pr,
                                       boolean ab, String de, String targetUpdate) throws SQLException, IOException, PropertyVetoException {
 
@@ -293,17 +269,16 @@ public class companyDaoImpl implements companyDao {
         preparedStmt.setString(1, e);
         preparedStmt.setString(2, r_s);
         preparedStmt.setString(3, i_s_l);
-        preparedStmt.setString(4, cf);
-        preparedStmt.setString(5, p_i_r);
-        preparedStmt.setString(6, n_c_rapp);
-        preparedStmt.setString(7, n_c_tir);
-        preparedStmt.setString(8, t_t);
-        preparedStmt.setString(9, e_t);
-        preparedStmt.setString(10, f_c);
-        preparedStmt.setString(11, pr);
-        preparedStmt.setBoolean(12, ab);
-        preparedStmt.setString(13, de);
-        preparedStmt.setString(14, targetUpdate);
+        preparedStmt.setString(4, cf_iva);
+        preparedStmt.setString(5, n_c_rapp);
+        preparedStmt.setString(6, n_c_tir);
+        preparedStmt.setString(7, t_t);
+        preparedStmt.setString(8, e_t);
+        preparedStmt.setString(9, f_c);
+        preparedStmt.setString(10, pr);
+        preparedStmt.setBoolean(11, ab);
+        preparedStmt.setString(12, de);
+        preparedStmt.setString(13, targetUpdate);
 
         int i = preparedStmt.executeUpdate();
 
@@ -382,9 +357,9 @@ public class companyDaoImpl implements companyDao {
         return result;
     }
 
-    public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg,
-                           String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String nome_cognome_tir,
-                           String telefono_tirocini, String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException {
+    public boolean addUser(String email_login, String password, String ragione_sociale, String indirizzo_sede_leg, String cf_iva,
+                           String nome_cognome_rap, String nome_cognome_tir, String telefono_tirocini,
+                           String email_tirocini, String foro_competente, String provincia) throws IOException, PropertyVetoException {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean result = false;
@@ -398,16 +373,15 @@ public class companyDaoImpl implements companyDao {
             ps.setString(3, Utils.hashPassword(password));
             ps.setString(4, ragione_sociale);
             ps.setString(5, indirizzo_sede_leg);
-            ps.setString(6, cf_rappresentante);
-            ps.setString(7, partita_iva_rap);
-            ps.setString(8, nome_cognome_rap);
-            ps.setString(9, nome_cognome_tir);
-            ps.setString(10, telefono_tirocini);
-            ps.setString(11, email_tirocini);
-            ps.setString(12, foro_competente);
-            ps.setString(13, provincia);
-            ps.setBoolean(14, false);
-            ps.setString(15, "Description Sample");
+            ps.setString(6, cf_iva);
+            ps.setString(7, nome_cognome_rap);
+            ps.setString(8, nome_cognome_tir);
+            ps.setString(9, telefono_tirocini);
+            ps.setString(10, email_tirocini);
+            ps.setString(11, foro_competente);
+            ps.setString(12, provincia);
+            ps.setBoolean(13, false);
+            ps.setString(14, "Description Sample");
 
             int i = ps.executeUpdate();
 
@@ -526,8 +500,7 @@ public class companyDaoImpl implements companyDao {
                     rs.getString("nome_cognome_tirocini"),
                     rs.getString("ragione_sociale"),
                     rs.getString("indirizzo_sede_legale"),
-                    rs.getString("cf_rappresentante"),
-                    rs.getString("partita_iva_rappresentante"),
+                    rs.getString("cf_iva"),
                     rs.getString("nome_cognome_rappresentante"),
                     rs.getString("telefono_tirocini"),
                     rs.getString("email_tirocini"),
@@ -558,5 +531,21 @@ public class companyDaoImpl implements companyDao {
         }
         dbConnection.close();
         return result;
+    }
+
+    public int getCompanyIdbyName(String name) throws PropertyVetoException, SQLException, IOException {
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_ID_BY_NAME);
+        int az_id = 0;
+        pst.setString(1, name);
+        rs = pst.executeQuery();
+        if (rs.next()) {
+            az_id = rs.getInt("azienda_id");
+        }
+        dbConnection.close();
+        return az_id;
     }
 }

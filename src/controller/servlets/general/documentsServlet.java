@@ -1,11 +1,10 @@
 package controller.servlets.general;
 
-import controller.dao.companyDao;
-import controller.dao.companyDaoImpl;
+import controller.dao.*;
 import controller.servlets.general.homeServlet;
 import controller.utilities.SecurityFilter;
-import model.Company;
-import model.Security;
+import controller.utilities.Utils;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class documentsServlet extends HttpServlet {
 
@@ -26,12 +28,9 @@ public class documentsServlet extends HttpServlet {
         Security securityModel = SecurityFilter.checkUsers(request);
 
         // URL Parameters
-        String action = "action";
-        String id = "id";
 
-        // URL Parameters value
+        String action = "action";
         String action_value = request.getParameter(action);
-        String id_value = request.getParameter(id);
 
         // Check if the user is a logged company
         if (securityModel.getUser().equals("azienda")) {
@@ -39,6 +38,16 @@ public class documentsServlet extends HttpServlet {
             // Students list page
             if (action_value != null && action_value.equals("students")) {
                 action_students_page(request, response);
+                return;
+            }
+
+            // Students list page
+            if (action_value != null && action_value.matches("[0-9]+")) {
+                try {
+                    action_students_manage_int(request, response, action_value);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 return;
             }
 
@@ -62,10 +71,6 @@ public class documentsServlet extends HttpServlet {
             if (action_value != null && action_value.equals("companies")) {
                 action_view_companies(request, response);
             }
-
-            if (action_value != null && action_value.equals("")) {
-
-            }
         }
 
     }
@@ -84,19 +89,40 @@ public class documentsServlet extends HttpServlet {
 
     // Generate the documentation of a company by its id
     // This belongs to the admin's documents, so it's marked under 'admin'
-    private void generateCompanyDocumentation(int company_id) throws PropertyVetoException, SQLException, IOException {
+    private void generateAgreementDocument(int company_id, HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
 
         // Get the company data
         companyDao cDao = new companyDaoImpl();
         String tempEmail = cDao.getEmailByID(company_id);
+        String resultString = null;
 
         Company companyModel = cDao.getCompanyDataByEmail(tempEmail);
 
         // Compile the corresponding document (document3)
+        AgreementDocument aD = new AgreementDocument();
+
+        // Set the necessary fields
+        aD.setNome_azienda(companyModel.getRagione_sociale());
+        aD.setNome_rapp(companyModel.getNome_cognome_rap());
+        aD.setSede_legale(companyModel.getIndirizzo_sede_leg());
+        aD.setProv_sede(companyModel.getProvincia());
+        aD.setCf_piva_azienda(companyModel.get_cf_iva());
+
+        request.setAttribute("doc", aD);
+
+        if (Utils.checkFFUG(request)) {
+            resultString = "/WEB-INF/views/document_3_alt.ftl";
+        } else resultString = "/WEB-INF/views/document_3.ftl";
 
 
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher(resultString);
+
+        dispatcher.forward(request, response);
 
     }
+
+
 
     /** Student **/
     private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
@@ -112,16 +138,71 @@ public class documentsServlet extends HttpServlet {
     }
 
     /** Company **/
+
     private void action_students_page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        String azz =  "";
+        String azz2 = "";
+        UserDao uDao = new UserDaoImpl();
+        internshipDao intDao = new internshipDaoImpl();
+        companyDao comDao = new companyDaoImpl();
+
+        int az_id = ((companyDaoImpl) comDao).getCompanyIdbyName(tempName);
+
+        ArrayList<InternshipRequest> internshipsArray = intDao.getInternshipsStudents(az_id);
+
+        ArrayList<Internship> internArray = new ArrayList<>();
+        ArrayList<User> userArray  = new ArrayList<User>();
+
+        for (int i = 0; i < internshipsArray.size(); i++) {
+
+            azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
+            internArray.add(intDao.getInternshipByID(internshipsArray.get(i).getInternship_id()));
+            userArray.add(uDao.getUser(azz));
+        }
+
+
+        request.setAttribute("userList", userArray);
+        request.setAttribute("internshipsList", internArray);
         request.setAttribute("username", tempName);
+
+
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_company.ftl");
 
         dispatcher.forward(request, response);
 
+    }
+
+    private void action_students_manage_int(HttpServletRequest request, HttpServletResponse response, String int_id) throws ServletException, IOException, PropertyVetoException, SQLException, ParseException {
+
+        String tirocinio = "";
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        internshipDao intDao = new internshipDaoImpl();
+        Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+        Date a = formatter.parse(int1.getMeseInziale());
+        Date b = formatter.parse(int1.getMeseFinale());
+
+        long iniziale = a.getTime();
+        long finale = b.getTime();
+
+        if (iniziale > System.currentTimeMillis())  tirocinio = "not started";
+        else if (finale > System.currentTimeMillis())  tirocinio = "completed";
+        else  tirocinio = "in progress";
+
+        request.setAttribute("username", tempName);
+        request.setAttribute("tirocinio", tirocinio);
+        request.setAttribute("dataFinale", int1.getMeseFinale());
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+
+        dispatcher.forward(request, response);
     }
 
     private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {

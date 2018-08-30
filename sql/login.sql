@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 30, 2018 alle 15:22
+-- Creato il: Ago 30, 2018 alle 23:26
 -- Versione del server: 10.1.34-MariaDB
--- Versione PHP: 7.2.8
+-- Versione PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,9 +34,8 @@ CREATE TABLE `azienda` (
   `password` varchar(255) NOT NULL,
   `ragione_sociale` varchar(100) NOT NULL,
   `indirizzo_sede_legale` varchar(100) NOT NULL,
-  `cf_rappresentante` varchar(30) NOT NULL,
-  `partita_iva_rappresentante` varchar(50) NOT NULL,
-  `nome_cognome_rappresentante` varchar(30) NOT NULL,
+  `cf_iva` varchar(30) NOT NULL,
+  `nome_cognome_rappresentante` varchar(255) NOT NULL,
   `nome_cognome_tirocini` varchar(60) NOT NULL,
   `telefono_tirocini` varchar(20) NOT NULL,
   `email_tirocini` varchar(40) NOT NULL,
@@ -50,14 +49,15 @@ CREATE TABLE `azienda` (
 -- Dump dei dati per la tabella `azienda`
 --
 
-INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale`, `indirizzo_sede_legale`, `cf_rappresentante`, `partita_iva_rappresentante`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`, `descrizione`) VALUES
-(2, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '-- Select --', 0, ''),
-(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', 'asdasdas', 'asdasdasd', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL', 0, ''),
-(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', 'aaaaaaa', 'asdaaa', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL', 0, ''),
-(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1, ''),
-(6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', 'asdasdasda', 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0, ''),
-(7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 1, ''),
-(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', 'fffffffffff', 'sssssssssss', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample');
+INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale`, `indirizzo_sede_legale`, `cf_iva`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`, `descrizione`) VALUES
+(2, 'a', 'a', 'a', 'a', 'a', '', 'a', 'a', 'a', 'a', '-- Select --', 0, ''),
+(3, 'micron@outlook.it', 'micron12345', 'asdasd', 'asdasdasd', 'asdasda', '', 'asdasdas', 'asdasdsa', 'adadasd', 'asdasdsad', 'AL', 0, ''),
+(4, '545@gmail.com', 'paoluccio545', 'asdaaa', 'asdaaa', 'aaaaaa', '', 'asdaaa', 'aasdaa', 'aaaaaa', 'asdaaaa', 'AL', 0, ''),
+(5, '545dev@gmail.com', '$2a$12$s.4Gcv0iScoQ/1GL7qR2luBoXDWNikVcrVK5O.lS859CM.Xubc.wi', 'aaaaaaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', '', 'aaaaaaaaaaaaa', 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaa', 'AN', 1, ''),
+(6, 'microsoftitalia@outlook.it', '$2a$12$zvx3oL1Bh10T3R5bl1Gi.eRm/Vxpo6Hd62FG0Q59ie.eIZ1.RHiue', 'Microsoft', 'qualcos', 'adasdasd', '', 'aaaaaaaaa', 'aaaaaaaa', 'asdadasdas', 'aaaaaaaaaaa', 'AN', 0, ''),
+(7, 'giovanni', '$2a$12$CEByeokJQzYo5CWmW.91U.SZWCDsDG/M/Q5NABKvTCXSn3/tZRyl.', 'studio del pene', 'asdasd', 'asdasdasd', '', 'asdasdasd', 'asdasdasd', 'davide.ubaldi@out.it', 'asdasdasd', 'AG', 1, ''),
+(8, 'azz@hotmail.it', '$2a$12$wmczSrZxtTCGCKCFZDj2kudT5lfsigRIO/gCi0v7hPYqAs1Rp8odO', 'azz', 'sffffffffff', 'afffffffffffffffffffff', '', 'sfffffffff', '5555555555555', 'rrrrrrrrrrrrrrrrrrr', 'ffffffff', 'AG', 0, 'Description Sample'),
+(9, 'asdasdasdas@asd.asd', '$2a$12$FBFPvF4Zfcy8ej5m8rsXxOGEwhshcueo/VeM28CLwLulVV.EA0SwC', 'asdasdasd', 'asdasdasd', 'xf34535345', 'asdasdas', 'asdasdasd', 'asdasdasd', 'asdasdasdasd', 'asdasdasd', 'AL', 1, 'Description Sample');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,9 @@ INSERT INTO `notifica` (`id_notifica`, `id_utente`, `id_azienda`, `testo`) VALUE
 (1, 1, NULL, 'asdasdad'),
 (3, 0, 9, 'asdadasd wants to join'),
 (4, 0, 10, 'asdasdasda wants to join'),
-(5, 20, 1, 'sadfasdasd');
+(5, 20, 1, 'sadfasdasd'),
+(6, 20, 9, 'asdasdasd wants to join'),
+(7, 58, 9, 'asdasdasd wants to join');
 
 -- --------------------------------------------------------
 
@@ -236,7 +238,8 @@ INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, 
 (24, 'catamarano', '$2a$12$TLo06N1XOkr8V2iJ07ERouT69C62y3E1Oth73ad8QmthL5P3.g4ii', '2018-09-07', 'AG', 'AL', 'aaa', 'ascccc', 4444, '11222', '1111', 'davide.ubaldi@outlook.it', 1, 'luzi', 'asdasdasd', 'user', 'asccc'),
 (55, 'asd', 'asd', '0000-00-00', 'asd', 'asd', 'asd', 'asd', 22, 'asd', 'asd', 'asd', 1, 'asd', 'asd', 'asd', 'asd'),
 (56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'user', 'asddd'),
-(57, 'Elisa', '$2a$12$8eJApav/TqV/JGLZ28aU9eTzCZ1FpsufyGfMYM7p/Mck.UclqllY6', '13/08/2018', 'AL', 'AG', ' ia dddddd', 'dasdasdasd', 63100, '32736964649', 'nesssuno', 'a@hotmail.it', 1, 'Giovanni', 'AgagagFAGAGA', 'user', 'fffff');
+(57, 'Elisa', '$2a$12$8eJApav/TqV/JGLZ28aU9eTzCZ1FpsufyGfMYM7p/Mck.UclqllY6', '13/08/2018', 'AL', 'AG', ' ia dddddd', 'dasdasdasd', 63100, '32736964649', 'nesssuno', 'a@hotmail.it', 1, 'Giovanni', 'AgagagFAGAGA', 'user', 'fffff'),
+(58, 'asdasdasd', '$2a$12$Ct10cZwpb/mnXVK6pb.tyOTos8o64YNe1IavaLfIXmokQayQFtU8y', '28/08/2018', 'AL', 'AL', 'asdasdasd', 'asdasdsadsa', 9077, '123123123', 'asdasdasdasd', 'dioc@a.ro', 1, 'asdasdasdas', 'asdasdasd', 'admin', 'asdasdad');
 
 --
 -- Indici per le tabelle scaricate
@@ -284,13 +287,13 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
@@ -308,7 +311,7 @@ ALTER TABLE `richieste_tirocinio`
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Limiti per le tabelle scaricate

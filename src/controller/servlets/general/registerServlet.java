@@ -111,16 +111,15 @@ public class registerServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap,
+        String ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap, cf_iva,
                 nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass;
 
-        ragione_sociale = indirizzo_sede_leg = cf_rappresentante = partita_iva_rap = nome_cognome_rap = nome_cognome_tir =
-                telefono_tirocini = email_tirocini = foro_competente = provincia = email_login = password = ripeti_pass = null;
+        ragione_sociale = indirizzo_sede_leg = nome_cognome_rap = nome_cognome_tir =
+                telefono_tirocini = email_tirocini = foro_competente = provincia = email_login = password = cf_iva = ripeti_pass = null;
 
         ragione_sociale = request.getParameter("ragione_sociale");
         indirizzo_sede_leg = request.getParameter("ind_legale");
-        cf_rappresentante = request.getParameter("cod_fiscale");
-        partita_iva_rap = request.getParameter("part_iva");
+        cf_iva = request.getParameter("cf_iva");
         nome_cognome_rap = request.getParameter("nome_rappr_legale");
         nome_cognome_tir = request.getParameter("nome_resp_tirocini");
         telefono_tirocini = request.getParameter("telefono_resp");
@@ -131,19 +130,19 @@ public class registerServlet extends HttpServlet {
         password = request.getParameter("password");
         ripeti_pass = request.getParameter("ripeti_pass");
 
-        if (ragione_sociale == null && indirizzo_sede_leg == null && cf_rappresentante == null && partita_iva_rap == null &&
+        if (ragione_sociale == null && indirizzo_sede_leg == null && cf_iva == null &&
                 nome_cognome_rap == null && nome_cognome_tir == null && telefono_tirocini == null && email_tirocini == null && foro_competente ==
                 null && provincia == null && email_login == null && password == null && ripeti_pass == null) {
             return false;
         }
 
-        boolean checkOK = userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap,
+        boolean checkOK = userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_iva,
                 nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass);
 
         if (checkOK) {
 
             companyDao cDao = new companyDaoImpl();
-            boolean regOK = cDao.addUser(email_login, password, ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap,
+            boolean regOK = cDao.addUser(email_login, password, ragione_sociale, indirizzo_sede_leg, cf_iva,
                     nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente,
                     provincia);
 

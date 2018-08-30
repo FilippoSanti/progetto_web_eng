@@ -215,7 +215,7 @@
     <P class="p5 ft8">L’Ente/Azienda  ${nome_azienda} ,</P>
     <P class="p10 ft8">con sede legale in (indirizzo)  ${sede_legale} ${prov_sede} ,</P>
     <P class="p10 ft8">Codice Fiscale <SPAN class="ft9">(</SPAN>o Partita IVA<SPAN class="ft9">)</SPAN>  ${cf_piva_azienda} </P>
-    <P class="p11 ft8">rappresentato da  ${nome_rappresentante} ${cognome_rappresentante} </P>
+    <P class="p11 ft8">rappresentato da  ${nome_rapp}</P>
     <P class="p12 ft8">Premesso:</P>
     <P class="p13 ft8"><SPAN class="ft10">•</SPAN><SPAN class="ft11">che i tirocini formativi e di orientamento sono ora disciplinati dall'articolo 18 della legge 24 giugno 1997 n.196, dal suo regolamento di attuazione emanato con Decreto 25 marzo 1998, n.142 e dalla legge 148 del 14/09/2011;</SPAN></P>
     <P class="p14 ft8"><SPAN class="ft10">•</SPAN><SPAN class="ft12">che il Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica intende attuare progetti diretti al raggiungimento delle finalità indicate dall'art.18 L. 24 giugno 1997 n.196 e dall'art.1 del suddetto decreto 25 marzo 1998 n. 142, che promuovono tirocini formativi e di orientamento presso le aziende;</SPAN></P>

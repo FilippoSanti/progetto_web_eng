@@ -221,7 +221,7 @@ public class userController {
 
     }
 
-    public static boolean checkCompanyRegistration(HttpServletRequest request, String r, String ind, String cf, String part, String nc_rap,
+    public static boolean checkCompanyRegistration(HttpServletRequest request, String r, String ind, String cf_iva, String nc_rap,
                                                    String nc_tir, String tel_tir, String em_tir, String foro, String prov, String em_log, String pass, String ripeti) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
         boolean result = true;
         UserDao userDao = new UserDaoImpl();
@@ -240,8 +240,8 @@ public class userController {
             errorsList.add("Ragione sociale too short");
         }
 
-        //Part
-        if (part.length() < 5) {
+        //cf_iva
+        if (cf_iva.length() < 5) {
             result = false;
             Utils.signalErrors(request);
             errorsList.add("part too short");
@@ -254,12 +254,6 @@ public class userController {
             errorsList.add("Indirizzo too short");
         }
 
-        // CF
-        if (cf.length() < 5) {
-            result = false;
-            Utils.signalErrors(request);
-            errorsList.add("Codice fiscale too short");
-        }
 
         // NC_rap
         if (nc_rap.length() < 5) {

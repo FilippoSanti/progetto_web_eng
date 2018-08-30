@@ -2,6 +2,7 @@ package controller.servlets.general;
 
 import controller.dao.*;
 import controller.utilities.SecurityFilter;
+import controller.utilities.Utils;
 import model.Company;
 import model.Internship;
 import model.Security;
@@ -26,6 +27,7 @@ public class homeServlet extends HttpServlet {
             throws ServletException, IOException, PropertyVetoException, SQLException {
 
         response.setContentType("text/html;charset=UTF-8");
+
 
         Security securityModel = SecurityFilter.checkUsers(request);
 

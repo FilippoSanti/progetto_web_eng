@@ -187,25 +187,24 @@ public class editProfileServlet extends HttpServlet {
         String email_login = homeServlet.loggedUserEmail;
 
         String ragione_sociale, indirizzo_legle, nome_cognome_rapp, nome_cognome_tir, foro_comp,
-                cf_rapp, partita_iva, provincia, email_tirocini, descrizione, telefono;
+                cf_rapp, partita_iva, provincia, email_tirocini, descrizione, telefono, cf_iva;
 
         ragione_sociale = indirizzo_legle = nome_cognome_rapp = nome_cognome_tir = foro_comp = cf_rapp = partita_iva =
-                provincia = email_tirocini = descrizione = telefono = "";
+                provincia = email_tirocini = descrizione = cf_iva = telefono = "";
 
         ragione_sociale   = request.getParameter("ragione_sociale");
         indirizzo_legle   = request.getParameter("indirizzo_legale");
         nome_cognome_rapp = request.getParameter("nome_cognome_rap");
         nome_cognome_tir  = request.getParameter("nome_cognome_tir");
         foro_comp         = request.getParameter("foro_comp");
-        cf_rapp           = request.getParameter("cf_rapp");
-        partita_iva       = request.getParameter("partita_iva_rapp");
+        cf_iva            = request.getParameter("cf_iva");
         provincia         = request.getParameter("provincia");
         email_tirocini    = request.getParameter("email_tirocini");
         descrizione       = request.getParameter("descrizione");
         telefono          = request.getParameter("telefono");
 
         if (ragione_sociale.isEmpty() || indirizzo_legle.isEmpty() || nome_cognome_rapp.isEmpty() || nome_cognome_tir.isEmpty() || foro_comp.isEmpty() ||
-                cf_rapp.isEmpty() || partita_iva.isEmpty() || provincia.isEmpty() || email_tirocini.isEmpty() || descrizione.isEmpty()) {
+                cf_iva.isEmpty() || provincia.isEmpty() || email_tirocini.isEmpty() || descrizione.isEmpty()) {
 
             // Signal that an error has occurred
             request.getSession().setAttribute("errorMessage", "Fields cannot be empty");
@@ -216,7 +215,7 @@ public class editProfileServlet extends HttpServlet {
             companyDao compDao = new companyDaoImpl();
 
             // Update the fields in the DB
-            compDao.updateCompanyField(email_login, ragione_sociale, indirizzo_legle, cf_rapp, partita_iva,
+            compDao.updateCompanyField(email_login, ragione_sociale, indirizzo_legle, cf_iva,
                     nome_cognome_rapp, nome_cognome_tir, telefono, email_tirocini, foro_comp, provincia, true, descrizione, email_login);
 
             response.sendRedirect("/editProfile");

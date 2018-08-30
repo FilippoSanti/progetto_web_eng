@@ -4,8 +4,7 @@ public class Company {
 
     private String ragione_sociale;
     private String indirizzo_sede_leg;
-    private String cf_rappresentante;
-    private String partita_iva_rap;
+    private String cf_iva;
     private String nome_cognome_rap;
     private String telefono_tirocini;
     private String descrizione;
@@ -28,8 +27,7 @@ public class Company {
     public Company() {
         this.ragione_sociale = "";
         this.indirizzo_sede_leg = "";
-        this.cf_rappresentante = "";
-        this.partita_iva_rap = "";
+        this.cf_iva = "";
         this.nome_cognome_rap = "";
         this.telefono_tirocini = "";
         this.email_tirocini = "";
@@ -42,13 +40,12 @@ public class Company {
         this.descrizione = "";
 
     }
-    public Company(String nome_cognome_tir, String ragione_sociale, String indirizzo_sede_leg, String cf_rappresentante, String partita_iva_rap, String nome_cognome_rap, String telefono_tirocini, String email_tirocini,
+    public Company(String nome_cognome_tir, String ragione_sociale, String indirizzo_sede_leg, String cf_iva, String nome_cognome_rap, String telefono_tirocini, String email_tirocini,
                    String foro_competente, String provincia, String email_login, int company_id, String descrizione) {
         this.nome_cognome_tir = nome_cognome_tir;
         this.ragione_sociale = ragione_sociale;
         this.indirizzo_sede_leg = indirizzo_sede_leg;
-        this.cf_rappresentante = cf_rappresentante;
-        this.partita_iva_rap = partita_iva_rap;
+        this.cf_iva = cf_iva;
         this.nome_cognome_rap = nome_cognome_rap;
         this.telefono_tirocini = telefono_tirocini;
         this.email_tirocini = email_tirocini;
@@ -84,20 +81,12 @@ public class Company {
         this.indirizzo_sede_leg = indirizzo_sede_leg;
     }
 
-    public String getCf_rappresentante() {
-        return cf_rappresentante;
+    public String get_cf_iva() {
+        return cf_iva;
     }
 
-    public void setCf_rappresentante(String cf_rappresentante) {
-        this.cf_rappresentante = cf_rappresentante;
-    }
-
-    public String getPartita_iva_rap() {
-        return partita_iva_rap;
-    }
-
-    public void setPartita_iva_rap(String partita_iva_rap) {
-        this.partita_iva_rap = partita_iva_rap;
+    public void set_cf_iva(String cf_iva) {
+        this.cf_iva = cf_iva;
     }
 
     public int getCompany_id() {

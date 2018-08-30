@@ -220,6 +220,8 @@ public class profileServlet extends HttpServlet {
         companyDao compDao = new companyDaoImpl();
         Company company = compDao.getCompanyDataByEmail(email);
 
+        System.out.println(company.get_cf_iva());
+
         // Set the user attributes to display on screen
         request.setAttribute("companyData", company);
 
