@@ -10,7 +10,7 @@
 
         body {margin-top: 0px;margin-left: 0px;}
 
-        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 200px 0px;padding: 0px;border: none;width: 794px;}
+        #page_4 {position:relative; overflow: hidden;margin: 48px 0px 106px 0px;padding: 0px;border: none;width: 794px;}
 
         #page_4 #p4dimg1 {position:absolute;top:0px;left:373px;z-index:-1;width:48px;height:59px;}
         #page_4 #p4dimg1 #p4img1 {width:48px;height:59px;}
@@ -22,7 +22,6 @@
 
         #page_5 #p5dimg1 {position:absolute;top:0px;left:373px;z-index:-1;width:48px;height:59px;}
         #page_5 #p5dimg1 #p5img1 {width:48px;height:59px;}
-
 
 
 
