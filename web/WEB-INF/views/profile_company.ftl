@@ -378,7 +378,7 @@
                                                                 <p class="text-muted">${companyData.getIndirizzo_sede_leg()}</p>
                                                             </div>
                                                             <div class="m-b-20">
-                                                                <strong>Solicitor's Name</strong>
+                                                                <strong>Solicitor's Name and Surname</strong>
                                                                 <br>
                                                                 <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
                                                             </div> 
@@ -412,26 +412,27 @@
                                                                 <p class="text-muted">${companyData.getProvincia()}</p>
                                                             </div>
 
-                                                        <div class="m-b-20">
-                                                                <strong>Internships Manager's Surname</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
-                                                        </div>
-                                                        <div class="m-b-20">
-                                                                <strong>Internships Manager's Email Address</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getEmail_tirocini()}</p>
-                                                        </div>
                                                             <div class="m-b-20">
                                                                 <strong>Login Email address</strong>
                                                                 <br>
                                                                 <p class="text-muted">${companyData.getEmail_login()}</p>
                                                             </div>
 
+                                                            <div class="m-b-20">
+                                                                <strong>Internships Manager's Surname</strong>
+                                                                <br>
+                                                                <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
+                                                            </div>
 
+                                                            <div class="m-b-20">
+                                                                <strong>Internships Manager's Email Address</strong>
+                                                                <br>
+                                                                <p class="text-muted">${companyData.getEmail_tirocini()}</p>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <!-- Information -->
                                         </div>

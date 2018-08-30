@@ -155,7 +155,7 @@
                                                         <input type="text" value="${companyData.getIndirizzo_sede_leg()}" id="Legal_Address" class="form-control" name="indirizzo_legale">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="Solicitor_Name">Solicitor's Name</label>
+                                                        <label for="Solicitor_Name">Solicitor's Name and Surname</label>
                                                         <input type="text" value="${companyData.getNome_cognome_rap()}" id="Solicitor_Name" class="form-control" name="nome_cognome_rap">
                                                     </div>
                                                     <div class="form-group">
@@ -270,7 +270,7 @@
                                                             <option value="TO">Torino</option>
                                                             <option value="TP">Trapani</option>
                                                             <option value="TN">Trento</option>
-                                                            <option value="TV">Treviso</option>F
+                                                            <option value="TV">Treviso</option>
                                                             <option value="TS">Trieste</option>
                                                             <option value="UD">Udine</option>
                                                             <option value="VA">Varese</option>
@@ -287,6 +287,12 @@
                                                         <label for="Manager_Email">Internships Manager's Email Address</label>
                                                         <input type="text" value="${companyData.getEmail_tirocini()}" id="Manager_Email" class="form-control" name="email_tirocini">
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label for="Jurisdiction">Internships Manager's Surname</label>
+                                                        <input type="text" value="${companyData.getNome_cognome_rap()}" id="Cogn_Rapp" class="form-control"name="cogn_rapp">
+                                                    </div>
+
                                                     <div class="form-group">
                                                         <label for="Jurisdiction">Competent Jurisdiction</label>
                                                         <input type="text" value="${companyData.getForo_competente()}" id="Jurisdiction" class="form-control"name="foro_comp">
