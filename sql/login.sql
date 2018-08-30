@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 20, 2018 alle 14:43
+-- Creato il: Ago 30, 2018 alle 15:22
 -- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.8
 
@@ -167,19 +167,36 @@ CREATE TABLE `richieste_tirocinio` (
   `azienda_id` int(11) NOT NULL,
   `offerta_tirocinio_id` int(11) NOT NULL,
   `studente_id` int(11) NOT NULL,
-  `accettata` tinyint(1) NOT NULL
+  `accettata` tinyint(1) NOT NULL,
+  `cfu` varchar(88) NOT NULL,
+  `tutor_name` varchar(88) NOT NULL,
+  `tutor_surname` varchar(88) NOT NULL,
+  `tutor_email` varchar(88) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `richieste_tirocinio`
 --
 
-INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`) VALUES
-(4, 7, 13, 22, 0),
-(13, 7, 12, 23, 1),
-(15, 7, 12, 23, 1),
-(17, 2, 34, 56, 0),
-(18, 2, 44, 56, 0);
+INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`, `cfu`, `tutor_name`, `tutor_surname`, `tutor_email`) VALUES
+(17, 2, 34, 56, 0, '', '', '', ''),
+(18, 2, 44, 56, 0, '', '', '', ''),
+(19, 2, 35, 56, 0, '', '', '', ''),
+(20, 2, 35, 56, 0, '', '', '', ''),
+(21, 7, 35, 24, 1, '', '', '', ''),
+(22, 2, 12, 57, 0, '', '', '', ''),
+(23, 2, 12, 56, 0, '', '', '', ''),
+(24, 2, 12, 56, 0, '', '', '', ''),
+(25, 2, 36, 56, 0, '', '', '', ''),
+(27, 2, 41, 56, 0, '', '', '', ''),
+(28, 2, 37, 56, 0, '', '', '', ''),
+(29, 2, 37, 56, 0, '', '', '', ''),
+(30, 2, 36, 56, 0, '', '', '', ''),
+(31, 2, 36, 56, 0, '', '', '', ''),
+(32, 7, 36, 56, 0, '3', 'aaaaaaaaaaaaa', 'dddddddddddd', 'cazzo@cazzo.it'),
+(33, 7, 36, 56, 0, '3', 'cazz', 'cazz', 'cazzo@cazzo.it'),
+(34, 7, 36, 56, 0, '3', 'cazz', 'cazz', 'cazzo@cazzo.it'),
+(35, 7, 40, 56, 0, '3', 'cazz', 'dddddddddddd', 'cazzo@cazzo.it');
 
 -- --------------------------------------------------------
 
@@ -218,7 +235,8 @@ INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, 
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
 (24, 'catamarano', '$2a$12$TLo06N1XOkr8V2iJ07ERouT69C62y3E1Oth73ad8QmthL5P3.g4ii', '2018-09-07', 'AG', 'AL', 'aaa', 'ascccc', 4444, '11222', '1111', 'davide.ubaldi@outlook.it', 1, 'luzi', 'asdasdasd', 'user', 'asccc'),
 (55, 'asd', 'asd', '0000-00-00', 'asd', 'asd', 'asd', 'asd', 22, 'asd', 'asd', 'asd', 1, 'asd', 'asd', 'asd', 'asd'),
-(56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'user', 'asddd');
+(56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'user', 'asddd'),
+(57, 'Elisa', '$2a$12$8eJApav/TqV/JGLZ28aU9eTzCZ1FpsufyGfMYM7p/Mck.UclqllY6', '13/08/2018', 'AL', 'AG', ' ia dddddd', 'dasdasdasd', 63100, '32736964649', 'nesssuno', 'a@hotmail.it', 1, 'Giovanni', 'AgagagFAGAGA', 'user', 'fffff');
 
 --
 -- Indici per le tabelle scaricate
@@ -284,13 +302,13 @@ ALTER TABLE `offerta_tirocinio`
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Limiti per le tabelle scaricate
