@@ -4,13 +4,13 @@
 <HEAD>
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <META http-equiv="X-UA-Compatible" content="IE=8">
-    <TITLE>bcl_1945208724.htm</TITLE>
+    <TITLE>bcl_1891962.htm</TITLE>
     <META name="generator" content="BCL easyConverter SDK 5.0.101">
     <STYLE type="text/css">
 
         body {margin-top: 0px;margin-left: 0px;}
 
-        #page_1 {position:relative; overflow: hidden;margin: 48px 0px 46px 67px;padding: 0px;border: none;width: 727px;}
+        #page_1 {position:relative; overflow: hidden;margin: 35px 0px 46px 67px;padding: 0px;border: none;width: 727px;}
 
         #page_1 #p1dimg1 {position:absolute;top:0px;left:307px;z-index:-1;width:46px;height:57px;}
         #page_1 #p1dimg1 #p1img1 {width:46px;height:57px;}
@@ -20,7 +20,7 @@
 
         #page_2 {position:relative; overflow: hidden;margin: 48px 0px 46px 76px;padding: 0px;border: none;width: 718px;}
 
-        #page_2 #p2dimg1 {positizon:absolute;top:0px;left:298px;z-index:-1;width:46px;height:57px;}
+        #page_2 #p2dimg1 {position:absolute;top:0px;left:298px;z-index:-1;width:46px;height:57px;}
         #page_2 #p2dimg1 #p2img1 {width:46px;height:57px;}
 
 
@@ -54,7 +54,6 @@
 
         #page_6 #p6dimg1 {position:absolute;top:0px;left:374px;z-index:-1;width:46px;height:57px;}
         #page_6 #p6dimg1 #p6img1 {width:46px;height:57px;}
-
 
 
 
@@ -212,10 +211,10 @@
     <P class="p7 ft8">tra:</P>
     <P class="p8 ft8">L’Università degli Studi di L’Aquila – Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica, con sede legale in L’Aquila, C.F./P.I. 01021630668, rappresentata per la stipula del presente atto convenzionale, dalla Direttrice del Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica Prof.ssa Laura Tarantino, nata a Romal’ 08.10.1959 ,domiciliata per il presente atto presso la sede legale del l’Università, e autorizzato e delegato alla stipula della presente Convenzione dal Rettore dell’Università con D.R. n. 406/2018, prot. n. 16542 del 14.04.2018</P>
     <P class="p9 ft8">e</P>
-    <P class="p5 ft8">L’Ente/Azienda  ${nome_azienda} ,</P>
-    <P class="p10 ft8">con sede legale in (indirizzo)  ${sede_legale}  ( ${prov_sede} ) ,</P>
-    <P class="p10 ft8">Codice Fiscale <SPAN class="ft9">(</SPAN>o Partita IVA<SPAN class="ft9">)</SPAN>  ${cf_piva_azienda} </P>
-    <P class="p11 ft8">rappresentato da  ${nome_rappresentante}</P>
+    <P class="p5 ft8">L’Ente/Azienda  ${doc.getNome_azienda()} ,</P>
+    <P class="p10 ft8">con sede legale in (indirizzo)  ${doc.getSede_legale()}  ( ${doc.getProv_sede()} ) ,</P>
+    <P class="p10 ft8">Codice Fiscale <SPAN class="ft9">(</SPAN>o Partita IVA<SPAN class="ft9">)</SPAN>  ${doc.getCf_piva_azienda()} </P>
+    <P class="p11 ft8">rappresentato da ${doc.getNome_rapp()}</P>
     <P class="p12 ft8">Premesso:</P>
     <P class="p13 ft8"><SPAN class="ft10">•</SPAN><SPAN class="ft11">che i tirocini formativi e di orientamento sono ora disciplinati dall'articolo 18 della legge 24 giugno 1997 n.196, dal suo regolamento di attuazione emanato con Decreto 25 marzo 1998, n.142 e dalla legge 148 del 14/09/2011;</SPAN></P>
     <P class="p14 ft8"><SPAN class="ft10">•</SPAN><SPAN class="ft12">che il Dipartimento di Ingegneria e Scienze dell’Informazione e Matematica intende attuare progetti diretti al raggiungimento delle finalità indicate dall'art.18 L. 24 giugno 1997 n.196 e dall'art.1 del suddetto decreto 25 marzo 1998 n. 142, che promuovono tirocini formativi e di orientamento presso le aziende;</SPAN></P>
@@ -315,7 +314,7 @@
     <P class="p47 ft8">La presente convenzione viene redatta in unico originale, conservato agli atti dal Soggetto promotore. Copia del documento viene rilasciata al Soggetto ospitante.</P>
     <P class="p46 ft8">Ogni attività prevista dalla presente Convenzione si svolgerà nel rispetto dell'Ordinamento generale dello Stato e delle leggi che regolano l'attività di entrambi gli Enti.</P>
     <P class="p56 ft8">Le parti concordano di definire amichevolmente qualsiasi controversia dovesse insorgere dall'interpretazione o applicazione del presente Atto.</P>
-    <P class="p48 ft8">Qualora non fosse possibile raggiungere tale accordo, il Foro competente a dirimere la controversia sarà quello di  ${foro_competente}.</P>
+    <P class="p48 ft8">Qualora non fosse possibile raggiungere tale accordo, il Foro competente a dirimere la controversia sarà quello di  ${doc.getForo_comp()}.</P>
     <P class="p59 ft8">L’imposta di bollo è a carico del Soggetto ospitante, salvo accordi specifici tra le parti e secondo quanto previsto dalla normativa vigente.</P>
     <P class="p53 ft7">Art. 7 Trattamento dati</P>
     <P class="p54 ft8">Le parti dichiarano di essersi reciprocamente informate, di acconsentire che i dati personali raccolti per la formalizzazione del presente atto siano oggetto di trattamento per gli adempimenti di legge ai sensi del d. lgs. 196/03 e di essere a conoscenza di quanto previsto dall’art.13 dello stesso decreto.</P>

@@ -38,14 +38,6 @@ public class AgreementDocument {
         this.cf_piva_azienda = cf_piva_azienda;
     }
 
-    public String getCognome_rapp() {
-        return cognome_rapp;
-    }
-
-    public void setCognome_rapp(String cognome_rapp) {
-        this.cognome_rapp = cognome_rapp;
-    }
-
     public String getNome_rapp() {
         return nome_rapp;
     }
@@ -66,6 +58,14 @@ public class AgreementDocument {
         this.nome_rapp = nome_rapp;
     }
 
-    private String nome_azienda, sede_legale, prov_sede, cf_piva_azienda, cognome_rapp, nome_rapp;
+    public String getForo_comp() {
+        return foro_comp;
+    }
+
+    public void setForo_comp(String foro_comp) {
+        this.foro_comp = foro_comp;
+    }
+
+    private String nome_azienda, sede_legale, prov_sede, cf_piva_azienda, cognome_rapp, nome_rapp, foro_comp;
 
 }

@@ -30,7 +30,12 @@ public class documentsServlet extends HttpServlet {
         // URL Parameters
 
         String action = "action";
+        String type   = "type";
+        String id     = "id";
+
         String action_value = request.getParameter(action);
+        String type_value = request.getParameter(type);
+        String id_value = request.getParameter(id);
 
         // Check if the user is a logged company
         if (securityModel.getUser().equals("azienda")) {
@@ -54,8 +59,11 @@ public class documentsServlet extends HttpServlet {
             action_choose_page(response, request);
         }
 
+        // check admin boolean
+        boolean isAdmin = securityModel.getUser().equals("student") && securityModel.getRole().equals("admin");
+
         // Check if the user is a logged student
-        if (securityModel.getUser().equals("student")) {
+        if (securityModel.getUser().equals("student") && ! isAdmin) {
 
             // Student internships
             if (action_value != null && action_value.equals("internships")) {
@@ -65,11 +73,19 @@ public class documentsServlet extends HttpServlet {
         }
 
         // Check if the user is admin
-        if (securityModel.getUser().equals("student") &&
-                securityModel.getRole().equals("admin")) {
+        if (isAdmin) {
 
             if (action_value != null && action_value.equals("companies")) {
                 action_view_companies(request, response);
+                return;
+            }
+
+            // View a specific company document
+            if (action_value == null && type_value != null && id_value != null &&
+                    type_value.equals("company") && id_value.matches("[0-9]+")) {
+                int real_int = Integer.parseInt(id_value);
+                generateAgreementDocument(real_int, request, response);
+                return;
             }
         }
 
@@ -107,13 +123,14 @@ public class documentsServlet extends HttpServlet {
         aD.setSede_legale(companyModel.getIndirizzo_sede_leg());
         aD.setProv_sede(companyModel.getProvincia());
         aD.setCf_piva_azienda(companyModel.get_cf_iva());
+        aD.setForo_comp(companyModel.getForo_competente());
 
         request.setAttribute("doc", aD);
 
         if (Utils.checkFFUG(request)) {
+            System.out.println("firefox");
             resultString = "/WEB-INF/views/document_3_alt.ftl";
         } else resultString = "/WEB-INF/views/document_3.ftl";
-
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher(resultString);
@@ -121,8 +138,6 @@ public class documentsServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
-
-
 
     /** Student **/
     private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {

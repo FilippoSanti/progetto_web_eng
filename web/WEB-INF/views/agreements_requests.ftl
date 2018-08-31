@@ -53,8 +53,14 @@
                             </div>
                             <div class="col-md-4"></div>
                         </div>
-                        <br><br><br>
 
+                        <#if Message?has_content>
+                        <div class="alert alert-success" role="alert">
+                            ${Message}
+                        </div>
+                        </#if>
+
+                        <br><br><br>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
@@ -68,15 +74,6 @@
                                         </div>
 
                                     </#if>
-
-                                    <#if Message?has_content>
-
-                                        <div class="alert alert-success" role="alert">
-                                            ${Message}
-                                        </div>
-
-                                    </#if>
-
                                         <table class="table table-hover centra">
                                             <tbody>
 
@@ -94,7 +91,7 @@
                                                 	</div>
                                             	</td>
                                                <td>
-                                                    <label>Legal Address: <i> ${val.getIndirizzo_sede_leg()} </i>  --   Prov: <i>${val.getProvincia()}</i>   --   Internships Manager's Email Address: <i>${val.getEmail_tirocini()}</i>  --   Fiscal Code/P. IVA: <i>${val.getCf_rappresentante()}</i></label>
+                                                    <label>Legal Address: <i> ${val.getIndirizzo_sede_leg()} </i>  --   Prov: <i>${val.getProvincia()}</i>   --   Internships Manager's Email Address: <i>${val.getEmail_tirocini()}</i>  --   Fiscal Code/P. IVA: <i>${val.get_cf_iva()}</i></label>
                                                 </td>
 												<td>
                                                     <a href="viewProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorblue" data-target="#"><div class="centra ti-eye"></div>Profile</button></a>

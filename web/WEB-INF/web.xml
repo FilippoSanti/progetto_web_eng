@@ -218,16 +218,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>notifications</servlet-name>
-        <servlet-class>controller.servlets.administrator.viewPageservlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>notifications</servlet-name>
-        <url-pattern>/notifications</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>notify.do</servlet-name>
         <servlet-class>controller.servlets.administrator.notifyServlet</servlet-class>
     </servlet>
@@ -279,7 +269,7 @@
 
     <servlet>
         <servlet-name>documents</servlet-name>
-        <servlet-class>controller.servlets.company.documentsServlet</servlet-class>
+        <servlet-class>controller.servlets.general.documentsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
