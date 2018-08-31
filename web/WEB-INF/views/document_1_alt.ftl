@@ -62,9 +62,6 @@
         .ft23{font: bold 8px 'Times New Roman';line-height: 11px;}
         .ft24{font: bold 13px 'Times New Roman';margin-left: 3px;line-height: 15px;}
         .ft25{font: bold 13px 'Times New Roman';line-height: 15px;}
-        .ft26{font: bold 16px 'Times New Roman';line-height: 19px;}
-        .ft27{font: bold 16px 'Times New Roman';line-height: 18px;}
-        .ft28{font: bold 19px 'Times New Roman';line-height: 22px;}
 
         .p0{text-align: left;padding-left: 100px;margin-top: 67px;margin-bottom: 0px;}
         .p1{text-align: left;padding-left: 62px;margin-top: 1px;margin-bottom: 0px;}
@@ -104,20 +101,6 @@
         .p35{text-align: left;margin-top: 37px;margin-bottom: 0px;}
         .p36{text-align: left;padding-right: 109px;margin-top: 37px;margin-bottom: 0px;}
         .p37{text-align: left;margin-top: 35px;margin-bottom: 0px;}
-        .p38{text-align: right;padding-right: 120px;margin-top: 67px;margin-bottom: 0px;}
-        .p39{text-align: left;padding-left: 129px;margin-top: 1px;margin-bottom: 0px;}
-        .p40{text-align: left;padding-left: 258px;margin-top: 12px;margin-bottom: 0px;}
-        .p41{text-align: left;padding-left: 76px;margin-top: 0px;margin-bottom: 0px;}
-        .p42{text-align: left;padding-left: 76px;margin-top: 36px;margin-bottom: 0px;}
-        .p43{text-align: left;padding-left: 76px;margin-top: 18px;margin-bottom: 0px;}
-        .p44{text-align: left;padding-left: 76px;margin-top: 17px;margin-bottom: 0px;}
-        .p45{text-align: left;padding-left: 76px;margin-top: 1px;margin-bottom: 0px;}
-        .p46{text-align: left;padding-left: 76px;margin-top: 34px;margin-bottom: 0px;}
-        .p47{text-align: left;padding-left: 76px;margin-top: 40px;margin-bottom: 0px;}
-        .p48{text-align: left;padding-left: 76px;margin-top: 37px;margin-bottom: 0px;}
-        .p49{text-align: left;padding-left: 76px;margin-top: 35px;margin-bottom: 0px;}
-        .p50{text-align: left;padding-left: 76px;margin-top: 3px;margin-bottom: 0px;}
-        .p51{text-align: left;padding-left: 76px;margin-top: 73px;margin-bottom: 0px;}
 
         .td0{border-left: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 334px;vertical-align: bottom;}
         .td1{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 318px;vertical-align: bottom;}
@@ -179,7 +162,7 @@
     <P class="p8 ft8"><SPAN class="ft7">Codice fiscale</SPAN> ${cf_studente} </P>
     <P class="p8 ft8"><SPAN class="ft7">Telefono </SPAN> ${telefono_studente} </P>
     <P class="p10 ft9">Attuale condizione (barrare la casella – possibilità di doppia scelta):</P>
-    <P class="p11 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Studente Corso di Laurea in:  ${cdl_studente} </SPAN></P>
+    <P class="p11 ft8"><SPAN class="ft10">☒</SPAN><SPAN class="ft11">Studente Corso di Laurea in:  ${cdl_studente} </SPAN></P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Diplomato. Diploma universitario in: ________________________________________</SPAN></P>
     <P class="p13 ft8">(entro 12 mesi dal diploma)</P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Laureato. Laurea in: ____________________________________________________</SPAN></P>
@@ -187,7 +170,7 @@
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Dottorato di ricerca in: ___________________________________________________</SPAN></P>
     <P class="p14 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Scuola o corso di perfezionamento o specializzazione in: ________________________</SPAN></P>
     <P class="p15 ft8">__________________________________________________________________</P>
-    <P class="p12 ft8">Barrare se trattasi di soggetto portatore di handicap:</P>
+    <P class="p12 ft8">Barrare se trattasi di soggetto portatore di handicap:</P>    <!-- casella flaggata: &#9746 => ☒ -->
     <TABLE cellpadding=0 cellspacing=0 class="t1">
         <TR>
             <TD rowspan=2 class="tr5 td6"><P class="p16 ft8">Si</P></TD>

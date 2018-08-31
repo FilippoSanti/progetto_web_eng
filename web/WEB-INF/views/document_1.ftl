@@ -179,7 +179,7 @@
     <P class="p8 ft8"><SPAN class="ft7">Codice fiscale</SPAN> ${cf_studente} </P>
     <P class="p8 ft8"><SPAN class="ft7">Telefono </SPAN> ${telefono_studente} </P>
     <P class="p10 ft9">Attuale condizione (barrare la casella – possibilità di doppia scelta):</P>
-    <P class="p11 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Studente Corso di Laurea in:  ${cdl_studente} </SPAN></P>
+    <P class="p11 ft8"><SPAN class="ft10">☒</SPAN><SPAN class="ft11">Studente Corso di Laurea in:  ${cdl_studente} </SPAN></P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Diplomato. Diploma universitario in: ________________________________________</SPAN></P>
     <P class="p13 ft8">(entro 12 mesi dal diploma)</P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Laureato. Laurea in: ____________________________________________________</SPAN></P>
@@ -187,7 +187,7 @@
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Dottorato di ricerca in: ___________________________________________________</SPAN></P>
     <P class="p14 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Scuola o corso di perfezionamento o specializzazione in: ________________________</SPAN></P>
     <P class="p15 ft8">__________________________________________________________________</P>
-    <P class="p12 ft8">Barrare se trattasi di soggetto portatore di handicap:</P>
+    <P class="p12 ft8">Barrare se trattasi di soggetto portatore di handicap:</P>    <!-- casella flaggata: &#9746 => ☒ -->
     <TABLE cellpadding=0 cellspacing=0 class="t1">
         <TR>
             <TD rowspan=2 class="tr5 td6"><P class="p16 ft8">Si</P></TD>
