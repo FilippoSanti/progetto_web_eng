@@ -406,7 +406,7 @@
                                                             <div class="m-b-20">
                                                                 <strong>Fiscal Code</strong>
                                                                 <br>
-                                                                <p class="text-muted">${userData.getCod_fiscale()}</p>
+                                                                <p class="text-muted uppercase">${userData.getCod_fiscale()}</p>
                                                         </div>
 
                                                     </div>

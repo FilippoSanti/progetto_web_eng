@@ -369,7 +369,7 @@
                                     <div class="form-group">
                                         <label for="code">Codice Fiscale<span class="text-danger">*</span></label>
                                         <input type="text" name="cod_fiscale" parsley-trigger="change" required
-                                               placeholder="Enter fiscal code" class="form-control" id="code">
+                                               placeholder="Enter fiscal code" class="form-control uppercase" id="code">
                                     </div>
 
                                     <div class="form-group">

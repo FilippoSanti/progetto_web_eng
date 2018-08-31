@@ -383,19 +383,14 @@
                                                                 <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
                                                             </div> 
                                                             <div class="m-b-20">
-                                                                <strong>Internships Manager's Name</strong>
+                                                                <strong>Internships Manager's Name and Surname</strong>
                                                                 <br>
                                                                 <p class="text-muted">${companyData.getNome_cognome_tir()}</p>
                                                             </div>
-                                                             <div class="m-b-20">
-                                                                <strong>Internships Manager's Telephone Number</strong>
+                                                            <div class="m-b-20">
+                                                                <strong>Internships Manager's Email Address</strong>
                                                                 <br>
-                                                                <p class="text-muted">${companyData.getTelefono_tirocini()}</p>
-                                                            </div>
-                                                             <div class="m-b-20">
-                                                                <strong>Competent Jurisdiction</strong>
-                                                                <br>
-                                                                <p class="text-muted">${companyData.getForo_competente()}</p>
+                                                                <p class="text-muted">${companyData.getEmail_tirocini()}</p>
                                                             </div>
                                                         </div>
 
@@ -403,7 +398,7 @@
                                                             <div class="m-b-20">
                                                                 <strong>Fiscal Code (NIN)/Partita I.V.A. (VAT)</strong>
                                                                 <br>
-                                                                <p class="text-muted">${companyData.get_cf_iva()}</p>
+                                                                <p class="text-muted uppercase">${companyData.get_cf_iva()}</p>
                                                             </div>
 
                                                             <div class="m-b-20">
@@ -419,15 +414,15 @@
                                                             </div>
 
                                                             <div class="m-b-20">
-                                                                <strong>Internships Manager's Surname</strong>
+                                                                <strong>Internships Manager's Telephone Number</strong>
                                                                 <br>
-                                                                <p class="text-muted">${companyData.getNome_cognome_rap()}</p>
+                                                                <p class="text-muted">${companyData.getTelefono_tirocini()}</p>
                                                             </div>
 
                                                             <div class="m-b-20">
-                                                                <strong>Internships Manager's Email Address</strong>
+                                                                <strong>Competent Jurisdiction</strong>
                                                                 <br>
-                                                                <p class="text-muted">${companyData.getEmail_tirocini()}</p>
+                                                                <p class="text-muted">${companyData.getForo_competente()}</p>
                                                             </div>
 
                                                         </div>

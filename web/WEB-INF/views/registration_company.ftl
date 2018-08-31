@@ -83,13 +83,13 @@
                                             </div>
 
                                        <div class="form-group">
-                                                <label for="solicitor">Solicitor's Name<span class="text-danger">*</span></label>
+                                                <label for="solicitor">Solicitor's Name and Surname<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_rappr_legale" parsley-trigger="change" required
                                                        placeholder="Enter Solicitor's Name " class="form-control" id="solicitor">
                                         </div>
 
                                        <div class="form-group">
-                                                <label for="managerName">Internships Manager's Name<span class="text-danger">*</span></label>
+                                                <label for="managerName">Internships Manager's Name and Surname<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_resp_tirocini" parsley-trigger="change" required
                                                        placeholder="Enter Internships Manager's Name" class="form-control" id="managerName">
                                        </div>

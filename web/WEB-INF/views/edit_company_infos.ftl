@@ -159,19 +159,20 @@
                                                         <input type="text" value="${companyData.getNome_cognome_rap()}" id="Solicitor_Name" class="form-control" name="nome_cognome_rap">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="Manager_Name">Internships Manager's Name</label>
+                                                        <label for="Manager_Name">Internships Manager's Name and Surname</label>
                                                         <input type="text" value="${companyData.getNome_cognome_tir()}" id="Manager_Name" class="form-control" name="nome_cognome_tir" >
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="Manager_Phone">Internships Manager's Telephone Number</label>
-                                                        <input type="text" value="${companyData.getTelefono_tirocini()}" id="Manager_Phone" class="form-control" name="telefono">
+                                                        <label for="Jurisdiction">Competent Jurisdiction</label>
+                                                        <input type="text" value="${companyData.getForo_competente()}" id="Jurisdiction" class="form-control"name="foro_comp">
                                                     </div>
+
                                                 </div>
 
                                                 <div class="col-md-6 mrgntopcol">
                                                     <div class="form-group">
-                                                        <label for="Fiscal_Code">Fiscal Code (NIN)/Partita I.V.A. (VAT)</label>
-                                                        <input type="text" value="${companyData.get_cf_iva()}" id="Fiscal_Code" class="form-control" name="cf_iva">
+                                                        <label class="uppercase" for="Fiscal_Code">Fiscal Code (NIN)/Partita I.V.A. (VAT)</label>
+                                                        <input type="text" value="${companyData.get_cf_iva()}" id="Fiscal_Code" class="form-control uppercase" name="cf_iva">
                                                     </div>
 
                                                     <div class="form-group">
@@ -289,14 +290,10 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="Jurisdiction">Internships Manager's Surname</label>
-                                                        <input type="text" value="${companyData.getNome_cognome_rap()}" id="Cogn_Rapp" class="form-control"name="cogn_rapp">
+                                                        <label for="Manager_Phone">Internships Manager's Telephone Number</label>
+                                                        <input type="text" value="${companyData.getTelefono_tirocini()}" id="Manager_Phone" class="form-control" name="telefono">
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label for="Jurisdiction">Competent Jurisdiction</label>
-                                                        <input type="text" value="${companyData.getForo_competente()}" id="Jurisdiction" class="form-control"name="foro_comp">
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
