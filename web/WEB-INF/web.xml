@@ -277,6 +277,16 @@
         <url-pattern>/documents</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>viewDocumentation</servlet-name>
+        <servlet-class>controller.servlets.general.viewDocumentationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewDocumentation</servlet-name>
+        <url-pattern>/viewDocumentation</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.

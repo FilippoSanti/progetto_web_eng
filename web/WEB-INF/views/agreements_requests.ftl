@@ -64,7 +64,6 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h6 class="m-t-0 agrmnts">Agreements Requests List</h6>
                                     <div class="table-responsive">
 
                                     <#if errorMessage?has_content>
@@ -97,10 +96,11 @@
                                                     <a href="viewProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorblue" data-target="#"><div class="centra ti-eye"></div>Profile</button></a>
                                                 </td>
                                                 <td>
-                                                    <a href="agreementRequests?action=approve&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorgreen" data-target="#"><div class="centra ti-check"></div>Approve</button></a>
+                                                    <a href="agreementRequests?action=approve&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorgreen" data-target="#"><div class="centra ti-check"></div>Documentation</button></a>
                                                 </td>
                                                 <td>
-                                                    <a href="agreementRequests?action=delete&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorred" data-target="#"><div class="centra ti-close"></div>Refuses</button></a></td>
+                                                    <a href="agreementRequests?action=delete&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorred" data-target="#"><div class="centra ti-close"></div>Refuses</button></a>
+                                                </td>
                                             </tr>
 
                                                 </#list>

@@ -11,6 +11,15 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 
+        <!-- DataTables -->
+        <link href="../../assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="../../assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Multi Item Selection examples -->
+        <link href="../../assets/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
@@ -32,7 +41,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="../../index.html" class="logo">
+                    <a href="index.html" class="logo">
                         <span>
                             <img src="../../assets/images/logo.png" alt="">
                         </span>
@@ -44,36 +53,7 @@
 
                 <nav class="navbar-custom">
 
-                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
-                        <li class="dropdown notification-list hide-phone">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-earth"></i> English  <i class="mdi mdi-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Spanish
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Italian
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    French
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    Russian
-                                </a>
-
-                            </div>
-                        </li>
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">>
 
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -151,11 +131,6 @@
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ti-lock"></i> <span>Lock Screen</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="ti-power-off"></i> <span>Logout</span>
                                 </a>
 
@@ -202,7 +177,7 @@
                     <ul class="metismenu" id="side-menu">
                         <li class="menu-title">Navigation</li>
                         <li>
-                            <a href="../../index.html">
+                            <a href="index.html">
                                 <i class="ti-home"></i><span> Dashboard </span>
                             </a>
                         </li>
@@ -260,8 +235,8 @@
                         <li>
                             <a href="javascript: void(0);"><i class="ti-files"></i><span> Pages </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="../../pages-login.html">Login</a></li>
-                                <li><a href="../../pages-register.html">Register</a></li>
+                                <li><a href="pages-login.html">Login</a></li>
+                                <li><a href="pages-register.html">Register</a></li>
                                 <li><a href="pages-forget-password.html">Forget Password</a></li>
                                 <li><a href="pages-lock-screen.html">Lock-screen</a></li>
                                 <li><a href="pages-blank.html">Blank page</a></li>
@@ -316,182 +291,117 @@
                 <div class="content">
                     <div class="container-fluid">
 
-                         <div class="row">
+                        <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
-                                 <h4 class="header-title m-t-0 m-b-20">My Account</h4>
+                                <br>
+                                 <h4 class="header-title m-t-0 m-b-20">Documentation's Iter</h4>
                             </div>
-                            <br><br>
-                             <br><br>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="p-0 text-center">
-                                    <div class="member-card">
-                                        <div class="thumb-xl member-thumb m-b-10 center-page">
+                    <#if errorMessage?has_content>
 
-                                            <#if user_type?has_content>
-                                                <img src="/displayImage?type=${user_type}&id=${user_id}" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            <#else>
-                                                <img src="/displayImage" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            </#if>
-                                        </div>
+                     <div class="alert alert-danger" role="alert">
+                         ${errorMessage}
+                     </div>
 
-                                        <div class="">
-                                            <h5 class="m-b-5 mt-3">${userData.getNome()} ${userData.getCognome()}</h5>
-                                        </div>
+                    </#if>
+                    <br><br><br>
+
+                        <div class="m-b-20">
+                            <div class="container">
+
+                                <div class="row">
+
+                                    <div class="col-md-3 centra">
+                                        <b>STEP 1</b>                                    
                                     </div>
 
-                                </div> <!-- end card-box -->
+                                    <div class="col-md-6 centra">
+                                        <i>Download this document, <ins>SIGN IT</ins> and <ins>REGISTER IT</ins> by the students secretary.</i>
+                                    </div>                                    
+                                </div>
 
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
+<br><br>
 
-                        <div class="m-t-30">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="home-b1">
-                                    <div class="row">
+                                <div class="row">
 
-                                        <div class="col-md-1"></div>
+                                    <div class="col-sm-3"></div>
 
+                                    <iframe src="/documents?type=${type}&id=${id}" style="display:none;" name="frame"></iframe>
 
-                                        <#if errorMessage?has_content>
-
-                                        <div class="alert alert-danger" role="alert">
-                                            ${errorMessage}
-                                        </div>
-
-                                        </#if>
-
-                                        <div class="col-md-10">
-                                            <!-- Personal-Information -->
-                                            <div class="panel panel-default panel-fill">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Personal Informations</h3>
-                                                </div>
-
-                                                <div class="container">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>Name</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getNome()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Birth Date</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getDate()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Birth Prov</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getProvincia_n()}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>Surname</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getCognome()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Birth Place</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getLuogo_nascita()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Fiscal Code</strong>
-                                                                <br>
-                                                                <p class="text-muted uppercase">${userData.getCod_fiscale()}</p>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <!-- Personal-Information -->
-
-                                            <!-- Social -->
-                                            <div class="panel panel-default panel-fill">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Others Informations</h3>
-                                                </div>
-
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>Address</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getResidenza()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Resident Prov</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getProvincia()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Telephone Number</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getTel()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Degree Course</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getCorso()}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6 mrgntopcol">
-                                                            <div class="m-b-20">
-                                                                <strong>City</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getCitta()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>C.A.P.</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getCap()}</p>
-                                                            </div><div class="m-b-20">
-                                                                <strong>E-mail</strong>
-                                                                <br>
-                                                                <p class="text-muted">${userData.getEmail()}</p>
-                                                            </div>
-                                                            <div class="m-b-20">
-                                                                <strong>Handicap</strong>
-                                                                <br>
-                                                                <p class="text-muted">
-
-                                                                <#if userData.isHandicap() == true>
-                                                                <p class="text-muted">Yes</p>
-
-                                                                <#else>
-                                                                <p class="text-muted">No</p>
-                                                                </#if>
-                                                             </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Social -->
-                                        </div>
-
-                                        <div class="col-md-1"></div>
-
+                                    <div class="centra">
+                                        <a href="javascript:frames['frame'].print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i> Download</a>
+                                        <a href="/documents?type=${type}&id=${id}"><button type="button" class="btn btn-outline-secondary">View document</button></a>
                                     </div>
                                 </div>
-                            </div>
+
+<br><br><br><br><br>
+
+                                <div class="row">
+
+                                    <div class="col-md-3 centra">
+                                        <b>STEP 2</b>                                    
+                                    </div>
+
+                                    <div class="col-md-6 centra">
+                                        <i>Be sure to upload the document only after it has been properly <ins>SIGNED</ins> and <ins>REGISTERED</ins>.</i>
+                                    </div>                                    
+                                </div>
+
+<br><br>
+
+                                <div class="row">
+
+                                    <div class="col-sm-3"></div>
+
+                                    <form action="viewDocumentation?action=upload&type=${type}&id=${id}" method ="post" enctype="multipart/form-data">
+                                    <div class="centra">
+                                        <input type="file" name="file" class="filestyle" data-input="false">
+                                        <button type="submit" class="btn btn-secondary">Upload</button>
+                                    </div>
+                                    </form>
+                                </div>
+
+<br><br><br><br><br>
+
+                                <div class="row">
+
+                                    <div class="col-md-3 centra">
+                                        <b>STEP 3</b>                                    
+                                    </div>
+                                    
+                                    <div class="col-md-6 centra">
+                                        <i>Remember to enable the company <ins>ONLY</ins> after completing all the previous steps related to the documentation.</i>                                    
+                                    </div>                                    
+                                </div>
+
+<br><br>
+                                
+                                <div class="row">
+
+                                    <div class="col-sm-3"></div>
+                                    <!-- TODO:  eseguire il controllo e abilitare il tasto (togliendo la dicitura: "disabled") solo dopo che il documento è stato ricaricato firmato come da step 2 -->
+                                    <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-target="validateCompany" disabled>Validate Company</button>
+                                </div>
+
+                            </div>                                           
+
                         </div>
 
                     </div> <!-- container -->
 
-
-                    <#include "/WEB-INF/views/FreeMarker/footer.ftl">
+<br><br>
+                    <div class="footer">
+                        <div class="pull-right hide-phone">
+                            Web Engineering Project 
+                        </div>
+                        <div>
+                             Copyright © 2018 - <a class="ti-infinite infindim"></a>
+                        </div>
+                        
+                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
+                    </div>
 
                 </div> <!-- content -->
 
@@ -516,9 +426,66 @@
         <script src="../../assets/js/waves.js"></script>
         <script src="../../assets/js/jquery.slimscroll.js"></script>
 
+        <!-- Required datatable js -->
+        <script src="../../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="../../assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="../../assets/plugins/datatables/jszip.min.js"></script>
+        <script src="../../assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="../../assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="../../assets/plugins/datatables/buttons.print.min.js"></script>
+
+        <!-- Key Tables -->
+        <script src="../../assets/plugins/datatables/dataTables.keyTable.min.js"></script>
+
+        <!-- Responsive examples -->
+        <script src="../../assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="../../assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- Selection table -->
+        <script src="../../assets/plugins/datatables/dataTables.select.min.js"></script>
+
         <!-- App js -->
         <script src="../../assets/js/jquery.core.js"></script>
         <script src="../../assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                // Default Datatable
+                $('#datatable').DataTable();
+
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf']
+                });
+
+                // Key Tables
+
+                $('#key-table').DataTable({
+                    keys: true
+                });
+
+                // Responsive Datatable
+                $('#responsive-datatable').DataTable();
+
+                // Multi Selection Datatable
+                $('#selection-datatable').DataTable({
+                    select: {
+                        style: 'multi'
+                    }
+                });
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
+
+        </script>
+
 
     </body>
 </html>

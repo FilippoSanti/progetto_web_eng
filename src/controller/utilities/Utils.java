@@ -1,5 +1,10 @@
 package controller.utilities;
 
+import com.j256.simplemagic.ContentInfo;
+import com.j256.simplemagic.ContentInfoUtil;
+import com.j256.simplemagic.ContentType;
+import com.j256.simplemagic.logger.Logger;
+import com.j256.simplemagic.logger.LoggerFactory;
 import controller.dao.UserDao;
 import controller.dao.UserDaoImpl;
 import controller.dao.companyDao;
@@ -19,6 +24,7 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -243,5 +249,30 @@ public class Utils {
             }
         }
         return result;
+    }
+
+    public static String checkPDF(InputStream fileContent) throws IOException {
+        ContentInfoUtil util = new ContentInfoUtil();
+        ContentInfo info = util.findMatch(fileContent);
+        return info.getName();
+    }
+
+    // buffer size used for reading and writing
+    private static final int BUFFER_SIZE = 1024;
+
+    /**
+     * Reads all bytes from an input stream and writes them to an output stream.
+     */
+    public static long copy(InputStream source, OutputStream sink)
+            throws IOException
+    {
+        long nread = 0L;
+        byte[] buf = new byte[BUFFER_SIZE];
+        int n;
+        while ((n = source.read(buf)) > 0) {
+            sink.write(buf, 0, n);
+            nread += n;
+        }
+        return nread;
     }
 }
