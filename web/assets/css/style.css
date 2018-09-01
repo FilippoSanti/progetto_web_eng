@@ -116,7 +116,8 @@ File: Main file css
 }
 
 .topbar .topbar-left .logo img {
-  height: 26px;
+  height: 41px;
+  margin-top: -4px;
 }
 
 .navbar-custom {
