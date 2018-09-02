@@ -953,7 +953,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font-15{
-font-size: -15px;
+font-size: 15px;
 }
 
 .thumb-sm {
@@ -3508,4 +3508,8 @@ font-size: 12px;
 
 .mrgnlft15px{
   margin-left: 15px;
+}
+
+.hei45{
+  height: 45px !important;
 }

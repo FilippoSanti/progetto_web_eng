@@ -5,7 +5,7 @@
                 <div class="topbar-left">
                     <a href="/home" class="logo">
                         <span>
-                            <img src="assets/images/logo.png" alt="">
+                            <img class="hei45" src="assets/images/logo.png" alt="">
                         </span>
                         <i>
                             <img src="assets/images/logo_sm.png" alt="">

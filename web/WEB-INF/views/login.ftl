@@ -38,7 +38,7 @@
 
                                     <h2 class="text-uppercase m-t-0 m-b-30">
                                         <a href="../src/view/index.jsp" class="text-success">
-                                            <span><img src="../../assets/images/logo_dark.png" alt="" height="30"></span>
+                                            <span><img src="../../assets/images/logo_dark.png" alt="" height="45"></span>
                                         </a>
                                     </h2>
                                     <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
