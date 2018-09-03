@@ -20,8 +20,8 @@ public class companyDaoImpl implements companyDao {
     private static final String CHECK_COMPANY_ENABLED = "SELECT * FROM azienda WHERE email_login = ? AND abilitata = 1";
     private static final String ENABLE_COMPANY = "UPDATE azienda SET abilitata = '1' WHERE azienda.email_login = ?";
     private static final String CHECK_EM_EXISTS = "SELECT * FROM azienda WHERE email_login = ?";
-    private static final String COMPANY_LIST = "SELECT * FROM azienda WHERE abilitata = 1 ORDER BY azienda.azienda_id ASC";
-    private static final String COMPANY_LIST_NOT_APPROVED = "SELECT * FROM azienda WHERE abilitata = 0 ORDER BY azienda.azienda_id ASC";
+    private static final String COMPANY_LIST = "SELECT * FROM azienda WHERE abilitata = 1 ORDER BY azienda.azienda_id DESC";
+    private static final String COMPANY_LIST_NOT_APPROVED = "SELECT * FROM azienda WHERE abilitata = 0 ORDER BY azienda.azienda_id DESC";
     private static final String UPDATE_COMPANY_DATA = "UPDATE azienda SET email_login = ?, password = ? WHERE azienda.email_login = ?";
     private static final String UPDATE_COMPANY_INFO = "UPDATE azienda\n" +
             "      SET `email_login` = ?, `ragione_sociale` = ?, `indirizzo_sede_legale` = ?, \n" +
@@ -37,6 +37,7 @@ public class companyDaoImpl implements companyDao {
     private final static String DELETE_COMPANY_BY_ID = "DELETE FROM azienda WHERE azienda.azienda_id = ?";
     private static final String GET_COMPANY_ID_BY_INTERNSHIP = "SELECT azienda_id FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
     private static final String GET_ID_BY_NAME = "SELECT azienda_id FROM azienda WHERE ragione_sociale = ?";
+    private static final String APPROVED_COMPANIES_LIST = "SELECT * FROM azienda WHERE abilitata = 1 ORDER BY azienda.azienda_id DESC";
 
     /**
      * Get a company object by its login_email
@@ -547,5 +548,35 @@ public class companyDaoImpl implements companyDao {
         }
         dbConnection.close();
         return az_id;
+    }
+
+    public ArrayList<Company> getApprovedCompaniesList() throws SQLException, IOException, PropertyVetoException {
+        ArrayList<Company> companiesList = new ArrayList<>();
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(APPROVED_COMPANIES_LIST);
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            Company company = new Company(
+                    rs.getString("nome_cognome_tirocini"),
+                    rs.getString("ragione_sociale"),
+                    rs.getString("indirizzo_sede_legale"),
+                    rs.getString("cf_iva"),
+                    rs.getString("nome_cognome_rappresentante"),
+                    rs.getString("telefono_tirocini"),
+                    rs.getString("email_tirocini"),
+                    rs.getString("foro_competente"),
+                    rs.getString("provincia"),
+                    rs.getString("email_login"),
+                    rs.getInt("azienda_id"),
+                    rs.getString("descrizione")
+            );
+            companiesList.add(company);
+        }
+
+        dbConnection.close();
+        return companiesList;
     }
 }

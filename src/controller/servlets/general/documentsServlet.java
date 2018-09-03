@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class documentsServlet extends HttpServlet {
 
@@ -93,6 +94,12 @@ public class documentsServlet extends HttpServlet {
 
     /** Admin **/
     private void action_view_companies(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        // Approved companies have signed documents associated, so it's easier to manage them
+        companyDao cDao = new companyDaoImpl();
+        List<Company> cList = cDao.getApprovedCompaniesList();
+
+        request.setAttribute("cData", cList);
 
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);

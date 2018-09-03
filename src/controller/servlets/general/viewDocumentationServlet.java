@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.beans.PropertyVetoException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.sql.SQLException;
 
 /**
@@ -68,19 +65,41 @@ public class viewDocumentationServlet extends HttpServlet {
                     id_value.matches("[0-9]+")) {
                 int real_id = Integer.valueOf(id_value);
                 action_upload_admin_document(real_id, request, response);
+                return;
+            }
+
+            // View a signed pdf document
+            if (action_value != null && type_value != null && id_value != null &&
+                    action_value.equals("requestDocument") && type_value.equals("company") &&
+                    id_value.matches("[0-9]+")) {
+                int real_id = Integer.valueOf(id_value);
+                action_view_signed_document(real_id, request, response);
+                return;
             }
         }
     }
 
+    /** Administrator functions below **/
     // Show the documentation iter of a specific company
     private void action_show_company_documentation(int company_id, HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
+        companyDao cDao = new companyDaoImpl();
+
+        // If the company has already been enabled, we print a message to inform the user
+        if (cDao.checkCompanyEnabled(cDao.getEmailByID(company_id))) {
+            request.setAttribute("companyApproved", "Be careful, this company has already been approved");
+        }
+
+        // Check if we can enable the approve button
+        // We do that only if the signed document exists in a directory
+        if (checkForDocumentation(company_id)) {
+            request.setAttribute("approveButton", "enabled");
+        }
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
 
         // Get the company info
-        companyDao cDao = new companyDaoImpl();
         Company companyModel = cDao.getCompanyDataByEmail(cDao.getEmailByID(company_id));
 
         request.setAttribute("id", companyModel.getCompany_id());
@@ -91,9 +110,14 @@ public class viewDocumentationServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
 
-        // Chrome browser fix
+        // Delete old messages and error messages every time we load the page
+        // Chrome browser fix included
         if (request.getSession().getAttribute("errorMessage") != null) {
             request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
         }
     }
 
@@ -115,12 +139,61 @@ public class viewDocumentationServlet extends HttpServlet {
         String pathname = context.getRealPath(filename);
 
         String MIME_TYPE = Utils.checkPDF(fileContent);
-        if (MIME_TYPE.equals("application/pdf")) {
-            OutputStream out = new FileOutputStream(pathname);
-            Utils.copy(fileContent, out);
-        } else {
+
+        // Check for the file type and upload the pdf
+        if (MIME_TYPE == null || !MIME_TYPE.equals("pdf")) {
             request.getSession().setAttribute("errorMessage", "Please upload a valid pdf file");
             response.sendRedirect("/viewDocumentation?type=company&id=" + company_id);
+        } else {
+            OutputStream out = new FileOutputStream(pathname);
+            Utils.copy(fileContent, out);
+
+            // File uploaded correctly
+            request.getSession().setAttribute("Message", "File uploaded successfully");
+            response.sendRedirect("/viewDocumentation?type=company&id=" + company_id);
+        }
+    }
+
+    // This method checks for the signed document uploaded by the administrator
+    // If so, we enable the approve button on the page
+    private boolean checkForDocumentation(int company_id) {
+
+        boolean result = false;
+        // Get the servlet context and build a pathname for the file
+        String filePathString = "/assets/documents/" + "company_" + company_id + ".pdf";
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filePathString);
+
+        File f = new File(pathname);
+        if(f.exists() && !f.isDirectory()) {
+            result = true;
+        }
+        return result;
+    }
+
+    // Serve a signed document to the user
+    private void action_view_signed_document(int real_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        if (!checkForDocumentation(real_id)) {
+            response.sendRedirect("/documents?action=companies");
+            return;
+        }
+        String real_filename = "company_" + real_id + ".pdf";
+        String filePathString = "/assets/documents/" + real_filename;
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filePathString);
+
+        File pdfFile = new File(pathname);
+
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition", "attachment; filename=" + real_filename);
+        response.setContentLength((int) pdfFile.length());
+
+        FileInputStream fileInputStream = new FileInputStream(pdfFile);
+        OutputStream responseOutputStream = response.getOutputStream();
+        int bytes;
+        while ((bytes = fileInputStream.read()) != -1) {
+            responseOutputStream.write(bytes);
         }
     }
 

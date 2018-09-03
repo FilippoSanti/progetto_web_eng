@@ -36,4 +36,5 @@ public interface companyDao {
     public boolean deleteCompany(int userID) throws SQLException, IOException, PropertyVetoException;
     public int getIdCompanyByIdInternship(int tir_id);
     public int getCompanyIdbyName(String name) throws PropertyVetoException, SQLException, IOException;
+    public ArrayList<Company> getApprovedCompaniesList() throws SQLException, IOException, PropertyVetoException;
 }

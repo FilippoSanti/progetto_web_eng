@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class=" col-sm-4 centra">
-                                 <h4 class="header-title m-t-0 m-b-20">Documentation</h4>
+                                 <h4 class="header-title m-t-0 m-b-20">Documentation of the approved companies</h4>
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
@@ -68,46 +68,22 @@
                                         <thead>
                                         <tr>
                                             <th class="width65perc">Company Name</th>
-                                            <th>View All the Documentation</th>
+                                            <th>View documentation</th>
+                                            <th>Edit documentation</th>
+
                                         </tr>
                                         </thead>
 
-
                                         <tbody>
+                                        <#if cData?has_content>
+                                        <#list cData as val>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><a href="manage_internship.ftl"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
+                                            <td>${val.getRagione_sociale()}</td>
+                                            <td><a href="/viewDocumentation?action=requestDocument&type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Download</button></a></td>
+                                            <td><a href="viewDocumentation?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">Edit Documentation</button></a></td>
                                         </tr>
-
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></td>
-                                        </tr>
-
+                                        </#list>
+                                        </#if>
                                         </tbody>
                                     </table>
                                 </div>

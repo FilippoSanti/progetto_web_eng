@@ -300,11 +300,20 @@
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
                     <#if errorMessage?has_content>
-
                      <div class="alert alert-danger" role="alert">
                          ${errorMessage}
                      </div>
+                    </#if>
+                    <#if Message?has_content>
+                     <div class="alert alert-success" role="alert">
+                         ${Message}
+                     </div>
+                    </#if>
 
+                    <#if companyApproved?has_content>
+                     <div class="alert alert-warning" role="alert">
+                         ${companyApproved}
+                     </div>
                     </#if>
                     <br><br><br>
 
@@ -321,9 +330,7 @@
                                         <i>Download this document, <ins>SIGN IT</ins> and <ins>REGISTER IT</ins> by the students secretary.</i>
                                     </div>                                    
                                 </div>
-
-<br><br>
-
+                                <br><br>
                                 <div class="row">
 
                                     <div class="col-sm-3"></div>
@@ -335,26 +342,20 @@
                                         <a href="/documents?type=${type}&id=${id}"><button type="button" class="btn btn-outline-secondary">View document</button></a>
                                     </div>
                                 </div>
-
-<br><br><br><br><br>
-
+                                <br><br>
+                                <br><br>
+                                <br>
                                 <div class="row">
-
                                     <div class="col-md-3 centra">
                                         <b>STEP 2</b>                                    
                                     </div>
-
                                     <div class="col-md-6 centra">
                                         <i>Be sure to upload the document only after it has been properly <ins>SIGNED</ins> and <ins>REGISTERED</ins>.</i>
                                     </div>                                    
                                 </div>
-
-<br><br>
-
+                                <br><br>
                                 <div class="row">
-
                                     <div class="col-sm-3"></div>
-
                                     <form action="viewDocumentation?action=upload&type=${type}&id=${id}" method ="post" enctype="multipart/form-data">
                                     <div class="centra">
                                         <input type="file" name="file" class="filestyle" data-input="false">
@@ -362,36 +363,32 @@
                                     </div>
                                     </form>
                                 </div>
-
-<br><br><br><br><br>
-
+                                <br><br>
+                                <br><br><br>
                                 <div class="row">
-
                                     <div class="col-md-3 centra">
                                         <b>STEP 3</b>                                    
                                     </div>
                                     
                                     <div class="col-md-6 centra">
-                                        <i>Remember to enable the company <ins>ONLY</ins> after completing all the previous steps related to the documentation.</i>                                    
+                                        <i>A company can be enabled <ins>ONLY</ins> after uploading the signed document</i>
                                     </div>                                    
                                 </div>
-
-<br><br>
-                                
+                                <br><br>
                                 <div class="row">
-
                                     <div class="col-sm-3"></div>
-                                    <!-- TODO:  eseguire il controllo e abilitare il tasto (togliendo la dicitura: "disabled") solo dopo che il documento è stato ricaricato firmato come da step 2 -->
-                                    <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-target="validateCompany" disabled>Validate Company</button>
+
+                                <#if approveButton?has_content>
+                                    <a href="agreementRequests?action=approve&id=${id}"><button class="btn btn-primary btn-rounded btn-lg m-b-30" data-target="validateCompany">Validate Company</button></a>
+                                <#else>
+                                    <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-target="validateCompany" disabled>Upload the documentation first</button>
+                                </#if>
                                 </div>
-
-                            </div>                                           
-
+                            </div>
                         </div>
-
                     </div> <!-- container -->
 
-<br><br>
+                    <br><br>
                     <div class="footer">
                         <div class="pull-right hide-phone">
                             Web Engineering Project 
@@ -399,20 +396,14 @@
                         <div>
                              Copyright © 2018 - <a class="ti-infinite infindim"></a>
                         </div>
-                        
-                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
+                        <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
                     </div>
-
                 </div> <!-- content -->
 
             </div>
-
-
             <!-- ============================================================== -->
             <!-- End Right content here -->
             <!-- ============================================================== -->
-
-
         </div>
         <!-- END wrapper -->
 
@@ -485,7 +476,5 @@
             } );
 
         </script>
-
-
     </body>
 </html>

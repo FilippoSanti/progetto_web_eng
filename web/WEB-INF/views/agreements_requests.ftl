@@ -84,7 +84,7 @@
                                                     <div class="notbell pdom ti-help"></div>
                                                 </td>
                                                 <td>
-                                                    <div class="centra"><img src="assets/images/users/avatar-2.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
+                                                    <div class="centra"><img src="assets/images/users/default_company.png" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm" />
                                                     <br>
                                                     ${val.getRagione_sociale()}
                                                 	</div>
@@ -96,7 +96,7 @@
                                                     <a href="viewProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorblue" data-target="#"><div class="centra ti-eye"></div>Profile</button></a>
                                                 </td>
                                                 <td>
-                                                    <a href="agreementRequests?action=approve&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorgreen" data-target="#"><div class="centra ti-check"></div>Documentation</button></a>
+                                                    <a href="viewDocumentation?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorgreen" data-target="#"><div class="centra ti-check"></div>View Documentation</button></a>
                                                 </td>
                                                 <td>
                                                     <a href="agreementRequests?action=delete&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorred" data-target="#"><div class="centra ti-close"></div>Refuses</button></a>
