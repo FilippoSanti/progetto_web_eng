@@ -2,6 +2,7 @@ package controller.servlets.company;
 
 import controller.dao.*;
 import controller.servlets.general.homeServlet;
+import model.Company;
 import model.Internship;
 
 import javax.servlet.ServletException;
@@ -59,11 +60,20 @@ public class internshipsListServlet extends HttpServlet {
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
 
         request.setAttribute("username", tempName);
-
+        companyDao comDao = new companyDaoImpl();
         internshipDao intDao = new internshipDaoImpl();
 
         // Get the internships list
         ArrayList<Internship>internshipsArray = intDao.getInternshipList();
+        ArrayList<Company> companyList = new ArrayList<Company>();
+
+        for (int i= 0; i< internshipsArray.size(); i++)   {
+        String com_name = comDao.getEmailByID(internshipsArray.get(i).getAzienda_id());
+
+          companyList.add(comDao.getCompanyDataByEmail(com_name)); }
+
+
+        request.setAttribute("company_list", companyList);
         request.setAttribute("internships_list", internshipsArray);
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
 

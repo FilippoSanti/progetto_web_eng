@@ -81,7 +81,7 @@
                                           <tr>
                                               <td>${val.getNome()}</td>
                                               <td>${val.getLuogo()}</td>
-                                              <td>${val.getDettagli()}</td>
+                                              <td>${val.getMeseInziale()}</td>
                                               <td><a href="/candidates_list?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Candidates</button></a></td>
                                               <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
                                               </td>

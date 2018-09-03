@@ -351,7 +351,7 @@
                                                <#list internships_list as val>
                                           <tr>
                                               <td>${val.getNome()}</td>
-                                              <td>${val.getAzienda_id()}</td>
+                                              <td>${company_list[val_index].getRagione_sociale()}</td>
                                               <td>${val.getDettagli()}</td>
                                             <td><a href="/internships?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Details...</button></a></td>
                                               </td>
