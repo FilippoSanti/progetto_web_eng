@@ -32,6 +32,8 @@
 <!-- header -->
    <#if header == "anonymous">
        <#include "/WEB-INF/views/FreeMarker/header_visitor.ftl">
+   <#elseif header == "admin">
+       <#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
    <#else>
        <#include "/WEB-INF/views/FreeMarker/header.ftl">
    </#if>

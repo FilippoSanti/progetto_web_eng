@@ -75,12 +75,19 @@
 
                         <div class="p-20 m-b-20">
 
-                                <div class="form-group">
-                                    <label for ="nome" class="col-md-2 col-form-label">Internship Name</label>
-                                    <div class="col-md-10">
-                                        <input type="text"  name="nome" class="form-control" placeholder="Some text value..." value="">
-                                    </div>
+                            <div class="form-group">
+                                <label for ="sector" class="col-md-2 col-form-label">Sector</label>
+                                <div class="col-md-10">
+                                    <input type="text"  name="sector" class="form-control" placeholder="Some text value..." value="">
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for ="nome" class="col-md-2 col-form-label">Internship Name</label>
+                                <div class="col-md-10">
+                                    <input type="text"  name="nome" class="form-control" placeholder="Some text value..." value="">
+                                 </div>
+                            </div>
 <br>
 
                             <div class="form-group">
@@ -107,7 +114,7 @@
 
                                 <div class="form-group">
                                     <div class="row">
-                                    <label for ="luogo" class="col-md-1 col-form-label mrglbladdint ffww100">Other...</label>
+                                    <label for ="luogo" class="col-md-1 col-form-label ffww100">Other...</label>
                                     <div class="col-md-7">
                                         <input type="text"  name="luogo" class="form-control" placeholder="Some text value..." value="">
                                     </div>
@@ -266,7 +273,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                    <label for ="rimborsi_spese_facilitazioni_previste" class="col-md-1 mrglbladdint ffww100">Other...</label>
+                                    <label for ="rimborsi_spese_facilitazioni_previste" class="col-md-1 ffww100">Other...</label>
                                     <div class="col-md-7">
                                         <input type="text"  name="rimborsi_spese_facilitazioni_previste" class="form-control" placeholder="Some text value..." value="">
                                     </div>

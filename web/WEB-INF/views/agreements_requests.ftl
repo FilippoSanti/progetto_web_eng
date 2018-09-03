@@ -96,7 +96,7 @@
                                                     <a href="viewProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorblue" data-target="#"><div class="centra ti-eye"></div>Profile</button></a>
                                                 </td>
                                                 <td>
-                                                    <a href="viewDocumentation?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorgreen" data-target="#"><div class="centra ti-check"></div>View Documentation</button></a>
+                                                    <a href="viewDocumentation?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorblue" data-target="#"><div class="centra ti-files"></div>View Documentation</button></a>
                                                 </td>
                                                 <td>
                                                     <a href="agreementRequests?action=delete&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg brdrcolorred" data-target="#"><div class="centra ti-close"></div>Refuses</button></a>

@@ -29,7 +29,7 @@ public class companyServlet extends HttpServlet {
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
-        if (securityModel.getUser().equals("student")) {
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
             request.setAttribute("header", "student");
             request.setAttribute("sidemenu", "student");
         }
@@ -44,7 +44,7 @@ public class companyServlet extends HttpServlet {
             request.setAttribute("sidemenu", "anonymous");
         }
 
-        if (securityModel.getUser().equals("admin")) {
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
             request.setAttribute("header", "admin");
             request.setAttribute("sidemenu", "admin");
         }
