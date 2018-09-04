@@ -22,7 +22,7 @@
                         </li>
 
                         <li>
-                            <a href="/internships_list_company?view=all"><i class="ti-menu-alt"></i> <span> Internship List </span>
+                            <a href="/internships_list_company?view=all"><i class="ti-menu-alt"></i> <span> My Internships </span>
                             </a>
                         </li>
 
