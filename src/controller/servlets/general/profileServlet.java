@@ -36,6 +36,26 @@ public class profileServlet extends HttpServlet {
         String typeValue = request.getParameter(type);
         String idValue = request.getParameter(id);
 
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+            request.setAttribute("header", "student");
+            request.setAttribute("sidemenu", "student");
+        }
+
+        if (securityModel.getUser().equals("azienda")) {
+            request.setAttribute("header", "company");
+            request.setAttribute("sidemenu", "company");
+        }
+
+        if (securityModel.getUser().equals("anonymous")) {
+            request.setAttribute("header", "anonymous");
+            request.setAttribute("sidemenu", "anonymous");
+        }
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
+            request.setAttribute("header", "admin");
+            request.setAttribute("sidemenu", "admin");
+        }
+
         // If every parameter is set, we check them
         // This is done to avoid null pointer exceptions
         if (!securityModel.getUser().equals("anonymous") && typeValue != null && idValue != null) {
@@ -63,6 +83,10 @@ public class profileServlet extends HttpServlet {
 
     private void action_default_user(HttpServletRequest request, HttpServletResponse response, String email) throws IOException, ServletException, PropertyVetoException, SQLException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         ServletContext context = getServletContext();
         String result = Utils.display_user_image(context, request, email);
         request.setAttribute("image_path", result);
@@ -74,6 +98,10 @@ public class profileServlet extends HttpServlet {
     }
 
     private void action_default_company(HttpServletRequest request, HttpServletResponse response, String email) throws IOException, ServletException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         ServletContext context = getServletContext();
         String result = Utils.display_user_image(context, request, email);

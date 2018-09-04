@@ -42,7 +42,6 @@ public class searchServlet extends HttpServlet {
                 duration_max_value != null) {
             action_search(request, response, term_value, place_value, duration_min_value, duration_max_value);
         }
-
     }
 
     private void action_search(HttpServletRequest request, HttpServletResponse response, String term,
@@ -67,7 +66,7 @@ public class searchServlet extends HttpServlet {
         // Check if place is correct
         if (place != null && !place.isEmpty()) {
             if (place.equals("any") || place.equals("remote") || place.equals("home")) {
-                // execut query
+
             } else {
                 response.sendRedirect("/home");
                 return;
