@@ -37,10 +37,10 @@
         <div id="wrapper">
 
 
-<#include "/WEB-INF/views/FreeMarker/header.ftl">
+<#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
 
 
-<#include "/WEB-INF/views/FreeMarker/sidebar_company.ftl">
+<#include "/WEB-INF/views/FreeMarker/sidebar_admin.ftl">
 
 
 

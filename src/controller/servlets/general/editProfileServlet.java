@@ -35,6 +35,18 @@ public class editProfileServlet extends HttpServlet {
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+            request.setAttribute("header", "student");
+            request.setAttribute("sidemenu", "student");
+        }
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
+            request.setAttribute("header", "admin");
+            request.setAttribute("sidemenu", "admin");
+        }
+
+
         // Security model checks
         if (securityModel.getUser().equals("student")) {
             // Check if we are trying to edit company login data or informations

@@ -44,11 +44,19 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            <#include "/WEB-INF/views/FreeMarker/header.ftl">
+<!-- header -->
+ <#if header == "student">
+     <#include "/WEB-INF/views/FreeMarker/header.ftl">
+ <#elseif header == "admin">
+     <#include "/WEB-INF/views/FreeMarker/header_admin.ftl">
+ </#if>
 
-
-            <#include "/WEB-INF/views/FreeMarker/sidebar_student.ftl">
-
+<!-- sidebar menu -->
+   <#if sidemenu == "student">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_student.ftl">
+   <#elseif sidemenu == "admin">
+       <#include "/WEB-INF/views/FreeMarker/sidebar_admin.ftl">
+   </#if>
 
 
             <!-- ============================================================== -->

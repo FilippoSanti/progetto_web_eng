@@ -66,7 +66,7 @@
                                     <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
                                             <img src="assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            
+
                                         </div>
 
                                             <h5 class="m-b-5 mt-2">Company 1</h5>
@@ -180,7 +180,7 @@
                                     <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
                                             <img src="assets/images/users/avatar-4.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
-                                            
+
                                         </div>
 
                                         <div class="">
@@ -302,7 +302,7 @@
                                 <button class="btn btn-primary btn-rounded btn-lg m-b-30" data-toggle="modal" data-target="#add-contact">Next Page</button>
                             </div><!-- end col -->
 
-                            
+
                         </div>
                         <!-- end row -->
 <br><br>

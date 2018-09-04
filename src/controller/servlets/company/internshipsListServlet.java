@@ -2,8 +2,10 @@ package controller.servlets.company;
 
 import controller.dao.*;
 import controller.servlets.general.homeServlet;
+import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Internship;
+import model.Security;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +19,36 @@ import java.util.ArrayList;
 public class internshipsListServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, PropertyVetoException, SQLException {
 
         request.setAttribute("internships_list", null);
 
         // URL Parameters
         String paramName    = "view";
         String paramValue = request.getParameter(paramName);
+
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+            request.setAttribute("header", "student");
+            request.setAttribute("sidemenu", "student");
+        }
+
+        if (securityModel.getUser().equals("azienda")) {
+            request.setAttribute("header", "company");
+            request.setAttribute("sidemenu", "company");
+        }
+
+        if (securityModel.getUser().equals("anonymous")) {
+            request.setAttribute("header", "anonymous");
+            request.setAttribute("sidemenu", "anonymous");
+        }
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
+            request.setAttribute("header", "admin");
+            request.setAttribute("sidemenu", "admin");
+        }
+
 
         try {
             // Check if the user has given the right parameters
@@ -110,6 +135,10 @@ public class internshipsListServlet extends HttpServlet {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -124,6 +153,10 @@ public class internshipsListServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
