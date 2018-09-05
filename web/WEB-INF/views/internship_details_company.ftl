@@ -64,6 +64,15 @@
                         <div class="p-20 m-b-20">
 
                             <div class="form-group">
+                                <label class="col-md-2 col-form-label">Sector</label>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="container intrnshpdtls"> </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-md-2 col-form-label">Offer Details</label>
                                 <div class="col-md-10">
                                     <div class="row">
@@ -74,7 +83,7 @@
 <br>
 
 <!--  Usare:
-             disbled                come ultimo campo di input se la casella da disabilitare NON DEVE essere flaggata
+             disabled                come ultimo campo di input se la casella da disabilitare NON DEVE essere flaggata
              disabled checked       come ultimo campo di input se la casella da disabilitare DEVE essere flaggata  -->
 
                             <div class="form-group">

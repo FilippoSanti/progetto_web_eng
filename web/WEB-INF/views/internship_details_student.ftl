@@ -73,6 +73,15 @@
                         <div class="p-20 m-b-20">
 
                             <div class="form-group">
+                                <label class="col-md-2 col-form-label">Sector</label>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="container intrnshpdtls"> </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-md-2 col-form-label">Offer Details</label>
                                 <div class="col-md-10">
                                     <div class="row">
@@ -248,16 +257,7 @@
 
 <br><br><br><br>
 
-                    <div class="footer">
-                        <div class="pull-right hide-phone">
-                            Web Engineering Project 
-                        </div>
-                        <div>
-                             Copyright © 2018 - <a class="ti-infinite infindim"></a>
-                        </div>
-                        
-                            <div class="centra"> All Rights Reserved - <strong class="text-custom">Unnamed Group</strong></div>
-                    </div>
+                    <#include "/WEB-INF/views/FreeMarker/footer.ftl">
 
                 </div> <!-- content -->
 
