@@ -28,13 +28,11 @@ public class homeServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-
         Security securityModel = SecurityFilter.checkUsers(request);
 
         if (securityModel.getUser().equals("student")){
             action_student(request, response);
         }
-
 
         if (securityModel.getUser().equals("azienda")) {
             action_company(request, response);

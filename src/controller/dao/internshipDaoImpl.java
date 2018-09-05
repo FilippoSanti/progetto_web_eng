@@ -106,25 +106,27 @@ public class internshipDaoImpl implements internshipDao {
         PreparedStatement pst = dbConnection.prepareStatement(GET_INTERN_LIST);
 
         ResultSet rs = pst.executeQuery();
+        Internship internshipModel = new Internship();
 
         while (rs.next()) {
-            Internship internship = new Internship(
-                    rs.getInt("offerta_tirocinio_id"),
-                    rs.getInt("azienda_id"),
-                    rs.getString("nome"),
-                    rs.getString("dettagli"),
-                    rs.getString("luogo"),
-                    rs.getString("mesi"),
-                    rs.getString("ore"),
-                    rs.getString("orari"),
-                    rs.getString("mese_iniziale"),
-                    rs.getString("mese_finale"),
-                    rs.getString("obiettivi"),
-                    rs.getString("modalita"),
-                    rs.getString("rimborsi_spese_facilitazioni_previste")
-            );
 
-            internshipsList.add(internship);
+                internshipModel.setIternship_id(rs.getInt("offerta_tirocinio_id"));
+                internshipModel.setAzienda_id(rs.getInt("azienda_id"));
+                internshipModel.setNome(rs.getString("nome"));
+                internshipModel.setDettagli(rs.getString("dettagli"));
+                internshipModel.setLuogo(rs.getString("luogo"));
+                internshipModel.setMesi(rs.getString("mesi"));
+                internshipModel.setOre(rs.getString("ore"));
+                internshipModel.setOrari(rs.getString("orari"));
+                internshipModel.setMeseInziale(rs.getString("mese_iniziale"));
+                internshipModel.setMeseFinale(rs.getString("mese_finale"));
+                internshipModel.setObiettivi(rs.getString("obiettivi"));
+                internshipModel.setModalita(rs.getString("modalita"));
+                internshipModel.setRimborsi_spese_facilitazioni_previste(rs.getString("rimborsi_spese_facilitazioni_previste"));
+                internshipModel.setCompany_headquarters(rs.getBoolean("company_headquarters"));
+                internshipModel.setRemote_connection(rs.getBoolean("remote_connection"));
+
+                internshipsList.add(internshipModel);
 
         }
         dbConnection.close();
