@@ -81,7 +81,7 @@
                                 <div class="row ">
                                     <div class="col-md-3 yes">
                                         <div class="row">
-                                            <form method="get" action="/search.do" data-validate="parsley">
+                                            <form class="displaycorrectdim" method="get" action="/search.do" data-validate="parsley">
                                             <div class="input-group app-search" id="adv-search">
                                                 <input type="text" name="term" data-parsley-minlength="4" class="form-control borderradius postotasti" placeholder="Search for internships..." />
                                                 <div class="input-group-btn ">
