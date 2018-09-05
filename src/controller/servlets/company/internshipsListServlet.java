@@ -90,13 +90,17 @@ public class internshipsListServlet extends HttpServlet {
 
         // Get the internships list
         ArrayList<Internship>internshipsArray = intDao.getInternshipList();
+
+        for (int i = 0; i < internshipsArray.size(); i++) {
+            System.out.println(internshipsArray.get(i).getNome());
+        }
+
         ArrayList<Company> companyList = new ArrayList<Company>();
 
-        for (int i= 0; i< internshipsArray.size(); i++)   {
-        String com_name = comDao.getEmailByID(internshipsArray.get(i).getAzienda_id());
-
-          companyList.add(comDao.getCompanyDataByEmail(com_name)); }
-
+        for (int i= 0; i< internshipsArray.size(); i++) {
+            String com_name = comDao.getEmailByID(internshipsArray.get(i).getAzienda_id());
+            companyList.add(comDao.getCompanyDataByEmail(com_name));
+        }
 
         request.setAttribute("company_list", companyList);
         request.setAttribute("internships_list", internshipsArray);

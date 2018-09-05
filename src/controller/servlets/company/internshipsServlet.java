@@ -137,21 +137,16 @@ public class internshipsServlet extends HttpServlet {
     private void action_show_my_internships(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         ArrayList<MyInternships> myShip = processInternshipsData();
-
-
         request.setAttribute("userList", myShip);
 
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
-
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/my_internship.ftl");
 
         dispatcher.forward(request, response);
 
     }
-
-
 
     protected void action_view_all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
@@ -204,12 +199,12 @@ public class internshipsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
-        String nome, mesi, dettagli, luogo, orari, ore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, start_date, end_date;
+        String nome, mesi, dettagli, luogo, orari, ore, settore, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, start_date, end_date;
         String companyMail = null;
         int companyId = 0;
         boolean company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing;
         company_headquarters = remote_connection = refound_of_expenses = company_refactory = training_aid = nothing = false;
-        dettagli = nome = mesi = luogo = orari = ore = start_date = end_date = obiettivi = modalita = rimborsi_spese_facilitazioni_previste = null;
+        dettagli = nome = mesi = luogo = orari = settore = ore = start_date = end_date = obiettivi = modalita = rimborsi_spese_facilitazioni_previste = null;
 
         // Get the parameter values
         companyDao cDao = new companyDaoImpl();
@@ -232,11 +227,12 @@ public class internshipsServlet extends HttpServlet {
         company_refactory = Boolean.parseBoolean(request.getParameter("company_refactory"));
         training_aid = Boolean.parseBoolean(request.getParameter("training_aid"));
         nothing = Boolean.parseBoolean(request.getParameter("nothing"));
+        settore = request.getParameter("settore");
 
         // If strings are not initalized, it means there was an empty request by the user
         //So we return false
         if (nome == null && luogo == null && orari == null && ore == null && obiettivi == null && modalita == null &&
-                rimborsi_spese_facilitazioni_previste == null && start_date == null && end_date == null) {
+                rimborsi_spese_facilitazioni_previste == null && start_date == null && end_date == null && settore == null) {
 
             return false;
         }
@@ -244,7 +240,7 @@ public class internshipsServlet extends HttpServlet {
         internshipDao internshipDao = new internshipDaoImpl();
 
         boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, start_date, end_date, obiettivi,
-                modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing);
+                modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing, settore);
 
         if (addOK) {
             addedMessage = "Registered successfully";
@@ -273,8 +269,10 @@ public class internshipsServlet extends HttpServlet {
         int userId = UserDao.getIDbyEmail(userMail);
         int int_id1 = Integer.parseInt(int_id);
 
-        System.out.println(userId);
-        System.out.println(int_id1);
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         boolean checkOk = UserDao.checkInternshipUser(userId, int_id1);
         if (!checkOk) {
             request.setAttribute("userId", int_id1);
@@ -296,7 +294,9 @@ public class internshipsServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String cfu, tutor_name, tutor_surname, tutor_email = "";
+        String cfu, tutor_name, tutor_surname, valutazione,tutor_email = "";
+        valutazione = "empty";
+
         cfu = request.getParameter("cfu");
         tutor_name = request.getParameter("tutor_name");
         tutor_surname = request.getParameter("tutor_surname");
@@ -308,10 +308,14 @@ public class internshipsServlet extends HttpServlet {
 
         int int_id1 = Integer.parseInt(int_id);
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         companyDao comDao = new companyDaoImpl();
         int az_id = comDao.getIdCompanyByIdInternship(int_id1);
 
-        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email );
+        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email, valutazione);
 
         if (candidateOK) {
 

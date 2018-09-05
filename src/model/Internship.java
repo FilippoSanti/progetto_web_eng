@@ -6,9 +6,7 @@ public class Internship {
 
     private boolean  Company_headquarters, Remote_connection , refound_of_expenses, company_refactory, training_aid, nothing;
 
-    private String nome,  dettagli, luogo,mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste;
-
-
+    private String nome, dettagli, luogo, mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, settore;
 
     public String getDettagli() {
         return dettagli;
@@ -20,6 +18,14 @@ public class Internship {
 
     public void setDettagli(String dettagli) {
         this.dettagli = dettagli;
+    }
+
+    public String getSettore() {
+        return settore;
+    }
+
+    public void setSettore(String settore) {
+        this.settore = settore;
     }
 
     public void setNome(String nome) {
@@ -193,4 +199,5 @@ public class Internship {
     public void setNothing(boolean nothing) {
         this.nothing = nothing;
     }
+
 }

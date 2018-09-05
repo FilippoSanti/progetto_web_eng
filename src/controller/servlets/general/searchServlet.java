@@ -38,6 +38,28 @@ public class searchServlet extends HttpServlet {
         String duration_min = "duration_min";
         String duration_max = "duration_max";
 
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+            request.setAttribute("header", "student");
+            request.setAttribute("sidemenu", "student");
+        }
+
+        if (securityModel.getUser().equals("azienda")) {
+            request.setAttribute("header", "company");
+            request.setAttribute("sidemenu", "company");
+        }
+
+        if (securityModel.getUser().equals("anonymous")) {
+            request.setAttribute("header", "anonymous");
+            request.setAttribute("sidemenu", "anonymous");
+        }
+
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
+            request.setAttribute("header", "admin");
+            request.setAttribute("sidemenu", "admin");
+        }
+
         String term_value = request.getParameter(term);
         String place_value = request.getParameter(place);
         String duration_min_value = request.getParameter(duration_min);

@@ -61,6 +61,7 @@ public class internshipDaoImpl implements internshipDao {
                 internshipModel.setCompany_refactory(rs.getBoolean("company_refactory"));
                 internshipModel.setTraining_aid(rs.getBoolean("training_aid"));
                 internshipModel.setNothing(rs.getBoolean("nothing"));
+                internshipModel.setSettore(rs.getString("settore"));
             }
 
             dbConnection.close();
@@ -106,27 +107,27 @@ public class internshipDaoImpl implements internshipDao {
         PreparedStatement pst = dbConnection.prepareStatement(GET_INTERN_LIST);
 
         ResultSet rs = pst.executeQuery();
-        Internship internshipModel = new Internship();
 
         while (rs.next()) {
+            Internship internshipModel = new Internship();
 
-                internshipModel.setIternship_id(rs.getInt("offerta_tirocinio_id"));
-                internshipModel.setAzienda_id(rs.getInt("azienda_id"));
-                internshipModel.setNome(rs.getString("nome"));
-                internshipModel.setDettagli(rs.getString("dettagli"));
-                internshipModel.setLuogo(rs.getString("luogo"));
-                internshipModel.setMesi(rs.getString("mesi"));
-                internshipModel.setOre(rs.getString("ore"));
-                internshipModel.setOrari(rs.getString("orari"));
-                internshipModel.setMeseInziale(rs.getString("mese_iniziale"));
-                internshipModel.setMeseFinale(rs.getString("mese_finale"));
-                internshipModel.setObiettivi(rs.getString("obiettivi"));
-                internshipModel.setModalita(rs.getString("modalita"));
-                internshipModel.setRimborsi_spese_facilitazioni_previste(rs.getString("rimborsi_spese_facilitazioni_previste"));
-                internshipModel.setCompany_headquarters(rs.getBoolean("company_headquarters"));
-                internshipModel.setRemote_connection(rs.getBoolean("remote_connection"));
+            internshipModel.setIternship_id(rs.getInt("offerta_tirocinio_id"));
+            internshipModel.setAzienda_id(rs.getInt("azienda_id"));
+            internshipModel.setNome(rs.getString("nome"));
+            internshipModel.setDettagli(rs.getString("dettagli"));
+            internshipModel.setLuogo(rs.getString("luogo"));
+            internshipModel.setMesi(rs.getString("mesi"));
+            internshipModel.setOre(rs.getString("ore"));
+            internshipModel.setOrari(rs.getString("orari"));
+            internshipModel.setMeseInziale(rs.getString("mese_iniziale"));
+            internshipModel.setMeseFinale(rs.getString("mese_finale"));
+            internshipModel.setObiettivi(rs.getString("obiettivi"));
+            internshipModel.setModalita(rs.getString("modalita"));
+            internshipModel.setRimborsi_spese_facilitazioni_previste(rs.getString("rimborsi_spese_facilitazioni_previste"));
+            internshipModel.setCompany_headquarters(rs.getBoolean("company_headquarters"));
+            internshipModel.setRemote_connection(rs.getBoolean("remote_connection"));
 
-                internshipsList.add(internshipModel);
+            internshipsList.add(internshipModel);
 
         }
         dbConnection.close();
@@ -226,11 +227,11 @@ public class internshipDaoImpl implements internshipDao {
 
     public boolean addInternship(int companyId, String nome, String dettagli, String luogo, String mesi,
                                  String orari, String ore, String start_date, String end_date, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste,
-                                 boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing) throws SQLException, IOException, PropertyVetoException {
+                                 boolean company_headquarters, boolean remote_connection, boolean refound_of_expenses, boolean company_refactory, boolean training_aid, boolean nothing, String settore) throws SQLException, IOException, PropertyVetoException {
         boolean result = false;
 
         Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 
         ps.setNull(1, Types.INTEGER);
@@ -252,6 +253,7 @@ public class internshipDaoImpl implements internshipDao {
         ps.setBoolean(17, company_refactory);
         ps.setBoolean(18, training_aid);
         ps.setBoolean(19, nothing);
+        ps.setString(20, settore);
 
         int i = ps.executeUpdate();
 

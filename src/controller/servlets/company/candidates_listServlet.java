@@ -76,10 +76,14 @@ public class candidates_listServlet extends HttpServlet {
 
     protected void action_view_candidates_list(HttpServletRequest request, HttpServletResponse response, String tir_id) throws ServletException, IOException, PropertyVetoException, SQLException {
 
-        String azz= "";
+        String azz = "";
         companyDao comDao = new companyDaoImpl();
         String email_azie = homeServlet.loggedUserEmail;
         int az_id = comDao.getCompanyIdbyEmail(email_azie);
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         UserDao uDao = new UserDaoImpl();
         internshipDao intDao = new internshipDaoImpl();
@@ -94,8 +98,6 @@ public class candidates_listServlet extends HttpServlet {
            azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
             userArray.add(uDao.getUser(azz));
         }
-
-
 
         request.setAttribute("userList", userArray);
 
@@ -128,6 +130,10 @@ public class candidates_listServlet extends HttpServlet {
         companyDao comDao = new companyDaoImpl();
         String email_azie = homeServlet.loggedUserEmail;
         int az_id = comDao.getCompanyIdbyEmail(email_azie);
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
 
         internshipDao intDao = new internshipDaoImpl();
 

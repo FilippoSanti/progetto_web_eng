@@ -67,7 +67,7 @@
                                 <label class="col-md-2 col-form-label">Sector</label>
                                 <div class="col-md-10">
                                     <div class="row">
-                                        <div class="container intrnshpdtls"> </div>
+                                        <div class="container intrnshpdtls">${internshipData.getSettore()}</div>
                                     </div>
                                 </div>
                             </div>
