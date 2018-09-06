@@ -66,6 +66,12 @@
                 </div> <!-- end row -->
                 <br><br><br>
 
+                <#if Message?has_content>
+                <div class="alert alert-warning" role="alert">
+                ${Message}
+                </div>
+                </#if>
+
                 <div class="m-b-20">
                     <div class="row">
                         <div class="col-md-6 centra text-center">

@@ -279,8 +279,8 @@ public class internshipsServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/accept_internship.ftl");
             dispatcher.forward(request, response);
-
             return true;
+
         } else {
             request.getSession().setAttribute("registeredMessage", "You are already registered to this Internship");
             response.sendRedirect("/home");

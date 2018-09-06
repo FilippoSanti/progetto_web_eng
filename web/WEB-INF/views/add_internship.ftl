@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label for ="sector" class="col-md-2 col-form-label">Sector</label>
                                 <div class="col-md-10">
-                                    <input type="text"  name="sector" class="form-control" placeholder="Some text value..." value="">
+                                    <input type="text" name="settore" class="form-control" placeholder="Some text value..." value="">
                                 </div>
                             </div>
 

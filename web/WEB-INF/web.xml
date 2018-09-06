@@ -287,6 +287,16 @@
         <url-pattern>/viewDocumentation</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>search.do</servlet-name>
+        <servlet-class>controller.servlets.general.searchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>search.do</servlet-name>
+        <url-pattern>/search.do</url-pattern>
+    </servlet-mapping>
+
 
     <!--
         Prevent the visiting of MVC Views from outside the servlet container.
