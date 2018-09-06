@@ -37,7 +37,7 @@
 <div id="wrapper">
 
 
-       <#include "/WEB-INF/views/FreeMarker/header.ftl">
+   <#include "/WEB-INF/views/FreeMarker/header.ftl">
 
     <!-- sidebar menu -->
    <#if sidemenu == "student">
@@ -92,11 +92,11 @@
                                     <tbody>
                                     <tr>
                                         <th>Allegato_1.pdf</th>
-                                        <td><a href="documents_iter.html">View Iter & Download</a></td>
+                                        <td><a href="documents_iter_student.ftl">View Iter & Download</a></td>
                                     </tr>
                                     <tr>
                                         <th>Allegato_2.pdf</th>
-                                        <td><a href="documents_iter.html">View Iter & Download</a></td>
+                                        <td><a href="documents_iter_student.ftl">View Iter & Download</a></td>
                                     </tr>
                                     </tbody>
                                 </table>

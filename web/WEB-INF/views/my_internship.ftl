@@ -80,7 +80,7 @@
                                         <td>
                                             <i class="${val.getHtmlcolor()}">${val.getInternship_status()}</i>
                                         </td>
-                                        <td><a href="#">Manage</a></td>
+                                        <td><a href="/internships?view=myInternships&id=${val.getInternship_id()}">Manage</a></td>
                                     </tr>
                                     </#list>
                                     </#if>

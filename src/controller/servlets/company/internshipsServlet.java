@@ -41,9 +41,11 @@ public class internshipsServlet extends HttpServlet {
         // URL Parameters
         String paramName = "view";
         String submit = "submit";
+        String id = "id";
 
         String paramValue = request.getParameter(paramName);
         String submit_string = request.getParameter(submit);
+        String id_value = request.getParameter(id);
 
 
         Security securityModel = SecurityFilter.checkUsers(request);
@@ -68,6 +70,29 @@ public class internshipsServlet extends HttpServlet {
             request.setAttribute("sidemenu", "admin");
         }
 
+        // Redirect anonymous users
+        if (securityModel.getUser().equals("anonymous")) {
+            response.sendRedirect("/login");
+            return;
+        }
+
+        // Student functions
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+
+            // View my internships
+            if (id_value == null && paramValue != null && paramValue.equals("myInternships")) {
+                action_show_my_internships(request, response);
+                return;
+            }
+
+            // View the internship of a student
+            if (id_value != null && paramValue != null && paramValue.equals("myInternships") &&
+                    id_value.matches("[0-9]+")) {
+                int real_id = Integer.valueOf(id_value);
+                action_view_student_internship(request, response, real_id);
+                return;
+            }
+        }
 
         try {
             // Check if the user has given the right parameters
@@ -117,11 +142,6 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
-            if (paramValue != null && paramValue.equals("myInternships")) {
-                action_show_my_internships(request, response);
-                return;
-            }
-
             // Default action if no parameter is set properly
             action_default(request, response);
 
@@ -132,6 +152,29 @@ public class internshipsServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    // View the internship of a student
+    private void action_view_student_internship(HttpServletRequest request, HttpServletResponse response, int internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
+        internshipDao iDao = new internshipDaoImpl();
+        Internship iTemp = iDao.getInternshipByID(internship_id);
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        String date_start = iTemp.getMeseInziale();
+        String date_end = iTemp.getMeseFinale();
+
+        String result = getInternshipStatus(date_start, date_end);
+
+        request.setAttribute("tirocinio", result);
+        request.setAttribute("dataFinale",iTemp.getMeseFinale());
+
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+
+        dispatcher.forward(request, response);
+
     }
 
     private void action_show_my_internships(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
@@ -355,7 +398,7 @@ public class internshipsServlet extends HttpServlet {
             if (status.equals("Completed"))  { myIts.setHtmlcolor("interstatus3"); }
 
             myIts.setCompany_name(company_temp.getRagione_sociale());
-            myIts.setInternship_id(myInt.get(i).getInternship_request_id());
+            myIts.setInternship_id(myInt.get(i).getInternship_id());
             myIts.setInternship_status(status);
             myIts.setInternship_name(iship.getNome());
 

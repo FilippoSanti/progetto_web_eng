@@ -28,16 +28,16 @@ public class MyInternships {
         this.internship_name = internship_name;
     }
 
+    public MyInternships() {
+
+    }
+
     public String getHtmlcolor() {
         return htmlcolor;
     }
 
     public void setHtmlcolor(String htmlcolor) {
         this.htmlcolor = htmlcolor;
-    }
-
-    public MyInternships() {
-
     }
 
     public int getInternship_id() {

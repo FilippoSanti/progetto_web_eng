@@ -46,7 +46,7 @@ public class viewDocumentationServlet extends HttpServlet {
         String id_value = request.getParameter(id);
         String action_value = request.getParameter(action);
 
-        // Administator requests
+        /** Administrator requests */
         if (securityModel.getUser().equals("student") &&
                 securityModel.getRole().equals("admin")) {
 
@@ -77,6 +77,34 @@ public class viewDocumentationServlet extends HttpServlet {
                 return;
             }
         }
+
+        /** Student requests */
+        if (securityModel.getUser().equals("student") &&
+                securityModel.getRole().equals("user")) {
+
+            // View the document_1 of a user
+            if (action_value != null && type_value != null && id_value != null &&
+                    action_value.equals("requestDocument1") && type_value.equals("student") &&
+                    id_value.matches("[0-9]+")) {
+                int real_id = Integer.valueOf(id_value);
+                action_view_user_document(real_id, request, response);
+                return;
+            }
+        }
+
+    }
+
+    /** Student functions below **/
+    private void action_view_user_document(int real_id, HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documents_iter_student.ftl");
+
+        dispatcher.forward(request, response);
     }
 
     /** Administrator functions below **/
@@ -132,7 +160,7 @@ public class viewDocumentationServlet extends HttpServlet {
 
         // MSIE fix.
         InputStream fileContent = filePart.getInputStream();
-        String filename = "/assets/documents/" + "company_" + company_id + ".pdf";
+        String filename = "/assets/documents/admin/" + "company_" + company_id + ".pdf";
 
         // Get the servlet context and build a pathname for the file
         ServletContext context = getServletContext();
@@ -160,7 +188,7 @@ public class viewDocumentationServlet extends HttpServlet {
 
         boolean result = false;
         // Get the servlet context and build a pathname for the file
-        String filePathString = "/assets/documents/" + "company_" + company_id + ".pdf";
+        String filePathString = "/assets/documents/admin/" + "company_" + company_id + ".pdf";
         ServletContext context = getServletContext();
         String pathname = context.getRealPath(filePathString);
 
@@ -179,7 +207,7 @@ public class viewDocumentationServlet extends HttpServlet {
             return;
         }
         String real_filename = "company_" + real_id + ".pdf";
-        String filePathString = "/assets/documents/" + real_filename;
+        String filePathString = "/assets/documents/admin/" + real_filename;
         ServletContext context = getServletContext();
         String pathname = context.getRealPath(filePathString);
 
