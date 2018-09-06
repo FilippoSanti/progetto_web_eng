@@ -102,6 +102,8 @@ public class internshipsListServlet extends HttpServlet {
             companyList.add(comDao.getCompanyDataByEmail(com_name));
         }
 
+
+
         request.setAttribute("company_list", companyList);
         request.setAttribute("internships_list", internshipsArray);
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
@@ -114,10 +116,20 @@ public class internshipsListServlet extends HttpServlet {
 
         request.setAttribute("username", tempName);
 
+        companyDao comDao = new companyDaoImpl();
         internshipDao intDao = new internshipDaoImpl();
         ArrayList<Internship>internshipsArray = intDao.getInternshipListbyId(Integer.parseInt(az_id));
-        request.setAttribute("internships_list", internshipsArray);
 
+        ArrayList<Company> companyList = new ArrayList<Company>();
+
+        for (int i= 0; i< internshipsArray.size(); i++) {
+            String com_name = comDao.getEmailByID(Integer.parseInt(az_id));
+            companyList.add(comDao.getCompanyDataByEmail(com_name));
+        }
+
+
+        request.setAttribute("internships_list", internshipsArray);
+        request.setAttribute("company_list", companyList);
 
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
 
