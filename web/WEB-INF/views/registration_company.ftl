@@ -61,43 +61,40 @@
                         <div class="row">
                             <div class="col-md-6">
 
-                        <#if errors>
-
-                        <ul class="list-group">
+                            <#if errorsList?has_content><ul class="list-group">
                             <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
-                        </ul>
-
-                        </#if>
+                            </ul>
+                            </#if>
                                <div class="p-20 m-b-20">
                                     <div class="m-b-20">
                                             <div class="form-group">
                                                 <label for="compName">Business Name/Name<span class="text-danger">*</span></label>
                                                 <input type="text" name="ragione_sociale" parsley-trigger="change" required
-                                                       placeholder="Enter Company Name" class="form-control" id="compName">
+                                                       placeholder="Enter Company Name" <#if fieldsList?has_content>value="${fieldsList[0]}"</#if> class="form-control" id="compName">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="legaladdress">Legal Address<span class="text-danger">*</span></label>
                                                 <input type="text" name="ind_legale" parsley-trigger="change" required
-                                                       placeholder="Enter Legal Address" class="form-control" id="legaladdress">
+                                                       placeholder="Enter Legal Address" <#if fieldsList?has_content>value="${fieldsList[1]}"</#if> class="form-control" id="legaladdress">
                                             </div>
 
                                        <div class="form-group">
                                                 <label for="solicitor">Solicitor's Name and Surname<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_rappr_legale" parsley-trigger="change" required
-                                                       placeholder="Enter Solicitor's Name " class="form-control" id="solicitor">
+                                                       placeholder="Enter Solicitor's Name " <#if fieldsList?has_content>value="${fieldsList[3]}"</#if> class="form-control" id="solicitor">
                                         </div>
 
                                        <div class="form-group">
                                                 <label for="managerName">Internships Manager's Name and Surname<span class="text-danger">*</span></label>
                                                 <input type="text" name="nome_resp_tirocini" parsley-trigger="change" required
-                                                       placeholder="Enter Internships Manager's Name" class="form-control" id="managerName">
+                                                       placeholder="Enter Internships Manager's Name" <#if fieldsList?has_content>value="${fieldsList[4]}"</#if> class="form-control" id="managerName">
                                        </div>
 
                                        <div class="form-group">
                                             <label for="jurisdiction">Competent Jurisdiction<span class="text-danger">*</span></label>
                                             <input type="text" name="foro_comp" parsley-trigger="change" required
-                                                   placeholder="Enter Competent Jurisdiction" class="form-control" id="jurisdiction">
+                                                   placeholder="Enter Competent Jurisdiction" <#if fieldsList?has_content>value="${fieldsList[7]}"</#if> class="form-control" id="jurisdiction">
                                        </div>
 
                                             <br><br>
@@ -108,7 +105,7 @@
                                 <div class="form-group">
                                   <label for="username">Email Login<span class="text-danger">*</span></label>
                                   <input type="text" name="email_login" parsley-trigger="change" required
-                                    placeholder="Enter User Name" class="form-control" id="username">
+                                    placeholder="Enter User Name" <#if fieldsList?has_content>value="${fieldsList[9]}"</#if> class="form-control" id="username">
                                 </div>
 
                                         <div class="form-group">
@@ -128,7 +125,7 @@
                                             <div class="form-group">
                                                 <label for="compCodes">Fiscal Code (NIN)/Partita I.V.A. (VAT)<span class="text-danger">*</span></label>
                                                 <input type="text" name="cf_iva" parsley-trigger="change" required
-                                                       placeholder="Enter Fiscal Code (NIN)/Partita I.V.A. (VAT)" class="form-control uppercase" id="compCodes">
+                                                       placeholder="Enter Fiscal Code (NIN)/Partita I.V.A. (VAT)" <#if fieldsList?has_content>value="${fieldsList[2]}"</#if> class="form-control uppercase" id="compCodes">
                                             </div>
 
                                             <div class="form-group">
@@ -244,13 +241,13 @@
                                         <div class="form-group">
                                                 <label for="managerEmail">Internships Manager's Email Address<span class="text-danger">*</span></label>
                                                 <input type="text" name="email_resp" parsley-trigger="change" required
-                                                       placeholder="Enter Internships Manager's E-mail Address" class="form-control" id="managerEmail">
+                                                       placeholder="Enter Internships Manager's E-mail Address" <#if fieldsList?has_content>value="${fieldsList[6]}"</#if> class="form-control" id="managerEmail">
                                          </div>
 
                                         <div class="form-group">
                                             <label for="managerPhone">Internships Manager's Telephone Number<span class="text-danger">*</span></label>
                                             <input type="text" name="telefono_resp" parsley-trigger="change" required
-                                                   placeholder="Enter Internships Manager's Telephone Number" class="form-control" id="managerPhone">
+                                                   placeholder="Enter Internships Manager's Telephone Number" <#if fieldsList?has_content>value="${fieldsList[5]}"</#if> class="form-control" id="managerPhone">
                                         </div>
 
 <br><br><br><br><br><br><br><br>

@@ -23,16 +23,10 @@ public class loginServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, PropertyVetoException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
         boolean remember_me_is_checked = request.getParameter( "checkbox5") != null;
-
-        // Check if the fields are empty
-        if (email.isEmpty() && pass.isEmpty()) {
-            out.println("You must enter some data lo login");
-        }
 
         // Check if our login belongs to a company or a user
         UserDao uDao = new UserDaoImpl();
@@ -40,8 +34,6 @@ public class loginServlet extends HttpServlet {
         boolean userLogged    = uDao.userAuth(email, pass, "studente");
         boolean companyLogged = uDao.userAuth(email, pass, "azienda");
         HttpSession session   = null;
-
-        // TODO: checkare che l'email nelle due tabelle sia unica
 
         if (userLogged) {
 
@@ -75,6 +67,9 @@ public class loginServlet extends HttpServlet {
 
             // Set the session attribute to check if a company is logged in
             session.setAttribute("loggedInCompany", comp);
+        } else {
+            request.getSession().setAttribute("errorMessage", "Wrong email or password");
+            response.sendRedirect("/login");
         }
 
         if (userLogged || companyLogged) {
@@ -98,21 +93,19 @@ public class loginServlet extends HttpServlet {
             // Redirect to the home page
             response.sendRedirect("/home");
 
-        } else {
-            out.println("Sorry, username or Password incorrect");
-            action_default(request, response);
         }
     }
 
     // Loads the default page
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        // Get the attributes into a string
+        // Chrome hack pt.1 : Get the attributes into a string
         // session attributes will be removed and set again (locally)
         // this is done to avoid problems with chrome, pt. 1
 
         String reg_mes = (String) request.getSession().getAttribute("registeredMessage");
         String mes = (String) request.getSession().getAttribute("Message");
+        String err_mes = (String) request.getSession().getAttribute("errorMessage");
 
         Cookie[] cookies  = null;
         cookies = request.getCookies();
@@ -135,6 +128,7 @@ public class loginServlet extends HttpServlet {
         request.setAttribute("email", staticEmail);
         request.getSession().removeAttribute("registeredMessage");
         request.getSession().removeAttribute("Message");
+        request.getSession().removeAttribute("errorMessage");
 
         // Set the string attributes (again)
         // pt. 2 of the chrome hack
@@ -144,6 +138,10 @@ public class loginServlet extends HttpServlet {
 
         if (mes != null) {
             request.setAttribute("Message", mes);
+        }
+
+        if (err_mes != null) {
+            request.setAttribute("errorMessage", err_mes);
         }
 
         request.getRequestDispatcher("/WEB-INF/views/login.ftl").forward(request, response);

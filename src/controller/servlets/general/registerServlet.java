@@ -23,6 +23,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class registerServlet extends HttpServlet {
@@ -33,46 +34,31 @@ public class registerServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        // Initialize every variable to null to avoid problems with empty 'sumbit=true' requets
-        String cap_string, nome, pass, ripeti_pass, dateString, provincia, provincia_n, residenza, citta, telefono,
-                corso, email, cognome, cod_fiscale, handicapString, luogo_nascita;
-
-        cap_string = nome = ripeti_pass = dateString = provincia = provincia_n = residenza = citta =
-                telefono = corso = email = cognome = cod_fiscale = handicapString = luogo_nascita = null;
-
         // Get the parameter values
-        cap_string      = request.getParameter("CAP");
-        nome            = request.getParameter("nome");
-        pass            = request.getParameter("password");
-        ripeti_pass     = request.getParameter("ripeti_password");
-        dateString      = request.getParameter("date");
-        provincia       = request.getParameter("provincia");
-        provincia_n     = request.getParameter("provincia_nascita");
-        residenza       = request.getParameter("residenza");
-        citta           = request.getParameter("citta");
-        telefono        = request.getParameter("telefono");
-        corso           = request.getParameter("corso_laurea");
-        email           = request.getParameter("email");
-        cognome         = request.getParameter("cognome");
-        cod_fiscale     = request.getParameter("cod_fiscale");
-        handicapString  = request.getParameter("handicap");
-        luogo_nascita   = request.getParameter("luogo_nascita");
+        String cap_string      = request.getParameter("CAP");
+        String nome            = request.getParameter("nome");
+        String pass            = request.getParameter("password");
+        String ripeti_pass     = request.getParameter("ripeti_password");
+        String dateString      = request.getParameter("date");
+        String provincia       = request.getParameter("provincia");
+        String provincia_n     = request.getParameter("provincia_nascita");
+        String residenza       = request.getParameter("residenza");
+        String citta           = request.getParameter("citta");
+        String telefono        = request.getParameter("telefono");
+        String corso           = request.getParameter("corso_laurea");
+        String email           = request.getParameter("email");
+        String cognome         = request.getParameter("cognome");
+        String cod_fiscale     = request.getParameter("cod_fiscale");
+        String handicapString  = request.getParameter("handicap");
+        String luogo_nascita   = request.getParameter("luogo_nascita");
 
-
-        // If strings are not initalized, it means there was an empty request by the user
-        // So we return false
-        if (cap_string == null && nome == null && pass == null && ripeti_pass == null && dateString == null &&
-                provincia == null && provincia_n == null && residenza == null && citta == null && telefono == null
-                && corso == null && email == null && cognome == null && cod_fiscale == null && handicapString == null && luogo_nascita
-                == null) {
-
-            return false;
-        }
-
-        boolean checkOk = userController.checkStudentRegistration(request, response, nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+        List<String> errorsList = userController.checkErrorListStudent(nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
                     residenza, citta, cap_string, telefono, corso, email, cod_fiscale, luogo_nascita);
 
-        if (checkOk) {
+        // If errorsList is > 1 it means we had some errors, so
+        // in this case, we can register our user correctly
+        // instead of passing an empty list, we just add 1 element to it and return the results
+        if (errorsList.size() == 1) {
 
             // See if the handicap checkbox has been set and assign a value to a boolean variable
             boolean handicapBool = false;
@@ -97,9 +83,17 @@ public class registerServlet extends HttpServlet {
                 action_default_student(request, response);
             }
         } else {
-            request.setAttribute("errorsList", userController.errorsList);
-            action_default_student(request, response);
-            userController.errorsList.clear();
+
+            // If we have errors, add every field to a list so it will be saved the next time we reload the page
+            String[] strs = {nome, cognome, pass, ripeti_pass, dateString, provincia, provincia_n,
+                    residenza, citta, cap_string, telefono, corso, email, cod_fiscale, luogo_nascita};
+
+            List<String> tempList = new ArrayList<>();
+            tempList.addAll(Arrays.asList(strs));
+
+            request.getSession().setAttribute("fieldsList", tempList);
+            request.getSession().setAttribute("errorsList", errorsList);
+            response.sendRedirect("/register?user=student");
         }
 
         return false;
@@ -111,42 +105,30 @@ public class registerServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String ragione_sociale, indirizzo_sede_leg, cf_rappresentante, partita_iva_rap, nome_cognome_rap, cf_iva,
-                nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass;
+        String ragione_sociale = request.getParameter("ragione_sociale");
+        String indirizzo_sede_leg = request.getParameter("ind_legale");
+        String cf_iva = request.getParameter("cf_iva");
+        String nome_cognome_rap = request.getParameter("nome_rappr_legale");
+        String nome_cognome_tir = request.getParameter("nome_resp_tirocini");
+        String telefono_tirocini = request.getParameter("telefono_resp");
+        String email_tirocini = request.getParameter("email_resp");
+        String foro_competente = request.getParameter("foro_comp");
+        String provincia = request.getParameter("provincia");
+        String email_login = request.getParameter("email_login");
+        String password = request.getParameter("password");
+        String ripeti_pass = request.getParameter("ripeti_pass");
 
-        ragione_sociale = indirizzo_sede_leg = nome_cognome_rap = nome_cognome_tir =
-                telefono_tirocini = email_tirocini = foro_competente = provincia = email_login = password = cf_iva = ripeti_pass = null;
-
-        ragione_sociale = request.getParameter("ragione_sociale");
-        indirizzo_sede_leg = request.getParameter("ind_legale");
-        cf_iva = request.getParameter("cf_iva");
-        nome_cognome_rap = request.getParameter("nome_rappr_legale");
-        nome_cognome_tir = request.getParameter("nome_resp_tirocini");
-        telefono_tirocini = request.getParameter("telefono_resp");
-        email_tirocini = request.getParameter("email_resp");
-        foro_competente = request.getParameter("foro_comp");
-        provincia = request.getParameter("provincia");
-        email_login = request.getParameter("email_login");
-        password = request.getParameter("password");
-        ripeti_pass = request.getParameter("ripeti_pass");
-
-        if (ragione_sociale == null && indirizzo_sede_leg == null && cf_iva == null &&
-                nome_cognome_rap == null && nome_cognome_tir == null && telefono_tirocini == null && email_tirocini == null && foro_competente ==
-                null && provincia == null && email_login == null && password == null && ripeti_pass == null) {
-            return false;
-        }
-
-        boolean checkOK = userController.checkCompanyRegistration(request, ragione_sociale, indirizzo_sede_leg, cf_iva,
+        List<String> errorsList = userController.checkErrorListCompany(ragione_sociale, indirizzo_sede_leg, cf_iva,
                 nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass);
 
-        if (checkOK) {
+        if (errorsList.size() == 1){
 
             companyDao cDao = new companyDaoImpl();
             boolean regOK = cDao.addUser(email_login, password, ragione_sociale, indirizzo_sede_leg, cf_iva,
                     nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente,
                     provincia);
 
-            if (regOK) {
+            if (regOK){
                 notifyAdmins(email_login);
 
                 request.getSession().setAttribute("registeredMessage", "Request waiting to be approved by the administrator");
@@ -157,9 +139,17 @@ public class registerServlet extends HttpServlet {
             }
 
         } else {
-            request.setAttribute("errorsList", userController.errorsList);
-            action_default_company(request, response);
-            userController.errorsList.clear();
+
+            // If we have errors, add every field to a list so it will be saved the next time we reload the page
+            String[] strs = {ragione_sociale, indirizzo_sede_leg, cf_iva,
+                    nome_cognome_rap, nome_cognome_tir, telefono_tirocini, email_tirocini, foro_competente, provincia, email_login, password, ripeti_pass};
+
+            List<String> tempList = new ArrayList<>();
+            tempList.addAll(Arrays.asList(strs));
+
+            request.getSession().setAttribute("fieldsList", tempList);
+            request.getSession().setAttribute("errorsList", errorsList);
+            response.sendRedirect("/register?user=company");
         }
 
         return false;
@@ -195,10 +185,21 @@ public class registerServlet extends HttpServlet {
 
     // Loads the default student page
     private void action_default_student(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_student.ftl");
 
         dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorsList") != null) {
+            request.getSession().removeAttribute("errorsList");
+        }
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("fieldsList") != null) {
+            request.getSession().removeAttribute("fieldsList");
+        }
     }
 
     // Loads the default company page
@@ -207,6 +208,11 @@ public class registerServlet extends HttpServlet {
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/registration_company.ftl");
 
         dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorsList") != null) {
+            request.getSession().removeAttribute("errorsList");
+        }
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

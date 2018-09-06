@@ -56,6 +56,12 @@
                                     </div>
                                 </#if>
 
+                                <#if errorMessage?has_content>
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong> ${errorMessage}
+                                    </div>
+                                </#if>
+
                                 <div class="account-content">
                                         <div class="form-group m-b-20">
                                             <div class="col-xs-12">

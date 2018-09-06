@@ -253,9 +253,6 @@ public class internshipsServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             action_default(request, response);
-
-            //Clear the errors list
-            userController.errorsList.clear();
         }
 
         return false;

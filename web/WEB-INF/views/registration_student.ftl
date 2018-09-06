@@ -62,32 +62,26 @@
                 </div>
 
                 <form method="post" action="register?user=student&submit=true" class="form-validation">
+                <#if errorsList?has_content>
+                <ul class="list-group">
+                    <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
+                </ul>
+                </#if>
 
                 <div class="row">
-
                     <div class="col-md-6">
-
-                    <#if errors>
-
-                     <ul class="list-group">
-                        <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
-                     </ul>
-
-                    </#if>
-
                         <div class="p-20 m-b-20">
-
                             <div class="m-b-20">
                                     <div class="form-group">
                                         <label for="name">Nome<span class="text-danger">*</span></label>
                                         <input type="text" name="nome" parsley-trigger="change" required
-                                               placeholder="Enter Name" class="form-control" id="name">
+                                               placeholder="Enter Name" <#if fieldsList?has_content>value="${fieldsList[0]}"</#if> class="form-control" id="name">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Data di Nascita<span class="text-danger">*</span><a>  (usare il formato: giorno/mese/anno)</a></label>
                                         <div class="input-group">
-                                            <input type="text" name="date" class="form-control" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" id="datepicker-autoclose">
+                                            <input type="text" name="date" class="form-control" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" <#if fieldsList?has_content>value="${fieldsList[4]}"</#if> id="datepicker-autoclose">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                             </div>
@@ -96,7 +90,7 @@
 
                                     <div class="form-group">
                                         <label>Provincia di Nascita<span class="text-danger">*</span></label>
-                                        <select name="provincia_nascita" class="form-control select2">
+                                        <select name="provincia_nascita" class="form-control select2" >
                                             <option>-- Select --</option>
                                             <option value="AG">Agrigento</option>
                                             <option value="AL">Alessandria</option>
@@ -207,7 +201,7 @@
                                     <div class="form-group">
                                         <label for="Address">Indirizzo di Residenza<span class="text-danger">*</span></label>
                                         <input type="text" name="residenza" parsley-trigger="change" required
-                                               placeholder="Enter Address" class="form-control" id="Address">
+                                               placeholder="Enter Address" <#if fieldsList?has_content>value="${fieldsList[7]}"</#if> class="form-control" id="Address">
                                     </div>
 
                                     <div class="form-group">
@@ -324,13 +318,13 @@
                                     <div class="form-group">
                                         <label for="telephone">Telefono<span class="text-danger">*</span></label>
                                         <input type="text" name="telefono" parsley-trigger="change" required
-                                               placeholder="Enter Telephone Number" class="form-control" id="telephone">
+                                               placeholder="Enter Telephone Number" <#if fieldsList?has_content>value="${fieldsList[10]}"</#if> class="form-control" id="telephone">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="degree">Corso di Laurea<span class="text-danger">*</span></label>
                                         <input type="text" name="corso_laurea" parsley-trigger="change" required
-                                               placeholder="Enter Degree Course" class="form-control" id="degree">
+                                               placeholder="Enter Degree Course" <#if fieldsList?has_content>value="${fieldsList[11]}"</#if> class="form-control" id="degree">
                                     </div>
 
                                     <br>
@@ -357,37 +351,37 @@
                                     <div class="form-group">
                                         <label for="userSurname">Cognome<span class="text-danger">*</span></label>
                                         <input type="text" name="cognome" parsley-trigger="change" required
-                                               placeholder="Enter Surname" class="form-control" id="userSurname">
+                                               placeholder="Enter Surname" <#if fieldsList?has_content>value="${fieldsList[1]}"</#if> class="form-control" id="userSurname">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="birthPlace">Luogo di Nascita<span class="text-danger">*</span></label>
                                         <input type="text" name="luogo_nascita" parsley-trigger="change" required
-                                               placeholder="Enter Birth Place" class="form-control" id="birthPlace">
+                                               placeholder="Enter Birth Place" <#if fieldsList?has_content>value="${fieldsList[14]}"</#if> class="form-control" id="birthPlace">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="code">Codice Fiscale<span class="text-danger">*</span></label>
                                         <input type="text" name="cod_fiscale" parsley-trigger="change" required
-                                               placeholder="Enter fiscal code" class="form-control uppercase" id="code">
+                                               placeholder="Enter fiscal code" <#if fieldsList?has_content>value="${fieldsList[13]}"</#if> class="form-control uppercase" id="code">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="city">Città<span class="text-danger">*</span></label>
                                         <input type="text" name="citta" parsley-trigger="change" required
-                                               placeholder="Enter City" class="form-control" id="city">
+                                               placeholder="Enter City" <#if fieldsList?has_content>value="${fieldsList[8]}"</#if> class="form-control" id="city">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="cap">C A P<span class="text-danger">*</span></label>
                                         <input type="text" name="CAP" parsley-trigger="change" required
-                                               placeholder="Enter CAP" class="form-control" id="cap">
+                                               placeholder="Enter CAP" <#if fieldsList?has_content>value="${fieldsList[9]}"</#if> class="form-control" id="cap">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="userEmail">Indirizzo E-mail<span class="text-danger">*</span></label>
                                         <input type="text" name="email" parsley-trigger="change" required
-                                               placeholder="Enter Email Address" class="form-control" id="userEmail">
+                                               placeholder="Enter Email Address" <#if fieldsList?has_content>value="${fieldsList[12]}"</#if> class="form-control" id="userEmail">
                                     </div>
 
                                     <div class="form-group">
