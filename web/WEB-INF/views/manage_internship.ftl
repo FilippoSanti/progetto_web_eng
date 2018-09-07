@@ -66,13 +66,14 @@
                 </div> <!-- end row -->
                 <br><br><br>
 
-                <#if Message?has_content>
+                <div class="m-b-20">
+
+                <#if errorMessage?has_content>
                 <div class="alert alert-warning" role="alert">
-                ${Message}
+                    ${errorMessage}
                 </div>
                 </#if>
 
-                <div class="m-b-20">
                     <div class="row">
                         <div class="col-md-6 centra text-center">
                             <b>Internship Status:</b> (<i class="interstatus1">${tirocinio}</i>)
@@ -99,7 +100,7 @@
                                     </tr>
                                     <tr>
                                         <th>Allegato_2.pdf</th>
-                                        <td><a href="/documents?action=document1_2&&id=50">View Iter & Download</a></td>
+                                        <td><a href="/documents?action=document1_2&id=${user_id}">View Iter & Download</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -109,7 +110,7 @@
 
                     </div>
                     <br><br>
-                </#if>
+                    </#if>
 
                 </div>
 

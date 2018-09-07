@@ -1,7 +1,6 @@
 package controller.servlets.general;
 
 import controller.dao.*;
-import controller.servlets.general.homeServlet;
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
 import model.*;
@@ -10,17 +9,17 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class documentsServlet extends HttpServlet {
@@ -32,19 +31,20 @@ public class documentsServlet extends HttpServlet {
         Security securityModel = SecurityFilter.checkUsers(request);
 
         // URL Parameters
-
         String action = "action";
         String type   = "type";
         String id     = "id";
         String student_id = "student_id";
         String internship_id = "internship_id";
 
+        // URL Parameters values
         String action_value = request.getParameter(action);
         String type_value = request.getParameter(type);
         String id_value = request.getParameter(id);
         String student_id_value = request.getParameter(student_id);
         String internship_id_value = request.getParameter(internship_id);
 
+        // Headers, menus and sidebars
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
             request.setAttribute("header", "student");
             request.setAttribute("sidemenu", "student");
@@ -65,16 +65,15 @@ public class documentsServlet extends HttpServlet {
             request.setAttribute("sidemenu", "admin");
         }
 
-        // Check if the user is a logged company
+
+        // Company actions
         if (securityModel.getUser().equals("azienda")) {
 
-            // Students list page
             if (action_value != null && action_value.equals("students")) {
                 action_students_page(request, response);
                 return;
             }
 
-            // Students list page
             if (action_value != null && action_value.matches("[0-9]+")) {
                 try {
                     action_students_manage_int(request, response, action_value);
@@ -84,41 +83,49 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
 
-            if (action_value != null && internship_id_value != null && action_value.equals("iter") && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
+            if (action_value != null && internship_id_value != null && action_value.equals("iter") &&
+                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
             {
                 action_see_iter(request, response, student_id_value, internship_id_value);
                 return;
             }
 
-            if (action_value != null && internship_id_value != null && action_value.equals("document1") && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
+            if (action_value != null && internship_id_value != null && action_value.equals("document1") &&
+                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
             {
                 generateDocument1(request, response, student_id_value, internship_id_value);
-                 return;
-            }
-
-            if (action_value != null && id_value != null && type_value != null && type_value.matches("[0-9]+") && action_value.equals("document1_2") && id_value.matches("[0-9]+")){
-                action_compile_document1_2(request, response, id_value, type_value);
                 return;
             }
 
-                action_choose_page(response, request);
+            if (action_value != null && id_value != null && type_value != null &&
+                    type_value.matches("[0-9]+") && action_value.equals("document1_2") && id_value.matches("[0-9]+")){
+                action_compile_document1_2(request, response, id_value, type_value);
+                return;
+            }
+            action_choose_page(response, request);
         }
 
-        // check admin boolean
-        boolean isAdmin = securityModel.getUser().equals("student") && securityModel.getRole().equals("admin");
 
-        // Check if the user is a logged student
-        if (securityModel.getUser().equals("student") && ! isAdmin) {
+        // Student actions
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
 
             // Student internships
             if (action_value != null && action_value.equals("internships")) {
                 action_students_internships(request, response);
                 return;
             }
+
+            // View the document 1
+            if (action_value != null && internship_id_value != null && action_value.equals("iter")
+                    && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+")) {
+
+                student_view_document_1_iter(request, response);
+                return;
+            }
         }
 
-        // Check if the user is admin
-        if (isAdmin) {
+        // Admin actions
+        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("admin")) {
 
             if (action_value != null && action_value.equals("companies")) {
                 action_view_companies(request, response);
@@ -133,10 +140,9 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
         }
-
     }
 
-    /** Admin **/
+    /** Admin functions **/
     private void action_view_companies(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
 
         // Approved companies have signed documents associated, so it's easier to manage them
@@ -153,8 +159,6 @@ public class documentsServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
     }
-
-
 
     // Generate the documentation of a company by its id
     // This belongs to the admin's documents, so it's marked under 'admin'
@@ -192,6 +196,56 @@ public class documentsServlet extends HttpServlet {
 
     }
 
+    /** Student functions **/
+    private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/my_internship.ftl");
+
+        dispatcher.forward(request, response);
+
+    }
+
+    private void student_view_document_1_iter(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        // Check if the signed document has been generated by the company
+        String internship_id = request.getParameter("internship_id");
+        String student_id = request.getParameter("student_id");
+
+        // Get the servlet context and build a pathname for the file
+        String filename = "/assets/documents/company/" + "document1_" + internship_id + "_" + student_id + ".pdf";
+        System.out.println(filename);
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filename);
+
+        File f = new File(pathname);
+        if(f.exists() && !f.isDirectory()) {
+            // open the documents iter
+        } else {
+            // If the file does not exist, the user can't access document_1
+            request.getSession().setAttribute("errorMessage", "The company has not signed your document yet");
+            response.sendRedirect("/internships?view=myInternships&id="+internship_id);
+            return;
+        }
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documents_iter_student.ftl");
+
+        dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+    }
+
+    /** Company functions **/
 
     private void action_see_iter(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
         String companyMail = homeServlet.loggedUserEmail;
@@ -206,6 +260,99 @@ public class documentsServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
 
+    }
+
+    private void action_students_page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        String azz =  "";
+        String azz2 = "";
+        UserDao uDao = new UserDaoImpl();
+        internshipDao intDao = new internshipDaoImpl();
+        companyDao comDao = new companyDaoImpl();
+
+        int az_id = ((companyDaoImpl) comDao).getCompanyIdbyName(tempName);
+
+        ArrayList<InternshipRequest> internshipsArray = intDao.getInternshipsStudents(az_id);
+
+        ArrayList<Internship> internArray = new ArrayList<>();
+        ArrayList<User> userArray  = new ArrayList<User>();
+
+        for (int i = 0; i < internshipsArray.size(); i++) {
+
+            azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
+            internArray.add(intDao.getInternshipByID(internshipsArray.get(i).getInternship_id()));
+            userArray.add(uDao.getUser(azz));
+        }
+
+
+        request.setAttribute("userList", userArray);
+        request.setAttribute("internshipsList", internArray);
+        request.setAttribute("username", tempName);
+
+
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_company.ftl");
+
+        dispatcher.forward(request, response);
+
+    }
+
+    private void action_compile_document1_2(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_iter_student.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
+    private void action_students_manage_int(HttpServletRequest request, HttpServletResponse response, String int_id) throws ServletException, IOException, PropertyVetoException, SQLException, ParseException {
+
+        String tirocinio = "";
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        UserDao uDao = new UserDaoImpl();
+        internshipDao intDao = new internshipDaoImpl();
+        Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
+
+        int user_id = uDao.getIDbyInternship_id(Integer.parseInt(int_id));
+        String startDate = int1.getMeseInziale();
+        String endDate = int1.getMeseFinale();
+
+        tirocinio = getInternshipStatus(startDate, endDate);
+
+        request.setAttribute("username", tempName);
+        request.setAttribute("tirocinio", tirocinio);
+        request.setAttribute("dataFinale", int1.getMeseFinale());
+        request.setAttribute("user_id", user_id);
+        request.setAttribute("internship_id", int_id);
+
+        // Vedo il documento 1 quando il tirocinio INIZIA
+        boolean internship_accepted = uDao.checkInternshipAccepted(user_id,Integer.parseInt(int_id));
+
+        if (internship_accepted) {
+
+            request.setAttribute("intAccepted", "true");
+            RequestDispatcher dispatcher
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+
+            dispatcher.forward(request, response);
+
+        } else {
+            request.getSession().setAttribute("errorMessage", "There aren't documents yet");
+            response.sendRedirect("/documents?action="+int1.getIternship_id());
+        }
+    }
+
+    private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/choose_documents_company.ftl");
+
+        dispatcher.forward(request, response);
     }
 
     private void generateDocument1(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
@@ -230,8 +377,6 @@ public class documentsServlet extends HttpServlet {
         String ref_exp = null;
         String com_ref = null;
         String train_aid = null;
-
-
 
         // Compile the corresponding document (document3)
         ArrayList<String> document1 = new ArrayList<>();
@@ -289,107 +434,7 @@ public class documentsServlet extends HttpServlet {
 
     }
 
-    /** Student **/
-    private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
-
-        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
-        request.setAttribute("username", tempName);
-
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/my_internship.ftl");
-
-        dispatcher.forward(request, response);
-
-    }
-
-    /** Company **/
-
-    private void action_students_page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
-
-        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
-        String azz =  "";
-        String azz2 = "";
-        UserDao uDao = new UserDaoImpl();
-        internshipDao intDao = new internshipDaoImpl();
-        companyDao comDao = new companyDaoImpl();
-
-        int az_id = ((companyDaoImpl) comDao).getCompanyIdbyName(tempName);
-
-        ArrayList<InternshipRequest> internshipsArray = intDao.getInternshipsStudents(az_id);
-
-        ArrayList<Internship> internArray = new ArrayList<>();
-        ArrayList<User> userArray  = new ArrayList<User>();
-
-        for (int i = 0; i < internshipsArray.size(); i++) {
-
-            azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
-            internArray.add(intDao.getInternshipByID(internshipsArray.get(i).getInternship_id()));
-            userArray.add(uDao.getUser(azz));
-        }
-
-
-        request.setAttribute("userList", userArray);
-        request.setAttribute("internshipsList", internArray);
-        request.setAttribute("username", tempName);
-
-
-
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_company.ftl");
-
-        dispatcher.forward(request, response);
-
-    }
-
-
-    private void action_compile_document1_2(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws ServletException, IOException, PropertyVetoException, SQLException {
-
-        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
-        request.setAttribute("username", tempName);
-
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_iter_student.ftl");
-
-        dispatcher.forward(request, response);
-    }
-
-    private void action_students_manage_int(HttpServletRequest request, HttpServletResponse response, String int_id) throws ServletException, IOException, PropertyVetoException, SQLException, ParseException {
-
-        String tirocinio = "";
-        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
-
-        UserDao uDao = new UserDaoImpl();
-        internshipDao intDao = new internshipDaoImpl();
-        Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
-
-        int user_id = uDao.getIDbyInternship_id(Integer.parseInt(int_id));
-        String startDate = int1.getMeseInziale();
-        String endDate = int1.getMeseFinale();
-
-        tirocinio = getInternshipStatus(startDate, endDate);
-
-        request.setAttribute("username", tempName);
-        request.setAttribute("tirocinio", tirocinio);
-        request.setAttribute("dataFinale", int1.getMeseFinale());
-        request.setAttribute("user_id", user_id);
-        request.setAttribute("internship_id", int_id);
-
-        // Vedo il documento 1 quando il tirocinio INIZIA
-        boolean internship_accepted = uDao.checkInternshipAccepted(user_id,Integer.parseInt(int_id));
-
-        if (internship_accepted) {
-
-            request.setAttribute("intAccepted", "true");
-            RequestDispatcher dispatcher
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
-
-            dispatcher.forward(request, response);
-
-        } else {
-            request.getSession().setAttribute("errorMessage", "There aren't documents yet");
-            response.sendRedirect("/documents?action="+int1.getIternship_id());
-        }
-    }
+    /** General functions */
 
     // Elaborate the status of an internship
     private String getInternshipStatus(String start_date, String end_date) {
@@ -417,14 +462,6 @@ public class documentsServlet extends HttpServlet {
         return result;
     }
 
-
-
-    private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/choose_documents_company.ftl");
-
-        dispatcher.forward(request, response);
-    }
 
     /**
      * Handles the HTTP <code>GET</code> method.

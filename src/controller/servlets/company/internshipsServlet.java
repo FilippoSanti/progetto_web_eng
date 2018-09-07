@@ -158,6 +158,7 @@ public class internshipsServlet extends HttpServlet {
     private void action_view_student_internship(HttpServletRequest request, HttpServletResponse response, int internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
         internshipDao iDao = new internshipDaoImpl();
         Internship iTemp = iDao.getInternshipByID(internship_id);
+        UserDao uDao = new UserDaoImpl();
 
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
@@ -167,13 +168,28 @@ public class internshipsServlet extends HttpServlet {
 
         String result = getInternshipStatus(date_start, date_end);
 
+        //Get the id of the logged user
+        int session_id = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
+
+        request.setAttribute("internship_id", iTemp.getIternship_id());
+        request.setAttribute("user_id", session_id);
         request.setAttribute("tirocinio", result);
-        request.setAttribute("dataFinale",iTemp.getMeseFinale());
+        request.setAttribute("dataFinale", iTemp.getMeseFinale());
+        request.setAttribute("intAccepted", "yes");
 
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
 
         dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
 
     }
 
