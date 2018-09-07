@@ -25,6 +25,41 @@ public class internshipDaoImpl implements internshipDao {
     private static final String DELETE_USER_INTERNSHIP_REQ = "DELETE FROM richieste_tirocinio WHERE richieste_tirocinio.studente_id = ?";
     private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ?";
     private static final String GET_LISTA_CAND_APPR = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 1";
+    private static final String GET_INTERNSHIP_REQUEST_DATA = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && studente_id = ?";
+
+    public InternshipRequest getInternshipRequestByIDs(int internship_id, int student_id) throws SQLException, IOException, PropertyVetoException {
+
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(GET_INTERNSHIP_REQUEST_DATA);
+
+        InternshipRequest internshipModel = new InternshipRequest();
+
+        pst.setInt(1, internship_id);
+        pst.setInt(1, student_id);
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            internshipModel.setInternship_request_id(rs.getInt("richiesta"));
+            internshipModel.setAzienda_id(rs.getInt("azienda_id"));
+            internshipModel.setInternship_id(rs.getInt("offerta_tirocinio_id"));
+            internshipModel.setStudent_id(rs.getInt("studente_id"));
+            internshipModel.setAccettata(rs.getBoolean("accettata"));
+            internshipModel.setCfu(rs.getString("cfu"));
+            internshipModel.setTutor_name(rs.getString("tutor_name"));
+            internshipModel.setTutor_surname(rs.getString("tutor_surname"));
+            internshipModel.setTutor_email(rs.getString("tutor_email"));
+
+
+            dbConnection.close();
+
+
+        }
+        return internshipModel;
+    }
 
 
     public Internship getInternshipDataById(int int_id) throws SQLException, IOException, PropertyVetoException{

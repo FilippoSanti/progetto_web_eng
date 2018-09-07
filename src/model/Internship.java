@@ -8,9 +8,13 @@ public class Internship {
 
     private String nome, dettagli, luogo, mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, settore;
 
+
+
+
     public String getDettagli() {
         return dettagli;
     }
+
 
     public String getNome() {
         return nome;

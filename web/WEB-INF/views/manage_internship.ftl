@@ -81,6 +81,9 @@
                             <b>End Date:</b> <i>${dataFinale}</i>
                         </div>
                     </div>
+
+                    <#if isCompleted?has_content>
+
                     <br><br>
                     <div class="container">
                         <div class="row">
@@ -92,11 +95,11 @@
                                     <tbody>
                                     <tr>
                                         <th>Allegato_1.pdf</th>
-                                        <td><a href="documents_iter_student.ftl">View Iter & Download</a></td>
+                                        <td><a href="/documents?action=document1&&id=50">View Iter & Download</a></td>
                                     </tr>
                                     <tr>
                                         <th>Allegato_2.pdf</th>
-                                        <td><a href="documents_iter_student.ftl">View Iter & Download</a></td>
+                                        <td><a href="/documents?action=document1_2&&id=50">View Iter & Download</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -106,7 +109,7 @@
 
                     </div>
                     <br><br>
-
+                </#if>
 
                 </div>
 

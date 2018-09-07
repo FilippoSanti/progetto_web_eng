@@ -5,6 +5,9 @@ import controller.servlets.general.homeServlet;
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
 import model.*;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -77,7 +80,18 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
 
-            action_choose_page(response, request);
+            if (action_value != null && id_value != null && action_value.equals("document1") && type_value != null && type_value.matches("[0-9]+") && id_value.matches("[0-9]+"))
+            {
+                generateDocument1(request, response, id_value, type_value);
+                 return;
+            }
+
+            if (action_value != null && id_value != null && type_value != null && type_value.matches("[0-9]+") && action_value.equals("document1_2") && id_value.matches("[0-9]+")){
+                action_compile_document1_2(request, response, id_value, type_value);
+                return;
+            }
+
+                action_choose_page(response, request);
         }
 
         // check admin boolean
@@ -166,6 +180,74 @@ public class documentsServlet extends HttpServlet {
 
     }
 
+    private void generateDocument1(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
+
+        String resultString = "";
+        String companyMail = homeServlet.loggedUserEmail;
+
+        int stud_id = Integer.parseInt(student_id);
+        int inter_id = Integer.parseInt(internship_id);
+        // Get the internship and student data
+        UserDao uDao = new UserDaoImpl();
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao comDao = new companyDaoImpl();
+
+        Internship internshipData = iDao.getInternshipDataById(inter_id);
+        User userData = uDao.getUser(uDao.getEmailByID(stud_id));
+        Company companyData = comDao.getCompanyDataByEmail(companyMail);
+        InternshipRequest interReq = iDao.getInternshipRequestByIDs(inter_id, stud_id);
+
+        // Compile the corresponding document (document3)
+        ArrayList<String> document1 = new ArrayList<>();
+
+        document1.add(userData.getNome());
+        document1.add(userData.getCognome());
+        document1.add(userData.getLuogo_nascita());
+        document1.add(userData.getProvincia_n());
+        document1.add(userData.getDate());
+        document1.add(userData.getResidenza());
+        document1.add(userData.getProvincia());
+        document1.add(userData.getCod_fiscale());
+        document1.add(userData.getTel());
+        document1.add(userData.getCorso());
+        document1.add(String.valueOf(userData.getHandicap()));
+        document1.add(companyData.getRagione_sociale());
+        document1.add(internshipData.getLuogo());
+        document1.add(internshipData.getSettore());
+        document1.add(internshipData.getOrari());
+        document1.add(internshipData.getMesi());
+        document1.add(internshipData.getMeseInziale());
+        document1.add(internshipData.getMeseFinale());
+        document1.add(internshipData.getOre());
+        document1.add(interReq.getCfu());
+        document1.add(interReq.getTutor_name());
+        document1.add(interReq.getTutor_surname());
+        document1.add(interReq.getTutor_email());
+        document1.add(companyData.getNome_cognome_tir());
+        document1.add(companyData.getTelefono_tirocini());
+        document1.add(internshipData.getObiettivi());
+        document1.add(String.valueOf(internshipData.isCompany_headquarters()));
+        document1.add(String.valueOf(internshipData.isRemote_connection()));
+        document1.add(internshipData.getModalita());
+        document1.add(String.valueOf(internshipData.isRefound_of_expenses()));
+        document1.add(String.valueOf(internshipData.isCompany_refactory()));
+        document1.add(String.valueOf(internshipData.isTraining_aid()));
+        document1.add(internshipData.getRimborsi_spese_facilitazioni_previste());
+
+        request.setAttribute("doc", document1);
+
+        if (Utils.checkFFUG(request)) {
+            System.out.println("firefox");
+            resultString = "/WEB-INF/views/document_1_alt.ftl";
+        } else resultString = "/WEB-INF/views/document_1.ftl";
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher(resultString);
+
+        dispatcher.forward(request, response);
+
+    }
+
     /** Student **/
     private void action_students_internships(HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
 
@@ -218,8 +300,21 @@ public class documentsServlet extends HttpServlet {
 
     }
 
+
+    private void action_compile_document1_2(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_iter_student.ftl");
+
+        dispatcher.forward(request, response);
+    }
+
     private void action_students_manage_int(HttpServletRequest request, HttpServletResponse response, String int_id) throws ServletException, IOException, PropertyVetoException, SQLException, ParseException {
 
+        String isCompleted = null;
         String tirocinio = "";
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
 
@@ -227,25 +322,64 @@ public class documentsServlet extends HttpServlet {
         Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
-        Date a = formatter.parse(int1.getMeseInziale());
-        Date b = formatter.parse(int1.getMeseFinale());
+        String startDate = int1.getMeseInziale();
+        String endDate = int1.getMeseFinale();
 
-        long iniziale = a.getTime();
-        long finale = b.getTime();
-
-        if (iniziale > System.currentTimeMillis())  tirocinio = "not started";
-        else if (finale > System.currentTimeMillis())  tirocinio = "completed";
-        else  tirocinio = "in progress";
+       tirocinio = getInternshipStatus(startDate, endDate);
 
         request.setAttribute("username", tempName);
         request.setAttribute("tirocinio", tirocinio);
         request.setAttribute("dataFinale", int1.getMeseFinale());
 
-        RequestDispatcher dispatcher
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+        if (tirocinio.matches("Completed")){
 
-        dispatcher.forward(request, response);
+            isCompleted = "yes";
+            request.setAttribute("isCompleted", isCompleted);
+            RequestDispatcher dispatcher
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+
+            dispatcher.forward(request, response);
+        }
+
+        else {
+
+            request.setAttribute("isCompleted", isCompleted);
+            RequestDispatcher dispatcher
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
+
+            dispatcher.forward(request, response);
+        }
+
+
     }
+
+    // Elaborate the status of an internship
+    private String getInternshipStatus(String start_date, String end_date) {
+        String result = null;
+
+        // Execute the date operations
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+
+        DateTime date_now = new DateTime();
+        DateTime dt_start = formatter.parseDateTime(start_date);
+        DateTime dt_end   = formatter.parseDateTime(end_date);
+
+        boolean not_started = date_now.isBefore(dt_start);
+        boolean in_progress = date_now.isAfter(dt_start) && date_now.isBefore(dt_end);
+        boolean terminated  = date_now.isAfter(dt_end);
+
+        if (not_started) {
+            result = "Not started";
+        } else if (in_progress) {
+            result = "In progress";
+        } else if (terminated) {
+            result = "Completed";
+        }
+
+        return result;
+    }
+
+
 
     private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         RequestDispatcher dispatcher
