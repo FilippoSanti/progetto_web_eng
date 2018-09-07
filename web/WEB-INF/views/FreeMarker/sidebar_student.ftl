@@ -26,8 +26,12 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="/viewProfile">My Account</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
-                                <li><a href="/internships?view=myInternships">My Internships</a></li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="/internships?view=myInternships"><i class="ti-view-list"></i><span> My Internships </span>
+                            </a>
                         </li>
 
                         <li>
