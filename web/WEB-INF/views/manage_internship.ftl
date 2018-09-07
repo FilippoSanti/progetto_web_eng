@@ -95,7 +95,7 @@
                                     <tbody>
                                     <tr>
                                         <th>Allegato_1.pdf</th>
-                                        <td><a href="/documents?action=document1&student_id=${user_id}&internship_id=${internship_id}">View Iter & Download</a></td>
+                                        <td><a href="/documents?action=iter&student_id=${user_id}&internship_id=${internship_id}">View Iter & Download</a></td>
                                     </tr>
                                     <tr>
                                         <th>Allegato_2.pdf</th>

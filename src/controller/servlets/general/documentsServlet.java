@@ -84,6 +84,12 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
 
+            if (action_value != null && internship_id_value != null && action_value.equals("iter") && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
+            {
+                action_see_iter(request, response, student_id_value, internship_id_value);
+                return;
+            }
+
             if (action_value != null && internship_id_value != null && action_value.equals("document1") && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
             {
                 generateDocument1(request, response, student_id_value, internship_id_value);
@@ -148,6 +154,8 @@ public class documentsServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+
+
     // Generate the documentation of a company by its id
     // This belongs to the admin's documents, so it's marked under 'admin'
     private void generateAgreementDocument(int company_id, HttpServletRequest request, HttpServletResponse response) throws PropertyVetoException, SQLException, IOException, ServletException {
@@ -181,6 +189,22 @@ public class documentsServlet extends HttpServlet {
                 = this.getServletContext().getRequestDispatcher(resultString);
 
         dispatcher.forward(request, response);
+
+    }
+
+
+    private void action_see_iter(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
+        String companyMail = homeServlet.loggedUserEmail;
+
+        request.setAttribute("student_id", student_id);
+        request.setAttribute("internship_id", internship_id);
+        request.setAttribute("tempName", companyMail);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documents_iter_company.ftl");
+
+        dispatcher.forward(request, response);
+
 
     }
 

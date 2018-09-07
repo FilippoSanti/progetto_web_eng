@@ -41,10 +41,14 @@ public class viewDocumentationServlet extends HttpServlet {
         String action = "action";
         String type = "type";
         String id = "id";
+        String student_id = "student_id";
+        String internship_id = "internship_id";
 
         String type_value = request.getParameter(type);
         String id_value = request.getParameter(id);
         String action_value = request.getParameter(action);
+        String student_id_value = request.getParameter(student_id);
+        String internship_id_value = request.getParameter(internship_id);
 
         /** Administrator requests */
         if (securityModel.getUser().equals("student") &&
@@ -91,6 +95,34 @@ public class viewDocumentationServlet extends HttpServlet {
                 return;
             }
         }
+
+
+        /** Company requests */
+        if (securityModel.getUser().equals("company") )
+                {
+
+            // View the document_1 of a user
+            if (action_value != null && student_id_value != null && internship_id_value != null &&
+                    action_value.equals("upload") && student_id_value.matches("[1-9]+") &&
+                    internship_id_value.matches("[0-9]+")) {
+
+                int real_id = Integer.valueOf(student_id_value);
+                int real_id2 = Integer.valueOf(internship_id_value);
+
+                action_upload_company_document(request, response, real_id, real_id2);
+                return;
+            }
+
+                    if (action_value != null && student_id_value != null && internship_id_value != null &&
+                            action_value.equals("student") && student_id_value.matches("[1-9]+") &&
+                            internship_id_value.matches("[0-9]+")) {
+                        int real_id = Integer.valueOf(student_id_value);
+                        int real_id2 = Integer.valueOf(internship_id_value);
+                        action_show_student_documentation(real_id, real_id2, request, response);
+                        return;
+                    }
+        }
+
 
     }
 
@@ -171,7 +203,7 @@ public class viewDocumentationServlet extends HttpServlet {
         // Check for the file type and upload the pdf
         if (MIME_TYPE == null || !MIME_TYPE.equals("pdf")) {
             request.getSession().setAttribute("errorMessage", "Please upload a valid pdf file");
-            response.sendRedirect("/viewDocumentation?type=company&id=" + company_id);
+            response.sendRedirect("/viewDocumentation?type=student&student_id=" + company_id);
         } else {
             OutputStream out = new FileOutputStream(pathname);
             Utils.copy(fileContent, out);
@@ -179,6 +211,72 @@ public class viewDocumentationServlet extends HttpServlet {
             // File uploaded correctly
             request.getSession().setAttribute("Message", "File uploaded successfully");
             response.sendRedirect("/viewDocumentation?type=company&id=" + company_id);
+        }
+    }
+
+    private void action_show_student_documentation(int student_id, int internship_id, HttpServletRequest request,HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+        companyDao cDao = new companyDaoImpl();
+
+
+        // Check if we can enable the approve button
+        // We do that only if the signed document exists in a directory
+        if (checkForDocumentation(student_id)) {
+            request.setAttribute("approveButton", "enabled");
+        }
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        request.setAttribute("student_id", student_id);
+        request.setAttribute("internship_id", internship_id);
+
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documents_iter_company.ftl");
+
+        dispatcher.forward(request, response);
+
+        // Delete old messages and error messages every time we load the page
+        // Chrome browser fix included
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
+    }
+
+    private void action_upload_company_document(HttpServletRequest request, HttpServletResponse response, int student_id, int internship_id) throws ServletException, IOException, IOException, ServletException {
+
+        UserDao userDao = new UserDaoImpl();
+        companyDao compDao = new companyDaoImpl();
+
+        // Retrieves <input type="file" name="file">
+        Part filePart = request.getPart("file");
+
+        // MSIE fix.
+        InputStream fileContent = filePart.getInputStream();
+        String filename = "/assets/documents/company/" + "document1_2" + student_id + internship_id + ".pdf";
+
+        // Get the servlet context and build a pathname for the file
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filename);
+
+        String MIME_TYPE = Utils.checkPDF(fileContent);
+
+        // Check for the file type and upload the pdf
+        if (MIME_TYPE == null || !MIME_TYPE.equals("pdf")) {
+            request.getSession().setAttribute("errorMessage", "Please upload a valid pdf file");
+            response.sendRedirect("/viewDocumentation?type=student&student_id=" + student_id + "&internship_id=" + internship_id);
+        } else {
+            OutputStream out = new FileOutputStream(pathname);
+            Utils.copy(fileContent, out);
+
+            // File uploaded correctly
+            request.getSession().setAttribute("Message", "File uploaded successfully");
+            response.sendRedirect("/viewDocumentation?type=student&student_id=" + student_id + "&internship_id=" + internship_id);
         }
     }
 
