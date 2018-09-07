@@ -49,4 +49,5 @@ public interface UserDao {
     public boolean checkAdmin(String userEmail) throws SQLException, IOException, PropertyVetoException;
     public boolean checkEmailReset(String emailString) throws PropertyVetoException, SQLException, IOException;
     public boolean checkInternshipUser(int user_id, int internship_id) throws IOException, PropertyVetoException;
+    public boolean checkInternshipAccepted(int student_id, int internship_id);
 }

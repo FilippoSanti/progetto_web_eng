@@ -331,11 +331,10 @@ public class documentsServlet extends HttpServlet {
 
     private void action_students_manage_int(HttpServletRequest request, HttpServletResponse response, String int_id) throws ServletException, IOException, PropertyVetoException, SQLException, ParseException {
 
-        String isCompleted = null;
         String tirocinio = "";
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
 
-       UserDao uDao = new UserDaoImpl();
+        UserDao uDao = new UserDaoImpl();
         internshipDao intDao = new internshipDaoImpl();
         Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
 
@@ -343,7 +342,7 @@ public class documentsServlet extends HttpServlet {
         String startDate = int1.getMeseInziale();
         String endDate = int1.getMeseFinale();
 
-       tirocinio = getInternshipStatus(startDate, endDate);
+        tirocinio = getInternshipStatus(startDate, endDate);
 
         request.setAttribute("username", tempName);
         request.setAttribute("tirocinio", tirocinio);
@@ -351,26 +350,21 @@ public class documentsServlet extends HttpServlet {
         request.setAttribute("user_id", user_id);
         request.setAttribute("internship_id", int_id);
 
-        if (tirocinio.matches("Completed")){
+        // Vedo il documento 1 quando il tirocinio INIZIA
+        boolean internship_accepted = uDao.checkInternshipAccepted(user_id,Integer.parseInt(int_id));
 
-            isCompleted = "yes";
-            request.setAttribute("isCompleted", isCompleted);
+        if (internship_accepted) {
+
+            request.setAttribute("intAccepted", "true");
             RequestDispatcher dispatcher
                     = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
 
             dispatcher.forward(request, response);
+
+        } else {
+            request.getSession().setAttribute("errorMessage", "There aren't documents yet");
+            response.sendRedirect("/documents?action="+int1.getIternship_id());
         }
-
-        else {
-
-            request.setAttribute("isCompleted", isCompleted);
-            RequestDispatcher dispatcher
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manage_internship.ftl");
-
-            dispatcher.forward(request, response);
-        }
-
-
     }
 
     // Elaborate the status of an internship

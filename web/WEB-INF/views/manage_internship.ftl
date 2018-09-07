@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                    <#if isCompleted?has_content>
+                    <#if intAccepted?has_content>
 
                     <br><br>
                     <div class="container">

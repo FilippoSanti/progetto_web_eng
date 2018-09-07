@@ -49,6 +49,7 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE_COMPANY_NOTIFICATIONS = "DELETE FROM notifica WHERE id_azienda = ?";
     private static final String CHECK_USER_INTERNSHIP = "SELECT * FROM richieste_tirocinio WHERE studente_id=? && offerta_tirocinio_id = ?";
     private static final String GET_ID_BY_INTER_ID = "SELECT studente_id FROM richieste_tirocinio WHERE offerta_tirocinio_id = ?";
+    private final static String CHECK_USER_ACCEPTED = "SELECT * FROM richieste_tirocinio WHERE studente_id = ? AND offerta_tirocinio_id = ? AND accettata = 1";
     /**
      * Get a user object by an email
      */
@@ -1094,6 +1095,43 @@ public class UserDaoImpl implements UserDao {
         }
 
         dbConnection.close();
+        return result;
+    }
+
+    public boolean checkInternshipAccepted(int student_id, int internship_id) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
+
+        try {
+            conn = DataSource.getInstance().getConnection();
+            ps = conn.prepareStatement(CHECK_USER_ACCEPTED);
+
+            ps.setInt(1, student_id);
+            ps.setInt(2, internship_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                ps.close();
+            } catch (Exception e) { /* ignored */ }
+            try {
+                conn.close();
+            } catch (Exception e) { /* ignored */ }
+        }
         return result;
     }
 
