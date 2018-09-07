@@ -275,4 +275,26 @@ public class Utils {
         }
         return nread;
     }
+
+    public static String breakCharacters(String inputString) {
+
+        String parsedStr = null;
+
+        if (inputString.length() > 177 && inputString.length() < 235) {
+            parsedStr = inputString.replaceAll("(.{59})", "$1\n");
+
+        } else if (inputString.length() <= 59) {
+            parsedStr = inputString + System.lineSeparator() +
+                    System.lineSeparator() + System.lineSeparator();
+
+        } else if (inputString.length() <= 118) {
+            parsedStr = inputString + System.lineSeparator() +
+                    System.lineSeparator();
+
+        } else if (inputString.length() <= 177) {
+            parsedStr = inputString + System.lineSeparator();
+        }
+
+        return parsedStr;
+    }
 }

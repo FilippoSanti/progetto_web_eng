@@ -299,7 +299,25 @@
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
-<br><br><br>
+                        <br><br><br>
+
+                        <#if errorMessage?has_content>
+                            <div class="alert alert-danger" role="alert">
+                                ${errorMessage}
+                            </div>
+
+                        </#if>
+                        <#if Message?has_content>
+                            <div class="alert alert-success" role="alert">
+                                ${Message}
+                            </div>
+                        </#if>
+
+                        <#if warningMessage?has_content>
+                            <div class="alert alert-warning" role="alert">
+                                ${warningMessage}
+                            </div>
+                        </#if>
 
                         <div class="m-b-20">
                             <div class="container">
@@ -324,7 +342,8 @@
                                     <iframe src="/documents?action=document1&student_id=${student_id}&internship_id=${internship_id}" style="display:none;" name="frame"></iframe>
 
                                     <div class="centra">
-                                        <a href="javascript:frames['frame'].print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>
+                                        <a href="javascript:frames['frame'].print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i> Download</a>
+                                        <a href="/documents?action=document1&student_id=${student_id}&internship_id=${internship_id}"><button type="button" class="btn btn-outline-secondary">View document</button></a>
                                     </div>
                                 </div>
 
@@ -355,28 +374,33 @@
                                 </div>
 
 <br><br><br><br><br>
-
+                                <#if showDownload?has_content>
                                 <div class="row">
-
                                     <div class="col-md-3 centra">
-                                        <b>STEP 3</b>                                    
+                                        <b>STEP 3</b>
                                     </div>
-                                    
                                     <div class="col-md-6 centra">
-                                        <i>Be sure to download and print the document <ins>ONLY</ins> after checking the presence of the student's <ins>signature</ins> and the <ins>protocol</ins> of the student secretariat.</i>                                    
-                                    </div>                                    
-                                </div>
-
-<br><br>
-                                
-                                <div class="row">
-
-                                    <div class="col-sm-3"></div>
-
-                                    <div class="centra">
-                                        <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>                                    
+                                        <i>Be sure to download and print the document <ins>ONLY</ins> after checking the presence of the student's <ins>signature</ins> and the <ins>protocol</ins> of the student secretary.</i>
                                     </div>
                                 </div>
+
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="centra">
+                                        <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>
+                                    </div>
+                                </div>
+                                <#else>
+                                <div class="row">
+                                <div class="col-md-3 centra">
+                                    <b>STEP 3</b>
+                                </div>
+                                <div class="col-md-6 centra">
+                                    <i>Not available yet</i>
+                                </div>
+                                </div>
+                                </#if>
 
                             </div>                                           
 

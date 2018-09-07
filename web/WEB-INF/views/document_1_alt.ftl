@@ -171,22 +171,46 @@
     <P class="p14 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Scuola o corso di perfezionamento o specializzazione in: ________________________</SPAN></P>
     <P class="p15 ft8">__________________________________________________________________</P>
     <P class="p12 ft8">Barrare se trattasi di soggetto portatore di handicap:</P>    <!-- casella flaggata: &#9746 => ☒ -->
-    <TABLE cellpadding=0 cellspacing=0 class="t1">
-        <TR>
-            <TD rowspan=2 class="tr5 td6"><P class="p16 ft8">Si</P></TD>
-            <TD class="tr6 td7"><P class="p4 ft12"></P></TD>
-        </TR>
-        <TR>
-            <TD class="tr7 td7"><P class="p4 ft13">&nbsp;</P></TD>
-        </TR>
-        <TR>
-            <TD rowspan=2 class="tr5 td6"><P class="p4 ft8">No</P></TD>
-            <TD class="tr8 td7"><P class="p4 ft12"></P></TD>
-        </TR>
-        <TR>
-            <TD class="tr4 td7"><P class="p4 ft6">&nbsp;</P></TD>
-        </TR>
-    </TABLE>
+
+<#if compilehandicap?has_content>
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+    <TR>
+        <TD rowspan=2 class="tr5 td6"><P class="p16 ft8">Si</P></TD>
+        <TD class="tr6 td7"><P class="p4 ft12">☒</P></TD>
+
+    </TR>
+    <TR>
+        <TD class="tr7 td7"><P class="p4 ft13">&nbsp;</P></TD>
+    </TR>
+    <TR>
+        <TD rowspan=2 class="tr5 td6"><P class="p4 ft8">No</P></TD>
+        <TD class="tr8 td7"><P class="p4 ft12"></P></TD>
+    </TR>
+    <TR>
+        <TD class="tr4 td7"><P class="p4 ft6">&nbsp;</P></TD>
+    </TR>
+</TABLE>
+
+<#else>
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+    <TR>
+        <TD rowspan=2 class="tr5 td6"><P class="p16 ft8">Si</P></TD>
+        <TD class="tr6 td7"><P class="p4 ft12"></P></TD>
+
+    </TR>
+    <TR>
+        <TD class="tr7 td7"><P class="p4 ft13">&nbsp;</P></TD>
+    </TR>
+    <TR>
+        <TD rowspan=2 class="tr5 td6"><P class="p4 ft8">No</P></TD>
+        <TD class="tr8 td7"><P class="p4 ft12">☒</P></TD>
+    </TR>
+    <TR>
+        <TD class="tr4 td7"><P class="p4 ft6">&nbsp;</P></TD>
+    </TR>
+</TABLE>
+</#if>
+
     <P class="p17 ft8"><SPAN class="ft7">Ente/Azienda ospitante </SPAN> ${doc[11]} </P>
 <P class="p8 ft8"><SPAN class="ft7">Luogo di effettuazione del tirocinio: </SPAN> ${doc[12]}
     	<#if doc[26]?has_content> <P class="p21 ft8"> - In sede  </P></#if>
@@ -224,14 +248,9 @@
     <P class="p21 ft8">Copertura assicurativa “in conto Stato” ex art. 2 D.P.R. N. 156 del 9.04.1999</P>
     <P class="p22 ft19">Obiettivi del tirocinio:</P>
     <P class="p21 ft8">    ${doc[25]}  </P>
-    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
-    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
-    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
     <P class="p27 ft19">Modalità:</P>
     <P class="p21 ft8"> - ${doc[28]}  </P>
-    <P class="p21 ft8">???????????????????????????????????????????????????</P>
-    <P class="p21 ft8">???????????????????????????????????????????????????</P>
-    <P class="p28 ft8">???????????????????????????????????????????????????</P>
+
     <P class="p29 ft19">Facilitazioni previste: sussidio di formazione e servizi aziendali (mensa)</P>
     <#if doc[29]?has_content> <P class="p21 ft8">  - Rimborso Spese </P>   </#if>
    <#if doc[30]?has_content> <P class="p21 ft8"> - Mensa aziendale </P>   </#if>

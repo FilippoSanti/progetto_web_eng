@@ -150,7 +150,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="ore"class="col-md-6 col-form-label">N&#176 Hours</label>
-                                        <select name="ore" class="form-control">
+                                        <select name="orari" class="form-control">
                                             <option>10</option>
                                             <option>20</option>
                                             <option>30</option>
@@ -186,7 +186,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for ="orari"class="col-md-3 col-form-label">Timetables</label>
-                                        <select name="orari" class="form-control">
+                                        <select name="ore" class="form-control">
                                             <option>08:00 - 12:00</option>
                                             <option>09:00 - 13:00</option>
                                             <option>10:00 - 14:00</option>

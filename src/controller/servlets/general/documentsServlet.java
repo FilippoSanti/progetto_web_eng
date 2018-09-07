@@ -84,15 +84,13 @@ public class documentsServlet extends HttpServlet {
             }
 
             if (action_value != null && internship_id_value != null && action_value.equals("iter") &&
-                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
-            {
+                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+")) {
                 action_see_iter(request, response, student_id_value, internship_id_value);
                 return;
             }
 
             if (action_value != null && internship_id_value != null && action_value.equals("document1") &&
-                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
-            {
+                    student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+")) {
                 generateDocument1(request, response, student_id_value, internship_id_value);
                 return;
             }
@@ -185,7 +183,6 @@ public class documentsServlet extends HttpServlet {
         request.setAttribute("doc", aD);
 
         if (Utils.checkFFUG(request)) {
-            System.out.println("firefox");
             resultString = "/WEB-INF/views/document_3_alt.ftl";
         } else resultString = "/WEB-INF/views/document_3.ftl";
 
@@ -217,7 +214,6 @@ public class documentsServlet extends HttpServlet {
 
         // Get the servlet context and build a pathname for the file
         String filename = "/assets/documents/company/" + "document1_" + internship_id + "_" + student_id + ".pdf";
-        System.out.println(filename);
         ServletContext context = getServletContext();
         String pathname = context.getRealPath(filename);
 
@@ -243,23 +239,58 @@ public class documentsServlet extends HttpServlet {
         if (request.getSession().getAttribute("errorMessage") != null) {
             request.getSession().removeAttribute("errorMessage");
         }
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
+
     }
 
     /** Company functions **/
-
     private void action_see_iter(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
-        String companyMail = homeServlet.loggedUserEmail;
+
+        // Check if the company can acess the page
+        boolean securityOk = companysecurityCheck(Integer.valueOf(student_id), Integer.valueOf(internship_id));
+
+        if (!securityOk) {
+            response.sendRedirect("/documents?action=students");
+            return;
+        }
+
+        // We have to check if the student has signed its document
+        // Get the servlet context and build a pathname for the file
+        String filename = "/assets/documents/student/" + "document1_" + internship_id + "_" + student_id + "_signed" + ".pdf";
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filename);
+
+        File f = new File(pathname);
+        if(f.exists() && !f.isDirectory()) {
+
+            // If so, we enable the download button
+            request.setAttribute("showDownload", true);
+        } else {
+            request.setAttribute("warningMessage", "Warning, you will be able to download the document only after the student has signed it.");
+        }
 
         request.setAttribute("student_id", student_id);
         request.setAttribute("internship_id", internship_id);
-        request.setAttribute("tempName", companyMail);
+        request.setAttribute("tempName", homeServlet.loggedUserEmail);
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documents_iter_company.ftl");
 
         dispatcher.forward(request, response);
 
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
 
+        // Chrome browser fix
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
     }
 
     private void action_students_page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
@@ -357,6 +388,14 @@ public class documentsServlet extends HttpServlet {
 
     private void generateDocument1(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
 
+        // Check if the company can acess the page
+        boolean securityOk = companysecurityCheck(Integer.valueOf(student_id), Integer.valueOf(internship_id));
+
+        if (!securityOk) {
+            response.sendRedirect("/documents?action=students");
+            return;
+        }
+
         String resultString = "";
         String companyMail = homeServlet.loggedUserEmail;
 
@@ -406,7 +445,7 @@ public class documentsServlet extends HttpServlet {
         document1.add(interReq.getTutor_email());
         document1.add(companyData.getNome_cognome_tir());
         document1.add(companyData.getTelefono_tirocini());
-        document1.add(internshipData.getObiettivi());
+        document1.add(Utils.breakCharacters(internshipData.getObiettivi()));
         if (internshipData.isCompany_headquarters())  com_head = "ok";
         if (internshipData.isRemote_connection())  rem_conn = "ok";
         if (internshipData.isRefound_of_expenses())  ref_exp = "ok";
@@ -414,7 +453,7 @@ public class documentsServlet extends HttpServlet {
         if (internshipData.isTraining_aid())   train_aid = "ok";
         document1.add(com_head);
         document1.add(rem_conn);
-        document1.add(internshipData.getModalita());
+        document1.add(Utils.breakCharacters(internshipData.getModalita()));
         document1.add(ref_exp);
         document1.add(com_ref);
         document1.add(train_aid);
@@ -422,8 +461,10 @@ public class documentsServlet extends HttpServlet {
 
         request.setAttribute("doc", document1);
 
+        // Set another attribute with the handicap status
+        if (userData.getHandicap()) { request.setAttribute("compilehandicap", "true"); }
+
         if (Utils.checkFFUG(request)) {
-            System.out.println("firefox");
             resultString = "/WEB-INF/views/document_1_alt.ftl";
         } else resultString = "/WEB-INF/views/document_1.ftl";
 
@@ -432,6 +473,28 @@ public class documentsServlet extends HttpServlet {
 
         dispatcher.forward(request, response);
 
+    }
+
+    // Check if a company can see the documents of an internship
+    private boolean companysecurityCheck(int student_id, int internship_id) throws PropertyVetoException, IOException, SQLException {
+
+        boolean result = false;
+
+        // Get the internship and check if our id is in the internship object
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao cDao = new companyDaoImpl();
+
+        int company_id = cDao.getCompanyIdbyEmail(homeServlet.loggedUserEmail);
+        ArrayList<Internship> tempList = iDao.getInternshipListbyId(company_id);
+
+        // Scan the list of internships of the company
+        // And find out if the one we are trying to view is present
+        for (int i = 0; i < tempList.size(); i++) {
+            if (tempList.get(i).getIternship_id() == internship_id) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /** General functions */

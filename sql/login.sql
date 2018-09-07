@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 05, 2018 alle 10:59
+-- Creato il: Set 08, 2018 alle 00:26
 -- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.7
 
@@ -101,8 +101,8 @@ CREATE TABLE `offerta_tirocinio` (
   `orari` varchar(10) NOT NULL,
   `mese_iniziale` varchar(50) NOT NULL,
   `mese_finale` varchar(60) NOT NULL,
-  `obiettivi` varchar(300) NOT NULL,
-  `modalita` varchar(30) NOT NULL,
+  `obiettivi` varchar(235) NOT NULL,
+  `modalita` varchar(235) NOT NULL,
   `rimborsi_spese_facilitazioni_previste` varchar(600) NOT NULL,
   `company_headquarters` tinyint(4) NOT NULL,
   `remote_connection` tinyint(4) NOT NULL,
@@ -119,7 +119,11 @@ CREATE TABLE `offerta_tirocinio` (
 
 INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`, `company_headquarters`, `remote_connection`, `refound_of_expenses`, `company_refactory`, `training_aid`, `nothing`, `settore`) VALUES
 (48, 10, 'campeggio in australia', 'ma che cazzo ne so io ', '', '1', '08:00 - 12:00', '10', '01/09/2018', '01/11/2018', 'asdasdasd', 'asdasdasd', '', 0, 1, 1, 1, 1, 1, 'boh'),
-(49, 12, 'Stage presso kingston inc.', 'Un cazzo', '', '3', '12:00 - 16:00', '80', '01/09/2018', '01/11/2018', 'laureandi', 'al pc', 'a cojoni', 1, 1, 1, 1, 1, 1, 'Informatica');
+(49, 12, 'Stage presso kingston inc.', 'Un cazzo', '', '3', '12:00 - 16:00', '80', '01/09/2018', '01/11/2018', 'laureandi', 'al pc', 'a cojoni', 1, 1, 1, 1, 1, 1, 'Informatica'),
+(50, 12, 'asdasdasd', 'asdasdad', '', '1', '08:00 - 12:00', '10', '17/09/2018', '22/10/2018', 'asdasd', 'asdasdas', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'asd'),
+(51, 12, 'dio c', 'asdasdasdasd', '', '1', '08:00 - 12:00', '10', '09/09/2018', '09/10/2018', 'asdasda', 'dadasdasd', 'adasdasd', 1, 1, 1, 1, 1, 1, 'asdada'),
+(52, 12, 'asdda', 'asdasdasd', '', '1', '08:00 - 12:00', '10', '07/09/2018', '10/09/2018', 'adasd', 'asdasdasd', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'dio'),
+(53, 12, 'asdasdas', 'asdasdasd', 'asdasdsada', '1', '08:00 - 12:00', '10', '17/09/2018', '17/09/2018', 'asdasd', 'asdasdasd', 'adasd', 1, 1, 1, 1, 1, 1, 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,9 @@ CREATE TABLE `richieste_tirocinio` (
 --
 
 INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`, `cfu`, `tutor_name`, `tutor_surname`, `tutor_email`, `valutazione`) VALUES
-(38, 10, 48, 20, 0, '3', 'asd', 'asd', 'asd@sd.asdasd', 'empty');
+(38, 10, 48, 20, 1, '3', 'asd', 'asd', 'asd@sd.asdasd', 'empty'),
+(39, 12, 49, 20, 1, '3', 'h', 'h', 'gh@f.f', 'empty'),
+(40, 12, 50, 20, 0, '3', 'asdsad', 'asdasdasd', 'asdasdasd@sd.asd', 'empty');
 
 -- --------------------------------------------------------
 
@@ -179,7 +185,7 @@ CREATE TABLE `studente` (
   `date` varchar(44) NOT NULL,
   `provincia` varchar(30) NOT NULL,
   `provincia_nascita` varchar(30) NOT NULL,
-  `residenza` varchar(30) NOT NULL,
+  `residenza` varchar(50) NOT NULL,
   `citta` varchar(30) NOT NULL,
   `CAP` int(5) NOT NULL,
   `telefono` varchar(25) NOT NULL,
@@ -197,14 +203,18 @@ CREATE TABLE `studente` (
 --
 
 INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `ruolo`, `luogo_nascita`) VALUES
-(20, 'Micron', '$2a$12$6DcFXiwhxaeTgBXEzTkpquHCt8kfhmzEUlcUqiDox.toBxIdZfJgW', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'user', 'asdasdasd'),
+(20, 'Micron', '$2a$12$6DcFXiwhxaeTgBXEzTkpquHCt8kfhmzEUlcUqiDox.toBxIdZfJgW', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'admin', 'asdasdasd'),
 (21, 'sdasdasd', '$2a$12$oozOXSluADkqa/8Hbn0h3uHJ1UwR8UxNUM7gVDCZ7XmPfITJFcxIO', '2018-07-24', 'AL', 'AG', 'asdsadasd', 'asdasdasd', 3033, '123213123', 'asdsadasd', 'asd@lo.com', 1, 'adasdasd', 'adadasd', '', ''),
 (22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', '', ''),
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
 (24, 'catamarano', '$2a$12$TLo06N1XOkr8V2iJ07ERouT69C62y3E1Oth73ad8QmthL5P3.g4ii', '2018-09-07', 'AG', 'AL', 'aaa', 'ascccc', 4444, '11222', '1111', 'davide.ubaldi@outlook.it', 1, 'luzi', 'asdasdasd', 'user', 'asccc'),
 (56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'user', 'asddd'),
 (57, 'Elisa', '$2a$12$8eJApav/TqV/JGLZ28aU9eTzCZ1FpsufyGfMYM7p/Mck.UclqllY6', '13/08/2018', 'AL', 'AG', ' ia dddddd', 'dasdasdasd', 63100, '32736964649', 'nesssuno', 'a@hotmail.it', 1, 'Giovanni', 'AgagagFAGAGA', 'user', 'fffff'),
-(58, 'asdasdasd', '$2a$12$Ct10cZwpb/mnXVK6pb.tyOTos8o64YNe1IavaLfIXmokQayQFtU8y', '28/08/2018', 'AL', 'AL', 'asdasdasd', 'asdasdsadsa', 9077, '123123123', 'asdasdasdasd', 'dioc@a.ro', 1, 'asdasdasdas', 'asdasdasd', 'admin', 'asdasdad');
+(58, 'asdasdasd', '$2a$12$Ct10cZwpb/mnXVK6pb.tyOTos8o64YNe1IavaLfIXmokQayQFtU8y', '28/08/2018', 'AL', 'AL', 'asdasdasd', 'asdasdsadsa', 9077, '123123123', 'asdasdasdasd', 'dioc@a.ro', 1, 'asdasdasdas', 'asdasdasd', 'admin', 'asdasdad'),
+(59, 'asdasdasd', '$2a$12$lRMAO3LCRiUiHmvqOGHKeuxltZVnZsyVDZToHhfn1dEyH.ZEORw.m', '06/09/2018', 'AG', 'AG', 'dasdasda', 'dasdasd', 45645, '123123123', 'asdasdasd', 'asdasdasd@asd.asd', 1, 'adasdas', 'dasdasdas', 'user', 'adasdasd'),
+(60, 'Stefano', '$2a$12$UbEPL1S2aRU.M22nEVOSBOeCV69Z8TiFzj/1aP4xaxK9qlVKYEmR6', '26/07/1995', '-- Select --', '-- Select --', 'Via rondinella ', 'Arpino', 3033, '3343037176', 'Informatica', 'paoluccio545@gmail.com', 0, 'De Ciantis', 'dcnsfn95', 'user', 'Roma'),
+(61, 'asdasdasd', '$2a$12$OO.DkTN1Sc1X8XhtvCx9OuSNmyAYYvg52w.ZD2qNZHC1XgFx4Npsy', '11/09/2018', 'AG', 'AG', 'dasdasd', 'adasdasd', 8088, '2342342', 'figa', 'adasd@loll.lol', 0, 'adasdas', 'asdasdas', 'user', 'asdasd'),
+(62, 'asdasd', '$2a$12$KwijeTi4kWKmVabAbdU9QebCAq3BGBXovxHeID27YEllwmYpeK7JW', '12/09/2018', 'AL', 'AG', 'asdadas', 'dasdasd', 9866, '1212312312', 'asdasd', 'asdasdddd@asd.asd', 0, 'dasdad', 'adasdasd', 'user', 'asdasdas');
 
 --
 -- Indici per le tabelle scaricate
@@ -258,25 +268,25 @@ ALTER TABLE `azienda`
 -- AUTO_INCREMENT per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Limiti per le tabelle scaricate
