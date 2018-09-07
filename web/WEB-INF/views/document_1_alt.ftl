@@ -156,13 +156,13 @@
     <P class="p5 ft7">ALLEGATO 1</P>
     <P class="p6 ft7">alla Convenzione per lo svolgimento di attività di tirocinio e di orientamento (ai sensi dell'art. 18 L.196/97 e dell'Art. 1 Decreto Ministero del Lavoro e Previdenza Sociale N. 142/98 e della Legge 148 del 14/09/2011) per studenti, laureati e diplomati del Dipartimento di Ingegneria, Scienze dell’Informazione e Matematica dell’Università degli Studi dell'Aquila.</P>
     <P class="p7 ft7">PROGETTO FORMATIVO E DI ORIENTAMENTO</P>
-    <P class="p8 ft8"><SPAN class="ft7">Nominativo del tirocinante </SPAN> ${nome_studente}  ${cognome_studente} </P>
-    <P class="p9 ft8"><SPAN class="ft7">Nato a </SPAN> ${luogo_nascita }     Prov.( ${prov_nascita} )  il  ${data_nascita} </P>
-    <P class="p8 ft8"><SPAN class="ft7">Residente in </SPAN> ${indirizzo_residenza} Prov. ( ${prov_residenza} )</P>
-    <P class="p8 ft8"><SPAN class="ft7">Codice fiscale</SPAN> ${cf_studente} </P>
-    <P class="p8 ft8"><SPAN class="ft7">Telefono </SPAN> ${telefono_studente} </P>
+    <P class="p8 ft8"><SPAN class="ft7">Nominativo del tirocinante </SPAN> ${doc[0]}  ${doc[1]}</P>
+    <P class="p9 ft8"><SPAN class="ft7">Nato a </SPAN>   ${doc[2] }     Prov.  ( ${doc[3]} )  il   ${doc[4]} </P>
+    <P class="p8 ft8"><SPAN class="ft7">Residente in </SPAN> ${doc[5]}   Prov. ( ${doc[6]} )</P>
+    <P class="p8 ft8"><SPAN class="ft7">Codice fiscale</SPAN> ${doc[7]} </P>
+    <P class="p8 ft8"><SPAN class="ft7">Telefono </SPAN> ${doc[8]} </P>
     <P class="p10 ft9">Attuale condizione (barrare la casella – possibilità di doppia scelta):</P>
-    <P class="p11 ft8"><SPAN class="ft10">☒</SPAN><SPAN class="ft11">Studente Corso di Laurea in:  ${cdl_studente} </SPAN></P>
+    <P class="p11 ft8"><SPAN class="ft10">☒</SPAN><SPAN class="ft11">Studente Corso di Laurea in:   ${doc[9]} </SPAN></P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Diplomato. Diploma universitario in: ________________________________________</SPAN></P>
     <P class="p13 ft8">(entro 12 mesi dal diploma)</P>
     <P class="p12 ft8"><SPAN class="ft10"></SPAN><SPAN class="ft11">Laureato. Laurea in: ____________________________________________________</SPAN></P>
@@ -187,8 +187,12 @@
             <TD class="tr4 td7"><P class="p4 ft6">&nbsp;</P></TD>
         </TR>
     </TABLE>
-    <P class="p17 ft8"><SPAN class="ft7">Ente/Azienda ospitante </SPAN> ${nome_azienda} </P>
-    <P class="p8 ft8"><SPAN class="ft7">Luogo di effettuazione del tirocinio </SPAN> ${luogo_tirocinio} </P>
+    <P class="p17 ft8"><SPAN class="ft7">Ente/Azienda ospitante </SPAN> ${doc[11]} </P>
+<P class="p8 ft8"><SPAN class="ft7">Luogo di effettuazione del tirocinio: </SPAN> ${doc[12]}
+    	<#if doc[26]?has_content> <P class="p21 ft8"> - In sede  </P></#if>
+    	<#if doc[27]?has_content> <P class="p21 ft8"> - Tramite connessione remota  </P>   </#if>
+    </P>
+
 </DIV>
 <DIV id="page_2">
     <DIV id="p2dimg1">
@@ -199,14 +203,14 @@
     <P class="p18 ft0">UNIVERSITA' DEGLI STUDI DELL'AQUILA</P>
     <P class="p19 ft1">Dipartimento di INGEGNERIA E SCIENZE DELL’INFORMAZIONE E MATEMATICA</P>
     <P class="p20 ft14">SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</P>
-    <P class="p21 ft8"><SPAN class="ft7">Settore di inserimento </SPAN>   ${settore} </P>
-    <P class="p22 ft8"><SPAN class="ft7">Tempi di accesso ai locali aziendali </SPAN>   ${orari} </P>
-    <P class="p23 ft8"><SPAN class="ft7">Periodo di tirocinio </SPAN>n. ${mesi} mesi dal ${mese_inizio} al ${mese_fine} </P>
-    <P class="p24 ft16">(con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente) <SPAN class="ft15">numero ore di tirocinio ${ore} per il conseguimento di n.  ${cfu}  CFU</SPAN></P>
-    <P class="p25 ft8"><SPAN class="ft7">Tutore universitario</SPAN> ${nome_tutor1}  ${cognome_tutor1} </P>
-    <P class="p22 ft8">Telefono  ${telefono_tutor1}  </P>
-    <P class="p22 ft8"><SPAN class="ft7">Tutore aziendale</SPAN>:  ${nome_tutor2}  ${cognome_tutor2} </P>
-    <P class="p22 ft8">Telefono ${email_tutor2}</P>
+    <P class="p21 ft8"><SPAN class="ft7">Settore di inserimento </SPAN>   ${doc[13]} </P>
+    <P class="p22 ft8"><SPAN class="ft7">Tempi di accesso ai locali aziendali </SPAN>   ${doc[14]} </P>
+    <P class="p23 ft8"><SPAN class="ft7">Periodo di tirocinio </SPAN>n. ${doc[15]} mesi dal ${doc[16]} al  ${doc[17]} </P>
+    <P class="p24 ft16">(con possibilità di proroga entro i limiti massimi previsti dalla normativa vigente) <SPAN class="ft15">numero ore di tirocinio ${doc[18]} per il conseguimento di n. ${doc[19]}  CFU</SPAN></P>
+    <P class="p25 ft8"><SPAN class="ft7">Tutore universitario:</SPAN>   ${doc[20]}  ${doc[21]}</P>
+    <P class="p22 ft8">Email  ${doc[22]}   </P>
+    <P class="p22 ft8"><SPAN class="ft7">Tutore aziendale</SPAN>:    ${doc[23]} </P>
+    <P class="p22 ft8">Telefono ${doc[24]}</P>
     <P class="p26 ft7">Polizze assicurative<SPAN class="ft8">:</SPAN></P>
     <P class="p22 ft7">Copertura assicurativa per rischio responsabilità civile terzi:</P>
     <P class="p21 ft8">Compagnia assicurativa:</P>
@@ -219,17 +223,20 @@
     <P class="p23 ft7">Posizione INAIL:</P>
     <P class="p21 ft8">Copertura assicurativa “in conto Stato” ex art. 2 D.P.R. N. 156 del 9.04.1999</P>
     <P class="p22 ft19">Obiettivi del tirocinio:</P>
-    <P class="p21 ft8">  ${obiettivi1}  </P>
-    <P class="p21 ft8">  ${obiettivi2}  </P>
-    <P class="p21 ft8">  ${obiettivi3}  </P>
-    <P class="p21 ft8">  ${obiettivi4}  </P>
+    <P class="p21 ft8">    ${doc[25]}  </P>
+    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
+    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
+    <P class="p21 ft8">  ?????????????????????????????????????????????????????????  </P>
     <P class="p27 ft19">Modalità:</P>
-    <P class="p21 ft8">  ${obiettivi1}  </P>
-    <P class="p21 ft8">  ${obiettivi2}  </P>
-    <P class="p21 ft8">  ${obiettivi3}  </P>
-    <P class="p28 ft8">  ${obiettivi4}  </P>
+    <P class="p21 ft8"> - ${doc[28]}  </P>
+    <P class="p21 ft8">???????????????????????????????????????????????????</P>
+    <P class="p21 ft8">???????????????????????????????????????????????????</P>
+    <P class="p28 ft8">???????????????????????????????????????????????????</P>
     <P class="p29 ft19">Facilitazioni previste: sussidio di formazione e servizi aziendali (mensa)</P>
-    <P class="p21 ft8">  ${facilitazioni}  </P>
+    <#if doc[29]?has_content> <P class="p21 ft8">  - Rimborso Spese </P>   </#if>
+   <#if doc[30]?has_content> <P class="p21 ft8"> - Mensa aziendale </P>   </#if>
+   <#if doc[31]?has_content> <P class="p21 ft8"> - Apprendistato Accompagnato </P>   </#if>
+    <P class="p21 ft8"> - ${doc[32]}  </P>
 </DIV>
 <DIV id="page_3">
     <DIV id="p3dimg1">
