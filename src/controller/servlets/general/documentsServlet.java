@@ -36,10 +36,14 @@ public class documentsServlet extends HttpServlet {
         String action = "action";
         String type   = "type";
         String id     = "id";
+        String student_id = "student_id";
+        String internship_id = "internship_id";
 
         String action_value = request.getParameter(action);
         String type_value = request.getParameter(type);
         String id_value = request.getParameter(id);
+        String student_id_value = request.getParameter(student_id);
+        String internship_id_value = request.getParameter(internship_id);
 
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
             request.setAttribute("header", "student");
@@ -80,9 +84,9 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
 
-            if (action_value != null && id_value != null && action_value.equals("document1") && type_value != null && type_value.matches("[0-9]+") && id_value.matches("[0-9]+"))
+            if (action_value != null && internship_id_value != null && action_value.equals("document1") && student_id_value != null && student_id_value.matches("[0-9]+") && internship_id_value.matches("[0-9]+"))
             {
-                generateDocument1(request, response, id_value, type_value);
+                generateDocument1(request, response, student_id_value, internship_id_value);
                  return;
             }
 
@@ -197,6 +201,14 @@ public class documentsServlet extends HttpServlet {
         Company companyData = comDao.getCompanyDataByEmail(companyMail);
         InternshipRequest interReq = iDao.getInternshipRequestByIDs(inter_id, stud_id);
 
+        String com_head = null;
+        String rem_conn = null;
+        String ref_exp = null;
+        String com_ref = null;
+        String train_aid = null;
+
+
+
         // Compile the corresponding document (document3)
         ArrayList<String> document1 = new ArrayList<>();
 
@@ -226,12 +238,17 @@ public class documentsServlet extends HttpServlet {
         document1.add(companyData.getNome_cognome_tir());
         document1.add(companyData.getTelefono_tirocini());
         document1.add(internshipData.getObiettivi());
-        document1.add(String.valueOf(internshipData.isCompany_headquarters()));
-        document1.add(String.valueOf(internshipData.isRemote_connection()));
+        if (internshipData.isCompany_headquarters())  com_head = "ok";
+        if (internshipData.isRemote_connection())  rem_conn = "ok";
+        if (internshipData.isRefound_of_expenses())  ref_exp = "ok";
+        if (internshipData.isCompany_refactory())  com_ref  = "ok";
+        if (internshipData.isTraining_aid())   train_aid = "ok";
+        document1.add(com_head);
+        document1.add(rem_conn);
         document1.add(internshipData.getModalita());
-        document1.add(String.valueOf(internshipData.isRefound_of_expenses()));
-        document1.add(String.valueOf(internshipData.isCompany_refactory()));
-        document1.add(String.valueOf(internshipData.isTraining_aid()));
+        document1.add(ref_exp);
+        document1.add(com_ref);
+        document1.add(train_aid);
         document1.add(internshipData.getRimborsi_spese_facilitazioni_previste());
 
         request.setAttribute("doc", document1);
@@ -318,10 +335,11 @@ public class documentsServlet extends HttpServlet {
         String tirocinio = "";
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
 
+       UserDao uDao = new UserDaoImpl();
         internshipDao intDao = new internshipDaoImpl();
         Internship int1 = intDao.getInternshipDataById(Integer.parseInt(int_id));
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
+        int user_id = uDao.getIDbyInternship_id(Integer.parseInt(int_id));
         String startDate = int1.getMeseInziale();
         String endDate = int1.getMeseFinale();
 
@@ -330,6 +348,8 @@ public class documentsServlet extends HttpServlet {
         request.setAttribute("username", tempName);
         request.setAttribute("tirocinio", tirocinio);
         request.setAttribute("dataFinale", int1.getMeseFinale());
+        request.setAttribute("user_id", user_id);
+        request.setAttribute("internship_id", int_id);
 
         if (tirocinio.matches("Completed")){
 

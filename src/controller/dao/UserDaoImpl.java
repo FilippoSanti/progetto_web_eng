@@ -48,6 +48,7 @@ public class UserDaoImpl implements UserDao {
     private static final String CLEAR_NOTIFICATIONS = "DELETE FROM notifica WHERE notifica.id_utente = ?";
     private static final String DELETE_COMPANY_NOTIFICATIONS = "DELETE FROM notifica WHERE id_azienda = ?";
     private static final String CHECK_USER_INTERNSHIP = "SELECT * FROM richieste_tirocinio WHERE studente_id=? && offerta_tirocinio_id = ?";
+    private static final String GET_ID_BY_INTER_ID = "SELECT studente_id FROM richieste_tirocinio WHERE offerta_tirocinio_id = ?";
     /**
      * Get a user object by an email
      */
@@ -729,6 +730,45 @@ public class UserDaoImpl implements UserDao {
             if (rs.next() && rs != null) {
 
                 result = rs.getString("email");
+            }
+
+        } catch (SQLException | PropertyVetoException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception rse) {
+                rse.printStackTrace();
+            }
+            try {
+                pst.close();
+            } catch (Exception sse) {
+                sse.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (Exception cse) {
+                cse.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public int getIDbyInternship_id(int inter_id) {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            conn = DataSource.getInstance().getConnection();
+            pst = conn.prepareStatement(GET_ID_BY_INTER_ID);
+
+            pst.setInt(1, inter_id);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs != null) {
+
+                result = rs.getInt("studente_id");
             }
 
         } catch (SQLException | PropertyVetoException | IOException e) {

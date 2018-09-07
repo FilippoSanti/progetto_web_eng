@@ -39,11 +39,11 @@ public class internshipDaoImpl implements internshipDao {
         InternshipRequest internshipModel = new InternshipRequest();
 
         pst.setInt(1, internship_id);
-        pst.setInt(1, student_id);
+        pst.setInt(2, student_id);
         rs = pst.executeQuery();
 
         if (rs.next()) {
-            internshipModel.setInternship_request_id(rs.getInt("richiesta"));
+            internshipModel.setInternship_request_id(rs.getInt("richiesta_tirocinio_id"));
             internshipModel.setAzienda_id(rs.getInt("azienda_id"));
             internshipModel.setInternship_id(rs.getInt("offerta_tirocinio_id"));
             internshipModel.setStudent_id(rs.getInt("studente_id"));

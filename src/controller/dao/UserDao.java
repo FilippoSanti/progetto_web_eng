@@ -41,6 +41,7 @@ public interface UserDao {
     public ArrayList<User> getAdminList();
     public int getIDbyEmail(String email);
     public int getNotificationsCount(int userID) throws IOException, PropertyVetoException;
+    public int getIDbyInternship_id(int inter_id);
 
     /** Check functions */
     public boolean checkForToken(String token) throws PropertyVetoException, SQLException, IOException;
