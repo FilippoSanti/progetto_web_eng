@@ -300,6 +300,17 @@
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
 <br><br><br>
+                     <#if errorMessage?has_content>
+                     <div class="alert alert-danger" role="alert">
+                         ${errorMessage}
+                     </div>
+
+                     </#if>
+                    <#if Message?has_content>
+                     <div class="alert alert-success" role="alert">
+                         ${Message}
+                     </div>
+                    </#if>
 
                         <div class="m-b-20">
                             <div class="container">
@@ -321,7 +332,7 @@
                                     <div class="col-sm-3"></div>
 
                                     <div class="centra">
-                                        <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>                                    
+                                        <a href="/viewDocumentation?action=requestDocument1&type=student&student_id=${student_id}&internship_id=${internship_id}" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i> Download</a>
                                     </div>
                                 </div>
 
@@ -340,12 +351,13 @@
 
 <br><br>
                                 <div class="row">
-
                                     <div class="col-sm-3"></div>
-                                    
-                                    <div class="centra">
-                                        <input type="file" class="filestyle" data-input="false">
-                                    </div>
+                                    <form action="viewDocumentation?action=upload&type=student&internship_id=${internship_id}" method ="post" enctype="multipart/form-data">
+                                        <div class="centra">
+                                            <input type="file" name="file" class="filestyle" data-input="false">
+                                            <button type="submit" class="btn btn-secondary">Upload</button>
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>                                           

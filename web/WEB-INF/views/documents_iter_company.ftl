@@ -388,7 +388,7 @@
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="centra">
-                                        <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a>
+                                        <a href="viewDocumentation?action=requestDocument1&type=company&student_id=${student_id}&internship_id=${internship_id}" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i> Download final document</a>
                                     </div>
                                 </div>
                                 <#else>
