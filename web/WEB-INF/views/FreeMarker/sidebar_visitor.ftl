@@ -26,10 +26,19 @@
 
 
                 <li>
-                    <a href="internships_list?view=all"><i class="ti-menu-alt"></i> <span> Internships List </span>
+                    <a href="internships?view=all"><i class="ti-menu-alt"></i> <span> Internships List </span>
                     </a>
                 </li>
 
+                <li>
+                    <a href="extras-contacts.html"><i class="ti-info"></i> <span> Contacts </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="extras-faqs.html"><i class="ti-light-bulb"></i> <span> FAQs </span>
+                    </a>
+                </li>
 
             </ul>
 

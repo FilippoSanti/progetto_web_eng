@@ -36,54 +36,52 @@
                             </button>
                         </li>
 
-<!-- Ricerca -->
+                        <!-- Ricerca -->
                         <li class="nav-item dropdown">
                             <div class="container">
                                 <div class="row ">
                                     <div class="col-md-3 yes">
                                         <div class="row">
-
-                                            <div class="input-group app-search" id="adv-search">
-                                                <input type="text" class="form-control borderradius postotasti" placeholder="Enter Keywords..." />
-                                                <div class="input-group-btn ">
-                                                    <div class="btn-group btnsearchposition" role="group">
-                                                        <div class="dropdown">
-                                                            <button type="button" class="btn dropdown-toggle mdi mdi-chevron-down stylesearchbtn" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                                                            <div class="dropdown-menu dropdown-menu-right profile-dropdown customdrop" role="menu">
-                                                                <form class="form-vertical" role="form">
-                                                                    <div class="form-group">
-                                                                        <label for="filter">Internship Place</label>
-                                                                        <select class="form-control customitem">
-                                                                            <option value="0" selected>Company Headquarters</option>
-                                                                            <option value="1">Remote Connection (from home)</option>
-                                                                            <option value="2">Other</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <form class="form-vertical" role="form">
+                                            <form class="displaycorrectdim" method="get" action="/search.do" data-validate="parsley">
+                                                <div class="input-group app-search" id="adv-search">
+                                                    <input type="text" name="term" data-parsley-minlength="4" class="form-control borderradius postotasti" placeholder="Search for internships..." />
+                                                    <div class="input-group-btn ">
+                                                        <div class="btn-group btnsearchposition" role="group">
+                                                            <div class="dropdown">
+                                                                <button type="button" class="btn dropdown-toggle mdi mdi-chevron-down stylesearchbtn" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                                                <div class="dropdown-menu dropdown-menu-right profile-dropdown customdrop" role="menu">
+                                                                    <form class="form-vertical" role="form">
+                                                                        <div class="form-group">
+                                                                            <label for="filter">Internship Place</label>
+                                                                            <select name="place" class="form-control customitem">
+                                                                                <option value="0">Company Headquarters</option>
+                                                                                <option value="1">Remote Connection (from home)</option>
+                                                                                <option value="2" selected>Any</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label for="filter">Duration MIN</label>
-                                                                                    <select class="form-control customitem">
-                                                                                        <option value="0" selected>1 month</option>
-                                                                                        <option value="1">2 months</option>
-                                                                                        <option value="2">3 months</option>
-                                                                                        <option value="3">4 months</option>
-                                                                                        <option value="4">5 months</option>
-                                                                                        <option value="5">6 months</option>
-                                                                                        <option value="6">7 months</option>
-                                                                                        <option value="7">8 months</option>
-                                                                                        <option value="8">9 months</option>
-                                                                                        <option value="9">10 months</option>
-                                                                                        <option value="10">11 months</option>
+                                                                                    <select name="duration_min" class="form-control customitem">
+                                                                                        <option value="1" selected>1 month</option>
+                                                                                        <option value="2">2 months</option>
+                                                                                        <option value="3">3 months</option>
+                                                                                        <option value="4">4 months</option>
+                                                                                        <option value="5">5 months</option>
+                                                                                        <option value="6">6 months</option>
+                                                                                        <option value="7">7 months</option>
+                                                                                        <option value="8">8 months</option>
+                                                                                        <option value="9">9 months</option>
+                                                                                        <option value="10">10 months</option>
+                                                                                        <option value="11">11 months</option>
                                                                                     </select>
                                                                                 </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <form class="form-vertical" role="form">
+                                                                            </div>
+                                                                            <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label for="filter">Duration MAX</label>
-                                                                                    <select class="form-control customitem">
+                                                                                    <select name="duration_max" class="form-control customitem">
                                                                                         <option value="0">2 months</option>
                                                                                         <option value="1">3 months</option>
                                                                                         <option value="2">4 months</option>
@@ -97,21 +95,17 @@
                                                                                         <option value="10" selected="">12 months</option>
                                                                                     </select>
                                                                                 </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <button type="submit" class="btn stylesearchbtn3"><span class="fa fa-search noprofdropdownvertal" aria-hidden="true"></span> Apply Filters </button>
-                                                                </form>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <button type="button" class="btn stylesearchbtn2"><span class="fa fa-search" aria-hidden="true"></span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <button type="submit" class="btn stylesearchbtn2"><span class="fa fa-search" aria-hidden="true"></span></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </li>
                     </ul>
 
                 </nav>

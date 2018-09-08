@@ -22,16 +22,16 @@
                         </li>
 
                         <li>
-                            <a href="/internships_list_company?view=all"><i class="ti-menu-alt"></i> <span> My Internships </span>
-                            </a>
-                        </li>
-
-                        <li>
                             <a href="javascript: void(0);"><i class="ti-user"></i> <span> Company Profile </span> <span class="menu-arrow"></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="/viewProfile">Account Info</a></li>
                                 <li><a href="/editProfile">Edit Informations</a></li>
                             </ul>
+                        </li>
+
+                        <li>
+                            <a href="/internships_list_company?view=all"><i class="ti-menu-alt"></i> <span> My Internships </span>
+                            </a>
                         </li>
 
                         <li>

@@ -173,8 +173,8 @@
     <P class="p5 ft7">ALLEGATO 1</P>
     <P class="p6 ft7">alla Convenzione per lo svolgimento di attività di tirocinio e di orientamento (ai sensi dell'art. 18 L.196/97 e dell'Art. 1 Decreto Ministero del Lavoro e Previdenza Sociale N. 142/98 e della Legge 148 del 14/09/2011) per studenti, laureati e diplomati del Dipartimento di Ingegneria, Scienze dell’Informazione e Matematica dell’Università degli Studi dell'Aquila.</P>
     <P class="p7 ft7">PROGETTO FORMATIVO E DI ORIENTAMENTO</P>
-    <P class="p8 ft8"><SPAN class="ft7">Nominativo del tirocinante </SPAN> ${doc[0]}  ${doc[1]}</P>
-    <P class="p9 ft8"><SPAN class="ft7">Nato a </SPAN>   ${doc[2] }     Prov.  ( ${doc[3]} )  il   ${doc[4]} </P>
+    <P class="p8 ft8"><SPAN class="ft7">Nominativo del tirocinante </SPAN>  <b style="font-weight: 900; margin-left: 30px;"> ${doc[0]}  ${doc[1]}</b></P>
+    <P class="p9 ft8"><SPAN class="ft7">Nato a </SPAN>   <b style="font-weight: 900; margin-left: 30px;  margin-right: 40px;"> ${doc[2] }</b>     Prov.  <b style="font-weight: 900; margin-left: 30px;  margin-right: 40px;"> ( ${doc[3]} )</b>  il  <b style="font-weight: 900; margin-left: 30px;"> ${doc[4]} </b> </P>
     <P class="p8 ft8"><SPAN class="ft7">Residente in </SPAN> ${doc[5]}   Prov. ( ${doc[6]} )</P>
     <P class="p8 ft8"><SPAN class="ft7">Codice fiscale</SPAN> ${doc[7]} </P>
     <P class="p8 ft8"><SPAN class="ft7">Telefono </SPAN> ${doc[8]} </P>

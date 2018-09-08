@@ -64,11 +64,12 @@
                         </div>
 
                         <form method="post" action="internships?view=add&submit=true" class="form-validation">
-                            <#if errorsList?has_content>
+
+						<#if errorsList?has_content>
                 <ul class="list-group">
                     <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
                 </ul>
-</#if>
+                </#if>
 
 
                         <div class="p-20 m-b-20">
@@ -234,7 +235,7 @@
                             <div class="form-group">
                                 <label for ="obiettivi" class="col-md-2 col-form-label">Generic Targets</label>
                                 <div class="col-md-10">
-                                <textarea class="form-control" name="obiettivi" rows="3" placeholder="Type here (max 3 rows)"></textarea>
+                                <textarea class="form-control" name="obiettivi" rows="3" placeholder="Type here (max 235 characters)"></textarea>
                                 </div>
                             </div>
 <br>
@@ -242,7 +243,7 @@
                             <div class="form-group">
                                 <label for = "modalita" class="col-md-2 col-form-label">Work Mode</label>
                                 <div class="col-md-10">
-                                <textarea class="form-control" name="modalita" rows="3" placeholder="Type here (max 3 rows)"></textarea>
+                                <textarea class="form-control" name="modalita" rows="3" placeholder="Type here (max 235 characters)"></textarea>
                                 </div>
                             </div>
 <br>
