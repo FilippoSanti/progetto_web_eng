@@ -23,9 +23,28 @@ public class internshipDaoImpl implements internshipDao {
     private static final String GET_LISTA_CAND2 = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 0 ";
     private static final String ENABLE_USER_INTERNSHIP_REQ = "UPDATE richieste_tirocinio SET accettata = '1' WHERE richieste_tirocinio.studente_id = ?";
     private static final String DELETE_USER_INTERNSHIP_REQ = "DELETE FROM richieste_tirocinio WHERE richieste_tirocinio.studente_id = ?";
-    private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ?";
+    private static final String DELETE_INTERNSHIP = "DELETE FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
+    private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ? && accettata = 1";
     private static final String GET_LISTA_CAND_APPR = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 1";
     private static final String GET_INTERNSHIP_REQUEST_DATA = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && studente_id = ?";
+
+    public boolean deleteInternship (int internship_id) throws PropertyVetoException, SQLException, IOException {
+        boolean result = false;
+
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement pst = dbConnection.prepareStatement(DELETE_INTERNSHIP);
+
+        pst.setInt(1, internship_id);
+        int i = pst.executeUpdate();
+
+        if(i > 0) {
+            result = true;
+        }
+
+        dbConnection.close();
+        return result;
+    }
+
 
     public InternshipRequest getInternshipRequestByIDs(int internship_id, int student_id) throws SQLException, IOException, PropertyVetoException {
 

@@ -22,7 +22,10 @@ public class internshipsCompanyServlet extends HttpServlet {
 
         // URL Parameters
         String paramName    = "view";
+        String paramId = "id";
+
         String paramValue = request.getParameter(paramName);
+        String idValue = request.getParameter(paramId);
 
         try {
             // Check if the user has given the right parameters
@@ -42,6 +45,13 @@ public class internshipsCompanyServlet extends HttpServlet {
                 action_view_internship_company(request, response);
                 return;
             }
+
+            // Delete an intership
+            if (paramValue.equals("delete") && idValue.matches("[0-9]+")) {
+                action_delete_internship(request, response, idValue);
+                return;
+            }
+
 
             // Default action if no parameter is set properly
             action_default(request, response);
@@ -71,7 +81,23 @@ public class internshipsCompanyServlet extends HttpServlet {
 
     }
 
-    protected void action_view_internship_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_delete_internship(HttpServletRequest request, HttpServletResponse response, String internship_id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        int int_id = Integer.parseInt(internship_id);
+        internshipDao intDao = new internshipDaoImpl();
+
+        intDao.deleteInternship(int_id);
+
+
+        request.setAttribute("username", tempName);
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
+    }
+
+
+        protected void action_view_internship_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);

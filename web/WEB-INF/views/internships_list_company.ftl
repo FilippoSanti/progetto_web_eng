@@ -83,7 +83,7 @@
                                               <td>${val.getLuogo()}</td>
                                               <td>${val.getMeseInziale()}</td>
                                               <td><a href="/candidates_list?view=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Candidates</button></a></td>
-                                              <td><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
+                                              <td><a href="/internships_list_company?view=delete&id=${val.getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails2" data-target="#"><img class="imgdelete" src="../../assets/images/delete_icon.png"></button></td>
                                               </td>
                                           </tr>
                                                </#list>

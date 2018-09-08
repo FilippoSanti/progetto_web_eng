@@ -67,7 +67,7 @@
                                 <div class="text-center card-box">
                                     <div class="member-card mt-1">
                                         <div class="thumb-xl member-thumb m-b-10 center-page">
-                                            <img src="../../assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail" alt="profile-image">
+                                            <img src="/displayImage?type=company&id=${val.getCompany_id()}" class="rounded-circle img-thumbnail" alt="profile-image">
 
                                         </div>
 

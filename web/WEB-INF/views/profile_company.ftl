@@ -174,7 +174,7 @@
                                     </div>
 <br> <br>
                                     <div class="col-md-12 text-center">
-                                        <a href="internships_list_company?view=all"> <button class="btn btn-primary btn-rounded btn-lg m-b-30">See Internship Offers</button></a>
+                                        <a href=/internships_list?view=${companyData.getCompany_id()}> <button class="btn btn-primary btn-rounded btn-lg m-b-30">See Internship Offers</button></a>
                                     </div>
 
                                 </div>
