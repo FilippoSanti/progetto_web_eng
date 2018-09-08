@@ -317,10 +317,19 @@
                         <div class="p-20 m-b-20">
 
                             <div class="form-group">
+                                <label class="col-md-11 col-form-label result">
+                                    Performed Activity:</label>
+<br><br>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" rows="3" placeholder="Type here (max 235 characters)"></textarea>
+                                </div>
+                            </div>
+<br><br><br>
+                            <div class="form-group">
                                 <label class="col-md-11 col-form-label result"> The student has performed the tasks assigned to him obtaining the following result:</label>
 <br><br>
                                 <div class="col-md-10">
-                                <textarea class="form-control" rows="3" placeholder="Type here (max 3 rows)"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Type here (max 235 characters)"></textarea>
                                 </div>
                             </div>
 <br><br>
