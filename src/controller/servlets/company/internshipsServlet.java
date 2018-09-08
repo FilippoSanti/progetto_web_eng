@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class internshipsServlet extends HttpServlet {
 
@@ -29,6 +31,16 @@ public class internshipsServlet extends HttpServlet {
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorsList") != null) {
+            request.getSession().removeAttribute("errorsList");
+        }
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("fieldsList") != null) {
+            request.getSession().removeAttribute("fieldsList");
+        }
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
     }
 
@@ -268,10 +280,23 @@ public class internshipsServlet extends HttpServlet {
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
 
+
+
         RequestDispatcher dispatcher
                 = request.getServletContext().getRequestDispatcher("/WEB-INF/views/add_internship.ftl");
 
         dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorsList") != null) {
+            request.getSession().removeAttribute("errorsList");
+        }
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("fieldsList") != null) {
+            request.getSession().removeAttribute("fieldsList");
+        }
+
     }
 
     protected boolean action_add_internships(HttpServletRequest request, HttpServletResponse response)
@@ -311,30 +336,40 @@ public class internshipsServlet extends HttpServlet {
         nothing = Boolean.parseBoolean(request.getParameter("nothing"));
         settore = request.getParameter("settore");
 
+        List<String> errorsList = userController.checkErrorListInternship(nome, dettagli, start_date, end_date, orari, ore, obiettivi, modalita, settore);
+
+        System.out.println(errorsList);
         // If strings are not initalized, it means there was an empty request by the user
         //So we return false
-        if (nome == null && luogo == null && orari == null && ore == null && obiettivi == null && modalita == null &&
-                rimborsi_spese_facilitazioni_previste == null && start_date == null && end_date == null && settore == null) {
 
-            return false;
+        if (errorsList.size() == 1) {
+
+            internshipDao internshipDao = new internshipDaoImpl();
+
+            boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, start_date, end_date, obiettivi,
+                    modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing, settore);
+
+            if (addOK) {
+                addedMessage = "Registered successfully";
+                boolean added = true;
+                request.setAttribute("added", added);
+                request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
+
+                RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
+
+                dispatcher.forward(request, response);
+            } else {
+                action_default(request, response);
+            }
         }
 
-        internshipDao internshipDao = new internshipDaoImpl();
+        else  {
 
-        boolean addOK = internshipDao.addInternship(companyId, nome, dettagli, luogo, mesi, orari, ore, start_date, end_date, obiettivi,
-                modalita, rimborsi_spese_facilitazioni_previste, company_headquarters, remote_connection, refound_of_expenses, company_refactory, training_aid, nothing, settore);
 
-        if (addOK) {
-            addedMessage = "Registered successfully";
-            boolean added = true;
-            request.setAttribute("added", added);
-            request.setAttribute("addedString", "Tirocinio aggiunto correttamente");
 
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
 
-            dispatcher.forward(request, response);
-        } else {
-            action_default(request, response);
+            request.getSession().setAttribute("errorsList", errorsList);
+            response.sendRedirect("/internships?view=add");
         }
 
         return false;

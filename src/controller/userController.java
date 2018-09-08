@@ -252,40 +252,51 @@ public class userController {
         return errorsList;
     }
 
-    public static List<String> checkErrorListInternship(HttpServletRequest request, String nome, String descrizione, String luogo,
-                                                        String orari, String ore, String obiettivi, String modalita, String rimborsi_spese_facilitazioni_previste) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
-        List<String> errorsList = null;
+    public static List<String> checkErrorListInternship( String nome, String dettagli,String dataIn, String dataFinale,
+                                                        String orari, String ore, String obiettivi, String modalita, String settore) throws ClassNotFoundException, SQLException, PropertyVetoException, IOException {
+        List<String> errorsList = new ArrayList<>();
+        errorsList.add("Errors found:");
+
+        if (nome == null || dettagli == null || dataIn == null || dataFinale == null || orari == null || ore == null ||
+                obiettivi == null || modalita == null || settore == null ) {
+            errorsList.add("Missing fields");
+            return errorsList;
+        }
 
         if (nome.length() < 2) {
-            errorsList.add("nome too short");
+            errorsList.add("name is too short");
         }
 
-        if (descrizione.length() < 5) {
-            errorsList.add("descrizione too short");
+        if (dettagli.length() < 2) {
+            errorsList.add("Please insert some details");
         }
 
-        if (luogo.length() < 5) {
-            errorsList.add("Indirizzo too short");
+        if (dataIn.length() < 2) {
+            errorsList.add("Start date not valid");
+        }
+
+        if (dataFinale.length() < 2) {
+            errorsList.add("end date not valid");
         }
 
         if (orari.length() < 2) {
-            errorsList.add("Orari too short");
+            errorsList.add("Timetables not valid");
         }
 
-        if (ore.length() < 2) {
-            errorsList.add("Ore too short");
+        if (ore.length() < 1) {
+            errorsList.add("Hours not valid");
         }
 
-        if (obiettivi.length() < 5) {
-            errorsList.add("Nome Tirocinio too short");
+        if (obiettivi.length() < 2) {
+            errorsList.add("Please add some targets");
         }
 
-        if (modalita.length() < 5) {
-            errorsList.add("Tel tirocinio too short");
+        if (modalita.length() < 2) {
+            errorsList.add("Please add a work mode");
         }
 
-        if (rimborsi_spese_facilitazioni_previste.length() < 2) {
-            errorsList.add("compilare il campo");
+        if (settore.length() < 2) {
+            errorsList.add("Add a valid sector");
         }
 
         return errorsList;

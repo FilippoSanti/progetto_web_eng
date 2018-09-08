@@ -64,13 +64,11 @@
                         </div>
 
                         <form method="post" action="internships?view=add&submit=true" class="form-validation">
-                          <#if errors>
-
-                     <ul class="list-group">
-                        <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
-                     </ul>
-
-                          </#if>
+                            <#if errorsList?has_content>
+                <ul class="list-group">
+                    <#list errorsList as item><li class="list-group-item list-group-item-danger">${item}</li></#list>
+                </ul>
+</#if>
 
 
                         <div class="p-20 m-b-20">
