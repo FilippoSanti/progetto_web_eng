@@ -108,8 +108,13 @@ public class internshipsServlet extends HttpServlet {
             }
 
             // View a specific internship
-            if (paramValue.matches("[0-9]+")) {
-                action_view_internship(request, response, paramValue);
+            if (paramValue.matches("[0-9]+")&&  (securityModel.getUser().equals("student")) ) {
+                action_view_internship_student(request, response, paramValue);
+                return;
+            }
+
+            if (paramValue.matches("[0-9]+")&&(securityModel.getUser().equals("azienda"))) {
+                action_view_internship_company(request, response, paramValue);
                 return;
             }
 
@@ -222,7 +227,8 @@ public class internshipsServlet extends HttpServlet {
 
     }
 
-    protected void action_view_internship(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
+    // view an internship as student
+    protected void action_view_internship_student(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         internshipDao iDao = new internshipDaoImpl();
 
@@ -236,6 +242,23 @@ public class internshipsServlet extends HttpServlet {
         // Load the default user page with the right info
         request.setAttribute("internshipData", i);
         request.getRequestDispatcher("/WEB-INF/views/internship_details_student.ftl").forward(request, response);
+
+    }
+
+    protected void action_view_internship_company(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        internshipDao iDao = new internshipDaoImpl();
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        int newID = Integer.parseInt(id);
+        Internship i = iDao.getInternshipDataById(newID);
+
+        // Load the default user page with the right info
+        request.setAttribute("internshipData", i);
+        request.getRequestDispatcher("/WEB-INF/views/internship_details_company.ftl").forward(request, response);
 
     }
 

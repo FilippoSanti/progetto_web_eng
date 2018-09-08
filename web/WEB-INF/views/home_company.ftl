@@ -109,16 +109,7 @@
 
                     </div> <!-- container -->
 <br><br>
-                        <div class="row">
-                            <!--TODO   Spegnere Prev. Page se ci si trova all prima pagina-->
-                            <div class="col-md-6 text-center">
-                                <button class="btn btn-primary btn-rounded btn-lg m-b-30">Prev. Page</button>
-                            </div><!-- end col -->
-
-                            <div class="col-sm-6 text-center">
-                                <button class="btn btn-primary btn-rounded btn-lg m-b-30">Next Page</button>
-                            </div><!-- end col -->
-
+                     
 
                         </div>
                         <!-- end row -->

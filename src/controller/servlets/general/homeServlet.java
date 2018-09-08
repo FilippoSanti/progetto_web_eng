@@ -76,6 +76,11 @@ public class homeServlet extends HttpServlet {
 
         internshipDao intDao = new internshipDaoImpl();
         ArrayList<Internship> internshipsArray = intDao.getInternshipListbyId(az_id);
+
+        int k = internshipsArray.size();
+        if (k>12)
+            internshipsArray.subList(12, k).clear();
+
         request.setAttribute("internships_list_company", internshipsArray);
 
 
@@ -94,6 +99,11 @@ public class homeServlet extends HttpServlet {
 
         // Get the company list
         ArrayList<Company> companiesArray = compDao.getCompaniesList();
+
+        int k = companiesArray.size();
+        if (k>12)
+            companiesArray.subList(12, k).clear();
+
 
         request.setAttribute("companiesList", companiesArray);
         RequestDispatcher dispatcher
@@ -126,7 +136,19 @@ public class homeServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void action_default_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void action_default_anonymous(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        companyDao compDao = new companyDaoImpl();
+
+        // Get the company list
+
+        ArrayList<Company> companiesArray = compDao.getCompaniesList();
+
+        int k = companiesArray.size();
+        if (k>12)
+            companiesArray.subList(12, k).clear();
+
+        request.setAttribute("companiesList", companiesArray);
 
         // home_visitor.ftl
         RequestDispatcher dispatcher

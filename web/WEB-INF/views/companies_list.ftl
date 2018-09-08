@@ -82,7 +82,7 @@
                            <tr>
                                <td>${val.getRagione_sociale()}</td>
                                <td>${val.getIndirizzo_sede_leg()}</td>
-                               <td><a href="internships_list?view=${val.getCompany_id()}"<button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Internships</button></td>
+                               <td><a href="internships_list?view=${val.getCompany_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Internships</button></a></td>
                                <td><a href="viewProfile?type=company&id=${val.getCompany_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Company Info</button></a></td>
                            </tr>
                            </#list>

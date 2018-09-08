@@ -58,7 +58,7 @@ public class profileServlet extends HttpServlet {
 
         // If every parameter is set, we check them
         // This is done to avoid null pointer exceptions
-        if (!securityModel.getUser().equals("anonymous") && typeValue != null && idValue != null) {
+        if (typeValue != null && idValue != null) {
 
             if (typeValue.equals("student") && idValue.matches("[0-9]+")) {
                 action_view_userid(request, response, idValue, "student");
