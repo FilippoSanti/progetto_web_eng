@@ -4,7 +4,24 @@ public class InternshipRequest {
 
     private int internship_request_id, azienda_id, internship_id, student_id;
     private boolean accettata;
-    private String cfu, tutor_name, tutor_surname, tutor_email;
+    private String cfu, tutor_name, tutor_surname, tutor_email, attivita_svolta, valutazione;
+
+    public String getValutazione() {
+        return valutazione;
+    }
+
+    public void setValutazione(String valutazione) {
+        this.valutazione = valutazione;
+    }
+
+    public String getAttivita_svolta() {
+
+        return attivita_svolta;
+    }
+
+    public void setAttivita_svolta(String attivita_svolta) {
+        this.attivita_svolta = attivita_svolta;
+    }
 
     public InternshipRequest() {
 

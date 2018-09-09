@@ -101,9 +101,13 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
 
+            // Evaluate student function
+            if (action_value != null && student_id_value != null && internship_id_value != null &&
+                    action_value.equals("evaluateStudent") && student_id_value.matches("[0-9]+") &&
+                    internship_id_value.matches("[0-9]+")) {
+                // action_evaluate
+            }
 
-
-            action_choose_page(response, request);
         }
 
 
@@ -396,7 +400,14 @@ public class documentsServlet extends HttpServlet {
 
         // If the internship has been completed, we can generate the document2
         if (tirocinio.equals("Completed")) {
-            request.setAttribute("showDocument2", "true");
+
+            // Check if the company has already evaluated a user
+            if (checkCompanyEvaluatedStudent(user_id, Integer.valueOf(int_id))) {
+                request.setAttribute("showDocument2", "visualizedocumentactionurl");
+            } else {
+                request.setAttribute("showDocument2", "insertdataurl");
+            }
+
         } else {
             request.getSession().setAttribute("warningMessage", "You will be able to view the document_2 as soon as the internship is completed.");
         }
@@ -550,6 +561,18 @@ public class documentsServlet extends HttpServlet {
             }
         }
         return result;
+    }
+
+    private boolean checkCompanyEvaluatedStudent (int student_id, int internship_id) throws PropertyVetoException, IOException, SQLException {
+
+        internshipDao iDao = new internshipDaoImpl();
+        InternshipRequest iRequestModel = iDao.getInternshipRequestByIDs(internship_id, student_id);
+
+        if (iRequestModel.getAttivita_svolta().equals("empty") &&
+                iRequestModel.getValutazione().equals("empty")) {
+            return false;
+        }
+        return true;
     }
 
     /** General functions */

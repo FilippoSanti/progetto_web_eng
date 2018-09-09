@@ -100,6 +100,8 @@ public class internshipDaoImpl implements internshipDao {
             internshipModel.setTutor_name(rs.getString("tutor_name"));
             internshipModel.setTutor_surname(rs.getString("tutor_surname"));
             internshipModel.setTutor_email(rs.getString("tutor_email"));
+            internshipModel.setValutazione(rs.getString("valutazione"));
+            internshipModel.setAttivita_svolta(rs.getString("attivita_svolta"));
 
 
             dbConnection.close();

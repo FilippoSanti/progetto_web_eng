@@ -55,11 +55,8 @@ public class internshipsServlet extends HttpServlet {
         String id = "id";
 
         String paramValue = request.getParameter(paramName);
-
-        System.out.println(paramValue);
         String submit_string = request.getParameter(submit);
         String id_value = request.getParameter(id);
-
 
         Security securityModel = SecurityFilter.checkUsers(request);
 
@@ -117,7 +114,6 @@ public class internshipsServlet extends HttpServlet {
             // View a specific internship
             if (paramValue.matches("[0-9]+") && securityModel.getUser().equals("student")
                     && securityModel.getRole().equals("user")) {
-                System.out.println("student");
                 action_view_internship_student(request, response, paramValue);
                 return;
 
@@ -175,6 +171,9 @@ public class internshipsServlet extends HttpServlet {
 
     // View the internship of a student
     private void action_view_student_internship(HttpServletRequest request, HttpServletResponse response, int internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
+
+        System.out.println("right here bro");
+
         internshipDao iDao = new internshipDaoImpl();
         Internship iTemp = iDao.getInternshipByID(internship_id);
         UserDao uDao = new UserDaoImpl();
@@ -198,6 +197,11 @@ public class internshipsServlet extends HttpServlet {
             htmlcolor = "interstatus3";
         }
 
+        if (result.equals("Completed")) {
+            request.setAttribute("showDocument2", "yes");
+        } else {
+            request.setAttribute("warningMessage", "You will be able to see the document2 after the internship has ended and the company will have expressed an evaluation.");
+        }
 
         //Get the id of the logged user
         int session_id = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
@@ -221,6 +225,10 @@ public class internshipsServlet extends HttpServlet {
 
         if (request.getSession().getAttribute("Message") != null) {
             request.getSession().removeAttribute("Message");
+        }
+
+        if (request.getSession().getAttribute("warningMessage") != null) {
+            request.getSession().removeAttribute("warningMessage");
         }
 
     }
@@ -352,7 +360,6 @@ public class internshipsServlet extends HttpServlet {
 
         List<String> errorsList = userController.checkErrorListInternship(nome, dettagli, start_date, end_date, orari, ore, obiettivi, modalita, settore);
 
-        System.out.println(errorsList);
         // If strings are not initalized, it means there was an empty request by the user
         //So we return false
 
