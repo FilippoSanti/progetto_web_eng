@@ -243,7 +243,7 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-3 centra">
-                        <td>  <a href="/internships?view=candidatePage&submit=${internshipData.getIternship_id()}"><button type="submit" class="btn btn-primary waves-effect waves-light"> Candidate for this Internship </button>  </a></td>
+                       <#if isNotAdmin?has_content>  <td>  <a href="/internships?view=candidatePage&submit=${internshipData.getIternship_id()}"><button type="submit" class="btn btn-primary waves-effect waves-light"> Candidate for this Internship </button>  </a></td> </#if>
                         </div>
 
                         <div class="col-md-3"></div>

@@ -81,7 +81,7 @@ public class internshipsServlet extends HttpServlet {
         }
 
         // Student functions
-        if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+        if ((securityModel.getUser().equals("anonymous") || (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")))) {
 
             // View my internships
             if (id_value == null && paramValue != null && paramValue.equals("myInternships")) {
@@ -90,8 +90,8 @@ public class internshipsServlet extends HttpServlet {
             }
 
             // View the internship of a student
-            if (id_value != null && paramValue != null && paramValue.equals("myInternships") &&
-                    id_value.matches("[0-9]+")) {
+            if ((id_value != null && paramValue != null && paramValue.equals("myInternships") &&
+                    id_value.matches("[0-9]+"))) {
                 int real_id = Integer.valueOf(id_value);
                 action_view_student_internship(request, response, real_id);
                 return;
@@ -112,12 +112,16 @@ public class internshipsServlet extends HttpServlet {
             }
 
             // View a specific internship
-            if (paramValue.matches("[0-9]+") && securityModel.getUser().equals("student")
-                    && securityModel.getRole().equals("user")) {
+            if (paramValue.matches("[0-9]+") && (securityModel.getUser().equals("anonymous") || (securityModel.getUser().equals("student")
+                    && securityModel.getRole().equals("user")))) {
                 action_view_internship_student(request, response, paramValue);
-                return;
+            return;}
 
+                else if ((securityModel.getUser().equals("student") && securityModel.getRole().equals("admin"))) {
+                action_view_internship_admin(request, response, paramValue);
+                return;
             }
+
 
             if (paramValue.matches("[0-9]+") && (securityModel.getUser().equals("azienda"))) {
                 action_view_internship_company(request, response, paramValue);
@@ -142,17 +146,17 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
-            if ((securityModel.getUser().equals("anonymous")) && (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+"))) {
+            if ((paramValue.equals("candidatePage") && submit_string.matches("[0-9]+")) && (securityModel.getUser().equals("anonymous"))) {
                 response.sendRedirect("/login");
                 return;
             }
 
-            if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+") && !securityModel.getRole().equals("admin")) {
+            if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+") && securityModel.getRole().equals("user")) {
                 action_candidatePage(request, response, submit_string);
                 return;
             }
 
-            if (paramValue.equals("candidate") && submit_string.matches("[0-9]+") && !securityModel.getRole().equals("admin")) {
+            if (paramValue.equals("candidate") && submit_string.matches("[0-9]+") && securityModel.getRole().equals("user")) {
                 action_candidate(request, response, submit_string);
                 return;
             }
@@ -274,8 +278,29 @@ public class internshipsServlet extends HttpServlet {
         int newID = Integer.parseInt(id);
         Internship i = iDao.getInternshipDataById(newID);
 
+
+        // Load the default user page with the right info
+        request.setAttribute("isNotAdmin", "NO HE IS NOT");
+        request.setAttribute("internshipData", i);
+        request.getRequestDispatcher("/WEB-INF/views/internship_details_student.ftl").forward(request, response);
+
+    }
+
+    // view an internship as student
+    protected void action_view_internship_admin(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        internshipDao iDao = new internshipDaoImpl();
+
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
+        int newID = Integer.parseInt(id);
+        Internship i = iDao.getInternshipDataById(newID);
+
         // Load the default user page with the right info
         request.setAttribute("internshipData", i);
+
         request.getRequestDispatcher("/WEB-INF/views/internship_details_student.ftl").forward(request, response);
 
     }
