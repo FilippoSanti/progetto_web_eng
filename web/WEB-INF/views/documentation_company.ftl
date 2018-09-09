@@ -69,6 +69,7 @@
                                 <tr>
                                     <th class="width40perc">Student Name</th>
                                     <th class="width30perc">Internship Name</th>
+                                    <th class="width30perc">Internship Status</th>
                                     <th>View All the Documentation</th>
                                 </tr>
                                 </thead>
@@ -81,6 +82,7 @@
                                         <tr>
                                             <td>${val.getNome()} ${val.getCognome()}</td>
                                             <td>${internshipsList[val_index].getNome()}</td>
+                                            <td>${()}</td>
                                             <td><a href="/documents?action=${internshipsList[val_index].getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
                                         </tr>
 
