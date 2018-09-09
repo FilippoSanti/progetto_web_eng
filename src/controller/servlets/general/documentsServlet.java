@@ -100,6 +100,9 @@ public class documentsServlet extends HttpServlet {
                 action_compile_document1_2(request, response, id_value, type_value);
                 return;
             }
+
+
+
             action_choose_page(response, request);
         }
 
@@ -384,13 +387,27 @@ public class documentsServlet extends HttpServlet {
 
         tirocinio = getInternshipStatus(startDate, endDate);
 
+        // Set the internship status color
+        String htmlcolor = "";
+
+        if (tirocinio.equals("Not started")) { htmlcolor = "interstatus1"; }
+        if (tirocinio.equals("In progress")) { htmlcolor = "interstatus2"; }
+        if (tirocinio.equals("Completed"))   { htmlcolor = "interstatus3"; }
+
+        // If the internship has been completed, we can generate the document2
+        if (tirocinio.equals("Completed")) {
+            request.setAttribute("showDocument2", "true");
+        } else {
+            request.getSession().setAttribute("warningMessage", "You will be able to view the document_2 as soon as the internship is completed.");
+        }
+
+        request.setAttribute("htmlcolor", htmlcolor);
         request.setAttribute("username", tempName);
         request.setAttribute("tirocinio", tirocinio);
         request.setAttribute("dataFinale", int1.getMeseFinale());
         request.setAttribute("user_id", user_id);
         request.setAttribute("internship_id", int_id);
 
-        // Vedo il documento 1 quando il tirocinio INIZIA
         boolean internship_accepted = uDao.checkInternshipAccepted(user_id,Integer.parseInt(int_id));
 
         if (internship_accepted) {
@@ -401,9 +418,19 @@ public class documentsServlet extends HttpServlet {
 
             dispatcher.forward(request, response);
 
+            // Chrome browser fix
+            if (request.getSession().getAttribute("warningMessage") != null) {
+                request.getSession().removeAttribute("warningMessage");
+            }
+
+            // Chrome browser fix
+            if (request.getSession().getAttribute("errorMessage") != null) {
+                request.getSession().removeAttribute("errorMessage");
+            }
+
         } else {
             request.getSession().setAttribute("errorMessage", "There aren't documents yet");
-            response.sendRedirect("/documents?action="+int1.getIternship_id());
+            response.sendRedirect("/documents?action=students");
         }
     }
 

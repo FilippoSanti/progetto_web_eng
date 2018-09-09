@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class internshipsServlet extends HttpServlet {
@@ -56,6 +55,8 @@ public class internshipsServlet extends HttpServlet {
         String id = "id";
 
         String paramValue = request.getParameter(paramName);
+
+        System.out.println(paramValue);
         String submit_string = request.getParameter(submit);
         String id_value = request.getParameter(id);
 
@@ -81,8 +82,6 @@ public class internshipsServlet extends HttpServlet {
             request.setAttribute("header", "admin");
             request.setAttribute("sidemenu", "admin");
         }
-
-
 
         // Student functions
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
@@ -115,21 +114,16 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
-            String isNotAdmin = "0";
             // View a specific internship
-            if (paramValue.matches("[0-9]+"))
-            {
-                if (securityModel.getUser().equals("anonymous"))
-                    isNotAdmin = "1";
-                else if (securityModel.getRole().equals("user"))
-                    {isNotAdmin = "1";}
-
-                action_view_internship_student(request, response, paramValue, isNotAdmin);
+            if (paramValue.matches("[0-9]+") && securityModel.getUser().equals("student")
+                    && securityModel.getRole().equals("user")) {
+                System.out.println("student");
+                action_view_internship_student(request, response, paramValue);
                 return;
 
             }
 
-            if (paramValue.matches("[0-9]+")&&(securityModel.getUser().equals("azienda"))) {
+            if (paramValue.matches("[0-9]+") && (securityModel.getUser().equals("azienda"))) {
                 action_view_internship_company(request, response, paramValue);
                 return;
             }
@@ -139,7 +133,6 @@ public class internshipsServlet extends HttpServlet {
                 action_default_add_internships(request, response);
                 return;
             }
-
 
             // add internships
             if (paramValue.equals("add") && submit_string.equals("true")) {
@@ -153,21 +146,17 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
-
-
             if ((securityModel.getUser().equals("anonymous")) && (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+"))) {
-               response.sendRedirect("/login");
+                response.sendRedirect("/login");
                 return;
             }
 
-
-
-            if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+")) {
+            if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+") && !securityModel.getRole().equals("admin")) {
                 action_candidatePage(request, response, submit_string);
                 return;
             }
 
-            if (paramValue.equals("candidate") && submit_string.matches("[0-9]+")) {
+            if (paramValue.equals("candidate") && submit_string.matches("[0-9]+") && !securityModel.getRole().equals("admin")) {
                 action_candidate(request, response, submit_string);
                 return;
             }
@@ -196,11 +185,24 @@ public class internshipsServlet extends HttpServlet {
         String date_start = iTemp.getMeseInziale();
         String date_end = iTemp.getMeseFinale();
 
+        // Set the color of the internship status that will be showed on the page
+        String htmlcolor = "";
         String result = getInternshipStatus(date_start, date_end);
+        if (result.equals("Not started")) {
+            htmlcolor = "interstatus1";
+        }
+        if (result.equals("In progress")) {
+            htmlcolor = "interstatus2";
+        }
+        if (result.equals("Completed")) {
+            htmlcolor = "interstatus3";
+        }
+
 
         //Get the id of the logged user
         int session_id = uDao.getIDbyEmail(homeServlet.loggedUserEmail);
 
+        request.setAttribute("htmlcolor", htmlcolor);
         request.setAttribute("internship_id", iTemp.getIternship_id());
         request.setAttribute("user_id", session_id);
         request.setAttribute("tirocinio", result);
@@ -253,11 +255,9 @@ public class internshipsServlet extends HttpServlet {
     }
 
     // view an internship as student
-    protected void action_view_internship_student(HttpServletRequest request, HttpServletResponse response, String id, String isNotAdmin) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_internship_student(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         internshipDao iDao = new internshipDaoImpl();
-
-
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
@@ -265,12 +265,6 @@ public class internshipsServlet extends HttpServlet {
 
         int newID = Integer.parseInt(id);
         Internship i = iDao.getInternshipDataById(newID);
-        System.out.println(isNotAdmin);
-
-        if (isNotAdmin.equals("1")) {
-            request.setAttribute("isNotAdmin", isNotAdmin);
-        }
-
 
         // Load the default user page with the right info
         request.setAttribute("internshipData", i);
@@ -300,7 +294,6 @@ public class internshipsServlet extends HttpServlet {
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
-
 
 
         RequestDispatcher dispatcher
@@ -382,11 +375,7 @@ public class internshipsServlet extends HttpServlet {
             } else {
                 action_default(request, response);
             }
-        }
-
-        else  {
-
-
+        } else {
 
 
             request.getSession().setAttribute("errorsList", errorsList);
@@ -429,7 +418,7 @@ public class internshipsServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String cfu, tutor_name, tutor_surname, valutazione,tutor_email = "";
+        String cfu, tutor_name, tutor_surname, valutazione, tutor_email = "";
         valutazione = "empty";
 
 
@@ -449,11 +438,10 @@ public class internshipsServlet extends HttpServlet {
         request.setAttribute("username", tempName);
 
 
-
         companyDao comDao = new companyDaoImpl();
         int az_id = comDao.getIdCompanyByIdInternship(int_id1);
 
-        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email, valutazione);
+        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email, valutazione, "empty");
 
         if (candidateOK) {
 
@@ -491,9 +479,15 @@ public class internshipsServlet extends HttpServlet {
 
             String status = getInternshipStatus(iship.getMeseInziale(), iship.getMeseFinale());
 
-            if (status.equals("Not started")) { myIts.setHtmlcolor("interstatus1"); }
-            if (status.equals("In progress")) { myIts.setHtmlcolor("interstatus2"); }
-            if (status.equals("Completed"))  { myIts.setHtmlcolor("interstatus3"); }
+            if (status.equals("Not started")) {
+                myIts.setHtmlcolor("interstatus1");
+            }
+            if (status.equals("In progress")) {
+                myIts.setHtmlcolor("interstatus2");
+            }
+            if (status.equals("Completed")) {
+                myIts.setHtmlcolor("interstatus3");
+            }
 
             myIts.setCompany_name(company_temp.getRagione_sociale());
             myIts.setInternship_id(myInt.get(i).getInternship_id());
@@ -515,11 +509,11 @@ public class internshipsServlet extends HttpServlet {
 
         DateTime date_now = new DateTime();
         DateTime dt_start = formatter.parseDateTime(start_date);
-        DateTime dt_end   = formatter.parseDateTime(end_date);
+        DateTime dt_end = formatter.parseDateTime(end_date);
 
         boolean not_started = date_now.isBefore(dt_start);
         boolean in_progress = date_now.isAfter(dt_start) && date_now.isBefore(dt_end);
-        boolean terminated  = date_now.isAfter(dt_end);
+        boolean terminated = date_now.isAfter(dt_end);
 
         if (not_started) {
             result = "Not started";

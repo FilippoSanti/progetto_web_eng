@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 08, 2018 alle 00:26
+-- Creato il: Set 09, 2018 alle 12:27
 -- Versione del server: 10.1.34-MariaDB
 -- Versione PHP: 7.2.7
 
@@ -98,7 +98,7 @@ CREATE TABLE `offerta_tirocinio` (
   `luogo` varchar(100) NOT NULL,
   `mesi` varchar(11) NOT NULL,
   `ore` varchar(100) NOT NULL,
-  `orari` varchar(10) NOT NULL,
+  `orari` varchar(20) NOT NULL,
   `mese_iniziale` varchar(50) NOT NULL,
   `mese_finale` varchar(60) NOT NULL,
   `obiettivi` varchar(235) NOT NULL,
@@ -121,9 +121,9 @@ INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `
 (48, 10, 'campeggio in australia', 'ma che cazzo ne so io ', '', '1', '08:00 - 12:00', '10', '01/09/2018', '01/11/2018', 'asdasdasd', 'asdasdasd', '', 0, 1, 1, 1, 1, 1, 'boh'),
 (49, 12, 'Stage presso kingston inc.', 'Un cazzo', '', '3', '12:00 - 16:00', '80', '01/09/2018', '01/11/2018', 'laureandi', 'al pc', 'a cojoni', 1, 1, 1, 1, 1, 1, 'Informatica'),
 (50, 12, 'asdasdasd', 'asdasdad', '', '1', '08:00 - 12:00', '10', '17/09/2018', '22/10/2018', 'asdasd', 'asdasdas', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'asd'),
-(51, 12, 'dio c', 'asdasdasdasd', '', '1', '08:00 - 12:00', '10', '09/09/2018', '09/10/2018', 'asdasda', 'dadasdasd', 'adasdasd', 1, 1, 1, 1, 1, 1, 'asdada'),
 (52, 12, 'asdda', 'asdasdasd', '', '1', '08:00 - 12:00', '10', '07/09/2018', '10/09/2018', 'adasd', 'asdasdasd', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'dio'),
-(53, 12, 'asdasdas', 'asdasdasd', 'asdasdsada', '1', '08:00 - 12:00', '10', '17/09/2018', '17/09/2018', 'asdasd', 'asdasdasd', 'adasd', 1, 1, 1, 1, 1, 1, 'asdasd');
+(54, 12, 'yoyoyooy', 'asdasdasd', '', '1', '10', '08:00 - 12:00', '10/09/2018', '20/09/2018', 'asdasd', 'asdasd', 'asdasdsad', 1, 1, 1, 1, 1, 1, 'asdasd'),
+(55, 12, 'nonlosacc', 'asd', '', '1', '10', '08:00 - 12:00', '08/09/2018', '08/09/2018', 'sdfsdf', 'sdfsdfsdf', 'sdfdsfsf', 1, 1, 1, 1, 1, 1, 'merda');
 
 -- --------------------------------------------------------
 
@@ -160,17 +160,20 @@ CREATE TABLE `richieste_tirocinio` (
   `tutor_name` varchar(88) NOT NULL,
   `tutor_surname` varchar(88) NOT NULL,
   `tutor_email` varchar(88) NOT NULL,
-  `valutazione` varchar(200) NOT NULL
+  `valutazione` varchar(170) NOT NULL,
+  `attivita_svolta` varchar(235) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `richieste_tirocinio`
 --
 
-INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`, `cfu`, `tutor_name`, `tutor_surname`, `tutor_email`, `valutazione`) VALUES
-(38, 10, 48, 20, 1, '3', 'asd', 'asd', 'asd@sd.asdasd', 'empty'),
-(39, 12, 49, 20, 1, '3', 'h', 'h', 'gh@f.f', 'empty'),
-(40, 12, 50, 20, 0, '3', 'asdsad', 'asdasdasd', 'asdasdasd@sd.asd', 'empty');
+INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offerta_tirocinio_id`, `studente_id`, `accettata`, `cfu`, `tutor_name`, `tutor_surname`, `tutor_email`, `valutazione`, `attivita_svolta`) VALUES
+(38, 10, 48, 20, 1, '3', 'asd', 'asd', 'asd@sd.asdasd', 'empty', ''),
+(39, 12, 49, 20, 1, '3', 'h', 'h', 'gh@f.f', 'empty', ''),
+(40, 12, 50, 20, 1, '3', 'asdsad', 'asdasdasd', 'asdasdasd@sd.asd', 'empty', ''),
+(41, 12, 54, 20, 1, '12', 'asdsad', 'asdasdasd', 'adasdad@ad.asd', 'empty', ''),
+(42, 12, 55, 20, 1, '3', 'asdasdas', 'dasdasda', 'sdasdasdasd@sd.asd', 'empty', 'empty');
 
 -- --------------------------------------------------------
 
@@ -203,7 +206,7 @@ CREATE TABLE `studente` (
 --
 
 INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `ruolo`, `luogo_nascita`) VALUES
-(20, 'Micron', '$2a$12$6DcFXiwhxaeTgBXEzTkpquHCt8kfhmzEUlcUqiDox.toBxIdZfJgW', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'admin', 'asdasdasd'),
+(20, 'Micron', '$2a$12$6DcFXiwhxaeTgBXEzTkpquHCt8kfhmzEUlcUqiDox.toBxIdZfJgW', '2018-07-24', 'AL', 'AG', 'asdsad', 'asdasdasda', 3033, '123131', 'ascasdadsad', 'mikesh07mail@gmail.com', 1, 'asdsadsad', 'adasdadasd', 'user', 'asdasdasd'),
 (21, 'sdasdasd', '$2a$12$oozOXSluADkqa/8Hbn0h3uHJ1UwR8UxNUM7gVDCZ7XmPfITJFcxIO', '2018-07-24', 'AL', 'AG', 'asdsadasd', 'asdasdasd', 3033, '123213123', 'asdsadasd', 'asd@lo.com', 1, 'adasdasd', 'adadasd', '', ''),
 (22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', '', ''),
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
@@ -274,13 +277,13 @@ ALTER TABLE `notifica`
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`

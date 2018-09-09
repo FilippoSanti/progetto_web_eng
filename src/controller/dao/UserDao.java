@@ -29,7 +29,7 @@ public interface UserDao {
     public boolean deleteNotification(int notification_id) throws SQLException, IOException, PropertyVetoException;
     public boolean clearNotifications(int userID) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteCompanyNotifications(int id_company) throws SQLException, IOException, PropertyVetoException;
-    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id, String cfu, String tutor_name, String tutor_surname, String tutor_email, String valutazione) throws ParseException;
+    public boolean candidate(int azienda_id,int offerta_tirocinio_id , int studente_id, String cfu, String tutor_name, String tutor_surname, String tutor_email, String valutazione, String attivita_svolta) throws ParseException;
 
     /** Get functions */
     public User getUser(String userEmail);
