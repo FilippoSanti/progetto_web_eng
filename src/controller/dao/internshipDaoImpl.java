@@ -28,6 +28,14 @@ public class internshipDaoImpl implements internshipDao {
     private static final String GET_LISTA_CAND_APPR = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 1";
     private static final String GET_INTERNSHIP_REQUEST_DATA = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && studente_id = ?";
 
+    private static final String MOST_REQUESTED_TUTOR = "SELECT       tutor_name, tutor_surname,\n" +
+            "             COUNT(tutor_email) AS value_occurrence \n" +
+            "    FROM     richieste_tirocinio WHERE accettata = 1\n" +
+            "    GROUP BY tutor_email\n" +
+            "    ORDER BY value_occurrence DESC\n" +
+            "    LIMIT    1;";
+
+
     public boolean deleteInternship (int internship_id) throws PropertyVetoException, SQLException, IOException {
         boolean result = false;
 
@@ -45,6 +53,27 @@ public class internshipDaoImpl implements internshipDao {
         return result;
     }
 
+    public String[] mostRequestedTutor() throws PropertyVetoException, SQLException, IOException {
+
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(MOST_REQUESTED_TUTOR);
+
+        String[] az_array = new String[3];
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_array[0] = rs.getString("tutor_name");
+            az_array[1] = rs.getString("tutor_surname");
+            az_array[2] = String.valueOf(rs.getInt("value_occurrence"));
+        }
+        dbConnection.close();
+        return az_array;
+    }
 
     public InternshipRequest getInternshipRequestByIDs(int internship_id, int student_id) throws SQLException, IOException, PropertyVetoException {
 

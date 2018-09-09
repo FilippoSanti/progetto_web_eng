@@ -69,24 +69,42 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-primary mdi mdi-cellphone-link"></i> <b>8954</b></h3>
+                                                <h3 class="m-t-10"><i class="text-primary mdi mdi-cellphone-link"></i> <b>${nStudents}</b></h3>
                                                 <p class="text-muted">Students Registred</p>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-custom mdi mdi-airplay"></i> <b>7841</b></h3>
+                                                <h3 class="m-t-10"><i class="text-custom mdi mdi-airplay"></i> <b>${nCompanies}</b></h3>
                                                 <p class="text-muted">Companies Registred</p>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>6521</b></h3>
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${nInternships}</b></h3>
                                                 <p class="text-muted">Internships Total</p>
                                             </div>
                                         </div>
+
+
+                                        <div class="col-lg-4 col-sm-8">
+                                            <div class="widget-inline-box text-center">
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${nameMostCandidates} - ${nMostCandidates} Candidates</b></h3>
+                                                <p class="text-muted">Company with most candidates</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-4 col-sm-8">
+                                            <div class="widget-inline-box text-center">
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${tutorName} ${tutorSurname} - Requested ${nTutor} times </b></h3>
+                                                <p class="text-muted">Most Requested Tutor</p>
+                                            </div>
+                                        </div>
+
+
 
                                     </div>
                                 </div>

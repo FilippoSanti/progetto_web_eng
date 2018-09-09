@@ -25,4 +25,5 @@ public interface internshipDao {
     public ArrayList<InternshipRequest> getInternshipsStudents(int az_id) throws SQLException, IOException, PropertyVetoException;
     public InternshipRequest getInternshipRequestByIDs(int internship_id, int student_id) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteInternship (int internship_id) throws PropertyVetoException, SQLException, IOException;
+    public String[] mostRequestedTutor() throws PropertyVetoException, SQLException, IOException;
 }

@@ -38,6 +38,12 @@ public class companyDaoImpl implements companyDao {
     private static final String GET_COMPANY_ID_BY_INTERNSHIP = "SELECT azienda_id FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
     private static final String GET_ID_BY_NAME = "SELECT azienda_id FROM azienda WHERE ragione_sociale = ?";
     private static final String APPROVED_COMPANIES_LIST = "SELECT * FROM azienda WHERE abilitata = 1 ORDER BY azienda.azienda_id DESC";
+    private static final String MOST_CANDIDATES_COMPANY = "SELECT       azienda_id,\n" +
+            "             COUNT(azienda_id) AS value_occurrence \n" +
+            "    FROM     richieste_tirocinio WHERE accettata = 1\n" +
+            "    GROUP BY azienda_id\n" +
+            "    ORDER BY value_occurrence DESC\n" +
+            "    LIMIT    1;";
 
     /**
      * Get a company object by its login_email
@@ -98,6 +104,27 @@ public class companyDaoImpl implements companyDao {
         }
         dbConnection.close();
         return az_id;
+    }
+
+    public int[] mostCandidatesCompany() throws PropertyVetoException, SQLException, IOException {
+
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(MOST_CANDIDATES_COMPANY);
+
+        int[] az_array = new int[2];
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_array[0] = rs.getInt("azienda_id");
+            az_array[1] = rs.getInt("value_occurrence");
+        }
+        dbConnection.close();
+        return az_array;
     }
 
     public boolean insertInternship(Internship tirocinio) throws PropertyVetoException, SQLException, IOException {

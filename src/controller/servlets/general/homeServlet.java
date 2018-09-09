@@ -3,10 +3,7 @@ package controller.servlets.general;
 import controller.dao.*;
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
-import model.Company;
-import model.Internship;
-import model.Security;
-import model.User;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -129,6 +126,43 @@ public class homeServlet extends HttpServlet {
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
+
+        //load statistics
+        int nInternships = 0;
+        int nStudents = 0;
+        int nCompanies = 0;
+        int nMostCandidates = 0;
+        String nameMostCandidates = "";
+
+        UserDao uDao = new UserDaoImpl();
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao cDao = new companyDaoImpl();
+
+        ArrayList<Internship> internshipList = iDao.getInternshipList();
+        ArrayList<User> userList = uDao.getUserList();
+        ArrayList<Company> companyList = cDao.getCompaniesList();
+        int[] mostCandidatesCompany = cDao.mostCandidatesCompany();
+        Company mostCand = cDao.getCompanyDataByEmail(cDao.getEmailByID(mostCandidatesCompany[0]));
+        String[] mostRequestedTutor = iDao.mostRequestedTutor();
+
+        String nameMostReqTutor = mostRequestedTutor[0];
+        String surnameMostReqTutor = mostRequestedTutor[1];
+        String nTutorRequest = mostRequestedTutor[2];
+        nameMostCandidates = mostCand.getRagione_sociale();
+        nMostCandidates = mostCandidatesCompany[1];
+        nInternships = internshipList.size();
+        nStudents = userList.size();
+        nCompanies = companyList.size();
+
+
+        request.setAttribute("tutorName", nameMostReqTutor);
+        request.setAttribute("tutorSurname",surnameMostReqTutor);
+        request.setAttribute("nTutor", nTutorRequest);
+        request.setAttribute("nStudents", nStudents);
+        request.setAttribute("nInternships", nInternships);
+        request.setAttribute("nCompanies", nCompanies);
+        request.setAttribute("nameMostCandidates", nameMostCandidates);
+        request.setAttribute("nMostCandidates", nMostCandidates);
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_admin.ftl");

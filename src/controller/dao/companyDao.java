@@ -37,4 +37,5 @@ public interface companyDao {
     public int getIdCompanyByIdInternship(int tir_id);
     public int getCompanyIdbyName(String name) throws PropertyVetoException, SQLException, IOException;
     public ArrayList<Company> getApprovedCompaniesList() throws SQLException, IOException, PropertyVetoException;
+    public int[] mostCandidatesCompany() throws PropertyVetoException, SQLException, IOException;
 }
