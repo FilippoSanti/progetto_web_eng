@@ -71,6 +71,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="p-20 m-b-20">
+
+
+
                             <div class="m-b-20">
                                     <div class="form-group">
                                         <label for="name">Nome<span class="text-danger">*</span></label>

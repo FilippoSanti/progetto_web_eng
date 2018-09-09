@@ -67,26 +67,21 @@
     <P class="p39 ft1">Dipartimento di INGEGNERIA E SCIENZE DELL’INFORMAZIONE E MATEMATICA</P>
     <P class="p40 ft14">SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</P>
     <P class="p41 ft26">(da compilare a cura dell’Azienda)</P>
-    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN> ${nome_azienda} </P>
-    <P class="p43 ft20">Codice Fiscale Ente/Azienda  ${cf_piva_azienda} </P>
+    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN> ${dataList[0]} </P>
+    <P class="p43 ft20">Codice Fiscale Ente/Azienda  ${dataList[1]} </P>
     <P class="p44 ft27">Tirocinante:</P>
-    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> ${cognome_studente} <SPAN class="ft26">Nome</SPAN> ${nome_studente} </P>
+    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> ${dataList[2]} <SPAN class="ft26">Nome</SPAN> ${dataList[3]} </P>
     <P class="p41 ft17">(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</P>
-    <P class="p41 ft20"> ${titolo_tirocinio} - ${cdl_studente} </P>
+    <P class="p41 ft20"> ${dataList[4]} - ${dataList[5]} </P>
     <P class="p44 ft26">Periodo del tirocinio:</P>
-    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> ${mese_inizio} <SPAN class="ft26">al </SPAN> ${mese_fine} </P>
-    <P class="p44 ft20">Per un totale di ${ore} ore</P>
-    <P class="p43 ft26">Sede di svolgimento del tirocinio<SPAN class="ft20"> ${luogo_tirocinio} </SPAN></P>
+    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> ${dataList[6]} <SPAN class="ft26">al </SPAN> ${dataList[7]} </P>
+    <P class="p44 ft20">Per un totale di ${dataList[8]} ore</P>
+    <P class="p43 ft26">Sede di svolgimento del tirocinio<SPAN class="ft20"> ${dataList[9]} </SPAN></P>
     <P class="p43 ft26">Descrizione Attività svolta</P>
-    <P class="p44 ft20"> ${attività_svolta1} </P>
-    <P class="p43 ft20"> ${attività_svolta2} </P>
-    <P class="p43 ft20"> ${attività_svolta3} </P>
-    <P class="p43 ft20"> ${attività_svolta4} </P>
-    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig…</SPAN> ${nome_studente}  ${cognome_studente}</P>
+    <P class="p44 ft20"> ${dataList[10]} </P>
+    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig…</SPAN> ${dataList[11]}  ${dataList[12]}</P>
     <P class="p44 ft20">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</P>
-    <P class="p43 ft20"> ${risultato1} </P>
-    <P class="p43 ft20"> ${risultato2} </P>
-    <P class="p43 ft20"> ${risultato3} </P>
+    <P class="p43 ft20"> ${dataList[13]} </P>
     <P class="p46 ft28">Data …………………………………</P>
     <P class="p47 ft26">Firma del tutor aziendale</P>
     <P class="p41 ft20">…………………………………………………………………</P>

@@ -36,6 +36,7 @@ public class documentsServlet extends HttpServlet {
         String id     = "id";
         String student_id = "student_id";
         String internship_id = "internship_id";
+        String submit = "submit";
 
         // URL Parameters values
         String action_value = request.getParameter(action);
@@ -43,6 +44,7 @@ public class documentsServlet extends HttpServlet {
         String id_value = request.getParameter(id);
         String student_id_value = request.getParameter(student_id);
         String internship_id_value = request.getParameter(internship_id);
+        String submit_value = request.getParameter(submit);
 
         // Headers, menus and sidebars
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
@@ -102,10 +104,23 @@ public class documentsServlet extends HttpServlet {
             }
 
             // Evaluate student function
-            if (action_value != null && student_id_value != null && internship_id_value != null &&
+            if (submit_value == null && action_value != null && student_id_value != null && internship_id_value != null &&
                     action_value.equals("evaluateStudent") && student_id_value.matches("[0-9]+") &&
                     internship_id_value.matches("[0-9]+")) {
-                // action_evaluate
+
+                int std_id = Integer.parseInt(student_id_value);
+                int ivl = Integer.parseInt(internship_id_value);
+
+                action_evaluate_student(request, response, std_id, ivl);
+                return;
+            }
+
+            if (submit_value != null && action_value != null && student_id_value != null && internship_id_value != null &&
+                    action_value.equals("evaluateStudent") && student_id_value.matches("[0-9]+") &&
+                    internship_id_value.matches("[0-9]+") && submit_value.equals("true")) {
+
+                action_do_evaluate(request, response, Integer.valueOf(student_id_value), Integer.valueOf(internship_id_value));
+                return;
             }
 
         }
@@ -145,6 +160,65 @@ public class documentsServlet extends HttpServlet {
                 return;
             }
         }
+
+        action_choose_page(response, request);
+    }
+
+    private void action_do_evaluate(HttpServletRequest request, HttpServletResponse response, int student_id, int internship_id) throws IOException, PropertyVetoException, SQLException {
+
+        if (!securityCheckStudent(student_id, internship_id)) {
+            response.sendRedirect("/documents?action=students");
+            return;
+        }
+
+        if (checkCompanyEvaluatedStudent(student_id, internship_id)) {
+            request.getSession().setAttribute("errorMessage", "the user has already been evaluated");
+            response.sendRedirect("/documents?action=students");
+        }
+
+        String attivita_svolta = request.getParameter("attivita_svolta");
+        String valutazione = request.getParameter("valutazione");
+
+        internshipDao iDao = new internshipDaoImpl();
+        boolean insertOk = iDao.updateInternshipRequestData(valutazione, attivita_svolta, Integer.valueOf(student_id), Integer.valueOf(internship_id));
+
+        if (insertOk) {
+            request.getSession().setAttribute("Message", "Evaluation added correctly");
+            response.sendRedirect("documents?action="+internship_id);
+        } else {
+            request.getSession().setAttribute("errorMessage", "Error while updating the internship data");
+            response.sendRedirect("documents?action="+internship_id);
+        }
+
+    }
+
+    private void action_evaluate_student(HttpServletRequest request, HttpServletResponse response, int student_id, int internship_id) throws IOException, ServletException, PropertyVetoException, SQLException {
+        if (!securityCheckStudent(student_id, internship_id)) {
+            response.sendRedirect("/documents?action=students");
+            return;
+        }
+
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+
+        request.setAttribute("student_id", student_id);
+        request.setAttribute("internship_id", internship_id);
+        request.setAttribute("username", tempName);
+
+        RequestDispatcher dispatcher
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/end_internship.ftl");
+
+        dispatcher.forward(request, response);
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("Message") != null) {
+            request.getSession().removeAttribute("Message");
+        }
+
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
     }
 
     /** Admin functions **/
@@ -403,9 +477,9 @@ public class documentsServlet extends HttpServlet {
 
             // Check if the company has already evaluated a user
             if (checkCompanyEvaluatedStudent(user_id, Integer.valueOf(int_id))) {
-                request.setAttribute("showDocument2", "visualizedocumentactionurl");
+                request.setAttribute("showDocument2", "viewDocumentation?action=requestDocument2&student_id="+user_id + "&internship_id="+int_id);
             } else {
-                request.setAttribute("showDocument2", "insertdataurl");
+                request.setAttribute("showDocument2", "documents?action=evaluateStudent&student_id="+user_id +"&internship_id="+int_id);
             }
 
         } else {
@@ -437,6 +511,11 @@ public class documentsServlet extends HttpServlet {
             // Chrome browser fix
             if (request.getSession().getAttribute("errorMessage") != null) {
                 request.getSession().removeAttribute("errorMessage");
+            }
+
+            // Chrome browser fix
+            if (request.getSession().getAttribute("Message") != null) {
+                request.getSession().removeAttribute("Message");
             }
 
         } else {

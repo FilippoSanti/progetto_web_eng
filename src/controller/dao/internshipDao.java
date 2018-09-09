@@ -26,4 +26,6 @@ public interface internshipDao {
     public InternshipRequest getInternshipRequestByIDs(int internship_id, int student_id) throws SQLException, IOException, PropertyVetoException;
     public boolean deleteInternship (int internship_id) throws PropertyVetoException, SQLException, IOException;
     public String[] mostRequestedTutor() throws PropertyVetoException, SQLException, IOException;
+    public boolean updateInternshipRequestData(String valutazione, String attivita_svolta, int student_id, int internship_id) throws PropertyVetoException,
+            SQLException, IOException ,SQLException, IOException, PropertyVetoException;
 }

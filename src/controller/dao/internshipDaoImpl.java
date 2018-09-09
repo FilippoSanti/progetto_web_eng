@@ -34,6 +34,7 @@ public class internshipDaoImpl implements internshipDao {
             "    GROUP BY tutor_email\n" +
             "    ORDER BY value_occurrence DESC\n" +
             "    LIMIT    1;";
+    private static final String UPDATE_INTERNSHIP_REQUEST_DATA = "UPDATE richieste_tirocinio SET valutazione = ?, attivita_svolta = ? WHERE richieste_tirocinio.studente_id = ? AND richieste_tirocinio.offerta_tirocinio_id = ?";
 
 
     public boolean deleteInternship (int internship_id) throws PropertyVetoException, SQLException, IOException {
@@ -461,6 +462,28 @@ public class internshipDaoImpl implements internshipDao {
         }
         dbConnection.close();
         return candidates_list;
+    }
+
+    public boolean updateInternshipRequestData(String valutazione, String attivita_svolta, int student_id, int internship_id) throws PropertyVetoException,
+            SQLException, IOException ,SQLException, IOException, PropertyVetoException {
+        Connection dbConnection = DataSource.getInstance().getConnection();
+        PreparedStatement preparedStmt = dbConnection.prepareStatement(UPDATE_INTERNSHIP_REQUEST_DATA);
+        boolean result = false;
+
+        preparedStmt.setString(1, valutazione);
+        preparedStmt.setString(2, attivita_svolta);
+        preparedStmt.setInt(3, student_id);
+        preparedStmt.setInt(4, internship_id);
+
+        int i = preparedStmt.executeUpdate();
+
+        if (i > 0) {
+            result = true;
+        }
+
+        dbConnection.close();
+
+        return result;
     }
 
 }

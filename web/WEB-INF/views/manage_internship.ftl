@@ -80,6 +80,12 @@
                 </div>
                 </#if>
 
+                <#if Message?has_content>
+                <div class="alert alert-success" role="alert">
+                    ${Message}
+                </div>
+                </#if>
+
                     <div class="row">
                         <div class="col-md-6 centra text-center">
                             <b>Internship Status:</b> (<i class="${htmlcolor}">${tirocinio}</i>)
@@ -107,7 +113,7 @@
                                     <#if showDocument2?has_content>
                                     <tr>
                                         <th>Allegato_2.pdf</th>
-                                        <td><a href="/documents?action=document2&id=${user_id}">View Iter & Download</a></td>
+                                        <td><a href="${showDocument2}">View Iter & Download</a></td>
                                     </tr>
                                     </#if>
                                     </tbody>

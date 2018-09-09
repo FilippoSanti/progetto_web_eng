@@ -3,10 +3,7 @@ package controller.servlets.general;
 import controller.dao.*;
 import controller.utilities.SecurityFilter;
 import controller.utilities.Utils;
-import model.Company;
-import model.Internship;
-import model.InternshipRequest;
-import model.Security;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -149,9 +146,79 @@ public class viewDocumentationServlet extends HttpServlet {
                 action_company_get_document1_signedbystudent(real_student_id, real_internship_id, response);
                 return;
             }
-
-
         }
+
+        // View the document1 signed by the user
+        if (internship_id_value != null &&student_id_value != null && action_value != null &&
+                action_value.equals("requestDocument2") && student_id_value.matches("[0-9]+")
+                && internship_id_value.matches("[0-9]+")) {
+
+            int real_student_id = Integer.valueOf(student_id_value);
+            int real_internship_id = Integer.valueOf(internship_id_value);
+
+            action_view_document2(request, real_student_id, real_internship_id, response);
+            return;
+        }
+    }
+
+    private void action_view_document2(HttpServletRequest request, int real_student_id, int real_internship_id, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
+
+        Security securityModel = SecurityFilter.checkUsers(request);
+
+        if (securityModel.getUser().equals("anonymous")) {
+            response.sendRedirect("/home");
+            return;
+        } else if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
+            securityCheckStudent(real_student_id, real_internship_id);
+        } else if (securityModel.getUser().equals("azienda")) {
+            companysecurityCheck(real_internship_id);
+        }
+
+        List<String> dataList = action_generate_document2(real_student_id, real_internship_id);
+        request.setAttribute("dataList", dataList);
+
+        RequestDispatcher dispatcher
+                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/document_2.ftl");
+        // Remove the session attributes
+
+        dispatcher.forward(request, response);
+
+    }
+
+    private List<String> action_generate_document2(int real_student_id, int real_internship_id) throws PropertyVetoException, SQLException, IOException {
+
+        UserDao uDao = new UserDaoImpl();
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao cDao = new companyDaoImpl();
+
+        String email = uDao.getEmailByID(real_student_id);
+        User uModel = uDao.getUser(email);
+
+        Internship iModel = iDao.getInternshipByID(real_internship_id);
+
+        String company_email = cDao.getEmailByID(real_internship_id);
+        Company cModel = cDao.getCompanyDataByEmail(company_email);
+
+        InternshipRequest irModel = iDao.getInternshipRequestByIDs(real_internship_id, real_student_id);
+
+        List<String> tempList = new ArrayList<>();
+
+        tempList.add(cModel.getRagione_sociale());
+        tempList.add(cModel.get_cf_iva());
+        tempList.add(uModel.getCognome());
+        tempList.add(uModel.getNome());
+        tempList.add(iModel.getNome());
+        tempList.add(uModel.getCorso());
+        tempList.add(iModel.getMeseInziale());
+        tempList.add(iModel.getMeseFinale());
+        tempList.add(iModel.getLuogo());
+        tempList.add(irModel.getAttivita_svolta());
+        tempList.add(uModel.getNome());
+        tempList.add(uModel.getCognome());
+        tempList.add(irModel.getValutazione());
+
+        return tempList;
+
     }
 
     /** Company functions below **/

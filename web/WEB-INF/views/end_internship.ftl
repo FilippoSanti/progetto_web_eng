@@ -313,15 +313,27 @@
                             </p>
                         </div>
 <br><br>
+                        <form method="post" action="documents?action=evaluateStudent&student_id=${student_id}&internship_id=${internship_id}&submit=true" class="form-validation">
 
-                        <div class="p-20 m-b-20">
+                 <#if errorMessage?has_content>
+                <div class="alert alert-warning" role="alert">
+                    ${errorMessage}
+                </div>
+                                            </#if>
+
+                <#if Message?has_content>
+                <div class="alert alert-success" role="alert">
+                    ${Message}
+                </div>
+                </#if>
+                            <div class="p-20 m-b-20">
 
                             <div class="form-group">
                                 <label class="col-md-11 col-form-label result">
                                     Performed Activity:</label>
 <br><br>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" rows="3" placeholder="Type here (max 235 characters)"></textarea>
+                                    <textarea class="form-control" name="attivita_svolta" rows="3" placeholder="Type here (max 235 characters)"></textarea>
                                 </div>
                             </div>
 <br><br><br>
@@ -329,7 +341,7 @@
                                 <label class="col-md-11 col-form-label result"> The student has performed the tasks assigned to him obtaining the following result:</label>
 <br><br>
                                 <div class="col-md-10">
-                                <textarea class="form-control" rows="3" placeholder="Type here (max 235 characters)"></textarea>
+                                <textarea class="form-control" name="valutazione" rows="3" placeholder="Type here (max 235 characters)"></textarea>
                                 </div>
                             </div>
 <br><br>
@@ -339,15 +351,14 @@
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-3 centra">
-                            <button type="addinternship" class="btn btn-primary waves-effect waves-light"> Conclude Internship </button>    
+                            <button type="submit" class="btn btn-primary waves-effect waves-light"> Conclude Internship </button>
                         </div>
                         <div class="col-md-3 centra">                                          
                             <button type="reset" class="btn btn-default waves-effect m-l-5"> Cancel </button>                          
                         </div>
                         <div class="col-md-3"></div>
                     </div>
-                </div>
-
+                </div></form>
 
 <br><br><br><br>
 
