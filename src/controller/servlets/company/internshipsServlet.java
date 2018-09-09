@@ -82,11 +82,7 @@ public class internshipsServlet extends HttpServlet {
             request.setAttribute("sidemenu", "admin");
         }
 
-        // Redirect anonymous users
-        if (securityModel.getUser().equals("anonymous")) {
-            response.sendRedirect("/login");
-            return;
-        }
+
 
         // Student functions
         if (securityModel.getUser().equals("student") && securityModel.getRole().equals("user")) {
@@ -119,10 +115,18 @@ public class internshipsServlet extends HttpServlet {
                 return;
             }
 
+            String isNotAdmin = "0";
             // View a specific internship
-            if (paramValue.matches("[0-9]+")&&  (securityModel.getUser().equals("student")) ) {
-                action_view_internship_student(request, response, paramValue);
+            if (paramValue.matches("[0-9]+"))
+            {
+                if (securityModel.getUser().equals("anonymous"))
+                    isNotAdmin = "1";
+                else if (securityModel.getRole().equals("user"))
+                    {isNotAdmin = "1";}
+
+                action_view_internship_student(request, response, paramValue, isNotAdmin);
                 return;
+
             }
 
             if (paramValue.matches("[0-9]+")&&(securityModel.getUser().equals("azienda"))) {
@@ -148,6 +152,15 @@ public class internshipsServlet extends HttpServlet {
                 action_default(request, response);
                 return;
             }
+
+
+
+            if ((securityModel.getUser().equals("anonymous")) && (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+"))) {
+               response.sendRedirect("/login");
+                return;
+            }
+
+
 
             if (paramValue.equals("candidatePage") && submit_string.matches("[0-9]+")) {
                 action_candidatePage(request, response, submit_string);
@@ -240,9 +253,11 @@ public class internshipsServlet extends HttpServlet {
     }
 
     // view an internship as student
-    protected void action_view_internship_student(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException, PropertyVetoException, SQLException {
+    protected void action_view_internship_student(HttpServletRequest request, HttpServletResponse response, String id, String isNotAdmin) throws ServletException, IOException, PropertyVetoException, SQLException {
 
         internshipDao iDao = new internshipDaoImpl();
+
+
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
@@ -250,6 +265,12 @@ public class internshipsServlet extends HttpServlet {
 
         int newID = Integer.parseInt(id);
         Internship i = iDao.getInternshipDataById(newID);
+        System.out.println(isNotAdmin);
+
+        if (isNotAdmin.equals("1")) {
+            request.setAttribute("isNotAdmin", isNotAdmin);
+        }
+
 
         // Load the default user page with the right info
         request.setAttribute("internshipData", i);
@@ -411,6 +432,7 @@ public class internshipsServlet extends HttpServlet {
         String cfu, tutor_name, tutor_surname, valutazione,tutor_email = "";
         valutazione = "empty";
 
+
         cfu = request.getParameter("cfu");
         tutor_name = request.getParameter("tutor_name");
         tutor_surname = request.getParameter("tutor_surname");
@@ -425,6 +447,8 @@ public class internshipsServlet extends HttpServlet {
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
+
+
 
         companyDao comDao = new companyDaoImpl();
         int az_id = comDao.getIdCompanyByIdInternship(int_id1);

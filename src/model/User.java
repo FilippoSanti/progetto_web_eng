@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class User {
-    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, luogo_nascita;
+    String nome, cod_fiscale, cognome, provincia, provincia_n, residenza, citta, corso, email, tel, luogo_nascita, ruolo;
     String date;
     int cap;
     int id;
@@ -50,6 +50,12 @@ public class User {
         this.luogo_nascita = luogo_nascita;
 
 
+    }
+
+    public String getRuolo() {return this.ruolo;}
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 
     public String getLuogo_nascita() {
