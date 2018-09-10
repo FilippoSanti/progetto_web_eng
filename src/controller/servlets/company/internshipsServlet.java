@@ -4,6 +4,7 @@ import controller.dao.*;
 import controller.servlets.general.homeServlet;
 import controller.userController;
 import controller.utilities.SecurityFilter;
+import controller.utilities.Utils;
 import model.*;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -461,19 +462,86 @@ public class internshipsServlet extends HttpServlet {
 
         String userMail = homeServlet.loggedUserEmail;
         UserDao UserDao = new UserDaoImpl();
-        int userId = UserDao.getIDbyEmail(userMail);
+        int stud_id = UserDao.getIDbyEmail(userMail);
 
         int int_id1 = Integer.parseInt(int_id);
+
+
+
+        // Get the internship and student data
+        UserDao uDao = new UserDaoImpl();
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao comDao = new companyDaoImpl();
+
+        Internship internshipData = iDao.getInternshipDataById(int_id1);
+        User userData = uDao.getUser(uDao.getEmailByID(stud_id));
+        InternshipRequest interReq = iDao.getInternshipRequestByIDs(int_id1, stud_id);
+        Company companyData = comDao.getCompanyDataByEmail(comDao.getEmailByID(interReq.getAzienda_id()));
+
+
+        String com_head = null;
+        String rem_conn = null;
+        String ref_exp = null;
+        String com_ref = null;
+        String train_aid = null;
+
+        // Compile the corresponding document (document3)
+        ArrayList<String> document1 = new ArrayList<>();
+
+        document1.add(userData.getNome());
+        document1.add(userData.getCognome());
+        document1.add(userData.getLuogo_nascita());
+        document1.add(userData.getProvincia_n());
+        document1.add(userData.getDate());
+        document1.add(userData.getResidenza());
+        document1.add(userData.getProvincia());
+        document1.add(userData.getCod_fiscale());
+        document1.add(userData.getTel());
+        document1.add(userData.getCorso());
+        document1.add(String.valueOf(userData.getHandicap()));
+        document1.add(companyData.getRagione_sociale());
+        document1.add(internshipData.getLuogo());
+        document1.add(internshipData.getSettore());
+        document1.add(internshipData.getOrari());
+        document1.add(internshipData.getMesi());
+        document1.add(internshipData.getMeseInziale());
+        document1.add(internshipData.getMeseFinale());
+        document1.add(internshipData.getOre());
+        document1.add(interReq.getCfu());
+        document1.add(interReq.getTutor_name());
+        document1.add(interReq.getTutor_surname());
+        document1.add(interReq.getTutor_email());
+        document1.add(companyData.getNome_cognome_tir());
+        document1.add(companyData.getTelefono_tirocini());
+
+        if (internshipData.isCompany_headquarters())  com_head = "ok";
+        if (internshipData.isRemote_connection())  rem_conn = "ok";
+        if (internshipData.isRefound_of_expenses())  ref_exp = "ok";
+        if (internshipData.isCompany_refactory())  com_ref  = "ok";
+        if (internshipData.isTraining_aid())   train_aid = "ok";
+        document1.add(com_head);
+        document1.add(rem_conn);
+
+        document1.add(ref_exp);
+        document1.add(com_ref);
+        document1.add(train_aid);
+        document1.add(internshipData.getRimborsi_spese_facilitazioni_previste());
+
+        String[] obiettivi = Utils.splitIntoLine(internshipData.getObiettivi(), 59);
+        String[] modalita = Utils.splitIntoLine(internshipData.getModalita(), 59);
+        request.setAttribute("doc", document1);
+        request.setAttribute("obiettivi", obiettivi);
+        request.setAttribute("modalita", modalita);
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
 
 
-        companyDao comDao = new companyDaoImpl();
+
         int az_id = comDao.getIdCompanyByIdInternship(int_id1);
 
-        boolean candidateOK = UserDao.candidate(az_id, int_id1, userId, cfu, tutor_name, tutor_surname, tutor_email, valutazione, "empty");
+        boolean candidateOK = UserDao.candidate(az_id, int_id1, stud_id, cfu, tutor_name, tutor_surname, tutor_email, valutazione, "empty");
 
         if (candidateOK) {
 
