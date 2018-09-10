@@ -358,6 +358,10 @@ public class documentsServlet extends HttpServlet {
     /** Company functions **/
     private void action_see_iter(HttpServletRequest request, HttpServletResponse response, String student_id, String internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
 
+        // Set the logged user name
+        String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
+        request.setAttribute("username", tempName);
+
         // Check if the company can acess the page
         boolean securityOk = companysecurityCheck(Integer.valueOf(student_id), Integer.valueOf(internship_id));
 
