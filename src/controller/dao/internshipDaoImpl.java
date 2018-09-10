@@ -16,14 +16,14 @@ public class internshipDaoImpl implements internshipDao {
     /**
      * User queries
      */
-    private static final String GET_INTERN_LIST = "SELECT * FROM `offerta_tirocinio` ORDER BY `offerta_tirocinio`.`offerta_tirocinio_id` DESC";
-    private static final String GET_INTERN_LIST_BY_ID = "SELECT * FROM offerta_tirocinio WHERE azienda_id = ? ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
+    private static final String GET_INTERN_LIST = "SELECT * FROM `offerta_tirocinio` WHERE invisibile = 'false' ORDER BY `offerta_tirocinio`.`offerta_tirocinio_id` DESC";
+    private static final String GET_INTERN_LIST_BY_ID = "SELECT * FROM offerta_tirocinio WHERE azienda_id = ? && invisibile = 'false' ORDER BY offerta_tirocinio.offerta_tirocinio_id ASC";
     private static final String GET_LISTA_CAND = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && accettata = 0 ";
     private static final String GET_INTERNSHIP_DATA = "SELECT * FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
     private static final String GET_LISTA_CAND2 = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 0 ";
     private static final String ENABLE_USER_INTERNSHIP_REQ = "UPDATE richieste_tirocinio SET accettata = '1' WHERE richieste_tirocinio.studente_id = ?";
     private static final String DELETE_USER_INTERNSHIP_REQ = "DELETE FROM richieste_tirocinio WHERE richieste_tirocinio.studente_id = ?";
-    private static final String DELETE_INTERNSHIP = "DELETE FROM offerta_tirocinio WHERE offerta_tirocinio_id = ?";
+    private static final String DELETE_INTERNSHIP = "UPDATE offerta_tirocinio SET invisibile = '1' WHERE offerta_tirocinio_id = ?";
     private static final String GET_MY_INTERNSHIPS = "SELECT * FROM richieste_tirocinio WHERE studente_id = ? && accettata = 1";
     private static final String GET_LISTA_CAND_APPR = "SELECT * FROM richieste_tirocinio WHERE azienda_id = ? && accettata = 1";
     private static final String GET_INTERNSHIP_REQUEST_DATA = "SELECT * FROM richieste_tirocinio WHERE offerta_tirocinio_id = ? && studente_id = ?";
@@ -148,6 +148,7 @@ public class internshipDaoImpl implements internshipDao {
                 internshipModel.setTraining_aid(rs.getBoolean("training_aid"));
                 internshipModel.setNothing(rs.getBoolean("nothing"));
                 internshipModel.setSettore(rs.getString("settore"));
+                internshipModel.setInvisibile(rs.getBoolean("invisibile"));
             }
 
             dbConnection.close();
@@ -212,6 +213,7 @@ public class internshipDaoImpl implements internshipDao {
             internshipModel.setRimborsi_spese_facilitazioni_previste(rs.getString("rimborsi_spese_facilitazioni_previste"));
             internshipModel.setCompany_headquarters(rs.getBoolean("company_headquarters"));
             internshipModel.setRemote_connection(rs.getBoolean("remote_connection"));
+
 
             internshipsList.add(internshipModel);
 
@@ -317,7 +319,7 @@ public class internshipDaoImpl implements internshipDao {
         boolean result = false;
 
         Connection dbConnection = DataSource.getInstance().getConnection();
-        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        PreparedStatement ps = dbConnection.prepareStatement("insert into offerta_tirocinio values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 
         ps.setNull(1, Types.INTEGER);
@@ -340,6 +342,7 @@ public class internshipDaoImpl implements internshipDao {
         ps.setBoolean(18, training_aid);
         ps.setBoolean(19, nothing);
         ps.setString(20, settore);
+        ps.setBoolean(21, false);
 
         int i = ps.executeUpdate();
 

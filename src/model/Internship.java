@@ -4,7 +4,7 @@ public class Internship {
 
     private int iternship_id, azienda_id;
 
-    private boolean  Company_headquarters, Remote_connection , refound_of_expenses, company_refactory, training_aid, nothing;
+    private boolean  Company_headquarters, Remote_connection , refound_of_expenses, company_refactory, training_aid, nothing, invisibile;
 
     private String nome, dettagli, luogo, mesi, orari, ore, meseInziale, meseFinale, obiettivi, modalita, rimborsi_spese_facilitazioni_previste, settore;
 
@@ -15,6 +15,13 @@ public class Internship {
         return dettagli;
     }
 
+    public boolean isInvisibile() {
+        return invisibile;
+    }
+
+    public void setInvisibile(boolean invisibile) {
+        this.invisibile = invisibile;
+    }
 
     public String getNome() {
         return nome;

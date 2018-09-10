@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 09, 2018 alle 12:27
+-- Creato il: Set 10, 2018 alle 10:41
 -- Versione del server: 10.1.34-MariaDB
--- Versione PHP: 7.2.7
+-- Versione PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -110,20 +110,22 @@ CREATE TABLE `offerta_tirocinio` (
   `company_refactory` tinyint(4) NOT NULL,
   `training_aid` tinyint(4) NOT NULL,
   `nothing` tinyint(4) NOT NULL,
-  `settore` varchar(20) NOT NULL
+  `settore` varchar(20) NOT NULL,
+  `invisibile` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `offerta_tirocinio`
 --
 
-INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`, `company_headquarters`, `remote_connection`, `refound_of_expenses`, `company_refactory`, `training_aid`, `nothing`, `settore`) VALUES
-(48, 10, 'campeggio in australia', 'ma che cazzo ne so io ', '', '1', '08:00 - 12:00', '10', '01/09/2018', '01/11/2018', 'asdasdasd', 'asdasdasd', '', 0, 1, 1, 1, 1, 1, 'boh'),
-(49, 12, 'Stage presso kingston inc.', 'Un cazzo', '', '3', '12:00 - 16:00', '80', '01/09/2018', '01/11/2018', 'laureandi', 'al pc', 'a cojoni', 1, 1, 1, 1, 1, 1, 'Informatica'),
-(50, 12, 'asdasdasd', 'asdasdad', '', '1', '08:00 - 12:00', '10', '17/09/2018', '22/10/2018', 'asdasd', 'asdasdas', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'asd'),
-(52, 12, 'asdda', 'asdasdasd', '', '1', '08:00 - 12:00', '10', '07/09/2018', '10/09/2018', 'adasd', 'asdasdasd', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'dio'),
-(54, 12, 'yoyoyooy', 'asdasdasd', '', '1', '10', '08:00 - 12:00', '10/09/2018', '20/09/2018', 'asdasd', 'asdasd', 'asdasdsad', 1, 1, 1, 1, 1, 1, 'asdasd'),
-(55, 12, 'nonlosacc', 'asd', '', '1', '10', '08:00 - 12:00', '08/09/2018', '08/09/2018', 'sdfsdf', 'sdfsdfsdf', 'sdfdsfsf', 1, 1, 1, 1, 1, 1, 'merda');
+INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`, `company_headquarters`, `remote_connection`, `refound_of_expenses`, `company_refactory`, `training_aid`, `nothing`, `settore`, `invisibile`) VALUES
+(48, 10, 'campeggio in australia', 'ma che cazzo ne so io ', '', '1', '08:00 - 12:00', '10', '01/09/2018', '01/11/2018', 'asdasdasd', 'asdasdasd', '', 0, 1, 1, 1, 1, 1, 'boh', 0),
+(49, 12, 'Stage presso kingston inc.', 'Un cazzo', '', '3', '12:00 - 16:00', '80', '01/09/2018', '01/11/2018', 'laureandi', 'al pc', 'a cojoni', 1, 1, 1, 1, 1, 1, 'Informatica', 0),
+(50, 12, 'asdasdasd', 'asdasdad', '', '1', '08:00 - 12:00', '10', '17/09/2018', '22/10/2018', 'asdasd', 'asdasdas', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'asd', 0),
+(52, 12, 'asdda', 'asdasdasd', '', '1', '08:00 - 12:00', '10', '07/09/2018', '10/09/2018', 'adasd', 'asdasdasd', 'asdasdasd', 1, 1, 1, 1, 1, 1, 'dio', 0),
+(54, 12, 'yoyoyooy', 'asdasdasd', '', '1', '10', '08:00 - 12:00', '10/09/2018', '20/09/2018', 'asdasd', 'asdasd', 'asdasdsad', 1, 1, 1, 1, 1, 1, 'asdasd', 0),
+(55, 12, 'nonlosacc', 'asd', '', '1', '10', '08:00 - 12:00', '08/09/2018', '08/09/2018', 'sdfsdf', 'sdfsdfsdf', 'sdfdsfsf', 1, 1, 1, 1, 1, 1, 'merda', 0),
+(56, 7, 'ddddddddddd', 'aaaaaaaaaaaa', 'aaaaaaaaa', '1', '10', '08:00 - 12:00', '18/09/2018', '18/09/2018', 'aaaaaaaaa', 'aaaaaaaaaaa', '', 1, 1, 1, 1, 1, 1, 'Rovazzi', 1);
 
 -- --------------------------------------------------------
 
@@ -173,7 +175,8 @@ INSERT INTO `richieste_tirocinio` (`richiesta_tirocinio_id`, `azienda_id`, `offe
 (39, 12, 49, 20, 1, '3', 'h', 'h', 'gh@f.f', 'empty', ''),
 (40, 12, 50, 20, 1, '3', 'asdsad', 'asdasdasd', 'asdasdasd@sd.asd', 'empty', ''),
 (41, 12, 54, 20, 1, '12', 'asdsad', 'asdasdasd', 'adasdad@ad.asd', 'empty', ''),
-(42, 12, 55, 20, 1, '3', 'asdasdas', 'dasdasda', 'sdasdasdasd@sd.asd', 'empty', 'empty');
+(42, 12, 55, 20, 1, '3', 'asdasdas', 'dasdasda', 'sdasdasdasd@sd.asd', 'empty', 'empty'),
+(43, 10, 48, 63, 0, '6', 'aaa', 'aaaaaa', 'cazzo@cazzo.it', 'empty', 'empty');
 
 -- --------------------------------------------------------
 
@@ -211,13 +214,14 @@ INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, 
 (22, 'asdsadasd', '$2a$12$k49Go8woNy71FgC1vxv96./TJp07U4FxS2LUkDJT3klAI4lq0oweK', '2018-07-24', 'AG', 'AL', 'asdsadasd', 'asdasdasd', 5055, '12313', 'asdasdasd', 'asd@gmail.com', 1, 'asdsad', 'dasdsadad', '', ''),
 (23, 'Gianni', '$2a$12$3aIx2slzORP9q/V3MPB.bOqU3Pg3maDEwyN34l1GuxMOJPRjSNDUu', '2018-07-15', 'AG', 'AL', 'aaa', 'aaa', 4444, '4444', '4444', 'davide.ubaldi17@gmail.com', 0, 'fasfasfasf', 'asdasdasd', 'empty', ''),
 (24, 'catamarano', '$2a$12$TLo06N1XOkr8V2iJ07ERouT69C62y3E1Oth73ad8QmthL5P3.g4ii', '2018-09-07', 'AG', 'AL', 'aaa', 'ascccc', 4444, '11222', '1111', 'davide.ubaldi@outlook.it', 1, 'luzi', 'asdasdasd', 'user', 'asccc'),
-(56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'user', 'asddd'),
+(56, 'giacomo', '$2a$12$tpC0d.OsoUwzvyqmXlmWx.hOwL4t97cDz7MZZjhDIRkEYXIVHz.uq', '08/08/2018', 'AL', 'AL', 'asd', 'asdasd', 44444, '2222222', 'asd', 'azz@hotmail.it', 0, 'cacaca', 'asdasd', 'admin', 'asddd'),
 (57, 'Elisa', '$2a$12$8eJApav/TqV/JGLZ28aU9eTzCZ1FpsufyGfMYM7p/Mck.UclqllY6', '13/08/2018', 'AL', 'AG', ' ia dddddd', 'dasdasdasd', 63100, '32736964649', 'nesssuno', 'a@hotmail.it', 1, 'Giovanni', 'AgagagFAGAGA', 'user', 'fffff'),
 (58, 'asdasdasd', '$2a$12$Ct10cZwpb/mnXVK6pb.tyOTos8o64YNe1IavaLfIXmokQayQFtU8y', '28/08/2018', 'AL', 'AL', 'asdasdasd', 'asdasdsadsa', 9077, '123123123', 'asdasdasdasd', 'dioc@a.ro', 1, 'asdasdasdas', 'asdasdasd', 'admin', 'asdasdad'),
 (59, 'asdasdasd', '$2a$12$lRMAO3LCRiUiHmvqOGHKeuxltZVnZsyVDZToHhfn1dEyH.ZEORw.m', '06/09/2018', 'AG', 'AG', 'dasdasda', 'dasdasd', 45645, '123123123', 'asdasdasd', 'asdasdasd@asd.asd', 1, 'adasdas', 'dasdasdas', 'user', 'adasdasd'),
 (60, 'Stefano', '$2a$12$UbEPL1S2aRU.M22nEVOSBOeCV69Z8TiFzj/1aP4xaxK9qlVKYEmR6', '26/07/1995', '-- Select --', '-- Select --', 'Via rondinella ', 'Arpino', 3033, '3343037176', 'Informatica', 'paoluccio545@gmail.com', 0, 'De Ciantis', 'dcnsfn95', 'user', 'Roma'),
 (61, 'asdasdasd', '$2a$12$OO.DkTN1Sc1X8XhtvCx9OuSNmyAYYvg52w.ZD2qNZHC1XgFx4Npsy', '11/09/2018', 'AG', 'AG', 'dasdasd', 'adasdasd', 8088, '2342342', 'figa', 'adasd@loll.lol', 0, 'adasdas', 'asdasdas', 'user', 'asdasd'),
-(62, 'asdasd', '$2a$12$KwijeTi4kWKmVabAbdU9QebCAq3BGBXovxHeID27YEllwmYpeK7JW', '12/09/2018', 'AL', 'AG', 'asdadas', 'dasdasd', 9866, '1212312312', 'asdasd', 'asdasdddd@asd.asd', 0, 'dasdad', 'adasdasd', 'user', 'asdasdas');
+(62, 'asdasd', '$2a$12$KwijeTi4kWKmVabAbdU9QebCAq3BGBXovxHeID27YEllwmYpeK7JW', '12/09/2018', 'AL', 'AG', 'asdadas', 'dasdasd', 9866, '1212312312', 'asdasd', 'asdasdddd@asd.asd', 0, 'dasdad', 'adasdasd', 'user', 'asdasdas'),
+(63, 'cacca', '$2a$12$d/W.ZixK9R18QlCxK301FeunqIO11r.cmMY7vykTfVCrgY3I5qy8S', '17/09/2018', 'AL', 'AL', 'asfasffaasfa', 'azzazz', 66666, '4444444', 'asfasfafs', 'azz1@hotmail.it', 1, 'cacc', 'afasffas', 'admin\r\n', 'asdss');
 
 --
 -- Indici per le tabelle scaricate
@@ -277,19 +281,19 @@ ALTER TABLE `notifica`
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Limiti per le tabelle scaricate
