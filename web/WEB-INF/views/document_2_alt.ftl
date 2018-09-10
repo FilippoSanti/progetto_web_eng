@@ -29,72 +29,13 @@
 
         .ft0{font: bold 24px 'Book Antiqua';line-height: 28px;}
         .ft1{font: bold 14px 'Arial';line-height: 16px;}
-        .ft2{font: bold 11px 'Times New Roman';line-height: 12px;}
-        .ft3{font: 11px 'Arial';line-height: 14px;}
-        .ft4{font: 11px 'Arial';line-height: 13px;}
-        .ft5{font: 1px 'Arial';line-height: 6px;}
-        .ft6{font: 1px 'Arial';line-height: 7px;}
-        .ft7{font: bold 16px 'Arial';line-height: 19px;}
-        .ft8{font: 16px 'Arial';line-height: 18px;}
-        .ft9{font: 13px 'Arial';line-height: 16px;}
-        .ft10{font: 16px 'Wingdings';line-height: 17px;}
-        .ft11{font: 16px 'Arial';margin-left: 4px;line-height: 18px;}
-        .ft12{font: 16px 'Wingdings';line-height: 11px;}
-        .ft13{font: 1px 'Arial';line-height: 8px;}
         .ft14{font: bold 11px 'Times New Roman';line-height: 13px;}
-        .ft15{font: bold 16px 'Arial';line-height: 30px;}
-        .ft16{font: 16px 'Arial';line-height: 29px;}
         .ft17{font: 15px 'Times New Roman';line-height: 17px;}
-        .ft18{font: bold 16px 'Arial';line-height: 18px;}
-        .ft19{font: bold 13px 'Arial';line-height: 16px;}
         .ft20{font: 16px 'Times New Roman';line-height: 19px;}
-        .ft21{font: 16px 'Arial';margin-left: 11px;line-height: 18px;}
-        .ft22{font: 11px 'Arial';line-height: 14px;position: relative; bottom: 5px;}
-        .ft23{font: bold 8px 'Times New Roman';line-height: 11px;}
-        .ft24{font: bold 13px 'Times New Roman';margin-left: 3px;line-height: 15px;}
-        .ft25{font: bold 13px 'Times New Roman';line-height: 15px;}
         .ft26{font: bold 16px 'Times New Roman';line-height: 19px;}
         .ft27{font: bold 16px 'Times New Roman';line-height: 18px;}
         .ft28{font: bold 19px 'Times New Roman';line-height: 22px;}
 
-        .p0{text-align: left;padding-left: 100px;margin-top: 67px;margin-bottom: 0px;}
-        .p1{text-align: left;padding-left: 62px;margin-top: 1px;margin-bottom: 0px;}
-        .p2{text-align: left;padding-left: 191px;margin-top: 11px;margin-bottom: 0px;}
-        .p3{text-align: left;padding-left: 9px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-        .p4{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-        .p5{text-align: left;padding-left: 279px;margin-top: 19px;margin-bottom: 0px;}
-        .p6{text-align: justify;padding-left: 9px;padding-right: 76px;margin-top: 0px;margin-bottom: 0px;}
-        .p7{text-align: left;padding-left: 150px;margin-top: 15px;margin-bottom: 0px;}
-        .p8{text-align: left;padding-left: 9px;margin-top: 18px;margin-bottom: 0px;}
-        .p9{text-align: left;padding-left: 9px;margin-top: 17px;margin-bottom: 0px;}
-        .p10{text-align: left;padding-left: 131px;margin-top: 19px;margin-bottom: 0px;}
-        .p11{text-align: left;padding-left: 9px;margin-top: 3px;margin-bottom: 0px;}
-        .p12{text-align: left;padding-left: 9px;margin-top: 19px;margin-bottom: 0px;}
-        .p13{text-align: left;padding-left: 9px;margin-top: 0px;margin-bottom: 0px;}
-        .p14{text-align: left;padding-left: 9px;margin-top: 37px;margin-bottom: 0px;}
-        .p15{text-align: left;padding-left: 56px;margin-top: 1px;margin-bottom: 0px;}
-        .p16{text-align: left;padding-left: 3px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
-        .p17{text-align: left;padding-left: 9px;margin-top: 27px;margin-bottom: 0px;}
-        .p18{text-align: left;padding-left: 91px;margin-top: 67px;margin-bottom: 0px;}
-        .p19{text-align: left;padding-left: 53px;margin-top: 1px;margin-bottom: 0px;}
-        .p20{text-align: left;padding-left: 182px;margin-top: 12px;margin-bottom: 0px;}
-        .p21{text-align: left;margin-top: 0px;margin-bottom: 0px;}
-        .p22{text-align: left;margin-top: 18px;margin-bottom: 0px;}
-        .p23{text-align: left;margin-top: 17px;margin-bottom: 0px;}
-        .p24{text-align: left;padding-right: 109px;margin-top: 0px;margin-bottom: 0px;}
-        .p25{text-align: left;margin-top: 30px;margin-bottom: 0px;}
-        .p26{text-align: left;margin-top: 19px;margin-bottom: 0px;}
-        .p27{text-align: left;margin-top: 16px;margin-bottom: 0px;}
-        .p28{text-align: left;margin-top: 1px;margin-bottom: 0px;}
-        .p29{text-align: left;margin-top: 34px;margin-bottom: 0px;}
-        .p30{text-align: left;padding-left: 18px;padding-right: 76px;margin-top: 17px;margin-bottom: 0px;text-indent: -18px;}
-        .p31{text-align: justify;padding-left: 18px;padding-right: 76px;margin-top: 1px;margin-bottom: 0px;text-indent: -18px;}
-        .p32{text-align: justify;padding-right: 76px;margin-top: 20px;margin-bottom: 0px;}
-        .p33{text-align: left;margin-top: 3px;margin-bottom: 0px;}
-        .p34{text-align: justify;padding-right: 77px;margin-top: 38px;margin-bottom: 0px;}
-        .p35{text-align: left;margin-top: 37px;margin-bottom: 0px;}
-        .p36{text-align: left;padding-right: 109px;margin-top: 37px;margin-bottom: 0px;}
-        .p37{text-align: left;margin-top: 35px;margin-bottom: 0px;}
         .p38{text-align: right;padding-right: 120px;margin-top: 67px;margin-bottom: 0px;}
         .p39{text-align: left;padding-left: 129px;margin-top: 1px;margin-bottom: 0px;}
         .p40{text-align: left;padding-left: 258px;margin-top: 12px;margin-bottom: 0px;}
@@ -109,28 +50,6 @@
         .p49{text-align: left;padding-left: 76px;margin-top: 35px;margin-bottom: 0px;}
         .p50{text-align: left;padding-left: 76px;margin-top: 3px;margin-bottom: 0px;}
         .p51{text-align: left;padding-left: 76px;margin-top: 73px;margin-bottom: 0px;}
-
-        .td0{border-left: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 334px;vertical-align: bottom;}
-        .td1{border-right: #000000 1px solid;border-top: #000000 1px solid;padding: 0px;margin: 0px;width: 318px;vertical-align: bottom;}
-        .td2{border-right: #000000 1px solid;padding: 0px;margin: 0px;width: 318px;vertical-align: bottom;}
-        .td3{border-left: #000000 1px solid;padding: 0px;margin: 0px;width: 334px;vertical-align: bottom;}
-        .td4{border-right: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 318px;vertical-align: bottom;}
-        .td5{border-left: #000000 1px solid;border-bottom: #000000 1px solid;padding: 0px;margin: 0px;width: 334px;vertical-align: bottom;}
-        .td6{padding: 0px;margin: 0px;width: 131px;vertical-align: bottom;}
-        .td7{padding: 0px;margin: 0px;width: 15px;vertical-align: bottom;}
-
-        .tr0{height: 20px;}
-        .tr1{height: 14px;}
-        .tr2{height: 6px;}
-        .tr3{height: 13px;}
-        .tr4{height: 7px;}
-        .tr5{height: 24px;}
-        .tr6{height: 16px;}
-        .tr7{height: 8px;}
-        .tr8{height: 17px;}
-
-        .t0{width: 653px;font: 11px 'Arial';}
-        .t1{width: 146px;margin-left: 168px;margin-top: 5px;font: 16px 'Wingdings';}
 
     </STYLE>
 </HEAD>
@@ -147,26 +66,21 @@
     <P class="p39 ft1">Dipartimento di INGEGNERIA E SCIENZE DELL’INFORMAZIONE E MATEMATICA</P>
     <P class="p40 ft14">SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</P>
     <P class="p41 ft26">(da compilare a cura dell’Azienda)</P>
-    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN> ${nome_azienda} </P>
-    <P class="p43 ft20">Codice Fiscale Ente/Azienda  ${cf_piva_azienda} </P>
+    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN> ${dataList[0]} </P>
+    <P class="p43 ft20">Codice Fiscale Ente/Azienda  ${dataList[1]} </P>
     <P class="p44 ft27">Tirocinante:</P>
-    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> ${cognome_studente} <SPAN class="ft26">Nome</SPAN> ${nome_studente} </P>
+    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> ${dataList[2]} <SPAN class="ft26">Nome</SPAN> ${dataList[3]} </P>
     <P class="p41 ft17">(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</P>
-    <P class="p41 ft20"> ${titolo_tirocinio} - ${cdl_studente} </P>
+    <P class="p41 ft20"> ${dataList[4]} - ${dataList[5]} </P>
     <P class="p44 ft26">Periodo del tirocinio:</P>
-    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> ${mese_inizio} <SPAN class="ft26">al </SPAN> ${mese_fine} </P>
-    <P class="p44 ft20">Per un totale di ${ore} ore</P>
-    <P class="p43 ft26">Sede di svolgimento del tirocinio<SPAN class="ft20"> ${luogo_tirocinio} </SPAN></P>
+    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> ${dataList[6]} <SPAN class="ft26">al </SPAN> ${dataList[7]} </P>
+    <P class="p44 ft20">Per un totale di ${dataList[8]} ore</P>
+    <P class="p43 ft26">Sede di svolgimento del tirocinio<SPAN class="ft20"> ${dataList[9]} </SPAN></P>
     <P class="p43 ft26">Descrizione Attività svolta</P>
-    <P class="p44 ft20"> ${attività_svolta1} </P>
-    <P class="p43 ft20"> ${attività_svolta2} </P>
-    <P class="p43 ft20"> ${attività_svolta3} </P>
-    <P class="p43 ft20"> ${attività_svolta4} </P>
-    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig…</SPAN> ${nome_studente}  ${cognome_studente}</P>
+    <P class="p44 ft20"> ${dataList[10]} </P>
+    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig…</SPAN> ${dataList[11]}  ${dataList[12]}</P>
     <P class="p44 ft20">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</P>
-    <P class="p43 ft20"> ${risultato1} </P>
-    <P class="p43 ft20"> ${risultato2} </P>
-    <P class="p43 ft20"> ${risultato3} </P>
+    <P class="p43 ft20"> ${dataList[13]} </P>
     <P class="p46 ft28">Data …………………………………</P>
     <P class="p47 ft26">Firma del tutor aziendale</P>
     <P class="p41 ft20">…………………………………………………………………</P>
@@ -184,7 +98,7 @@
     <P class="p44 ft20">Previa effettuazione di opportune verifiche e colloquio svoltosi in data …………………...</P>
     <P class="p43 ft20">Si attesta che il</P>
     <P class="p43 ft26">Tirocinante:</P>
-    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN> ${cognome_studente} <SPAN class="ft26">Nome </SPAN> ${nome_studente} </P>
+    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN> ${dataList[11]} <SPAN class="ft26">Nome </SPAN> ${dataList[12]} </P>
     <P class="p44 ft20">Ha svolto il tirocinio con esito</P>
     <P class="p43 ft20">……………………………………………………………...</P>
     <P class="p43 ft26">Firma del Tutor universitario</P>
