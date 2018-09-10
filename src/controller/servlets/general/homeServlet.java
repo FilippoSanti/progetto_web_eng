@@ -152,7 +152,10 @@ public class homeServlet extends HttpServlet {
         int[] mostCandidatesCompany = cDao.mostCandidatesCompany();
         Company mostCand = cDao.getCompanyDataByEmail(cDao.getEmailByID(mostCandidatesCompany[0]));
         String[] mostRequestedTutor = iDao.mostRequestedTutor();
+        int[] mostInternshipsCompany = cDao.mostInternshipsCompany();
 
+        String nameMostIntCompany = cDao.getCompanyDataByEmail(cDao.getEmailByID(mostInternshipsCompany[0])).getRagione_sociale();
+        int nMostIntCompany = mostInternshipsCompany[1];
         String nameMostReqTutor = mostRequestedTutor[0];
         String surnameMostReqTutor = mostRequestedTutor[1];
         String nTutorRequest = mostRequestedTutor[2];
@@ -162,7 +165,8 @@ public class homeServlet extends HttpServlet {
         nStudents = userList.size();
         nCompanies = companyList.size();
 
-
+        request.setAttribute("nameMostIntCompany", nameMostIntCompany);
+        request.setAttribute("nMostIntCompany", nMostIntCompany);
         request.setAttribute("tutorName", nameMostReqTutor);
         request.setAttribute("tutorSurname",surnameMostReqTutor);
         request.setAttribute("nTutor", nTutorRequest);

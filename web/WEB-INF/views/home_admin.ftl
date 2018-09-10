@@ -104,6 +104,13 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-lg-4 col-sm-8">
+                                            <div class="widget-inline-box text-center">
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${nameMostIntCompany} - Has ${nMostIntCompany} internships </b></h3>
+                                                <p class="text-muted">Company with most internships</p>
+                                            </div>
+                                        </div>
+
 
 
                                     </div>

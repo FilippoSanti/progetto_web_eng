@@ -45,6 +45,14 @@ public class companyDaoImpl implements companyDao {
             "    ORDER BY value_occurrence DESC\n" +
             "    LIMIT    1;";
 
+    private static final String MOST_INTERNSHIPS_COMPANY = "SELECT       azienda_id, \n" +
+            "             COUNT(azienda_id) AS value_occurrence \n" +
+            "    FROM     offerta_tirocinio WHERE invisibile = 0\n" +
+            "    GROUP BY azienda_id\n" +
+            "    ORDER BY value_occurrence DESC\n" +
+            "    LIMIT    1;";
+
+
     /**
      * Get a company object by its login_email
      */
@@ -114,6 +122,27 @@ public class companyDaoImpl implements companyDao {
 
         dbConnection = DataSource.getInstance().getConnection();
         pst = dbConnection.prepareStatement(MOST_CANDIDATES_COMPANY);
+
+        int[] az_array = new int[2];
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            az_array[0] = rs.getInt("azienda_id");
+            az_array[1] = rs.getInt("value_occurrence");
+        }
+        dbConnection.close();
+        return az_array;
+    }
+
+    public int[] mostInternshipsCompany() throws PropertyVetoException, SQLException, IOException {
+
+        Connection dbConnection = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        dbConnection = DataSource.getInstance().getConnection();
+        pst = dbConnection.prepareStatement(MOST_INTERNSHIPS_COMPANY);
 
         int[] az_array = new int[2];
 
