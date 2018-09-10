@@ -94,6 +94,7 @@ public class homeServlet extends HttpServlet {
 
         companyDao compDao = new companyDaoImpl();
 
+
         // Get the company list
         ArrayList<Company> companiesArray = compDao.getCompaniesList();
 

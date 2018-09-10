@@ -601,7 +601,7 @@ public class documentsServlet extends HttpServlet {
         document1.add(interReq.getTutor_email());
         document1.add(companyData.getNome_cognome_tir());
         document1.add(companyData.getTelefono_tirocini());
-        document1.add(Utils.breakCharacters(internshipData.getObiettivi()));
+
         if (internshipData.isCompany_headquarters())  com_head = "ok";
         if (internshipData.isRemote_connection())  rem_conn = "ok";
         if (internshipData.isRefound_of_expenses())  ref_exp = "ok";
@@ -609,13 +609,17 @@ public class documentsServlet extends HttpServlet {
         if (internshipData.isTraining_aid())   train_aid = "ok";
         document1.add(com_head);
         document1.add(rem_conn);
-        document1.add(Utils.breakCharacters(internshipData.getModalita()));
+
         document1.add(ref_exp);
         document1.add(com_ref);
         document1.add(train_aid);
         document1.add(internshipData.getRimborsi_spese_facilitazioni_previste());
 
+        String[] obiettivi = Utils.splitIntoLine(internshipData.getObiettivi(), 59);
+        String[] modalita = Utils.splitIntoLine(internshipData.getModalita(), 59);
         request.setAttribute("doc", document1);
+        request.setAttribute("obiettivi", obiettivi);
+        request.setAttribute("modalita", modalita);
 
         // Set another attribute with the handicap status
         if (userData.getHandicap()) { request.setAttribute("compilehandicap", "true"); }

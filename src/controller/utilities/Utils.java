@@ -30,6 +30,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
+import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -264,8 +265,7 @@ public class Utils {
      * Reads all bytes from an input stream and writes them to an output stream.
      */
     public static long copy(InputStream source, OutputStream sink)
-            throws IOException
-    {
+            throws IOException {
         long nread = 0L;
         byte[] buf = new byte[BUFFER_SIZE];
         int n;
@@ -276,25 +276,32 @@ public class Utils {
         return nread;
     }
 
-    public static String breakCharacters(String inputString) {
 
-        String parsedStr = null;
+    public static String[] splitIntoLine(String input, int maxCharInLine) {
 
-        if (inputString.length() > 177 && inputString.length() < 235) {
-            parsedStr = inputString.replaceAll("(.{59})", "$1\n");
+        StringTokenizer tok = new StringTokenizer(input, " ");
+        StringBuilder output = new StringBuilder(input.length());
+        int lineLen = 0;
+        while (tok.hasMoreTokens()) {
+            String word = tok.nextToken();
 
-        } else if (inputString.length() <= 59) {
-            parsedStr = inputString + System.lineSeparator() +
-                    System.lineSeparator() + System.lineSeparator();
+            while (word.length() > maxCharInLine) {
+                output.append(word.substring(0, maxCharInLine - lineLen) + "\n");
+                word = word.substring(maxCharInLine - lineLen);
+                lineLen = 0;
+            }
 
-        } else if (inputString.length() <= 118) {
-            parsedStr = inputString + System.lineSeparator() +
-                    System.lineSeparator();
+            if (lineLen + word.length() > maxCharInLine) {
+                output.append("\n");
+                lineLen = 0;
+            }
+            output.append(word + " ");
 
-        } else if (inputString.length() <= 177) {
-            parsedStr = inputString + System.lineSeparator();
+            lineLen += word.length() + 1;
         }
-
-        return parsedStr;
+        // output.split();
+        // return output.toString();
+        return output.toString().split("\n");
     }
+
 }
