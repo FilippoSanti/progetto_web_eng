@@ -17,7 +17,7 @@
                         <li class="menu-title">Navigation</li>
                         <li>
                             <a href="/home">
-                                <i class="ti-home"></i><span> Dashboard </span>
+                                <i class="ti-home"></i><span> Homepage </span>
                             </a>
                         </li>
 

@@ -98,7 +98,7 @@
 
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i><b class="dimfontpicc">${nameMostIntCompany} -${nMostIntCompany}</b></h3>
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i><b class="dimfontpicc">${nameMostIntCompany} - ${nMostIntCompany}</b></h3>
                                                 <p class="text-muted">Company With Most Internship Offers</p>
                                             </div>
                                         </div>
