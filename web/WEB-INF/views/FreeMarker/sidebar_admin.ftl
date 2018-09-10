@@ -58,12 +58,6 @@
                                 <i class="ti-files"></i><span> Documentation </span>
                              </a>
                         </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="ti-stats-up"></i><span> View Statistics </span>
-                             </a>
-                        </li>
                        
                     </ul>
 
