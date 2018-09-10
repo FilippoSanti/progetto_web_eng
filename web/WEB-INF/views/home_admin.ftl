@@ -63,7 +63,7 @@
 <br><br>
 
 
-                        <div class="row">
+<div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box widget-inline">
                                     <div class="row">
@@ -91,23 +91,22 @@
 
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${nameMostCandidates} - ${nMostCandidates} Candidates</b></h3>
-                                                <p class="text-muted">Company with most candidates</p>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-lg-4 col-sm-8">
-                                            <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${tutorName} ${tutorSurname} - Requested ${nTutor} times </b></h3>
-                                                <p class="text-muted">Most Requested Tutor</p>
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b class="dimfontpicc">${nameMostCandidates} - ${nMostCandidates}</b></h3>
+                                                <p class="text-muted">Company With Most Candidates</p>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4 col-sm-8">
                                             <div class="widget-inline-box text-center">
-                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b>${nameMostIntCompany} - Has ${nMostIntCompany} internships </b></h3>
-                                                <p class="text-muted">Company with most internships</p>
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i><b class="dimfontpicc">${nameMostIntCompany} -${nMostIntCompany}</b></h3>
+                                                <p class="text-muted">Company With Most Internship Offers</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-sm-8">
+                                            <div class="widget-inline-box text-center">
+                                                <h3 class="m-t-10"><i class="text-info mdi mdi-counter"></i> <b class="dimfontpicc">${tutorName} ${tutorSurname} - ${nTutor}</b></h3>
+                                                <p class="text-muted">University Tutor Most Requested</p>
                                             </div>
                                         </div>
 
