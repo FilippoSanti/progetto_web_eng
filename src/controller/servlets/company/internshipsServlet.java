@@ -477,6 +477,8 @@ public class internshipsServlet extends HttpServlet {
 
         if (candidateOK) {
 
+            request.getSession().setAttribute("registeredMessage1", "Candidation succesfull, waiting for the company to approve your request");
+
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
             dispatcher.forward(request, response);
 

@@ -54,6 +54,23 @@
                             </div>
                             <div class="col-md-4"></div>
                         </div> <!-- end row -->
+
+
+                         <#if registeredMessage?has_content>
+
+                                        <div class="alert alert-danger" role="alert">
+                                            ${registeredMessage}
+                                        </div>
+
+                         </#if>
+
+                           <#if registeredMessage1?has_content>
+
+                                        <div class="alert alert-success" role="alert">
+                                            ${registeredMessage1}
+                                        </div>
+
+                           </#if>
 <br><br>
 
 <!--TODO  GESTIRE LA LUNGHEZZA DEI CARATTERI NEL DB DELLA SEDE LEGALE E NUMERO DEI TIROCINI PE RLA GRANDEZZA DELLE FINESTRE HOME -->

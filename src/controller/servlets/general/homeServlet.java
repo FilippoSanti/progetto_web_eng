@@ -107,6 +107,14 @@ public class homeServlet extends HttpServlet {
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/home_student.ftl");
 
         dispatcher.forward(request, response);
+        // Chrome browser fix
+        if (request.getSession().getAttribute("registeredMessage") != null) {
+            request.getSession().removeAttribute("registeredMessage");
+        }
+
+        if (request.getSession().getAttribute("registeredMessage1") != null) {
+            request.getSession().removeAttribute("registeredMessage1");
+        }
     }
 
     public void action_default_company(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PropertyVetoException, SQLException {
