@@ -417,20 +417,27 @@ public class documentsServlet extends HttpServlet {
 
         ArrayList<Internship> internArray = new ArrayList<>();
         ArrayList<User> userArray  = new ArrayList<User>();
+        ArrayList<String> statusList  = new ArrayList<String>();
 
         for (int i = 0; i < internshipsArray.size(); i++) {
 
             azz = uDao.getEmailByID(internshipsArray.get(i).getStudent_id());
-            internArray.add(intDao.getInternshipByID(internshipsArray.get(i).getInternship_id()));
+
+            Internship iTemp = intDao.getInternshipByID(internshipsArray.get(i).getInternship_id());
+            internArray.add(iTemp);
+
+            String result = getInternshipStatus(iTemp.getMeseInziale(), iTemp.getMeseFinale());
+            statusList.add(result);
+
             userArray.add(uDao.getUser(azz));
         }
 
 
+
+        request.setAttribute("statusList", statusList);
         request.setAttribute("userList", userArray);
         request.setAttribute("internshipsList", internArray);
         request.setAttribute("username", tempName);
-
-
 
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/documentation_company.ftl");

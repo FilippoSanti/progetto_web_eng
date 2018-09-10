@@ -99,7 +99,7 @@
     <P class="p44 ft20">Previa effettuazione di opportune verifiche e colloquio svoltosi in data …………………...</P>
     <P class="p43 ft20">Si attesta che il</P>
     <P class="p43 ft26">Tirocinante:</P>
-    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN> ${cognome_studente} <SPAN class="ft26">Nome </SPAN> ${nome_studente} </P>
+    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN> ${dataList[11]} <SPAN class="ft26">Nome </SPAN> ${dataList[12]} </P>
     <P class="p44 ft20">Ha svolto il tirocinio con esito</P>
     <P class="p43 ft20">……………………………………………………………...</P>
     <P class="p43 ft26">Firma del Tutor universitario</P>

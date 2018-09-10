@@ -6,6 +6,9 @@ import controller.utilities.SecurityFilter;
 import model.Company;
 import model.Internship;
 import model.Security;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -102,7 +105,14 @@ public class internshipsListServlet extends HttpServlet {
             companyList.add(comDao.getCompanyDataByEmail(com_name));
         }
 
-
+        // Scan the internships list to find out if an internship is terminated or in progress
+        // If so, we delete if from the list
+        for (int i = 0; i < internshipsArray.size(); i++) {
+            String result = getInternshipStatus(internshipsArray.get(i).getMeseInziale(), internshipsArray.get(i).getMeseInziale());
+            if (result.equals("Completed") || result.equals("In progress")) {
+                internshipsArray.remove(internshipsArray.get(i));
+            }
+        }
 
         request.setAttribute("company_list", companyList);
         request.setAttribute("internships_list", internshipsArray);
@@ -137,6 +147,32 @@ public class internshipsListServlet extends HttpServlet {
 
     protected static void action_default (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/internships_list.ftl").forward(request, response);
+    }
+
+    // Elaborate the status of an internship
+    private String getInternshipStatus(String start_date, String end_date) {
+        String result = null;
+
+        // Execute the date operations
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+
+        DateTime date_now = new DateTime();
+        DateTime dt_start = formatter.parseDateTime(start_date);
+        DateTime dt_end   = formatter.parseDateTime(end_date);
+
+        boolean not_started = date_now.isBefore(dt_start);
+        boolean in_progress = date_now.isAfter(dt_start) && date_now.isBefore(dt_end);
+        boolean terminated  = date_now.isAfter(dt_end);
+
+        if (not_started) {
+            result = "Not started";
+        } else if (in_progress) {
+            result = "In progress";
+        } else if (terminated) {
+            result = "Completed";
+        }
+
+        return result;
     }
 
     /**

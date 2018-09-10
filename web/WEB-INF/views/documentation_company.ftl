@@ -82,7 +82,7 @@
                                         <tr>
                                             <td>${val.getNome()} ${val.getCognome()}</td>
                                             <td>${internshipsList[val_index].getNome()}</td>
-                                            <td></td>
+                                            <td>${statusList[val_index]}</td>
                                             <td><a href="/documents?action=${internshipsList[val_index].getIternship_id()}"><button class="btn btn-primary btn-lg btnintlistdetails" data-target="#">See Documentation</button></a></td>
                                         </tr>
 

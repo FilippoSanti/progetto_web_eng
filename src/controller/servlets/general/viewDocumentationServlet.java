@@ -164,6 +164,7 @@ public class viewDocumentationServlet extends HttpServlet {
     private void action_view_document2(HttpServletRequest request, int real_student_id, int real_internship_id, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
 
         Security securityModel = SecurityFilter.checkUsers(request);
+        String resultString = null;
 
         if (securityModel.getUser().equals("anonymous")) {
             response.sendRedirect("/home");
@@ -177,9 +178,12 @@ public class viewDocumentationServlet extends HttpServlet {
         List<String> dataList = action_generate_document2(real_student_id, real_internship_id);
         request.setAttribute("dataList", dataList);
 
+        if (Utils.checkFFUG(request)) {
+            resultString = "/WEB-INF/views/document_2_alt.ftl";
+        } else resultString = "/WEB-INF/views/document_2.ftl";
+
         RequestDispatcher dispatcher
-                = request.getServletContext().getRequestDispatcher("/WEB-INF/views/document_2.ftl");
-        // Remove the session attributes
+                = this.getServletContext().getRequestDispatcher(resultString);
 
         dispatcher.forward(request, response);
 
@@ -211,6 +215,7 @@ public class viewDocumentationServlet extends HttpServlet {
         tempList.add(uModel.getCorso());
         tempList.add(iModel.getMeseInziale());
         tempList.add(iModel.getMeseFinale());
+        tempList.add(iModel.getOre());
         tempList.add(iModel.getLuogo());
         tempList.add(irModel.getAttivita_svolta());
         tempList.add(uModel.getNome());
