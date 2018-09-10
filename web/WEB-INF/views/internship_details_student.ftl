@@ -307,7 +307,13 @@
                     focus: false                 // set focus to editable area after initializing summernote
                 });
             });
+
         </script>
+
+         <!-- Notifications -->
+         <script src="../../assets/js/notifications_table.js"></script>
+        <script src="../../assets/js/bootstrap-table.js"></script>
+
 
     </body>
 </html>

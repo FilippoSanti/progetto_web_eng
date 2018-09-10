@@ -186,8 +186,11 @@
                 table.buttons().container()
                         .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
             } );
-
         </script>
+            <!-- Notifications -->
+            <script src="../../assets/js/notifications_table.js"></script>
+        <script src="../../assets/js/bootstrap-table.js"></script>
+
 
 
     </body>
