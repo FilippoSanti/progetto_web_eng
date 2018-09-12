@@ -71,6 +71,14 @@
                 </ul>
                 </#if>
 
+                                                                <#if errorMessage?has_content>
+
+                                        <div class="alert alert-danger" role="alert">
+                                            ${errorMessage}
+                                        </div>
+
+                                                                </#if>
+
 
                         <div class="p-20 m-b-20">
 

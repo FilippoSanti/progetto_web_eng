@@ -32,7 +32,6 @@ public class displayImageServlet extends HttpServlet {
         if (typevalue != null && idValue != null && idValue.matches("[0-9]+")) {
 
             int real_id = Integer.parseInt(idValue);
-            System.out.println("someone invoked me");
             displayImageByID(request, response, typevalue, real_id);
             return;
         }
@@ -74,8 +73,6 @@ public class displayImageServlet extends HttpServlet {
     // Display the image of a target user
     private void displayImageByID(HttpServletRequest request, HttpServletResponse response, String userType, int userID) throws IOException {
 
-        System.out.println(userType);
-
         // Email of the target user
         String email = null;
 
@@ -92,7 +89,6 @@ public class displayImageServlet extends HttpServlet {
         String filename = null;
         try {
             filename = Utils.display_user_image(context, request, email);
-            System.out.println(filename);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         } catch (SQLException e) {

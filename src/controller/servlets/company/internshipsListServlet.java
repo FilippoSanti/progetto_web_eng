@@ -94,10 +94,6 @@ public class internshipsListServlet extends HttpServlet {
         // Get the internships list
         ArrayList<Internship>internshipsArray = intDao.getInternshipList();
 
-        for (int i = 0; i < internshipsArray.size(); i++) {
-            System.out.println(internshipsArray.get(i).getNome());
-        }
-
         ArrayList<Company> companyList = new ArrayList<Company>();
 
         for (int i= 0; i< internshipsArray.size(); i++) {

@@ -179,6 +179,18 @@ public class documentsServlet extends HttpServlet {
         String attivita_svolta = request.getParameter("attivita_svolta");
         String valutazione = request.getParameter("valutazione");
 
+        if (attivita_svolta.length() > 235) {
+            request.getSession().setAttribute("errorMessage", "Data too long for attivita_svolta");
+            response.sendRedirect("documents?action=evaluateStudent&student_id="+student_id+"&internship_id="+internship_id);
+            return;
+        }
+
+        if (valutazione.length() > 170) {
+            request.getSession().setAttribute("errorMessage", "Data too long for valutazione");
+            response.sendRedirect("documents?action=evaluateStudent&student_id="+student_id+"&internship_id="+internship_id);
+            return;
+        }
+
         internshipDao iDao = new internshipDaoImpl();
         boolean insertOk = iDao.updateInternshipRequestData(valutazione, attivita_svolta, Integer.valueOf(student_id), Integer.valueOf(internship_id));
 

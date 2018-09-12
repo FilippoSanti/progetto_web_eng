@@ -110,7 +110,6 @@ public class candidates_listServlet extends HttpServlet {
         internshipDao intDao = new internshipDaoImpl();
         int user_id1 = Integer.parseInt(user_id);
         intDao.enableInternshipRequest(user_id1);
-        System.out.println(user_id1);
         String referer = request.getHeader("Referer");
         response.sendRedirect(referer);
 

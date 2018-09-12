@@ -209,7 +209,7 @@ public class viewDocumentationServlet extends HttpServlet {
 
         Internship iModel = iDao.getInternshipByID(real_internship_id);
 
-        String company_email = cDao.getEmailByID(real_internship_id);
+        String company_email = cDao.getEmailByID(iModel.getAzienda_id());
         Company cModel = cDao.getCompanyDataByEmail(company_email);
 
         InternshipRequest irModel = iDao.getInternshipRequestByIDs(real_internship_id, real_student_id);
@@ -559,9 +559,6 @@ public class viewDocumentationServlet extends HttpServlet {
 
     // Serve a signed document to the user
     private void action_view_signed_document_alt(int real_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
-        System.out.println("asd");
 
         String real_filename = "company_" + real_id + ".pdf";
         String filePathString = "/assets/documents/admin/" + real_filename;

@@ -180,8 +180,6 @@ public class internshipsServlet extends HttpServlet {
     // View the internship of a student
     private void action_view_student_internship(HttpServletRequest request, HttpServletResponse response, int internship_id) throws PropertyVetoException, SQLException, IOException, ServletException {
 
-        System.out.println("right here bro");
-
         internshipDao iDao = new internshipDaoImpl();
         Internship iTemp = iDao.getInternshipByID(internship_id);
         UserDao uDao = new UserDaoImpl();
@@ -348,6 +346,11 @@ public class internshipsServlet extends HttpServlet {
             request.getSession().removeAttribute("fieldsList");
         }
 
+        // Chrome browser fix
+        if (request.getSession().getAttribute("errorsMessage") != null) {
+            request.getSession().removeAttribute("errorMessage");
+        }
+
     }
 
     protected boolean action_add_internships(HttpServletRequest request, HttpServletResponse response)
@@ -391,6 +394,25 @@ public class internshipsServlet extends HttpServlet {
 
         // If strings are not initalized, it means there was an empty request by the user
         //So we return false
+
+        if (obiettivi.length() > 235) {
+            request.getSession().setAttribute("errorMessage", "Data too long for generic targets");
+            response.sendRedirect("internships?view=add");
+            return false;
+        }
+
+
+        if (settore.length() > 235) {
+            request.getSession().setAttribute("errorMessage", "Data too long for settore");
+            response.sendRedirect("internships?view=add");
+            return false;
+        }
+
+        if (settore.length() > 300) {
+            request.getSession().setAttribute("errorMessage", "Data too long for dettagli");
+            response.sendRedirect("internships?view=add");
+            return false;
+        }
 
         if (errorsList.size() == 1) {
 
@@ -476,8 +498,6 @@ public class internshipsServlet extends HttpServlet {
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
         request.setAttribute("username", tempName);
-
-
 
         int az_id = comDao.getIdCompanyByIdInternship(int_id1);
 
