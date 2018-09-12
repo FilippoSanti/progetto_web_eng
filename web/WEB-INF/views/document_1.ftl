@@ -87,7 +87,7 @@
         .p18{text-align: left;padding-left: 91px;margin-top: 67px;margin-bottom: 0px;}
         .p19{text-align: left;padding-left: 53px;margin-top: 1px;margin-bottom: 0px;}
         .p20{text-align: left;padding-left: 182px;margin-top: 12px;margin-bottom: 0px;}
-        .p21{text-align: left;margin-top: 0px;margin-bottom: 0px;}
+        .p21{text-align: left;margin-top: 7px;margin-bottom: 0px;}
         .p22{text-align: left;margin-top: 18px;margin-bottom: 0px;}
         .p23{text-align: left;margin-top: 17px;margin-bottom: 0px;}
         .p24{text-align: left;padding-right: 109px;margin-top: 0px;margin-bottom: 0px;}
@@ -265,12 +265,12 @@
     <P class="p23 ft7">Posizione INAIL:</P>
     <P class="p21 ft8">Copertura assicurativa “in conto Stato” ex art. 2 D.P.R. N. 156 del 9.04.1999</P>
     <P class="p22 ft19">Obiettivi del tirocinio:</P>
-    <P class="p21 ft8"><b style="font-weight: 900;">     <#if obiettivi?has_content>   <#list obiettivi as val1> ${val1}  </#list>  </#if>
+    <P class="p21 ft8"><b style="font-weight: 900;">   <#if obiettivi?has_content>   <#list obiettivi as val1> ${val1}  </#list>  </#if>
     <P class="p27 ft19">Modalità:</P>
-    <P class="p21 ft8"><b style="font-weight: 900;"> -  <#if modalita?has_content>   <#list modalita as val2> ${val2}  </#list>  </#if>
+    <P class="p21 ft8"><b style="font-weight: 900;">  <#if modalita?has_content>   <#list modalita as val2> ${val2}  </#list>  </#if>
 
     <P class="p29 ft19">Facilitazioni previste: sussidio di formazione e servizi aziendali (mensa)</P>
-<#if doc[27]?has_content> <P class="p21 ft8"> <b style="font-weight: 900; margin-left: 30px; ">   - Rimborso Spese </b></P>   </#if>
+<#if doc[27]?has_content> <P class="p21 ft8"> <b style="font-weight: 900; margin-left: 30px; ">  - Rimborso Spese </b></P>   </#if>
 <#if doc[28]?has_content> <P class="p21 ft8"> <b style="font-weight: 900; margin-left: 30px;;">  - Mensa Aziendale </b></P>   </#if>
 <#if doc[29]?has_content> <P class="p21 ft8"> <b style="font-weight: 900; margin-left: 30px;">  - Apprendistato Accompagnato </b></P>   </#if>
     <P class="p21 ft8">  <b style="font-weight: 900; margin-left: 30px;  margin-right: 40px;">  - ${doc[30]} </b> </P>
