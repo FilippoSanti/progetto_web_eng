@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Set 11, 2018 alle 23:46
--- Versione del server: 10.1.34-MariaDB
--- Versione PHP: 7.2.8
+-- Creato il: Set 12, 2018 alle 22:39
+-- Versione del server: 10.1.29-MariaDB
+-- Versione PHP: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,8 +50,8 @@ CREATE TABLE `azienda` (
 --
 
 INSERT INTO `azienda` (`azienda_id`, `email_login`, `password`, `ragione_sociale`, `indirizzo_sede_legale`, `cf_iva`, `nome_cognome_rappresentante`, `nome_cognome_tirocini`, `telefono_tirocini`, `email_tirocini`, `foro_competente`, `provincia`, `abilitata`, `descrizione`) VALUES
-(1, 'compagnia1', '$2a$12$SAgB.K.p7JZiaVg2M6N4C.DwMUi1dLSzJ/7Gau8qDrU1ijjdv4/7y', 'Compagnia 1', 'Via delle primule 22', 'SGSG4V4436EGSDSD', 'Gianni Luzi', 'Sandro Luzi', '23141424', 'aaa@hotmail.it', 'a a a a', 'AP', 1, 'Description Sample'),
-(2, 'compagnia2', '$2a$12$y4iUAH2YZglitQ1DPF.Ry.3Jxms4ifnHxe.ryr1Y1ze8VeExW3NKK', 'Compagnia A', 'Via delle viole 22', 'SGSG4V4436EGSDSD', 'Gianni Luzi', 'Sandro Luzi', '23141424', 'bbb@hotmail.it', 'a a a a', 'AP', 1, 'Description Sample');
+(1, 'compagnia1@hotmail.it', '$2a$12$SAgB.K.p7JZiaVg2M6N4C.DwMUi1dLSzJ/7Gau8qDrU1ijjdv4/7y', 'Compagnia 1', 'Via delle primule 22', 'SGSG4V4436EGSDSD', 'Gianni Luzi', 'Sandro Luzi', '23141424', 'aaa@hotmail.it', 'a a a a', 'AP', 1, 'Description Sample'),
+(2, 'compagnia2@gmail.it', '$2a$12$y4iUAH2YZglitQ1DPF.Ry.3Jxms4ifnHxe.ryr1Y1ze8VeExW3NKK', 'Compagnia A', 'Via delle viole 22', 'SGSG4V4436EGSDSD', 'Gianni Luzi', 'Sandro Luzi', '23141424', 'bbb@hotmail.it', 'a a a a', 'AP', 1, 'Description Sample');
 
 -- --------------------------------------------------------
 
@@ -101,8 +101,8 @@ CREATE TABLE `offerta_tirocinio` (
 --
 
 INSERT INTO `offerta_tirocinio` (`offerta_tirocinio_id`, `azienda_id`, `nome`, `dettagli`, `luogo`, `mesi`, `ore`, `orari`, `mese_iniziale`, `mese_finale`, `obiettivi`, `modalita`, `rimborsi_spese_facilitazioni_previste`, `company_headquarters`, `remote_connection`, `refound_of_expenses`, `company_refactory`, `training_aid`, `nothing`, `settore`, `invisibile`) VALUES
-(1, 1, 'Gestione sicurezza', 'Questa offerta _________________________________________________________________', '', '2', '60', '14:00 - 18:00', '03/09/2018', '24/10/2018', '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', '', 1, 0, 1, 1, 1, 1, 'Informatica', 0),
-(2, 1, 'Energia elettrica', 'energia elettrica', '', '5', '100', '14:00 - 18:00', '15/08/2018', '04/09/2018', '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', '', 1, 1, 1, 1, 1, 1, 'Ambiente', 0);
+(1, 1, 'Gestione sicurezza', 'Questa offerta ________ _______________ _________ __________ _____________ __________', '', '2', '60', '14:00 - 18:00', '03/09/2018', '24/10/2018', '@@@@@ @@@@@ @@@@@@ @@@@@@ @@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@ @@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@', '@@@@@@@ @@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@ @@@@@@@@@@@', '', 1, 0, 1, 1, 1, 1, 'Informatica', 0),
+(2, 1, 'Energia elettrica', 'energia elettrica', '', '5', '100', '14:00 - 18:00', '15/08/2018', '04/09/2018', '@@@@@@@ @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@ @@@@@@@@@@@@@@', '@@@@@@@@@ @@@@@@@@@ @@@@@@@@@@@@@@ @@@@@@@@@@@@@@ @@@@@@@@@@@@@@ @@@@@@@@@@@@@@ @@@@@@@@@@@@@@ @@@@@@@@@@@@@@', '', 1, 1, 1, 1, 1, 1, 'Ambiente', 0);
 
 -- --------------------------------------------------------
 
@@ -176,8 +176,7 @@ CREATE TABLE `studente` (
 
 INSERT INTO `studente` (`studente_id`, `nome`, `password`, `date`, `provincia`, `provincia_nascita`, `residenza`, `citta`, `CAP`, `telefono`, `corso`, `email`, `handicap`, `cognome`, `cod_fiscale`, `ruolo`, `luogo_nascita`) VALUES
 (1, 'Mario', '$2a$12$fEPKqtobEQs7XcfKmGilhe05wL1U7OhLAeU3lLbP5otWsBoa6dnVC', '17/09/2018', 'AP', 'AP', 'Via delle Primule', 'Ascoli Piceno', 63100, '3278635352', 'informatica', 'mario@hotmail.it', 0, 'Rossi', 'MARIOROSSI95R11AR3', 'user', 'Ascoli Piceno'),
-(2, 'Giovanni', '$2a$12$FyfosCpbOhCrxS0W6ViZfe3uxZEG2hFox6YiMW19MCr6y/5XncfKi', '10/04/2018', 'AP', 'AP', 'Via delle Genziane', 'Ascoli Piceno', 63100, '3278635352', 'Scienze politiche', 'giovanni@hotmail.it', 0, 'Bianchi', 'GIOVANNIOSSI95R11AR3', 'user', 'Ascoli Piceno'),
-(3, 'admin', '$2a$12$B1W42SpX40KhMvvmsIm5Je.ojKURoYAsGEiGxImcuTevk0TGyzIOW', '17/06/2000', 'AP', 'AL', 'Via delle Zinnie', 'Ascoli Piceno', 63100, '4444444', 'Scienze motorie', 'admin', 0, 'Verdi', 'PIEROPIERO5R11AR3', 'admin', 'Ascoli Piceno');
+(2, 'Giovanni', '$2a$12$FyfosCpbOhCrxS0W6ViZfe3uxZEG2hFox6YiMW19MCr6y/5XncfKi', '10/04/2018', 'AP', 'AP', 'Via delle Genziane', 'Ascoli Piceno', 63100, '3278635352', 'Scienze politiche', 'giovanni@hotmail.it', 0, 'Bianchi', 'GIOVANNIOSSI95R11AR3', 'user', 'Ascoli Piceno');
 
 --
 -- Indici per le tabelle scaricate
@@ -225,31 +224,31 @@ ALTER TABLE `studente`
 -- AUTO_INCREMENT per la tabella `azienda`
 --
 ALTER TABLE `azienda`
-  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `azienda_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `offerta_tirocinio`
 --
 ALTER TABLE `offerta_tirocinio`
-  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `offerta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste_tirocinio`
 --
 ALTER TABLE `richieste_tirocinio`
-  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `richiesta_tirocinio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `studente`
 --
 ALTER TABLE `studente`
-  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `studente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Limiti per le tabelle scaricate

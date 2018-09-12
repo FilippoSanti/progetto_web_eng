@@ -84,7 +84,7 @@
         .p18{text-align: left;padding-left: 91px;margin-top: 67px;margin-bottom: 0px;}
         .p19{text-align: left;padding-left: 53px;margin-top: 1px;margin-bottom: 0px;}
         .p20{text-align: left;padding-left: 182px;margin-top: 12px;margin-bottom: 0px;}
-        .p21{text-align: left;margin-top: 0px;margin-bottom: 0px;}
+        .p21{text-align: left;margin-top: 7px;margin-bottom: 0px;}
         .p22{text-align: left;margin-top: 18px;margin-bottom: 0px;}
         .p23{text-align: left;margin-top: 17px;margin-bottom: 0px;}
         .p24{text-align: left;padding-right: 109px;margin-top: 0px;margin-bottom: 0px;}
