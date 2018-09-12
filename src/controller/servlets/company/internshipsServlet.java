@@ -11,11 +11,14 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyVetoException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -466,72 +469,9 @@ public class internshipsServlet extends HttpServlet {
 
         int int_id1 = Integer.parseInt(int_id);
 
-
-
         // Get the internship and student data
-        UserDao uDao = new UserDaoImpl();
-        internshipDao iDao = new internshipDaoImpl();
         companyDao comDao = new companyDaoImpl();
-
-        Internship internshipData = iDao.getInternshipDataById(int_id1);
-        User userData = uDao.getUser(uDao.getEmailByID(stud_id));
-        InternshipRequest interReq = iDao.getInternshipRequestByIDs(int_id1, stud_id);
-        Company companyData = comDao.getCompanyDataByEmail(comDao.getEmailByID(interReq.getAzienda_id()));
-
-
-        String com_head = null;
-        String rem_conn = null;
-        String ref_exp = null;
-        String com_ref = null;
-        String train_aid = null;
-
-        // Compile the corresponding document (document3)
-        ArrayList<String> document1 = new ArrayList<>();
-
-        document1.add(userData.getNome());
-        document1.add(userData.getCognome());
-        document1.add(userData.getLuogo_nascita());
-        document1.add(userData.getProvincia_n());
-        document1.add(userData.getDate());
-        document1.add(userData.getResidenza());
-        document1.add(userData.getProvincia());
-        document1.add(userData.getCod_fiscale());
-        document1.add(userData.getTel());
-        document1.add(userData.getCorso());
-        document1.add(String.valueOf(userData.getHandicap()));
-        document1.add(companyData.getRagione_sociale());
-        document1.add(internshipData.getLuogo());
-        document1.add(internshipData.getSettore());
-        document1.add(internshipData.getOrari());
-        document1.add(internshipData.getMesi());
-        document1.add(internshipData.getMeseInziale());
-        document1.add(internshipData.getMeseFinale());
-        document1.add(internshipData.getOre());
-        document1.add(interReq.getCfu());
-        document1.add(interReq.getTutor_name());
-        document1.add(interReq.getTutor_surname());
-        document1.add(interReq.getTutor_email());
-        document1.add(companyData.getNome_cognome_tir());
-        document1.add(companyData.getTelefono_tirocini());
-
-        if (internshipData.isCompany_headquarters())  com_head = "ok";
-        if (internshipData.isRemote_connection())  rem_conn = "ok";
-        if (internshipData.isRefound_of_expenses())  ref_exp = "ok";
-        if (internshipData.isCompany_refactory())  com_ref  = "ok";
-        if (internshipData.isTraining_aid())   train_aid = "ok";
-        document1.add(com_head);
-        document1.add(rem_conn);
-
-        document1.add(ref_exp);
-        document1.add(com_ref);
-        document1.add(train_aid);
-        document1.add(internshipData.getRimborsi_spese_facilitazioni_previste());
-
-        String[] obiettivi = Utils.splitIntoLine(internshipData.getObiettivi(), 59);
-        String[] modalita = Utils.splitIntoLine(internshipData.getModalita(), 59);
-        request.setAttribute("doc", document1);
-        request.setAttribute("obiettivi", obiettivi);
-        request.setAttribute("modalita", modalita);
+        internshipDao iDao = new internshipDaoImpl();
 
         // Set the logged user name
         String tempName = controller.userController.getUsername(homeServlet.loggedUserEmail);
@@ -545,8 +485,9 @@ public class internshipsServlet extends HttpServlet {
 
         if (candidateOK) {
 
-            request.getSession().setAttribute("registeredMessage1", "Candidation succesfull, waiting for the company to approve your request");
+            writeDocumentDataToFile(stud_id, int_id1);
 
+            request.getSession().setAttribute("registeredMessage1", "Candidation succesfull, waiting for the company to approve your request");
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/home");
             dispatcher.forward(request, response);
 
@@ -554,6 +495,107 @@ public class internshipsServlet extends HttpServlet {
         }
 
         return false;
+    }
+
+    // This is called when a user candidates for an internship instead of sending the email
+    public void writeDocumentDataToFile(int stud_id, int int_id1) throws IOException, PropertyVetoException, SQLException {
+
+        // Get the internship and student data
+        UserDao uDao = new UserDaoImpl();
+        internshipDao iDao = new internshipDaoImpl();
+        companyDao comDao = new companyDaoImpl();
+
+        Internship internshipData = iDao.getInternshipDataById(int_id1);
+        User userData = uDao.getUser(uDao.getEmailByID(stud_id));
+        InternshipRequest interReq = iDao.getInternshipRequestByIDs(int_id1, stud_id);
+        Company companyData = comDao.getCompanyDataByEmail(comDao.getEmailByID(interReq.getAzienda_id()));
+
+        // Get the servlet context and format the file according to the specification
+        ServletContext context = getServletContext();
+        String filename = "/assets/documents/autogenerated_student_" +stud_id + "_.txt";
+        String pathname = context.getRealPath(filename);
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(pathname));
+        writer.write("User Data below:");
+        writer.newLine();
+        writer.newLine();
+        writer.write("Nome: "+ userData.getNome());
+        writer.newLine();
+        writer.write("Cognome: "+ userData.getCognome());
+        writer.newLine();
+        writer.write("Luogo nascita: "+ userData.getLuogo_nascita());
+        writer.newLine();
+        writer.write("Provincia nascita: "+ userData.getProvincia_n());
+        writer.newLine();
+        writer.write("Data: "+ userData.getDate());
+        writer.newLine();
+        writer.write("Residenza: "+ userData.getResidenza());
+        writer.newLine();
+        writer.write("Provincia: "+ userData.getProvincia());
+        writer.newLine();
+        writer.write("Cod fiscale: "+ userData.getCod_fiscale());
+        writer.newLine();
+        writer.write("Tel: "+ userData.getTel());
+        writer.newLine();
+        writer.write("Corso: "+ userData.getCorso());
+        writer.newLine();
+
+        // Handicap
+        if (userData.getHandicap()) {
+            writer.write("Handicap: yes");
+            writer.newLine();
+
+        } else {
+            writer.write("handicap: no");
+            writer.newLine();
+        }
+
+        writer.write("Internship Data below:");
+        writer.newLine();
+        writer.newLine();
+
+        writer.write("Luogo: "+ internshipData.getSettore());
+        writer.newLine();
+        writer.write("Settore: "+ internshipData.getOrari());
+        writer.newLine();
+        writer.write("Orari: "+ internshipData.getMesi());
+        writer.newLine();
+        writer.write("Mesi: "+ internshipData.getLuogo());
+        writer.newLine();
+        writer.write("Data inizio: "+ internshipData.getMeseInziale());
+        writer.newLine();
+        writer.write("Data fine: "+ internshipData.getMeseFinale());
+        writer.newLine();
+        writer.write("Ore: "+ internshipData.getOre());
+        writer.newLine();
+
+        writer.write("Internship request Data below:");
+        writer.newLine();
+        writer.newLine();
+
+        writer.write("cfu: "+interReq.getCfu());
+        writer.newLine();
+        writer.write("Tutor name: "+interReq.getTutor_name());
+        writer.newLine();
+        writer.write("Tutor surname: "+interReq.getTutor_surname());
+        writer.newLine();
+        writer.write("tutor emal: "+interReq.getTutor_email());
+        writer.newLine();
+        writer.write("cfu: "+interReq.getCfu());
+        writer.newLine();
+
+        writer.write("Company data below");
+        writer.newLine();
+        writer.newLine();
+
+        writer.write("ragione sociale: "+companyData.getRagione_sociale());
+        writer.newLine();
+        writer.write("nome cognome resp tirocini: "+companyData.getNome_cognome_tir());
+        writer.newLine();
+        writer.write("telefono tirocini: "+companyData.getTelefono_tirocini());
+        writer.newLine();
+        writer.close();
+
     }
 
     // Elaborate the internships of a user

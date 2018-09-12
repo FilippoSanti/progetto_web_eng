@@ -44,11 +44,13 @@
                                 <div class="account-content">
                                     <form class="form-horizontal" action="#">
 
+                                        <#if urlData?has_content>
+
+                                        </#if>
                                         <div class="form-group metismenu styleregchoose">
-                                            <li class="container"> 
-                            <a href="document_3.ftl"><i class="sceltaregistrazione1 ti-files"></i><span class="sceltaregistrazione"> Agreement Document </span>
-                             </a>
-                        </li>
+                                            <li class="container"><a href="${urlData}"><i class="sceltaregistrazione1 ti-files"></i><span class="sceltaregistrazione"> Agreement Document </span>
+                                         </a>
+                                        </li>
                                         </div>
 
                                         <br>

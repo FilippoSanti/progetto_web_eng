@@ -159,6 +159,15 @@ public class viewDocumentationServlet extends HttpServlet {
             action_view_document2(request, real_student_id, real_internship_id, response);
             return;
         }
+
+        // View a signed pdf document
+        if (action_value != null && type_value != null && id_value != null &&
+                action_value.equals("requestDocument") && type_value.equals("company") &&
+                id_value.matches("[0-9]+")) {
+            int real_id = Integer.valueOf(id_value);
+            action_view_signed_document_alt(real_id, request, response);
+            return;
+        }
     }
 
     private void action_view_document2(HttpServletRequest request, int real_student_id, int real_internship_id, HttpServletResponse response) throws PropertyVetoException, IOException, SQLException, ServletException {
@@ -528,6 +537,32 @@ public class viewDocumentationServlet extends HttpServlet {
             response.sendRedirect("/documents?action=companies");
             return;
         }
+
+        String real_filename = "company_" + real_id + ".pdf";
+        String filePathString = "/assets/documents/admin/" + real_filename;
+        ServletContext context = getServletContext();
+        String pathname = context.getRealPath(filePathString);
+
+        File pdfFile = new File(pathname);
+
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition", "attachment; filename=" + real_filename);
+        response.setContentLength((int) pdfFile.length());
+
+        FileInputStream fileInputStream = new FileInputStream(pdfFile);
+        OutputStream responseOutputStream = response.getOutputStream();
+        int bytes;
+        while ((bytes = fileInputStream.read()) != -1) {
+            responseOutputStream.write(bytes);
+        }
+    }
+
+    // Serve a signed document to the user
+    private void action_view_signed_document_alt(int real_id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
+        System.out.println("asd");
+
         String real_filename = "company_" + real_id + ".pdf";
         String filePathString = "/assets/documents/admin/" + real_filename;
         ServletContext context = getServletContext();

@@ -535,7 +535,27 @@ public class documentsServlet extends HttpServlet {
         }
     }
 
-    private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+    private void action_choose_page(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException, PropertyVetoException, SQLException {
+
+        boolean passedTest = false;
+
+        // We get the approved list, and check if we are one
+        companyDao cDao = new companyDaoImpl();
+        int id = cDao.getCompanyIdbyEmail(homeServlet.loggedUserEmail);
+
+        List<Company> tempList = cDao.getApprovedCompaniesList();
+
+        for (int i = 0; i < tempList.size(); i++) {
+            if (tempList.get(i).getCompany_id() == id) {
+                passedTest = true;
+            }
+        }
+
+        // This means that the company has been approved and can see its document
+        if (passedTest) {
+            request.setAttribute("urlData", "/viewDocumentation?action=requestDocument&type=company&id="+id);
+        }
+
         RequestDispatcher dispatcher
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/choose_documents_company.ftl");
 
