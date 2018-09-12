@@ -160,6 +160,8 @@ public class viewDocumentationServlet extends HttpServlet {
             return;
         }
 
+
+
         // View a signed pdf document
         if (action_value != null && type_value != null && id_value != null &&
                 action_value.equals("requestDocument") && type_value.equals("company") &&
@@ -184,7 +186,7 @@ public class viewDocumentationServlet extends HttpServlet {
             companysecurityCheck(real_internship_id);
         }
 
-        List<String> dataList = action_generate_document2(real_student_id, real_internship_id);
+        List<String> dataList = action_generate_document2(request, response, real_student_id, real_internship_id);
         request.setAttribute("dataList", dataList);
 
         if (Utils.checkFFUG(request)) {
@@ -198,7 +200,7 @@ public class viewDocumentationServlet extends HttpServlet {
 
     }
 
-    private List<String> action_generate_document2(int real_student_id, int real_internship_id) throws PropertyVetoException, SQLException, IOException {
+    private List<String> action_generate_document2(HttpServletRequest request, HttpServletResponse response, int real_student_id, int real_internship_id) throws PropertyVetoException, SQLException, IOException {
 
         UserDao uDao = new UserDaoImpl();
         internshipDao iDao = new internshipDaoImpl();
@@ -214,6 +216,12 @@ public class viewDocumentationServlet extends HttpServlet {
 
         InternshipRequest irModel = iDao.getInternshipRequestByIDs(real_internship_id, real_student_id);
 
+        String com_head = null;
+        String rem_conn = null;
+
+        if (iModel.isCompany_headquarters())  com_head = "ok";
+        if (iModel.isRemote_connection())  rem_conn = "ok";
+
         List<String> tempList = new ArrayList<>();
 
         tempList.add(cModel.getRagione_sociale());
@@ -226,10 +234,18 @@ public class viewDocumentationServlet extends HttpServlet {
         tempList.add(iModel.getMeseFinale());
         tempList.add(iModel.getOre());
         tempList.add(iModel.getLuogo());
+        String[] att = Utils.splitIntoLine(irModel.getAttivita_svolta(), 59);
         tempList.add(irModel.getAttivita_svolta());
         tempList.add(uModel.getNome());
         tempList.add(uModel.getCognome());
+        String[] val = Utils.splitIntoLine(irModel.getValutazione(), 59);
         tempList.add(irModel.getValutazione());
+        tempList.add(com_head);
+        tempList.add(rem_conn);
+
+        request.setAttribute("doc2", tempList);
+        request.setAttribute("attivita", att);
+        request.setAttribute("valutazione", val);
 
         return tempList;
 
@@ -537,7 +553,6 @@ public class viewDocumentationServlet extends HttpServlet {
             response.sendRedirect("/documents?action=companies");
             return;
         }
-
         String real_filename = "company_" + real_id + ".pdf";
         String filePathString = "/assets/documents/admin/" + real_filename;
         ServletContext context = getServletContext();

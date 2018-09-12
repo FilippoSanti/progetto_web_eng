@@ -40,11 +40,11 @@
         .p38{text-align: right;padding-right: 120px;margin-top: 67px;margin-bottom: 0px;}
         .p39{text-align: left;padding-left: 129px;margin-top: 1px;margin-bottom: 0px;}
         .p40{text-align: left;padding-left: 258px;margin-top: 12px;margin-bottom: 0px;}
-        .p41{text-align: left;padding-left: 76px;margin-top: 0px;margin-bottom: 0px;}
+        .p41{text-align: left;padding-left: 76px;margin-top: 12px;margin-bottom: 0px;}
         .p42{text-align: left;padding-left: 76px;margin-top: 36px;margin-bottom: 0px;}
         .p43{text-align: left;padding-left: 76px;margin-top: 18px;margin-bottom: 0px;}
-        .p44{text-align: left;padding-left: 76px;margin-top: 17px;margin-bottom: 0px;}
-        .p45{text-align: left;padding-left: 76px;margin-top: 1px;margin-bottom: 0px;}
+        .p44{text-align: left;padding-left: 76px;margin-top: 30px;margin-bottom: 0px;}
+        .p45{text-align: left;padding-left: 76px;margin-top: 8px;margin-bottom: 0px;}
         .p46{text-align: left;padding-left: 76px;margin-top: 34px;margin-bottom: 0px;}
         .p47{text-align: left;padding-left: 76px;margin-top: 40px;margin-bottom: 0px;}
         .p48{text-align: left;padding-left: 76px;margin-top: 37px;margin-bottom: 0px;}
@@ -67,21 +67,23 @@
     <P class="p39 ft1">Dipartimento di INGEGNERIA E SCIENZE DELL’INFORMAZIONE E MATEMATICA</P>
     <P class="p40 ft14">SEGRETERIA AMMINISTRATIVA PER LA DIDATTICA</P>
     <P class="p41 ft26">(da compilare a cura dell’Azienda)</P>
-    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN> ${dataList[0]} </P>
-    <P class="p43 ft20">Codice Fiscale Ente/Azienda  ${dataList[1]} </P>
+    <P class="p42 ft20"><SPAN class="ft26">Ente/Azienda </SPAN><b style="font-weight: 900; margin-left: 30px;  margin-right: 40px;"> ${dataList[0]}</b> </P>
+    <P class="p43 ft20">Codice Fiscale Ente/Azienda  <b style="font-weight: 900; margin-left: 30px;">     ${dataList[1]}</b> </P>
     <P class="p44 ft27">Tirocinante:</P>
-    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> ${dataList[2]} <SPAN class="ft26">Nome</SPAN> ${dataList[3]} </P>
+    <P class="p45 ft20"><SPAN class="ft26">Cognome</SPAN> <b style="font-weight: 900; margin-left: 30px; margin-right: 70px;">    ${dataList[2]}</b> <SPAN class="ft26">Nome</SPAN>  <b style="font-weight: 900; margin-left: 30px;">    ${dataList[3]}</b> </P>
     <P class="p41 ft17">(Codice identificativo tirocinio: Dipartimento, Corso di Laurea o diploma, anno, n progressivo, altro)</P>
-    <P class="p41 ft20"> ${dataList[4]} - ${dataList[5]} </P>
+    <P class="p41 ft20">  <b style="font-weight: 900;"> ${dataList[4]} - ${dataList[5]}</b> </P>
     <P class="p44 ft26">Periodo del tirocinio:</P>
-    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> ${dataList[6]} <SPAN class="ft26">al </SPAN> ${dataList[7]} </P>
-    <P class="p44 ft20">Per un totale di ${dataList[8]} ore</P>
-    <P class="p43 ft26">Sede di svolgimento del tirocinio<SPAN class="ft20"> ${dataList[9]} </SPAN></P>
+    <P class="p41 ft20"><SPAN class="ft26">dal</SPAN> <b style="font-weight: 900; margin-left: 30px; margin-right: 70px;"> ${dataList[6]}</b> <SPAN class="ft26">al </SPAN><b style="font-weight: 900; margin-left: 30px;"> ${dataList[7]} </b></P>
+    <P class="p44 ft20">Per un totale di <b style="font-weight: 900; margin-left: 30px; margin-right: 70px;"> ${dataList[8]}</b> ore</P>
+    <P class="p43 ft26">Sede di svolgimento del tirocinio:<SPAN class="ft20">
+    <#if dataList[14]?has_content> <i class="p43 ft20"> <b style="font-weight: 900; margin-left: -30px;">  - In sede </b> </i></#if>
+    <#if dataList[15]?has_content> <i class="p43 ft20"> <b style="font-weight: 900; margin-left: -50px;">  - Tramite connessione remota </b>  </i>   </#if> </SPAN></P>
     <P class="p43 ft26">Descrizione Attività svolta</P>
-    <P class="p44 ft20"> ${dataList[10]} </P>
-    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig…</SPAN> ${dataList[11]}  ${dataList[12]}</P>
+    <P class="p44 ft20"> <#if attivita?has_content> <b style="font-weight: 900;">  <#list attivita as val2> ${val2}  </#list> </b> </#if> </P>
+    <P class="p43 ft20"><SPAN class="ft26">Si attesta che il/la Sig.</SPAN><b style="font-weight: 900; margin-left: 30px;"> ${dataList[11]}</b><b style="font-weight: 900; margin-left: 30px;">  ${dataList[12]}</b></P>
     <P class="p44 ft20">Ha effettuato i compiti affidatigli conseguendo il seguente risultato :</P>
-    <P class="p43 ft20"> ${dataList[13]} </P>
+    <P class="p43 ft20">  <#if valutazione?has_content> <b style="font-weight: 900;">  <#list valutazione as val1> ${val1}  </#list> </b> </#if> </P>
     <P class="p46 ft28">Data …………………………………</P>
     <P class="p47 ft26">Firma del tutor aziendale</P>
     <P class="p41 ft20">…………………………………………………………………</P>
@@ -99,7 +101,7 @@
     <P class="p44 ft20">Previa effettuazione di opportune verifiche e colloquio svoltosi in data …………………...</P>
     <P class="p43 ft20">Si attesta che il</P>
     <P class="p43 ft26">Tirocinante:</P>
-    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN> ${dataList[11]} <SPAN class="ft26">Nome </SPAN> ${dataList[12]} </P>
+    <P class="p43 ft20"><SPAN class="ft26">Cognome </SPAN>  <b style="font-weight: 900; margin-left: 30px; margin-right: 70px;"> ${dataList[11]}</b> <SPAN class="ft26">Nome </SPAN><b style="font-weight: 900; margin-left: 30px;"> ${dataList[12]} </b> </P>
     <P class="p44 ft20">Ha svolto il tirocinio con esito</P>
     <P class="p43 ft20">……………………………………………………………...</P>
     <P class="p43 ft26">Firma del Tutor universitario</P>
