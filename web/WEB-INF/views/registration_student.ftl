@@ -76,13 +76,13 @@
 
                             <div class="m-b-20">
                                     <div class="form-group">
-                                        <label for="name">Nome<span class="text-danger">*</span></label>
+                                        <label for="name">Name<span class="text-danger">*</span></label>
                                         <input type="text" name="nome" parsley-trigger="change" required
                                                placeholder="Enter Name" <#if fieldsList?has_content>value="${fieldsList[0]}"</#if> class="form-control" id="name">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Data di Nascita<span class="text-danger">*</span><a>  (usare il formato: giorno/mese/anno)</a></label>
+                                        <label>Birth Date<span class="text-danger">*</span><a>  (use format: dd/mm/yyyy)</a></label>
                                         <div class="input-group">
                                             <input type="text" name="date" class="form-control" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" <#if fieldsList?has_content>value="${fieldsList[4]}"</#if> id="datepicker-autoclose">
                                             <div class="input-group-append">
@@ -92,7 +92,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Provincia di Nascita<span class="text-danger">*</span></label>
+                                        <label>Province of Birth<span class="text-danger">*</span></label>
                                         <select name="provincia_nascita" class="form-control select2" >
                                             <option>-- Select --</option>
                                             <option value="AG">Agrigento</option>
@@ -202,13 +202,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Address">Indirizzo di Residenza<span class="text-danger">*</span></label>
+                                        <label for="Address">Residence Address<span class="text-danger">*</span></label>
                                         <input type="text" name="residenza" parsley-trigger="change" required
                                                placeholder="Enter Address" <#if fieldsList?has_content>value="${fieldsList[7]}"</#if> class="form-control" id="Address">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Provincia di Residenza<span class="text-danger">*</span></label>
+                                        <label>Province of Residence<span class="text-danger">*</span></label>
                                         <select name="provincia" class="form-control select2" parsley-trigger="change" required>
                                             <option>-- Select --</option>
                                             <option value="AG">Agrigento</option>
@@ -319,13 +319,13 @@
 
 
                                     <div class="form-group">
-                                        <label for="telephone">Telefono<span class="text-danger">*</span></label>
+                                        <label for="telephone">Telephone Number<span class="text-danger">*</span></label>
                                         <input type="text" name="telefono" parsley-trigger="change" required
                                                placeholder="Enter Telephone Number" <#if fieldsList?has_content>value="${fieldsList[10]}"</#if> class="form-control" id="telephone">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="degree">Corso di Laurea<span class="text-danger">*</span></label>
+                                        <label for="degree">Degree Course<span class="text-danger">*</span></label>
                                         <input type="text" name="corso_laurea" parsley-trigger="change" required
                                                placeholder="Enter Degree Course" <#if fieldsList?has_content>value="${fieldsList[11]}"</#if> class="form-control" id="degree">
                                     </div>
@@ -352,25 +352,25 @@
 
                             <div class="m-b-20">
                                     <div class="form-group">
-                                        <label for="userSurname">Cognome<span class="text-danger">*</span></label>
+                                        <label for="userSurname">Surname<span class="text-danger">*</span></label>
                                         <input type="text" name="cognome" parsley-trigger="change" required
                                                placeholder="Enter Surname" <#if fieldsList?has_content>value="${fieldsList[1]}"</#if> class="form-control" id="userSurname">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="birthPlace">Luogo di Nascita<span class="text-danger">*</span></label>
+                                        <label for="birthPlace">Birth Place<span class="text-danger">*</span></label>
                                         <input type="text" name="luogo_nascita" parsley-trigger="change" required
                                                placeholder="Enter Birth Place" <#if fieldsList?has_content>value="${fieldsList[14]}"</#if> class="form-control" id="birthPlace">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="code">Codice Fiscale<span class="text-danger">*</span></label>
+                                        <label for="code">Fiscal Code (NIN)<span class="text-danger">*</span></label>
                                         <input type="text" name="cod_fiscale" parsley-trigger="change" required
-                                               placeholder="Enter fiscal code" <#if fieldsList?has_content>value="${fieldsList[13]}"</#if> class="form-control uppercase" id="code">
+                                               placeholder="Enter fiscal code (NIN)" <#if fieldsList?has_content>value="${fieldsList[13]}"</#if> class="form-control uppercase" id="code">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="city">Città<span class="text-danger">*</span></label>
+                                        <label for="city">City<span class="text-danger">*</span></label>
                                         <input type="text" name="citta" parsley-trigger="change" required
                                                placeholder="Enter City" <#if fieldsList?has_content>value="${fieldsList[8]}"</#if> class="form-control" id="city">
                                     </div>
@@ -382,13 +382,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="userEmail">Indirizzo E-mail<span class="text-danger">*</span></label>
+                                        <label for="userEmail">E-mail Address<span class="text-danger">*</span></label>
                                         <input type="text" name="email" parsley-trigger="change" required
                                                placeholder="Enter Email Address" <#if fieldsList?has_content>value="${fieldsList[12]}"</#if> class="form-control" id="userEmail">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="handicap">Altro</label>
+                                        <label for="handicap">Other</label>
                                         <div class="checkbox handicap">
                                             <input id="handicap" name="handicap" type="checkbox">
                                             <label for="handicap"> Portatore di Handicap </label>
@@ -397,7 +397,7 @@
 
                                 <br><br><br>
                                 <div class="form-group rippwd4">
-                                    <label for="pass2">Ripeti Password<span class="text-danger">*</span></label>
+                                    <label for="pass2">Repeat Password<span class="text-danger">*</span></label>
                                     <input id="pass2" name="ripeti_password" type="password" placeholder="Repeat Password" required
                                            class="form-control">
                                 </div>

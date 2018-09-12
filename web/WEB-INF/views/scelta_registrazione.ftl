@@ -38,7 +38,7 @@
                                             <span><img src="../../assets/images/logo_dark.png" alt="" height="30"></span>
                                         </a>
                                     </h2>
-                                    <h6 class=" font-bold">Registrazione     1/2</h6>
+                                    <h6 class=" font-bold">Registration     1/2</h6>
                                     <br>
                                 </div>
                                 <div class="account-content">
@@ -46,7 +46,7 @@
 
                                         <div class="form-group metismenu styleregchoose">
                                             <li class="container"> 
-                            <a href="/register?user=student"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Studenti </span>
+                            <a href="/register?user=student"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> STUDENT Registration Form </span>
                              </a>
                         </li>
                                         </div>
@@ -55,7 +55,7 @@
 
                                         <div class="form-group metismenu styleregchoose">
                                             <li class="container">
-                            <a href="/register?user=company"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> Form Registrazione Aziende </span>
+                            <a href="/register?user=company"><i class="sceltaregistrazione1 ti-pencil-alt"></i><span class="sceltaregistrazione"> COMPANY Registration Form </span>
                              </a>
                         </li>
                                         </div>
